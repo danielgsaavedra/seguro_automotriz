@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import DashboardAsegView
+from .views import ListarSiniestrosView, DashboardView
 
 urlpatterns = [
     
-    path('dashboard/', DashboardAsegView.as_view(), name='dashboard'),
+    path('listar-siniestros/', ListarSiniestrosView.as_view(), name='listar-siniestros'),
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
   
 ]

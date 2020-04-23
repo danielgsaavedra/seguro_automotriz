@@ -1,10 +1,10 @@
   
 from django.urls import path
-from .views import DashboardView, ListarSiniestrosView
+from .views import DashboardView, SiniestrosView
 
 urlpatterns = [
     
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
-     path('listar-siniestros/', ListarSiniestrosView.as_view(), name='listar-siniestros'),
+     path('siniestros/', SiniestrosView.as_view(), name='siniestros'),
   
 ]

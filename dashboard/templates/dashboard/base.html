@@ -32,7 +32,7 @@
 
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{% url 'dashboard' %}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Dashboard</span></a>
@@ -44,36 +44,28 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuario"
-                    aria-expanded="true" aria-controls="collapseUsuario">
+                <a class="nav-link" href="#">
                     <i class="fas fa-users"></i>
                     <span>Usuarios</span>
                 </a>
-                <div id="collapseUsuario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Registrar Usuarios</a>
-                        <a class="collapse-item" href="#">Listar Usuarios</a>
-                    </div>
-                </div>
             </li>
 
             <hr class="sidebar-divider">
 
             <div class="sidebar-heading">
-                Módulo Siniestros
+                Módulo Asegurados
             </div>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSiniestro"
-                    aria-expanded="true" aria-controls="collapseSiniestro">
-                    <i class="fas fa-car-crash"></i>
-                    <span>Siniestros</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAsegurado"
+                    aria-expanded="true" aria-controls="collapseAsegurado">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Asegurados</span>
                 </a>
-                <div id="collapseSiniestro" class="collapse" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
+                <div id="collapseAsegurado" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Registrar Siniestros</a>
-                        <a class="collapse-item" href="{% url 'listar-siniestros' %}">Listar Siniestros</a>
+                        <a class="collapse-item" href="#">Asegurados</a>
+                        <a class="collapse-item" href="#">Vehículos</a>
                     </div>
                 </div>
             </li>
@@ -85,18 +77,23 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePoliza"
-                    aria-expanded="true" aria-controls="collapsePoliza">
+                <a class="nav-link collapsed" href="#">
                     <i class="fas fa-file-invoice-dollar"></i>
                     <span>Pólizas</span>
                 </a>
-                <div id="collapsePoliza" class="collapse" aria-labelledby="headingPages"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Registrar Pólizas</a>
-                        <a class="collapse-item" href="#">Listar Pólizas</a>
-                    </div>
-                </div>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Módulo Siniestros
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{% url 'siniestros' %}">
+                    <i class="fas fa-car-crash"></i>
+                    <span>Siniestros</span>
+                </a>
             </li>
 
             <hr class="sidebar-divider">
@@ -106,18 +103,11 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTaller"
-                    aria-expanded="true" aria-controls="collapseTaller">
+                <a class="nav-link collapsed" href="#">
                     <i class="fas fa-tools"></i>
                     <span>Taller</span>
                 </a>
-                <div id="collapseTaller" class="collapse" aria-labelledby="headingPages"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Registrar Taller</a>
-                        <a class="collapse-item" href="#">Listar Taller</a>
-                    </div>
-                </div>
+
             </li>
 
             <hr class="sidebar-divider d-none d-md-block">

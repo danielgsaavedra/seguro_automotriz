@@ -5,5 +5,5 @@ from django.views.generic.base import TemplateView
 class DashboardView(TemplateView):
     template_name = 'dashboard/dashboard.html'
 
-class ListarSiniestrosView(TemplateView):
-    template_name = 'dashboard/listar_siniestro.html'
+class SiniestrosView(TemplateView):
+    template_name = 'dashboard/siniestros.html'

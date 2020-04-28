@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
-from .models import Usuario, Taller
+from .models import Usuario, Taller,Asegurado
 
 # Create your views here.
 
@@ -19,3 +19,8 @@ def UsuariosView(request):
     usuarios = Usuario.objects.all().order_by('rol_id_rol')
     context = {'usuarios': usuarios}
     return render(request, 'dashboard/usuarios.html', context)
+
+def AseguradosView(request):
+    asegurados = Asegurado.objects.all().order_by('fecha_nacimiento')
+    context = {'asegurados': asegurados}
+    return render(request, 'dashboard/asegurado.html', context)

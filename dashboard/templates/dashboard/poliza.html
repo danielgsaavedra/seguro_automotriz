@@ -3,7 +3,7 @@
 {% block content %}
 <div class="d-sm-flex align-items-center justify-content-end mb-4">
     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="" data-target="">
-        <i class="fas fa-file-invoice"></i> Registrar Póliza</a>
+        <i class="fas fa-file-invoice fa-sm text-white-50"></i> Registrar Póliza</a>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -17,7 +17,7 @@
                         <th scope="col">Id</th>
                         <th scope="col">Vigente</th>
                         <th scope="col">Fecha Inicio</th>
-                        <th scope="col">Fecha FIn</th>
+                        <th scope="col">Fecha Término</th>
                         <th scope="col">RUT Asegurado</th>
                         <th scope="col">Vehículo Asegurado</th>
                         <th scope="col">Opciones</th>
@@ -28,9 +28,9 @@
                     <tr>
                         <td>{{polizas.id_poliza}}</td>
                         {% if polizas.vigente == '1' %}
-                             <td>SÍ</td>
+                        <td>SÍ</td>
                         {% else %}
-                             <td>NO</td>
+                        <td>NO</td>
                         {% endif %}
                         <td>{{polizas.fecha_inicio}}</td>
                         <td>{{polizas.fecha_fin}}</td>

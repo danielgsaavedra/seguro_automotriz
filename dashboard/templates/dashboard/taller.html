@@ -20,9 +20,9 @@
                     <tr>
                         <th scope="col">N° Taller</th>
                         <th scope="col">Nombre Taller</th>
-                        <th scope="col">N° Telefono</th>
+                        <th scope="col">N° Teléfono</th>
                         <th scope="col">Correo</th>
-                        <th scope="col">Espacios Disponibles</th>
+                        <th scope="col">Capacidad Taller</th>
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
@@ -44,8 +44,9 @@
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item"  href="#">Editar Taller</a>
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#eliminarTaller" href="#">Eliminar Taller</a>
+                                    <a class="dropdown-item" href="#">Editar Taller</a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#eliminarTaller"
+                                        href="#">Eliminar Taller</a>
                                 </div>
                             </div>
                         </td>
@@ -61,87 +62,84 @@
 
 
 <!-- Modal Registro Taller -->
-<div class="modal fade .modal-dialog-centered" id="registroTallerModal" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="registroTallerModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Registrar Taller</h3>
+                <h3 class="modal-title">Registrar Taller</h3>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div>
-                    <form>
-                        <div class="form-group row">
-                            <label for="Nombre" class="col-sm-3 col-form-label">Nombre</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="Nombre" placeholder="Mi Taller">
+                <form action="">
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <div class="col-form-label">
+                                <span>RUT</span>
                             </div>
-                            <br><br>
-
-                            <label for="RazonSocial" class="col-sm-3 col-form-label">Razon Social</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="RazonSocial"
-                                    placeholder="Taller Mecanico Ltd">
-                            </div>
-                            <br><br>
-
-                            <label for="Telefono" class="col-sm-3 col-form-label">N° Telefonico</label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" id="Telefono" placeholder="935754963">
-                            </div>
-                            <br><br>
-
-                            <label for="Correo" class="col-sm-3 col-form-label">Correo</label>
-                            <div class="col-sm-8">
-                                <input type="email" class="form-control" id="Correo" placeholder="correo@domain.com">
-                            </div>
-                            <br><br>
-
-                            <label for="Capacidad" class="col-sm-3 col-form-label">Capacidad Max.</label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" id="Capacidad" placeholder="10">
-                            </div>
-                            <br><br>
-
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text " for="inputGroupSelect01">Rut</label>
-                                </div>
-                                <select class="custom-select col-sm-9" id="inputGroupSelect01">
-                                    <option selected>Seleccione...</option>
-                                    <option value="1">19252234-K</option>
-                                    <option value="2">19328150-8</option>
-                                    <option value="3">12693201-3</option>
-                                </select>
-                            </div>
-
-
-
+                            <select class="form-control" id="">
+                                <option selected>Selecciona rut</option>
+                                <option value="1">19252234-K</option>
+                                <option value="2">19328150-8</option>
+                                <option value="3">12693201-3</option>
+                            </select>
                         </div>
+                    </div>
 
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <label for="Nombre" class="col-form-label">NOMBRE</label>
+                            <input type="text" class="form-control" id="Nombre" placeholder="Ingresa nombre taller">
+                        </div>
+                    </div>
 
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <label for="RazonSocial" class="col-form-label">RAZÓN SOCIAL</label>
+                            <input type="text" class="form-control" id="RazonSocial" placeholder="Ingresa razón social">
+                        </div>
+                    </div>
 
-                    </form>
-                </div>
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <label for="Telefono" class="col-form-label">N° TELÉFONO</label>
+                            <input type="number" class="form-control" id="Telefono" placeholder="Ingresa teléfono">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <label for="Correo" class="col-form-label">CORREO</label>
+                            <input type="email" class="form-control" id="Correo" placeholder="Ingresa correo">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <label for="Capacidad" class="col-form-label">CAPACIDAD MÁXIMA</label>
+                            <input type="number" class="form-control" id="Capacidad" placeholder="Ingresa capacidad máxima">
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-primary" href="#">Registrar</a>
                 <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href="#">Registrar</a>
             </div>
         </div>
     </div>
 </div>
+</div>
+</div>
 
 <!-- Modal Borrar Taller -->
-<div class="modal fade" id="eliminarTaller" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="eliminarTaller" tabindex="-1" role="dialog"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Seguro que deseas eliminar taller?</h5>
+                <h5 class="modal-title">Seguro que deseas eliminar taller?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>

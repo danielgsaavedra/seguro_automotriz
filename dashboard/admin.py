@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from .models import Asegurado, Poliza, Comuna, Direccion, Region, Siniestro, Usuario, EstadoPresupuesto, EstadoSiniestro, FormularioActa, Grua, InformeDano, Marca, PlanSeguro, Presupuesto, Rol, ServicioGrua, SeveridadDano,Taller, TipoAccidente, TipoActa, TipoDano, TipoPlan, TipoVehiculo, Vehiculo
+from .models import Asegurado, Poliza, Comuna, Direccion, Region, Siniestro, Usuario, EstadoPresupuesto, EstadoSiniestro, FormularioActa, Grua, InformeDano, Marca, PlanSeguro, Presupuesto, Rol, ServicioGrua, SeveridadDano, Taller, TipoAccidente, TipoActa, TipoDano, TipoPlan, TipoVehiculo, Vehiculo
 
 admin.site.register(Asegurado)
 admin.site.register(Poliza)

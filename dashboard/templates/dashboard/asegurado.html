@@ -26,10 +26,10 @@
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
+                {% for asegurados in asegurados %}
                 <tbody>
-                    {% for asegurados in asegurados %}
                     <tr>
-                        <td>{{asegurados.rut_asegurado}}</td>
+                        <th scope="row">{{ asegurados.rut_asegurado }}</th>
                         <td>{{asegurados.primer_nombre}}</td>
                         <td>{{asegurados.segundo_nombre}}</td>
                         <td>{{asegurados.primer_apellido}}</td>
@@ -50,8 +50,8 @@
                             </div>
                         </td>
                     </tr>
-                    {% endfor %}
                 </tbody>
+                {% endfor %}
             </table>
         </div>
     </div>

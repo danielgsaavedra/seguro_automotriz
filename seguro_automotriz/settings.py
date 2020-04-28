@@ -74,7 +74,6 @@ WSGI_APPLICATION = 'seguro_automotriz.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
@@ -85,6 +84,7 @@ DATABASES = {
         'PORT': '1521',
     }
 }
+
 
 
 # Password validation

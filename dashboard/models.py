@@ -7,7 +7,6 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-
 class Asegurado(models.Model):
     rut_asegurado = models.CharField(primary_key=True, max_length=12, verbose_name = 'Rut')
     primer_nombre = models.CharField(max_length=20, verbose_name = 'Primer Nombre')
@@ -23,6 +22,7 @@ class Asegurado(models.Model):
     class Meta:
         managed = False
         db_table = 'asegurado'
+
         verbose_name_plural = 'Asegurados'
     
     def __str__(self):

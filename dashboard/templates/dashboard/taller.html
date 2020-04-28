@@ -1,0 +1,158 @@
+{% extends "dashboard/base.html" %}
+
+{% block content %}
+<!-- boton para activar modal -->
+<div class="d-sm-flex align-items-center justify-content-end mb-4">
+    <a href="#" data-toggle="modal" data-target="#registroTallerModal"
+        class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-tools fa-sm text-white-50"></i> Registrar Taller</a>
+</div>
+
+<!--  Tabla para listar taller -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Taller</h6>
+    </div>
+    <div class="card-body text-center">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">N° Taller</th>
+                        <th scope="col">Nombre Taller</th>
+                        <th scope="col">N° Telefono</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Espacios Disponibles</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                {% for taller in taller %}
+                <tbody>
+                    <tr>
+                        <th scope="row">{{taller.id_taller}}</th>
+                        <td>{{taller.nombre}}</td>
+                        <td>{{taller.telefono}}</td>
+                        <td>{{taller.correo}}</td>
+                        <td>{{taller.capacidad_taller}}</td>
+                        <!-- <td>
+                            <span class="badge badge-pill badge-success">En Curso</span>
+                        </td> -->
+                        <td>
+                            <div class="dropdown">
+                                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item"  href="#">Editar Taller</a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#eliminarTaller" href="#">Eliminar Taller</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Registro Taller -->
+<div class="modal fade .modal-dialog-centered" id="registroTallerModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Registrar Taller</h3>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form>
+                        <div class="form-group row">
+                            <label for="Nombre" class="col-sm-3 col-form-label">Nombre</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="Nombre" placeholder="Mi Taller">
+                            </div>
+                            <br><br>
+
+                            <label for="RazonSocial" class="col-sm-3 col-form-label">Razon Social</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="RazonSocial"
+                                    placeholder="Taller Mecanico Ltd">
+                            </div>
+                            <br><br>
+
+                            <label for="Telefono" class="col-sm-3 col-form-label">N° Telefonico</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="Telefono" placeholder="935754963">
+                            </div>
+                            <br><br>
+
+                            <label for="Correo" class="col-sm-3 col-form-label">Correo</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" id="Correo" placeholder="correo@domain.com">
+                            </div>
+                            <br><br>
+
+                            <label for="Capacidad" class="col-sm-3 col-form-label">Capacidad Max.</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="Capacidad" placeholder="10">
+                            </div>
+                            <br><br>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text " for="inputGroupSelect01">Rut</label>
+                                </div>
+                                <select class="custom-select col-sm-9" id="inputGroupSelect01">
+                                    <option selected>Seleccione...</option>
+                                    <option value="1">19252234-K</option>
+                                    <option value="2">19328150-8</option>
+                                    <option value="3">12693201-3</option>
+                                </select>
+                            </div>
+
+
+
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" href="#">Registrar</a>
+                <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Borrar Taller -->
+<div class="modal fade" id="eliminarTaller" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Seguro que deseas eliminar taller?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Presiona "Eliminar" para borrar este taller.</div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href="#">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

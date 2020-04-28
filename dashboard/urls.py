@@ -9,5 +9,6 @@ urlpatterns = [
     path('siniestros/', SiniestrosView.as_view(), name='siniestros'),
     path('taller/', views.TallerView, name='taller'),
     path('usuarios/', views.UsuariosView, name='usuarios'),
+    path('asegurados/', views.AseguradosView, name='asegurados'),
   
 ]

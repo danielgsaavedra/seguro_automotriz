@@ -23,10 +23,10 @@
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
+                {% for vehiculos in vehiculos %}
                 <tbody>
-                    {% for vehiculos in vehiculos %}
                     <tr>
-                        <td>{{vehiculos.patente_vehiculo}}</td>
+                        <th scope="row">{{vehiculos.patente_vehiculo}}</th>
                         <td>{{vehiculos.anio}}</td>
                         <td>{{vehiculos.modelo}}</td>
                         <td>{{vehiculos.nro_motor}}</td>
@@ -45,8 +45,8 @@
                             </div>
                         </td>
                     </tr>
-                    {% endfor %}
                 </tbody>
+                {% endfor %}
             </table>
         </div>
     </div>

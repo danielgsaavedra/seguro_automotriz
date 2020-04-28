@@ -23,10 +23,10 @@
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
+                {% for polizas in polizas %}
                 <tbody>
-                    {% for polizas in polizas %}
                     <tr>
-                        <td>{{polizas.id_poliza}}</td>
+                        <th scope="row">{{polizas.id_poliza}}</th>
                         {% if polizas.vigente == '1' %}
                         <td>SÍ</td>
                         {% else %}
@@ -49,8 +49,8 @@
                             </div>
                         </td>
                     </tr>
-                    {% endfor %}
                 </tbody>
+                {% endfor %}
             </table>
         </div>
     </div>

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
-from .models import Usuario, Taller,Asegurado,Vehiculo
+from .models import Usuario, Taller,Asegurado,Vehiculo,Poliza
 
 # Create your views here.
 
@@ -29,3 +29,8 @@ def VehiculosView(request):
     vehiculos = Vehiculo.objects.all().order_by('anio')
     context = {'vehiculos': vehiculos}
     return render(request, 'dashboard/vehiculo.html', context)
+
+def PolizasView(request):
+    polizas = Poliza.objects.all().order_by('id_poliza')
+    context = {'polizas': polizas}
+    return render(request, 'dashboard/poliza.html', context)

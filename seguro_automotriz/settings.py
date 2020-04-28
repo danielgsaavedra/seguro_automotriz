@@ -74,13 +74,17 @@ WSGI_APPLICATION = 'seguro_automotriz.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': 'xe',
+        'USER': 'C##admin',
+        'PASSWORD': 'portafolio2020',
+        'HOST': 'localhost',
+        'PORT': '1521',
     }
 }
+
 
 
 # Password validation

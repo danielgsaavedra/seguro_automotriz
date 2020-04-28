@@ -11,5 +11,5 @@ urlpatterns = [
     path('usuarios/', views.UsuariosView, name='usuarios'),
     path('asegurados/', views.AseguradosView, name='asegurados'),
     path('vehiculos/', views.VehiculosView, name='vehiculos'),
-  
+    path('polizas/', views.PolizasView, name='polizas'),
 ]

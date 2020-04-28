@@ -1,0 +1,61 @@
+{% extends "dashboard/base.html" %}
+
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-end mb-4">
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-car-side"></i> Registrar Vehículo</a>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Vehículos</h6>
+    </div>
+    <div class="card-body text-center">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">Patente</th>
+                        <th scope="col">Año</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Nro Motor</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">RUT Asegurado</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for vehiculos in vehiculos %}
+                    <tr>
+                        <td>{{vehiculos.patente_vehiculo}}</td>
+                        <td>{{vehiculos.anio}}</td>
+                        <td>{{vehiculos.modelo}}</td>
+                        <td>{{vehiculos.nro_motor}}</td>
+                        <td>{{vehiculos.marca_id_marca}}</td>
+                        <td>{{vehiculos.asegurado_rut_asegurado.rut_asegurado}}</td>
+                        <td>
+                            <div class="dropdown">
+                                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Editar Vehículo</a>
+                                    <a class="dropdown-item" href="#">Finalizar Vehículo</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+

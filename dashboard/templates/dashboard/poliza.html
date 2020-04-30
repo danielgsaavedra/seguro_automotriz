@@ -2,8 +2,9 @@
 
 {% block content %}
 <div class="d-sm-flex align-items-center justify-content-end mb-4">
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="" data-target="">
-        <i class="fas fa-file-invoice fa-sm text-white-50"></i> Registrar Póliza</a>
+    <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm show_form"
+        data-url="{% url 'poliza_create' %}">
+        <i class="fas fa-file-invoice fa-sm text-white-50"></i> Crear Póliza</button>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -11,7 +12,7 @@
     </div>
     <div class="card-body text-center">
         <div class="table-responsive">
-            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered table-hover" id="table_poliza" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
@@ -19,39 +20,23 @@
                         <th scope="col">Fecha Inicio</th>
                         <th scope="col">Fecha Término</th>
                         <th scope="col">RUT Asegurado</th>
-                        <th scope="col">Vehículo Asegurado</th>
+                        <th scope="col">Patente Vehículo</th>
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
-                {% for polizas in polizas %}
                 <tbody>
-                    <tr>
-                        <th scope="row">{{polizas.id_poliza}}</th>
-                        {% if polizas.vigente == '1' %}
-                        <td>SÍ</td>
-                        {% else %}
-                        <td>NO</td>
-                        {% endif %}
-                        <td>{{polizas.fecha_inicio}}</td>
-                        <td>{{polizas.fecha_fin}}</td>
-                        <td>{{polizas.asegurado_rut_asegurado.rut_asegurado}}</td>
-                        <td>{{polizas.vehiculo_patente_vehiculo}}</td>
-                        <td>
-                            <div class="dropdown">
-                                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Editar Póliza</a>
-                                    <a class="dropdown-item" href="#">Finalizar Póliza</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                    {% include "dashboard/poliza_2.html" %}
                 </tbody>
-                {% endfor %}
             </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_poliza" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+            </div>
         </div>
     </div>
 </div>

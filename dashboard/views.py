@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import TemplateView
 from .models import Usuario, Taller, Asegurado, Vehiculo, Poliza
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+from .forms import PolizaForm
+
 
 # Create your views here.
 
@@ -38,6 +42,40 @@ def VehiculosView(request):
 
 
 def PolizasView(request):
-    polizas = Poliza.objects.all().order_by('id_poliza')
+    polizas = Poliza.objects.all().order_by('-id_poliza')
     context = {'polizas': polizas}
     return render(request, 'dashboard/poliza.html', context)
+
+
+def SaveAll(request, form, template_name):
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            polizas = Poliza.objects.all().order_by('-id_poliza')
+            context = {'polizas': polizas}
+            data['polizas'] = render_to_string(
+                'dashboard/poliza_2.html', context)
+        else:
+            data['form_is_valid'] = False
+
+    context = {'form': form}
+    data['html_form'] = render_to_string(
+        template_name, context, request=request)
+    return JsonResponse(data)
+
+# Create
+
+
+def CreatePoliza(request):
+    if request.method == 'POST':
+        form = PolizaForm(request.POST)
+    else:
+        form = PolizaForm()
+    return SaveAll(request, form, 'dashboard/poliza_create.html')
+
+# Update
+
+
+# Delete

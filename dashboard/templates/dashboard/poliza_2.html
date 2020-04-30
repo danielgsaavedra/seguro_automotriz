@@ -1,0 +1,30 @@
+{% for polizas in polizas %}
+<tr>
+    <th scope="row">{{polizas.id_poliza}}</th>
+    {% if polizas.vigente == '1' %}
+    <td>SÍ</td>
+    {% else %}
+    <td>NO</td>
+    {% endif %}
+    <td>{{polizas.fecha_inicio}}</td>
+    <td>{{polizas.fecha_fin}}</td>
+    <td>{{polizas.asegurado_rut_asegurado.rut_asegurado}}</td>
+    <td>{{polizas.vehiculo_patente_vehiculo}}</td>
+    <td>
+        <div class="dropdown">
+            <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <!-- update button -->
+                <!-- delete button -->
+            </div>
+        </div>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="7" class="text-center bg-warning">No hay pólizas</td>
+</tr>
+{% endfor %}

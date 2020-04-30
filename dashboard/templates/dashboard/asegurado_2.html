@@ -1,0 +1,28 @@
+{% for asegurados in asegurados %}
+<tr>
+    <th scope="row">{{ asegurados.rut_asegurado }}</th>
+    <td>{{asegurados.primer_nombre}}</td>
+    <td>{{asegurados.segundo_nombre}}</td>
+    <td>{{asegurados.primer_apellido}}</td>
+    <td>{{asegurados.segundo_apeliido}}</td>
+    <td>{{asegurados.correo}}</td>
+    <td>+569 {{asegurados.telefono}}</td>
+    <td>{{asegurados.fecha_nacimiento}}</td>
+    <td>
+        <div class="dropdown">
+            <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Editar Asegurado</a>
+                <a class="dropdown-item" href="#">Finalizar Asegurado</a>
+            </div>
+        </div>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="7" class="text-center bg-warning">No hay Asegurados</td>
+</tr>
+{% endfor %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Poliza
+from .models import Poliza,Asegurado
 
 
 class PolizaForm(forms.ModelForm):
@@ -16,3 +16,34 @@ class PolizaForm(forms.ModelForm):
             'asegurado_rut_asegurado': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut asegurado'}),
             'vehiculo_patente_vehiculo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente vehículo'})
         }
+
+class AseguradoForm(forms.ModelForm):
+
+    class Meta:
+        model = Asegurado
+        fields = [
+            'rut_asegurado',
+            'primer_nombre',
+            'segundo_nombre',
+            'primer_apellido',
+            'segundo_apeliido',
+            'correo',
+            'telefono',
+            'fecha_nacimiento',
+            'usuario_rut_usuario'
+            ]
+        widgets = {
+            'rut_asegurado': forms.TextInput(attrs={'class':'form-control','placeholder':'Ingresa su rut'}),
+            'primer_nombre': forms.TextInput(attrs={'class':'form-control','placeholder':'Ingresa su primer nombre'}),
+            'segundo_nombre': forms.TextInput(attrs={'class':'form-control','placeholder':'Ingresa su segundo nombre'}),
+            'primer_apellido': forms.TextInput(attrs={'class':'form-control','placeholder':'Ingresa su primer apellido'}),
+            'segundo_apeliido': forms.TextInput(attrs={'class':'form-control','placeholder':'Ingresa su segundo apellido'}),
+            'correo': forms.TextInput(attrs={'class':'form-control','placeholder':'Ingresa su correo'}),
+            'telefono': forms.NumberInput(attrs={'class':'form-control','placeholder':'Ingresa su telefono'}),
+            'fecha_nacimiento': forms.TextInput(attrs={'class':'form-control','type':'date'}),
+            'usuario_rut_usuario': forms.Select(attrs={'class':'form-control','placeholder':'Ingresa rut usuario'}),
+        }
+    
+
+
+    

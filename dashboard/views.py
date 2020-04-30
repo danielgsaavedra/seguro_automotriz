@@ -67,6 +67,13 @@ def AseguradoCreate(request):
         form = AseguradoForm()
     return SaveAllAsegurado(request, form, 'dashboard/asegurados/asegurado_create.html')
 
+def AseguradoUpdate(request, id):
+    asegurado = get_object_or_404(Asegurado, rut_asegurado=id)
+    if request.method == 'POST':
+        form = AseguradoForm(request.POST, instance=asegurado)
+    else:
+        form = AseguradoForm(instance=asegurado)
+    return SaveAllAsegurado(request, form, 'dashboard/asegurados/asegurado_update.html')
 
 def VehiculosView(request):
     vehiculos = Vehiculo.objects.all().order_by('anio')

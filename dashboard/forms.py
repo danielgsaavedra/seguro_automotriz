@@ -40,7 +40,7 @@ class AseguradoForm(forms.ModelForm):
             'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su primer apellido'}),
             'segundo_apeliido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su segundo apellido'}),
             'correo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su correo'}),
-            'telefono': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su telefono'}),
+            'telefono': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su teléfono'}),
             'fecha_nacimiento': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
             'usuario_rut_usuario': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut usuario'}),
         }

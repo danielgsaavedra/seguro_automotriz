@@ -69,13 +69,13 @@ $(document).ready(function () {
                     $('#table_asegurado tbody').html(data.asegurados);
                     $('#modal_asegurado').modal('hide');
                     console.log('Asegurado registrado correctamente!');
-                    // toastr.success('Póliza creada correctamente.');
+                    toastr.success('Exito');
                 } else {
                     $('#modal_asegurado .modal-content').html(data.html_form)
                 }
             },
             error: function(){
-                alert('No se pudo registrar asegurado, intente nuevamente.')
+                toastr.error('No se pudo registrar asegurado, intente nuevamente.')
             }
         });
         return false;
@@ -96,6 +96,10 @@ $(document).ready(function () {
     //Crear Asegurado
     $('.show-asegurado ').click(ShowAseguradoForm);
     $('#modal_asegurado').on('submit', '.asegurado_form', SaveAseguradoForm);
+
+    //Modificar Asegurado
+    $('#table_asegurado').on('click', '.show_asegurado_update', ShowAseguradoForm);
+    $('#modal_asegurado').on('submit', '.asegurado_form_update', SaveAseguradoForm);
 
 
 });

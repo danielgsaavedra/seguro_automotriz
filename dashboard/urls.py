@@ -12,6 +12,7 @@ urlpatterns = [
     path('usuarios/', views.UsuariosView, name='usuarios'),
     path('asegurados/', views.AseguradosView, name='asegurados'),
     path('asegurados/create/', views.AseguradoCreate, name='asegurado_create'),
+    path('asegurados/<str:id>/update/',views.AseguradoUpdate,name='asegurado_update'),
     path('vehiculos/', views.VehiculosView, name='vehiculos'),
     url(r'^polizas/$', views.PolizasView, name='polizas'),
     url(r'^polizas/create$', views.CreatePoliza, name='poliza_create'),

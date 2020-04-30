@@ -1,0 +1,70 @@
+<form action="" class="vehiculo_form_update" method="POST" data-url="{% url 'vehiculo_update' form.instance.patente_vehiculo%}">
+    {% csrf_token %}
+
+    <div class="modal-header bg-primary">
+        <h5 class="modal-title text-light">Modificar Vehículos</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>PATENTE</span>
+                </div>
+                {{ form.patente_vehiculo }}
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>MODELO</span>
+                </div>
+                {{ form.modelo }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>N° MOTOR</span>
+                </div>
+                {{ form.nro_motor }}
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>AÑO</span>
+                </div>
+                {{ form.anio }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>MARCA</span>
+                </div>
+                {{ form.marca_id_marca }}
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>TIPO VEHÍCULO</span>
+                </div>
+                {{ form.tipo_vehiculo_id_tipo_auto }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="col-form-label">
+                    <span>RUT ASEGURADO</span>
+                </div>
+                {{form.asegurado_rut_asegurado}}
+            </div>
+        </div> 
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-outline-primary">Modificar</button>
+    </div>
+</form>

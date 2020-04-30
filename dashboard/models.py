@@ -22,6 +22,7 @@ class Asegurado(models.Model):
     correo = models.CharField(max_length=50, verbose_name='Correo')
     telefono = models.BigIntegerField(verbose_name='Teléfono')
     fecha_nacimiento = models.DateField(verbose_name='Fecha Nacimiento')
+    estado = models.CharField(max_length=1,default=1)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario')
 
@@ -299,7 +300,7 @@ class Marca(models.Model):
         db_table = 'marca'
 
     def __str__(self):
-        return str(self.id_marca)
+        return str(self.nombre)
 
 
 class PlanSeguro(models.Model):
@@ -327,6 +328,7 @@ class Poliza(models.Model):
     fecha_inicio = models.DateField(verbose_name='Fecha Inicio')
     fecha_fin = models.DateField(verbose_name='Fecha Termino')
     firma = models.CharField(max_length=200, verbose_name='Firma')
+    estado = models.CharField(max_length=1,default=1)
     asegurado_rut_asegurado = models.ForeignKey(
         Asegurado, models.DO_NOTHING, db_column='asegurado_rut_asegurado', verbose_name='Rut Asegurado')
     vehiculo_patente_vehiculo = models.ForeignKey(
@@ -540,6 +542,7 @@ class Taller(models.Model):
     correo = models.CharField(max_length=30, verbose_name='Correo')
     capacidad_taller = models.IntegerField(verbose_name='Capacidad Taller')
     estado = models.CharField(max_length=1, verbose_name='Estado')
+    estado_delete = models.CharField(max_length=1)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario')
 

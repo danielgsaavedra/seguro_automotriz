@@ -1470,6 +1470,7 @@
 		  "correo":"PARRA.ROSA@HOTMAIL.COM",
 		  "telefono":969871247,
 		  "fecha_nacimiento":"1997-08-12",
+		  "estado":"1",
 		  "usuario_rut_usuario":"18704536-3"
 	}
 },
@@ -1484,6 +1485,7 @@
 		  "correo":"ROJAS.ENRIQUE@HOTMAIL.COM",
 		  "telefono":987225603,
 		  "fecha_nacimiento":"1995-07-09",
+		  "estado":"1",
 		  "usuario_rut_usuario":"18704536-3"
 	}
 },
@@ -1498,6 +1500,7 @@
 		  "correo":"ALEJANDRO_PARROSA@HOTMAIL.COM",
 		  "telefono":967231011,
 		  "fecha_nacimiento":"1967-02-17",
+		  "estado":"1",
 		  "usuario_rut_usuario":"18704536-3"
 	}
 },
@@ -1512,6 +1515,7 @@
 		  "correo":"JESUSGONZALEZRICCO@GMAIL.COM",
 		  "telefono":959085454,
 		  "fecha_nacimiento":"1994-11-08",
+		  "estado":"1",
 		  "usuario_rut_usuario":"18704536-3"
 	}
 },
@@ -1526,6 +1530,7 @@
 		  "correo":"AQUILES.BAEZA@GMAIL.COM",
 		  "telefono":923456132,
 		  "fecha_nacimiento":"1983-10-27",
+		  "estado":"1",
 		  "usuario_rut_usuario":"18704536-3"
 	}
 },
@@ -1540,6 +1545,7 @@
 		  "correo":"LUISLOYOLA@GMAIL.COM",
 		  "telefono":987225677,
 		  "fecha_nacimiento":"1977-04-26",
+		  "estado":"1",
 		  "usuario_rut_usuario":"18704536-3"
 	}
 },
@@ -1623,6 +1629,7 @@
 		  "fecha_inicio":"2020-04-14",
 		  "fecha_fin":"2021-04-13",
 		  "firma":"FOTITO FIRMA",
+		  "estado":"1",
 		  "asegurado_rut_asegurado":"20554886-7",
 		  "vehiculo_patente_vehiculo":"JP-DA-22"
 	}
@@ -1635,6 +1642,7 @@
 		  "fecha_inicio":"2020-05-17",
 		  "fecha_fin":"2021-05-16",
 		  "firma":"FOTITO FIRMA",
+		  "estado":"1",
 		  "asegurado_rut_asegurado":"19574568-3",
 		  "vehiculo_patente_vehiculo":"GW-RE-32"
 	}
@@ -1647,6 +1655,7 @@
 		  "fecha_inicio":"2018-07-10",
 		  "fecha_fin":"2019-07-09",
 		  "firma":"ALEJANDRO",
+		  "estado":"1",
 		  "asegurado_rut_asegurado":"9078573-0",
 		  "vehiculo_patente_vehiculo":"GR-PQ-12"
 	}
@@ -1659,6 +1668,7 @@
 		  "fecha_inicio":"2019-11-21",
 		  "fecha_fin":"2020-11-20",
 		  "firma":"JESUS",
+		  "estado":"1",
 		  "asegurado_rut_asegurado":"19932098-5",
 		  "vehiculo_patente_vehiculo":"FU-CK-69"
 	}
@@ -1671,6 +1681,7 @@
 		  "fecha_inicio":"2020-08-10",
 		  "fecha_fin":"2021-08-09",
 		  "firma":"AQUILES BAEZA",
+		  "estado":"1",
 		  "asegurado_rut_asegurado":"13456223-1",
 		  "vehiculo_patente_vehiculo":"RR-XZ-WW"
 	}
@@ -1683,6 +1694,7 @@
 		  "fecha_inicio":"2018-12-31",
 		  "fecha_fin":"2019-12-30",
 		  "firma":"LUIS LAZO",
+		  "estado":"1",
 		  "asegurado_rut_asegurado":"23568113-7",
 		  "vehiculo_patente_vehiculo":"YY-F8-CQ"
 	}
@@ -1697,6 +1709,7 @@
 		  "correo":"KURAPIKA.ROTO@GMAIL.COM",
 		  "capacidad_taller":20,
 		  "estado":"0",
+		  "estado_delete":"1",
 		  "usuario_rut_usuario":"16003846-2"
 	}
 },
@@ -1710,6 +1723,7 @@
 		  "correo":"ELCHANOMOVIL@GMAIL.COM",
 		  "capacidad_taller":17,
 		  "estado":"1",
+		  "estado_delete":"1",
 		  "usuario_rut_usuario":"10128673-4"
 	}
 },
@@ -1723,6 +1737,7 @@
 		  "correo":"MI.CACHARRITO@GMAIL.COM",
 		  "capacidad_taller":10,
 		  "estado":"1",
+		  "estado_delete":"1",
 		  "usuario_rut_usuario":"12693201-3"
 	}
 },

@@ -3,7 +3,7 @@ from django.views.generic.base import TemplateView
 from .models import Usuario, Taller, Asegurado, Vehiculo, Poliza
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from .forms import PolizaForm
+from .forms import PolizaForm,AseguradoForm
 
 
 # Create your views here.
@@ -28,12 +28,38 @@ def UsuariosView(request):
     context = {'usuarios': usuarios}
     return render(request, 'dashboard/usuarios.html', context)
 
+#CRUD ASEGURADO
+def SaveAllAsegurado(request, form, template_name):
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            asegurados = Asegurado.objects.all().order_by('fecha_nacimiento')
+            context = {'asegurados': asegurados}
+            data['asegurados'] = render_to_string(
+                'dashboard/asegurado_2.html', context)
+        else:
+            data['form_is_valid'] = False
 
+    context = {'form': form}
+    data['html_form'] = render_to_string(
+        template_name, context, request=request)
+    return JsonResponse(data)
+
+#READ
 def AseguradosView(request):
     asegurados = Asegurado.objects.all().order_by('fecha_nacimiento')
     context = {'asegurados': asegurados}
     return render(request, 'dashboard/asegurado.html', context)
 
+#CREATE
+def AseguradoCreate(request):
+    if request.method == 'POST':
+        form = AseguradoForm(request.POST)
+    else:
+        form = AseguradoForm()
+    return SaveAllAsegurado(request, form, 'dashboard/asegurado_create.html')
 
 def VehiculosView(request):
     vehiculos = Vehiculo.objects.all().order_by('anio')

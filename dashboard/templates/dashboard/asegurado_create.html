@@ -1,0 +1,81 @@
+<form action="" class="asegurado_form" method="POST" data-url="{% url 'asegurado_create' %}">
+    {% csrf_token %}
+    <div class="modal-header  bg-success"> 
+        <h5 class="modal-title text-light">Registro de Asegurados</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <div class="col-form-label">
+                        <span>RUT</span>
+                    </div>
+                    {{form.rut_asegurado}}
+                    <!-- <input class="form-control" name="rut_asegurado" placeholder="Ingresa tu rut" /> -->
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <div class="col-form-label">
+                        <span>TELÉFONO</span>
+                    </div>
+                    {{form.telefono}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <div class="col-form-label">
+                        <span>PRIMER NOMBRE</span>
+                    </div>
+                    {{form.primer_nombre}}
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <div class="col-form-label">
+                        <span>SEGUNDO NOMBRE</span>
+                    </div>
+                    {{form.segundo_nombre}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <div class="col-form-label">
+                        <span>PRIMER APELLIDO</span>
+                    </div>
+                    {{form.primer_apellido}}
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <div class="col-form-label">
+                        <span>SEGUNDO APELLIDO</span>
+                    </div>
+                    {{form.segundo_apeliido}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <div class="col-form-label">
+                        <span>CORREO</span>
+                    </div>
+                    {{form.correo}}
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <div class="col-form-label">
+                        <span>FECHA NACIMIENTO</span>
+                    </div>
+                    {{form.fecha_nacimiento}}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <div class="col-form-label">
+                        <span>RUT USUARIO</span>
+                    </div>
+                    {{form.usuario_rut_usuario}}
+                </div>
+            </div> 
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-outline-dark" type="button" data-dismiss="modal">Cancelar</button>
+        <button class="btn btn-outline-success" type="submit" >Registrar</button>
+    </div> 
+</form>
+

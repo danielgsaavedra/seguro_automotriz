@@ -18,8 +18,9 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <button class="show_form_update dropdown-item" data-url="{% url 'poliza_update' polizas.id_poliza %}">
-                    Modificar Póliza</button> 
-                    <!-- delete button -->
+                    Modificar Póliza</button>
+                <button class="show_form_delete dropdown-item" data-url="{% url 'poliza_delete' polizas.id_poliza %}">
+                    Eliminar Póliza</button>
             </div>
         </div>
     </td>

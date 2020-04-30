@@ -128,3 +128,20 @@ def UpdatePoliza(request, id):
     return SaveAll(request, form, 'dashboard/polizas/poliza_update.html')
 
 # Delete
+
+
+def DeletePoliza(request, id):
+    data = dict()
+    poliza = get_object_or_404(Poliza, id_poliza=id)
+    if request.method == 'POST':
+        poliza.delete()
+        data['form_is_valid'] = True
+        polizas = Poliza.objects.all().order_by('-id_poliza')
+        context = {'polizas': polizas}
+        data['polizas'] = render_to_string(
+            'dashboard/polizas/poliza_2.html', context)
+    else:
+        context = {'poliza': poliza}
+        data['html_form'] = render_to_string(
+            'dashboard/polizas/poliza_delete.html', context, request=request)
+    return JsonResponse(data)

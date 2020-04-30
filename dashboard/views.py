@@ -3,7 +3,7 @@ from django.views.generic.base import TemplateView
 from .models import Usuario, Taller, Asegurado, Vehiculo, Poliza
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from .forms import PolizaForm,AseguradoForm
+from .forms import PolizaForm, AseguradoForm
 
 
 # Create your views here.
@@ -28,7 +28,9 @@ def UsuariosView(request):
     context = {'usuarios': usuarios}
     return render(request, 'dashboard/usuarios.html', context)
 
-#CRUD ASEGURADO
+# CRUD ASEGURADO
+
+
 def SaveAllAsegurado(request, form, template_name):
     data = dict()
     if request.method == 'POST':
@@ -38,7 +40,7 @@ def SaveAllAsegurado(request, form, template_name):
             asegurados = Asegurado.objects.all().order_by('fecha_nacimiento')
             context = {'asegurados': asegurados}
             data['asegurados'] = render_to_string(
-                'dashboard/asegurado_2.html', context)
+                'dashboard/asegurados/asegurado_2.html', context)
         else:
             data['form_is_valid'] = False
 
@@ -47,30 +49,29 @@ def SaveAllAsegurado(request, form, template_name):
         template_name, context, request=request)
     return JsonResponse(data)
 
-#READ
+# READ
+
+
 def AseguradosView(request):
     asegurados = Asegurado.objects.all().order_by('fecha_nacimiento')
     context = {'asegurados': asegurados}
-    return render(request, 'dashboard/asegurado.html', context)
+    return render(request, 'dashboard/asegurados/asegurado.html', context)
 
-#CREATE
+# CREATE
+
+
 def AseguradoCreate(request):
     if request.method == 'POST':
         form = AseguradoForm(request.POST)
     else:
         form = AseguradoForm()
-    return SaveAllAsegurado(request, form, 'dashboard/asegurado_create.html')
+    return SaveAllAsegurado(request, form, 'dashboard/asegurados/asegurado_create.html')
+
 
 def VehiculosView(request):
     vehiculos = Vehiculo.objects.all().order_by('anio')
     context = {'vehiculos': vehiculos}
     return render(request, 'dashboard/vehiculo.html', context)
-
-
-def PolizasView(request):
-    polizas = Poliza.objects.all().order_by('-id_poliza')
-    context = {'polizas': polizas}
-    return render(request, 'dashboard/poliza.html', context)
 
 
 def SaveAll(request, form, template_name):
@@ -82,7 +83,7 @@ def SaveAll(request, form, template_name):
             polizas = Poliza.objects.all().order_by('-id_poliza')
             context = {'polizas': polizas}
             data['polizas'] = render_to_string(
-                'dashboard/poliza_2.html', context)
+                'dashboard/polizas/poliza_2.html', context)
         else:
             data['form_is_valid'] = False
 
@@ -90,6 +91,13 @@ def SaveAll(request, form, template_name):
     data['html_form'] = render_to_string(
         template_name, context, request=request)
     return JsonResponse(data)
+
+
+# Read
+def PolizasView(request):
+    polizas = Poliza.objects.all().order_by('-id_poliza')
+    context = {'polizas': polizas}
+    return render(request, 'dashboard/polizas/poliza.html', context)
 
 # Create
 
@@ -99,9 +107,17 @@ def CreatePoliza(request):
         form = PolizaForm(request.POST)
     else:
         form = PolizaForm()
-    return SaveAll(request, form, 'dashboard/poliza_create.html')
+    return SaveAll(request, form, 'dashboard/polizas/poliza_create.html')
 
 # Update
 
+
+def UpdatePoliza(request, id):
+    poliza = get_object_or_404(Poliza, id_poliza=id)
+    if request.method == 'POST':
+        form = PolizaForm(request.POST, instance=poliza)
+    else:
+        form = PolizaForm(instance=poliza)
+    return SaveAll(request, form, 'dashboard/polizas/poliza_update.html')
 
 # Delete

@@ -1,0 +1,27 @@
+{% for vehiculos in vehiculos %}
+<tr>
+    <th scope="row">{{vehiculos.patente_vehiculo}}</th>
+    <td>{{vehiculos.anio}}</td>
+    <td>{{vehiculos.modelo}}</td>
+    <td>{{vehiculos.nro_motor}}</td>
+    <td>{{vehiculos.marca_id_marca.nombre}}</td>
+    <td>{{vehiculos.asegurado_rut_asegurado.rut_asegurado}}</td>
+    <td>
+        <div class="dropdown">
+            <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <button class="show_vehiculo_update dropdown-item" data-url="{% url 'vehiculo_update' vehiculos.patente_vehiculo %}">
+                    Editar Vehículo</button> 
+                <a class="dropdown-item" href="#">Finalizar Vehículo</a>
+            </div>
+        </div>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="7" class="text-center bg-warning">No hay Vehículos</td>
+</tr>
+{% endfor %}

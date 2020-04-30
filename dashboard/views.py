@@ -3,8 +3,7 @@ from django.views.generic.base import TemplateView
 from .models import Usuario, Taller, Asegurado, Vehiculo, Poliza, Siniestro
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from .forms import PolizaForm, AseguradoForm, SiniestroForm
-
+from .forms import PolizaForm, AseguradoForm,DeshabilitarAseguradoForm,VehiculoForm, SiniestroForm
 
 # Create your views here.
 
@@ -51,12 +50,14 @@ def SaveAllAsegurado(request, form, template_name):
     return JsonResponse(data)
 
 # Read
+
 def AseguradosView(request):
     asegurados = Asegurado.objects.all().order_by('fecha_nacimiento')
     context = {'asegurados': asegurados}
     return render(request, 'dashboard/asegurados/asegurado.html', context)
 
 # Create
+
 def AseguradoCreate(request):
     if request.method == 'POST':
         form = AseguradoForm(request.POST)
@@ -73,6 +74,70 @@ def AseguradoUpdate(request, id):
         form = AseguradoForm(instance=asegurado)
     return SaveAllAsegurado(request, form, 'dashboard/asegurados/asegurado_update.html')
 
+#Delete
+def AseguradoDelete(request, id):
+    data = dict()
+    asegurado = get_object_or_404(Asegurado, rut_asegurado=id)
+    if request.method == 'POST':
+        form = DeshabilitarAseguradoForm(request.POST,instance=asegurado)
+        asegurado = form.save(commit=False)
+        asegurado.estado = 0
+        asegurado.save()
+        form.save()
+        data['form_is_valid'] = True
+        asegurados = Asegurado.objects.all().order_by('fecha_nacimiento')
+        context = {'asegurados': asegurados}
+        data['asegurados'] = render_to_string(
+            'dashboard/asegurados/asegurado_2.html', context)
+    else:
+        form = DeshabilitarAseguradoForm(instance=asegurado)
+        data['form_is_valid'] = False
+        context = {'asegurado': asegurado}
+        data['html_form'] = render_to_string(
+            'dashboard/asegurados/asegurado_delete.html', context, request=request)
+    return JsonResponse(data)
+
+#CRUD VEHICULOS
+def SaveAllVehiculo(request, form, template_name):
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            vehiculos = Vehiculo.objects.all().order_by('anio')
+            context = {'vehiculos': vehiculos}
+            data['vehiculos'] = render_to_string(
+                'dashboard/vehiculos/vehiculo_2.html', context)
+        else:
+            data['form_is_valid'] = False
+
+    context = {'form': form}
+    data['html_form'] = render_to_string(
+        template_name, context, request=request)
+    return JsonResponse(data)
+
+#READ
+def VehiculosView(request):
+    vehiculos = Vehiculo.objects.all().order_by('anio')
+    context = {'vehiculos': vehiculos}
+    return render(request, 'dashboard/vehiculos/vehiculo.html', context)
+
+#CREATE
+def VehiculoCreate(request):
+    if request.method == 'POST':
+        form = VehiculoForm(request.POST)
+    else:
+        form = VehiculoForm()
+    return SaveAllVehiculo(request, form, 'dashboard/vehiculos/vehiculo_create.html')
+
+#UPDATE
+def VehiculoUpdate(request, id):
+    vehiculo = get_object_or_404(Vehiculo, patente_vehiculo=id)
+    if request.method == 'POST':
+        form = VehiculoForm(request.POST, instance=vehiculo)
+    else:
+        form = VehiculoForm(instance=vehiculo)
+    return SaveAllVehiculo(request, form, 'dashboard/vehiculos/vehiculo_update.html')
 
 #Crud Pólizas
 def SaveAllPoliza(request, form, template_name):

@@ -84,6 +84,7 @@ $(document).ready(function () {
         return false;
     }
 
+
     var ShowFormSiniestro = function () {
         var btn = $(this);
         $.ajax({
@@ -91,10 +92,29 @@ $(document).ready(function () {
             type: 'get',
             dataType: 'json',
             beforeSend: function () {
-                $('#modal_siniestro').modal('show')
+               $('#modal_siniestro').modal('show')
             },
             success: function (data) {
                 $('#modal_siniestro .modal-content').html(data.html_form)
+              },
+            error: function () {
+                alert('Algo salió mal, intenta nuevamente.')
+            }
+        });
+    };
+
+              
+    var ShowVehiculoForm = function () {
+        var btn = $(this);
+        $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#modal_vehiculo').modal('show')
+            },
+            success: function (data) {
+                $('#modal_vehiculo .modal-content').html(data.html_form)
             },
             error: function () {
                 alert('Algo salió mal, intenta nuevamente.')
@@ -102,8 +122,9 @@ $(document).ready(function () {
         });
     };
 
+
     var SaveFormSiniestro = function () {
-        var form = $(this);
+      var form = $(this);
         $.ajax({
             url: form.attr('data-url'),
             data: form.serialize(),
@@ -125,7 +146,32 @@ $(document).ready(function () {
         });
         return false;
     }
+    
+    
+    var SaveVehiculoForm = function () {
 
+        var form = $(this);
+        $.ajax({
+            url: form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType: 'json',
+            success: function (data) {
+                if (data.form_is_valid) {
+                    $('#table_vehiculo tbody').html(data.vehiculos);
+                    $('#modal_vehiculo').modal('hide');
+                    console.log('Vehículo registrado correctamente!');
+                    toastr.success('Exito');
+                } else {
+                    $('#modal_vehiculo .modal-content').html(data.html_form)
+                }
+            },
+            error: function(){
+                toastr.error('No se pudo registrar vehículo, intente nuevamente.')
+            }
+        });
+        return false;
+    }
 
     //Crear Poliza
     $('.show_form').click(ShowFormPoliza);
@@ -146,6 +192,10 @@ $(document).ready(function () {
     //Modificar Asegurado
     $('#table_asegurado').on('click', '.show_asegurado_update', ShowAseguradoForm);
     $('#modal_asegurado').on('submit', '.asegurado_form_update', SaveAseguradoForm);
+      
+    //Eliminar Asegurado
+    $('#table_asegurado').on('click', '.show_asegurado_delete', ShowAseguradoForm);
+    $('#modal_asegurado').on('submit', '.asegurado_delete_form', SaveAseguradoForm);
 
     // //Crear Siniestro
     $('.show_siniestro_create').click(ShowFormSiniestro);
@@ -158,6 +208,16 @@ $(document).ready(function () {
     // //Eliminar Siniestro
     $('#table_siniestro').on('click', '.show_siniestro_delete', ShowFormSiniestro);
     $('#modal_siniestro').on('submit', '.delete_form_siniestro', SaveFormSiniestro);
+      
+
+    //Crear Vehiculo
+    $('.show-vehiculo').click(ShowVehiculoForm);
+    $('#modal_vehiculo').on('submit', '.vehiculo_form', SaveVehiculoForm);
+
+    //Modificar Vehiculo
+    $('#table_vehiculo').on('click', '.show_vehiculo_update', ShowVehiculoForm);
+    $('#modal_vehiculo').on('submit', '.vehiculo_form_update', SaveVehiculoForm);
+
 
 });
 

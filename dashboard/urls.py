@@ -16,5 +16,5 @@ urlpatterns = [
     url(r'^polizas/$', views.PolizasView, name='polizas'),
     url(r'^polizas/create$', views.CreatePoliza, name='poliza_create'),
     url(r'^polizas/(?P<id>\d+)/update$',views.UpdatePoliza,name='poliza_update'),
-    # delete
+    url(r'^polizas/(?P<id>\d+)/delete$',views.DeletePoliza,name='poliza_delete'),
 ]

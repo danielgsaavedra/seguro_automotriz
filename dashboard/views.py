@@ -128,6 +128,15 @@ def VehiculoCreate(request):
         form = VehiculoForm()
     return SaveAllVehiculo(request, form, 'dashboard/vehiculos/vehiculo_create.html')
 
+#UPDATE
+def VehiculoUpdate(request, id):
+    vehiculo = get_object_or_404(Vehiculo, patente_vehiculo=id)
+    if request.method == 'POST':
+        form = VehiculoForm(request.POST, instance=vehiculo)
+    else:
+        form = VehiculoForm(instance=vehiculo)
+    return SaveAllVehiculo(request, form, 'dashboard/vehiculos/vehiculo_update.html')
+
 def SaveAll(request, form, template_name):
     data = dict()
     if request.method == 'POST':

@@ -151,6 +151,10 @@ $(document).ready(function () {
     $('.show-vehiculo').click(ShowVehiculoForm);
     $('#modal_vehiculo').on('submit', '.vehiculo_form', SaveVehiculoForm);
 
+    //Modificar Vehiculo
+    $('#table_vehiculo').on('click', '.show_vehiculo_update', ShowVehiculoForm);
+    $('#modal_vehiculo').on('submit', '.vehiculo_form_update', SaveVehiculoForm);
+
 
 });
 

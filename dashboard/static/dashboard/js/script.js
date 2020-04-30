@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var ShowForm = function () {
+    var ShowFormPoliza = function () {
         var btn = $(this);
         $.ajax({
             url: btn.attr("data-url"),
@@ -18,7 +18,7 @@ $(document).ready(function () {
         });
     };
 
-    var SaveForm = function () {
+    var SaveFormPoliza = function () {
         var form = $(this);
         $.ajax({
             url: form.attr('data-url'),
@@ -34,6 +34,9 @@ $(document).ready(function () {
                 } else {
                     $('#modal_poliza .modal-content').html(data.html_form)
                 }
+            },
+            error: function(){
+                toastr.error('Algo salió mal, intenta nuevamente.')
             }
         });
         return false;
@@ -81,17 +84,60 @@ $(document).ready(function () {
         return false;
     }
 
+    var ShowFormSiniestro = function () {
+        var btn = $(this);
+        $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#modal_siniestro').modal('show')
+            },
+            success: function (data) {
+                $('#modal_siniestro .modal-content').html(data.html_form)
+            },
+            error: function () {
+                alert('Algo salió mal, intenta nuevamente.')
+            }
+        });
+    };
+
+    var SaveFormSiniestro = function () {
+        var form = $(this);
+        $.ajax({
+            url: form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType: 'json',
+            success: function (data) {
+                if (data.form_is_valid) {
+                    $('#table_siniestro tbody').html(data.siniestros);
+                    $('#modal_siniestro').modal('hide');
+                    console.log('Success!');
+                    toastr.success('Yeah!');
+                } else {
+                    $('#modal_siniestro .modal-content').html(data.html_form)
+                }
+            },
+            error: function(){
+                toastr.error('Algo salió mal, intenta nuevamente.')
+            }
+        });
+        return false;
+    }
+
+
     //Crear Poliza
-    $('.show_form').click(ShowForm);
-    $('#modal_poliza').on('submit', '.create_form', SaveForm);
+    $('.show_form').click(ShowFormPoliza);
+    $('#modal_poliza').on('submit', '.create_form', SaveFormPoliza);
 
     // //Modificar Poliza
-    $('#table_poliza').on('click', '.show_form_update', ShowForm);
-    $('#modal_poliza').on('submit', '.update_form', SaveForm);
+    $('#table_poliza').on('click', '.show_form_update', ShowFormPoliza);
+    $('#modal_poliza').on('submit', '.update_form', SaveFormPoliza);
 
-    // //Eliminar Producto
-    $('#table_poliza').on('click', '.show_form_delete', ShowForm);
-    $('#modal_poliza').on('submit', '.delete_form', SaveForm);
+    // //Eliminar Poliza
+    $('#table_poliza').on('click', '.show_form_delete', ShowFormPoliza);
+    $('#modal_poliza').on('submit', '.delete_form', SaveFormPoliza);
 
     //Crear Asegurado
     $('.show-asegurado ').click(ShowAseguradoForm);
@@ -101,6 +147,17 @@ $(document).ready(function () {
     $('#table_asegurado').on('click', '.show_asegurado_update', ShowAseguradoForm);
     $('#modal_asegurado').on('submit', '.asegurado_form_update', SaveAseguradoForm);
 
+    // //Crear Siniestro
+    $('.show_siniestro_create').click(ShowFormSiniestro);
+    $('#modal_siniestro').on('submit', '.create_form_siniestro', SaveFormSiniestro);
+
+    // //Modificar Siniestro
+    $('#table_siniestro').on('click', '.show_siniestro_update', ShowFormSiniestro);
+    $('#modal_siniestro').on('submit', '.update_form_siniestro', SaveFormSiniestro);
+
+    // //Eliminar Siniestro
+    $('#table_siniestro').on('click', '.show_siniestro_delete', ShowFormSiniestro);
+    $('#modal_siniestro').on('submit', '.delete_form_siniestro', SaveFormSiniestro);
 
 });
 

@@ -1,0 +1,79 @@
+{% for siniestros in siniestros %}
+<tr>
+    <th scope="row">{{siniestros.nro_siniestro}}</th>
+    <td>{{siniestros.poliza_id_poliza}}</td>
+    <td>{{siniestros.fecha_hr}}</td>
+    <td>{{siniestros.tipo_accidente_id_tipo_acc}}</td>
+
+    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 1 %}
+    <td class="text-center">
+        <span class="badge badge-pill badge-info">EN CURSO</span>
+    </td>
+    {% endif %}
+
+    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 2 %}
+    <td class="text-center">
+        <span class="badge badge-pill badge-light">RECEPCIONADO</span>
+    </td>
+    {% endif %}
+
+    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 3 %}
+    <td class="text-center">
+        <span class="badge badge-pill badge-primary">INSPECCIONADO</span>
+    </td>
+    {% endif %}
+
+    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 4 %}
+    <td class="text-center">
+        <span class="badge badge-pill badge-warning">EN REPACIÓN</span>
+    </td>
+    {% endif %}
+
+    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 5 %}
+    <td class="text-center">
+        <span class="badge badge-pill badge-danger">RECHAZADO</span>
+    </td>
+    {% endif %}
+
+    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 6 %}
+    <td class="text-center">
+        <span class="badge badge-pill badge-success">REPARADO</span>
+    </td>
+    {% endif %}
+
+    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 7 %}
+    <td class="text-center">
+        <span class="badge badge-pill badge-dark">FINALIZADO</span>
+    </td>
+    {% endif %}
+
+    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 8 %}
+    <td class="text-center">
+        <span class="badge badge-pill badge-secondary">PENDIENTE</span>
+    </td>
+    {% endif %}
+
+    <td>{{siniestros.taller_id_taller}}</td>
+    <td>{{siniestros.grua_patente_grua}}</td>
+    <td>
+        <div class="dropdown">
+            <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <button class="show_siniestro_update dropdown-item"
+                    data-url="{% url 'siniestro_update' siniestros.nro_siniestro %}">
+                    Modificar Siniestro</button>
+                <button class="show_siniestro_delete dropdown-item"
+                    data-url="{% url 'siniestro_delete' siniestros.nro_siniestro %}">
+                    Eliminar Siniestro</button>
+            </div>
+        </div>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="7" class="text-center bg-warning">No hay siniestros</td>
+</tr>
+{% endfor %}

@@ -1,0 +1,101 @@
+<form action="" class="create_form_siniestro" method="POST" data-url="{% url 'siniestro_create' %}">
+    {% csrf_token %}
+
+    <div class="modal-header bg-success">
+        <h5 class="modal-title text-light">Registrar Siniestro</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>N° SINIESTRO</span>
+                </div>
+                {{ form.nro_siniestro }}
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>ID PÓLIZA</span>
+                </div>
+                {{ form.poliza_id_poliza }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>PARTE POLICIAL</span>
+                </div>
+                {{ form.parte_policial }}
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>FOTO LICENCIA</span>
+                </div>
+                {{ form.foto_licencia }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>TIPO ACCIDENTE</span>
+                </div>
+                {{ form.tipo_accidente_id_tipo_acc }}
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>ESTADO SINIESTRO</span>
+                </div>
+                {{ form.est_siniestro_id_est_siniestro }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>TALLER</span>
+                </div>
+                {{ form.taller_id_taller }}
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>GRÚA</span>
+                </div>
+                {{ form.grua_patente_grua }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>RUT USUARIO</span>
+                </div>
+                {{ form.usuario_rut_usuario }}
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>FECHA</span>
+                </div>
+                {{ form.fecha_hr }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="col-form-label">
+                    <span>DESCRIPCIÓN</span>
+                </div>
+                {{ form.descripcion }}
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-outline-success">Registrar</button>
+    </div>
+</form>

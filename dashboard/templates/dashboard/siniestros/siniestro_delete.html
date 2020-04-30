@@ -1,8 +1,8 @@
-<form action="" class="delete_form" method="POST" data-url="{% url 'poliza_delete' poliza.id_poliza %}">
+<form action="" class="delete_form_siniestro" method="POST" data-url="{% url 'siniestro_delete' siniestro.nro_siniestro %}">
     {% csrf_token %}
 
     <div class="modal-header bg-danger">
-        <h5 class="modal-title text-light">Eliminar Póliza</h5>
+        <h5 class="modal-title text-light">Eliminar Siniestro</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
@@ -10,12 +10,12 @@
     <div class="modal-body">
         <div class="form-row">
             <div class="col-12">
-                <h4>¿Seguro que deseas eliminar la póliza n° <strong>{{poliza.id_poliza}}</strong>?</h4>
+                <h4>¿Seguro que deseas eliminar el siniestro n° <strong>{{siniestro.nro_siniestro}}</strong>?</h4>
                 <br>
             </div>
             <div class="col-12">
-                <p class="lead">Rut Asegurado: <strong>{{poliza.asegurado_rut_asegurado}}</strong></p>
-                <p class="lead">Patente Vehículo: <strong>{{poliza.vehiculo_patente_vehiculo}}</strong></p>
+                <p class="lead">Id Póliza: <strong>{{siniestro.poliza_id_poliza}}</strong></p>
+                <p class="lead">Fecha Siniestro: <strong>{{siniestro.fecha_hr}}</strong></p>
             </div>
         </div>
     </div>

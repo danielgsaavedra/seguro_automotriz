@@ -508,9 +508,9 @@ class Siniestro(models.Model):
         primary_key=True, max_length=10, verbose_name='N° Siniestro')
     fecha_hr = models.DateField(verbose_name='Fecha Siniestro')
     descripcion = models.CharField(max_length=100, verbose_name='Descripción')
-    parte_policial = models.CharField(
+    parte_policial = models.FileField(
         max_length=100, blank=True, null=True, verbose_name='Parte Policial')
-    foto_licencia = models.CharField(
+    foto_licencia = models.FileField(
         max_length=100, blank=True, null=True, verbose_name='Foto Licencia')
     tipo_accidente_id_tipo_acc = models.ForeignKey(
         'TipoAccidente', models.DO_NOTHING, db_column='tipo_accidente_id_tipo_acc', verbose_name='Tipo Accidente')

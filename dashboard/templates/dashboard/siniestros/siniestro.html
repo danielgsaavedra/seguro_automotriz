@@ -1,0 +1,45 @@
+{% extends "dashboard/base.html" %}
+
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-end mb-4">
+    <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm show_siniestro_create"
+        data-url="{% url 'siniestro_create' %}">
+        <i class="fas fa-file-invoice fa-sm text-white-50"></i> Registrar Siniestro</button>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Siniestros</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="table_siniestro" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">N° Siniestro</th>
+                        <th scope="col">Id Póliza</th>
+                        <th scope="col">Fecha Siniestro</th>
+                        <th scope="col">Tipo Accidente</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Taller Asignado</th>
+                        <th scope="col">Patente Grúa</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% include "dashboard/siniestros/siniestro_2.html" %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_siniestro" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

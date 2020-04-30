@@ -1,20 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import TemplateView
-from .models import Usuario, Taller, Asegurado, Vehiculo, Poliza
+from .models import Usuario, Taller, Asegurado, Vehiculo, Poliza, Siniestro
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from .forms import PolizaForm, AseguradoForm,DeshabilitarAseguradoForm,VehiculoForm
-
+from .forms import PolizaForm, AseguradoForm,DeshabilitarAseguradoForm,VehiculoForm, SiniestroForm
 
 # Create your views here.
 
 
 class DashboardView(TemplateView):
     template_name = 'dashboard/dashboard.html'
-
-
-class SiniestrosView(TemplateView):
-    template_name = 'dashboard/siniestros.html'
 
 
 def TallerView(request):
@@ -28,9 +23,14 @@ def UsuariosView(request):
     context = {'usuarios': usuarios}
     return render(request, 'dashboard/usuarios.html', context)
 
-# CRUD ASEGURADO
+
+def VehiculosView(request):
+    vehiculos = Vehiculo.objects.all().order_by('anio')
+    context = {'vehiculos': vehiculos}
+    return render(request, 'dashboard/vehiculo.html', context)
 
 
+# Crud Asegurados
 def SaveAllAsegurado(request, form, template_name):
     data = dict()
     if request.method == 'POST':
@@ -49,13 +49,15 @@ def SaveAllAsegurado(request, form, template_name):
         template_name, context, request=request)
     return JsonResponse(data)
 
-# READ
+# Read
+
 def AseguradosView(request):
     asegurados = Asegurado.objects.all().order_by('fecha_nacimiento')
     context = {'asegurados': asegurados}
     return render(request, 'dashboard/asegurados/asegurado.html', context)
 
-# CREATE
+# Create
+
 def AseguradoCreate(request):
     if request.method == 'POST':
         form = AseguradoForm(request.POST)
@@ -63,7 +65,7 @@ def AseguradoCreate(request):
         form = AseguradoForm()
     return SaveAllAsegurado(request, form, 'dashboard/asegurados/asegurado_create.html')
 
-# UPDATE
+#Update
 def AseguradoUpdate(request, id):
     asegurado = get_object_or_404(Asegurado, rut_asegurado=id)
     if request.method == 'POST':
@@ -72,7 +74,7 @@ def AseguradoUpdate(request, id):
         form = AseguradoForm(instance=asegurado)
     return SaveAllAsegurado(request, form, 'dashboard/asegurados/asegurado_update.html')
 
-#DELETE
+#Delete
 def AseguradoDelete(request, id):
     data = dict()
     asegurado = get_object_or_404(Asegurado, rut_asegurado=id)
@@ -137,7 +139,8 @@ def VehiculoUpdate(request, id):
         form = VehiculoForm(instance=vehiculo)
     return SaveAllVehiculo(request, form, 'dashboard/vehiculos/vehiculo_update.html')
 
-def SaveAll(request, form, template_name):
+#Crud Pólizas
+def SaveAllPoliza(request, form, template_name):
     data = dict()
     if request.method == 'POST':
         if form.is_valid():
@@ -155,7 +158,6 @@ def SaveAll(request, form, template_name):
         template_name, context, request=request)
     return JsonResponse(data)
 
-
 # Read
 def PolizasView(request):
     polizas = Poliza.objects.all().order_by('-id_poliza')
@@ -163,36 +165,30 @@ def PolizasView(request):
     return render(request, 'dashboard/polizas/poliza.html', context)
 
 # Create
-
-
 def CreatePoliza(request):
     if request.method == 'POST':
         form = PolizaForm(request.POST)
     else:
         form = PolizaForm()
-    return SaveAll(request, form, 'dashboard/polizas/poliza_create.html')
+    return SaveAllPoliza(request, form, 'dashboard/polizas/poliza_create.html')
 
 # Update
-
-
 def UpdatePoliza(request, id):
     poliza = get_object_or_404(Poliza, id_poliza=id)
     if request.method == 'POST':
         form = PolizaForm(request.POST, instance=poliza)
     else:
         form = PolizaForm(instance=poliza)
-    return SaveAll(request, form, 'dashboard/polizas/poliza_update.html')
+    return SaveAllPoliza(request, form, 'dashboard/polizas/poliza_update.html')
 
 # Delete
-
-
 def DeletePoliza(request, id):
     data = dict()
     poliza = get_object_or_404(Poliza, id_poliza=id)
     if request.method == 'POST':
         poliza.delete()
         data['form_is_valid'] = True
-        polizas = Poliza.objects.all().order_by('-id_poliza')
+        polizas = Poliza.objects.all()
         context = {'polizas': polizas}
         data['polizas'] = render_to_string(
             'dashboard/polizas/poliza_2.html', context)
@@ -200,4 +196,65 @@ def DeletePoliza(request, id):
         context = {'poliza': poliza}
         data['html_form'] = render_to_string(
             'dashboard/polizas/poliza_delete.html', context, request=request)
+    return JsonResponse(data)
+
+
+#Crud Siniestro
+def SaveAllSiniestro(request, form, template_name):
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            siniestros = Siniestro.objects.all().order_by('-nro_siniestro')
+            context = {'siniestros': siniestros}
+            data['siniestros'] = render_to_string(
+                'dashboard/siniestros/siniestro_2.html', context)
+        else:
+            data['form_is_valid'] = False
+
+    context = {'form': form}
+    data['html_form'] = render_to_string(
+        template_name, context, request=request)
+    return JsonResponse(data)
+
+
+# Read
+def SiniestroView(request):
+    siniestros = Siniestro.objects.all().order_by('-nro_siniestro')
+    context = {'siniestros': siniestros}
+    return render(request, 'dashboard/siniestros/siniestro.html', context)
+
+# # Create
+def CreateSiniestro(request):
+    if request.method == 'POST':
+        form = SiniestroForm(request.POST)
+    else:
+        form = SiniestroForm()
+    return SaveAllSiniestro(request, form, 'dashboard/siniestros/siniestro_create.html')
+
+# # Update
+def UpdateSiniestro(request, id):
+    siniestro = get_object_or_404(Siniestro, nro_siniestro=id)
+    if request.method == 'POST':
+        form = SiniestroForm(request.POST, instance=siniestro)
+    else:
+        form = SiniestroForm(instance=siniestro)
+    return SaveAllSiniestro(request, form, 'dashboard/siniestros/siniestro_update.html')
+
+# # Delete
+def DeleteSiniestro(request, id):
+    data = dict()
+    siniestro = get_object_or_404(Siniestro, nro_siniestro=id)
+    if request.method == 'POST':
+        siniestro.delete()
+        data['form_is_valid'] = True
+        siniestro = Siniestro.objects.all()
+        context = {'siniestros': siniestros}
+        data['siniestros'] = render_to_string(
+            'dashboard/siniestros/siniestro_2.html', context)
+    else:
+        context = {'siniestro': siniestro}
+        data['html_form'] = render_to_string(
+            'dashboard/siniestros/siniestro_delete.html', context, request=request)
     return JsonResponse(data)

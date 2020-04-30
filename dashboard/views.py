@@ -44,7 +44,7 @@ def VehiculosView(request):
 def PolizasView(request):
     polizas = Poliza.objects.all().order_by('-id_poliza')
     context = {'polizas': polizas}
-    return render(request, 'dashboard/poliza.html', context)
+    return render(request, 'dashboard/polizas/poliza.html', context)
 
 
 def SaveAll(request, form, template_name):
@@ -56,7 +56,7 @@ def SaveAll(request, form, template_name):
             polizas = Poliza.objects.all().order_by('-id_poliza')
             context = {'polizas': polizas}
             data['polizas'] = render_to_string(
-                'dashboard/poliza_2.html', context)
+                'dashboard/polizas/poliza_2.html', context)
         else:
             data['form_is_valid'] = False
 
@@ -73,9 +73,17 @@ def CreatePoliza(request):
         form = PolizaForm(request.POST)
     else:
         form = PolizaForm()
-    return SaveAll(request, form, 'dashboard/poliza_create.html')
+    return SaveAll(request, form, 'dashboard/polizas/poliza_create.html')
 
 # Update
 
+
+def UpdatePoliza(request, id):
+    poliza = get_object_or_404(Poliza, id_poliza=id)
+    if request.method == 'POST':
+        form = PolizaForm(request.POST, instance=poliza)
+    else:
+        form = PolizaForm(instance=poliza)
+    return SaveAll(request, form, 'dashboard/polizas/poliza_update.html')
 
 # Delete

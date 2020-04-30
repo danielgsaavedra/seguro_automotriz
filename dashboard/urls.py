@@ -14,6 +14,6 @@ urlpatterns = [
     path('vehiculos/', views.VehiculosView, name='vehiculos'),
     url(r'^polizas/$', views.PolizasView, name='polizas'),
     url(r'^polizas/create$', views.CreatePoliza, name='poliza_create'),
-    # update
+    url(r'^polizas/(?P<id>\d+)/update$',views.UpdatePoliza,name='poliza_update'),
     # delete
 ]

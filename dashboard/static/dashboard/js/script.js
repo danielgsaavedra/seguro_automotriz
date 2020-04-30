@@ -30,7 +30,7 @@ $(document).ready(function () {
                     $('#table_poliza tbody').html(data.polizas);
                     $('#modal_poliza').modal('hide');
                     console.log('Success!');
-                    // toastr.success('Póliza creada correctamente.');
+                    toastr.success('Exito!');
                 } else {
                     $('#modal_poliza .modal-content').html(data.html_form)
                 }

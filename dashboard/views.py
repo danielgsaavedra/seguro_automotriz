@@ -80,19 +80,19 @@ def AseguradoDelete(request, id):
     asegurado = get_object_or_404(Asegurado, rut_asegurado=id)
     if request.method == 'POST':
         form = DeshabilitarAseguradoForm(request.POST, instance=asegurado)
-        asegurado = form.save(commit=False)
-        asegurado.estado = 0
-        asegurado.save()
-        form.save()
-        data['form_is_valid'] = True
-        asegurados = Asegurado.objects.all().order_by('fecha_nacimiento')
-        context = {'asegurados': asegurados}
-        data['asegurados'] = render_to_string(
-            'dashboard/asegurados/asegurado_2.html', context)
+        if form.is_valid():
+            asegurado = form.save(commit=False)
+            asegurado.estado = "0"
+            asegurado.save()
+            data['form_is_valid'] = True
+            asegurados = Asegurado.objects.all().order_by('fecha_nacimiento')
+            context = {'asegurados': asegurados}
+            data['asegurados'] = render_to_string(
+                'dashboard/asegurados/asegurado_2.html', context)
     else:
         form = DeshabilitarAseguradoForm(instance=asegurado)
         data['form_is_valid'] = False
-        context = {'asegurado': asegurado}
+        context = {'asegurado': asegurado,'form':form}
         data['html_form'] = render_to_string(
             'dashboard/asegurados/asegurado_delete.html', context, request=request)
     return JsonResponse(data)

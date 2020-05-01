@@ -3,7 +3,7 @@ from django.views.generic.base import TemplateView
 from .models import Usuario, Taller, Asegurado, Vehiculo, Poliza, Siniestro
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm
+from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm
 
 # Create your views here.
 
@@ -205,14 +205,20 @@ def DeletePoliza(request, id):
     data = dict()
     poliza = get_object_or_404(Poliza, id_poliza=id)
     if request.method == 'POST':
-        poliza.delete()
-        data['form_is_valid'] = True
-        polizas = Poliza.objects.all()
-        context = {'polizas': polizas}
-        data['polizas'] = render_to_string(
-            'dashboard/polizas/poliza_2.html', context)
+        form = DeshabilitarPolizaForm(request.POST, instance=poliza)
+        if form.is_valid():
+            poliza = form.save(commit=False)
+            poliza.estado = "0"
+            poliza.save()
+            data['form_is_valid'] = True
+            polizas = Poliza.objects.all().order_by('-id_poliza')
+            context = {'polizas': polizas}
+            data['polizas'] = render_to_string(
+                'dashboard/polizas/poliza_2.html', context)
     else:
-        context = {'poliza': poliza}
+        form = DeshabilitarPolizaForm(instance=poliza)
+        data['form_is_valid'] = False
+        context = {'poliza': poliza, 'form': form}
         data['html_form'] = render_to_string(
             'dashboard/polizas/poliza_delete.html', context, request=request)
     return JsonResponse(data)

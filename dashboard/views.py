@@ -31,7 +31,7 @@ def SaveAllAsegurado(request, form, template_name):
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            asegurados = Asegurado.objects.all().order_by('fecha_nacimiento')
+            asegurados = Asegurado.objects.filter(estado=1).order_by('fecha_nacimiento')
             context = {'asegurados': asegurados}
             data['asegurados'] = render_to_string(
                 'dashboard/asegurados/asegurado_2.html', context)
@@ -47,7 +47,8 @@ def SaveAllAsegurado(request, form, template_name):
 
 
 def AseguradosView(request):
-    asegurados = Asegurado.objects.all().order_by('fecha_nacimiento')
+    asegurados = Asegurado.objects.filter(
+        estado=1).order_by('fecha_nacimiento')
     context = {'asegurados': asegurados}
     return render(request, 'dashboard/asegurados/asegurado.html', context)
 
@@ -85,7 +86,8 @@ def AseguradoDelete(request, id):
             asegurado.estado = "0"
             asegurado.save()
             data['form_is_valid'] = True
-            asegurados = Asegurado.objects.all().order_by('fecha_nacimiento')
+            asegurados = Asegurado.objects.filter(
+                estado=1).order_by('fecha_nacimiento')
             context = {'asegurados': asegurados}
             data['asegurados'] = render_to_string(
                 'dashboard/asegurados/asegurado_2.html', context)
@@ -157,7 +159,7 @@ def SaveAllPoliza(request, form, template_name):
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            polizas = Poliza.objects.all().order_by('-id_poliza')
+            polizas = Poliza.objects.filter(estado=1).order_by('id_poliza')
             context = {'polizas': polizas}
             data['polizas'] = render_to_string(
                 'dashboard/polizas/poliza_2.html', context)
@@ -173,7 +175,7 @@ def SaveAllPoliza(request, form, template_name):
 
 
 def PolizasView(request):
-    polizas = Poliza.objects.all().order_by('-id_poliza')
+    polizas = Poliza.objects.filter(estado=1).order_by('id_poliza')
     context = {'polizas': polizas}
     return render(request, 'dashboard/polizas/poliza.html', context)
 
@@ -211,7 +213,7 @@ def DeletePoliza(request, id):
             poliza.estado = "0"
             poliza.save()
             data['form_is_valid'] = True
-            polizas = Poliza.objects.all().order_by('-id_poliza')
+            polizas = Poliza.objects.filter(estado=1).order_by('id_poliza')
             context = {'polizas': polizas}
             data['polizas'] = render_to_string(
                 'dashboard/polizas/poliza_2.html', context)

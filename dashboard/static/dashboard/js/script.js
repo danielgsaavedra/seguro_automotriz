@@ -104,28 +104,11 @@ $(document).ready(function () {
     };
 
               
-    var ShowVehiculoForm = function () {
-        var btn = $(this);
-        $.ajax({
-            url: btn.attr("data-url"),
-            type: 'get',
-            dataType: 'json',
-            beforeSend: function () {
-                $('#modal_vehiculo').modal('show')
-            },
-            success: function (data) {
-                $('#modal_vehiculo .modal-content').html(data.html_form)
-            },
-            error: function () {
-                alert('Algo salió mal, intenta nuevamente.')
-            }
-        });
-    };
-
-
+    
+    
     var SaveFormSiniestro = function () {
       var form = $(this);
-        $.ajax({
+      $.ajax({
             url: form.attr('data-url'),
             data: form.serialize(),
             type: form.attr('method'),
@@ -147,6 +130,23 @@ $(document).ready(function () {
         return false;
     }
     
+    var ShowVehiculoForm = function () {
+        var btn = $(this);
+        $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#modal_vehiculo').modal('show')
+            },
+            success: function (data) {
+                $('#modal_vehiculo .modal-content').html(data.html_form)
+            },
+            error: function () {
+                alert('Algo salió mal, intenta nuevamente.')
+            }
+        });
+    };
     
     var SaveVehiculoForm = function () {
 
@@ -174,16 +174,16 @@ $(document).ready(function () {
     }
 
     //Crear Poliza
-    $('.show_form').click(ShowFormPoliza);
-    $('#modal_poliza').on('submit', '.create_form', SaveFormPoliza);
+    $('.show_poliza').click(ShowFormPoliza);
+    $('#modal_poliza').on('submit', '.create_form_polizas', SaveFormPoliza);
 
     // //Modificar Poliza
-    $('#table_poliza').on('click', '.show_form_update', ShowFormPoliza);
-    $('#modal_poliza').on('submit', '.update_form', SaveFormPoliza);
+    $('#table_poliza').on('click', '.show_poliza_update', ShowFormPoliza);
+    $('#modal_poliza').on('submit', '.update_form_poliza', SaveFormPoliza);
 
     // //Eliminar Poliza
-    $('#table_poliza').on('click', '.show_form_delete', ShowFormPoliza);
-    $('#modal_poliza').on('submit', '.delete_form', SaveFormPoliza);
+    $('#table_poliza').on('click', '.show_poliza_delete', ShowFormPoliza);
+    $('#modal_poliza').on('submit', '.delete_form_poliza', SaveFormPoliza);
 
     //Crear Asegurado
     $('.show-asegurado ').click(ShowAseguradoForm);
@@ -198,7 +198,7 @@ $(document).ready(function () {
     $('#modal_asegurado').on('submit', '.asegurado_delete_form', SaveAseguradoForm);
 
     // //Crear Siniestro
-    $('.show_siniestro_create').click(ShowFormSiniestro);
+    $('.show_siniestro').click(ShowFormSiniestro);
     $('#modal_siniestro').on('submit', '.create_form_siniestro', SaveFormSiniestro);
 
     // //Modificar Siniestro

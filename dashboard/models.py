@@ -22,7 +22,7 @@ class Asegurado(models.Model):
     correo = models.CharField(max_length=50, verbose_name='Correo')
     telefono = models.BigIntegerField(verbose_name='Teléfono')
     fecha_nacimiento = models.DateField(verbose_name='Fecha Nacimiento')
-    estado = models.CharField(max_length=1,default=1)
+    estado = models.CharField(max_length=1, default=1)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario')
 
@@ -212,11 +212,12 @@ class PlanSeguro(models.Model):
 
 class Poliza(models.Model):
     id_poliza = models.IntegerField(primary_key=True, verbose_name='ID Póliza')
-    vigente = models.CharField(max_length=1, verbose_name='Vigencia')
+    vigente = models.CharField(
+        max_length=1, verbose_name='Vigencia', default=1)
     fecha_inicio = models.DateField(verbose_name='Fecha Inicio')
     fecha_fin = models.DateField(verbose_name='Fecha Termino')
     firma = models.CharField(max_length=200, verbose_name='Firma')
-    estado = models.CharField(max_length=1,default=1)
+    estado = models.CharField(max_length=1, default=1)
     asegurado_rut_asegurado = models.ForeignKey(
         Asegurado, models.DO_NOTHING, db_column='asegurado_rut_asegurado', verbose_name='Rut Asegurado')
     vehiculo_patente_vehiculo = models.ForeignKey(
@@ -403,7 +404,7 @@ class Siniestro(models.Model):
     tipo_accidente_id_tipo_acc = models.ForeignKey(
         'TipoAccidente', models.DO_NOTHING, db_column='tipo_accidente_id_tipo_acc', verbose_name='Tipo Accidente')
     est_siniestro_id_est_siniestro = models.ForeignKey(
-        EstadoSiniestro, models.DO_NOTHING, db_column='est_siniestro_id_est_siniestro', verbose_name='Estado Siniestro')
+        EstadoSiniestro, models.DO_NOTHING, db_column='est_siniestro_id_est_siniestro', verbose_name='Estado Siniestro', default=1)
     taller_id_taller = models.ForeignKey(
         'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller')
     grua_patente_grua = models.ForeignKey(

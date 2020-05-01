@@ -25,8 +25,8 @@
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
-                {% for usuario in usuarios %}
                 <tbody>
+                    {% for usuario in usuarios %}
                     <tr>
                         <th scope="row">{{ usuario.rut_usuario }}</th>
                         <td>{{ usuario.primer_nombre }}</td>
@@ -71,8 +71,8 @@
                             </div>
                         </td>
                     </tr>
+                    {% endfor %}
                 </tbody>
-                {% endfor %}
             </table>
         </div>
     </div>

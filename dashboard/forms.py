@@ -74,6 +74,9 @@ class DeshabilitarAseguradoForm(forms.ModelForm):
     class Meta:
         model = Asegurado
         fields = ['estado']
+        widgets = {
+            'estado': forms.HiddenInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa n° de siniestro','id':'estado_asegurado'}),
+        }
 
 # FORMULARIO VEHICULO
 

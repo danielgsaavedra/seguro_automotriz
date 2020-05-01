@@ -1,102 +1,99 @@
 {% extends "registration/base.html" %}
 
 {% block content %}
-    <div class="row justify-content-center mt-4">
-        <div class="card shadow-sm mt-5">
-            <div class="card-body col">
-                <div class="text-center my-4">
-                    <h2 class="card-title">Crea tu cuenta</h2>
-                    <div class="card-text">Ingresa tus datos para comenzar</div>
-                </div>
-                <div class="mx-5 clearfix">
-                    <form action="">
-                        <div class="form-row">
-                            <div class="form-group col-12 col-md-6">
-                                <div class="col-form-label">
-                                    <span>PRIMER NOMBRE</span>
-                                </div>
-                                <input type="text" class="form-control" name="firstName"
-                                    placeholder="Ingresa tu primer nombre" />
+<div class="row justify-content-center mt-4">
+    <div class="card shadow-sm mt-5">
+        <div class="card-body col">
+            <div class="text-center my-4">
+                <h2 class="card-title">Crea tu cuenta</h2>
+                <div class="card-text">Ingresa tus datos para comenzar</div>
+            </div>
+            <div class="mx-5 clearfix">
+                <form action="">
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <div class="col-form-label">
+                                <span>PRIMER NOMBRE</span>
                             </div>
-                            <div class="form-group col-12 col-md-6">
-                                <div class="col-form-label">
-                                    <span>SEGUNDO NOMBRE</span>
-                                </div>
-                                <input type="text" class="form-control" name="secondName"
-                                    placeholder="Ingresa tu segundo nombre" />
-                            </div>
+                            <input type="text" class="form-control" name="firstName"
+                                placeholder="Ingresa tu primer nombre" />
                         </div>
+                        <div class="form-group col-12 col-md-6">
+                            <div class="col-form-label">
+                                <span>SEGUNDO NOMBRE</span>
+                            </div>
+                            <input type="text" class="form-control" name="secondName"
+                                placeholder="Ingresa tu segundo nombre" />
+                        </div>
+                    </div>
 
-                        <div class="form-row">
-                            <div class="form-group col-12 col-md-6">
-                                <div class="col-form-label">
-                                    <span>PRIMER APELLIDO</span>
-                                </div>
-                                <input type="text" class="form-control" name="lastName1"
-                                    placeholder="Ingresa tu primer apellido" />
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <div class="col-form-label">
+                                <span>PRIMER APELLIDO</span>
                             </div>
-                            <div class="form-group col-12 col-md-6">
-                                <div class="col-form-label">
-                                    <span>SEGUNDO APELLIDO</span>
-                                </div>
-                                <input type="text" class="form-control" name="lastName2"
-                                    placeholder="Ingresa tu segundo apellido" />
-                            </div>
+                            <input type="text" class="form-control" name="lastName1"
+                                placeholder="Ingresa tu primer apellido" />
                         </div>
-                            <div class="form-group">
-                                <div class="col-form-label">
-                                    <span>CORREO</span>
-                                </div>
-                                <input type="email" class="form-control" name="email"
-                                    placeholder="Ingresa tu correo" />
+                        <div class="form-group col-12 col-md-6">
+                            <div class="col-form-label">
+                                <span>SEGUNDO APELLIDO</span>
                             </div>
+                            <input type="text" class="form-control" name="lastName2"
+                                placeholder="Ingresa tu segundo apellido" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-form-label">
+                            <span>CORREO</span>
+                        </div>
+                        <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo" />
+                    </div>
 
-                            <div class="form-row">
-                                <div class="form-group col-12 col-md-6">
-                                    <div class="col-form-label">
-                                        <span>RUT</span>
-                                    </div>
-                                    <input type="text" class="form-control" name="rut"
-                                        placeholder="Ingresa tu rut" />
-                                </div>
-                                <div class="form-group col-12 col-md-6">
-                                    <div class="col-form-label">
-                                        <span>TELÉFONO</span>
-                                    </div>
-                                    <input type="number" class="form-control" name="phone"
-                                        placeholder="Ingresa tu teléfono" />
-                                </div>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <div class="col-form-label">
+                                <span>RUT</span>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-12 col-md-6">
-                                    <div class="col-form-label">
-                                        <span>CONTRASEÑA</span>
-                                    </div>
-                                    <input type="password" class="form-control" name="password"
-                                        placeholder="Ingresa tu contraseña" />
-                                </div>
-                                <div class="form-group col-12 col-md-6">
-                                    <div class="col-form-label">
-                                        <span>REPITE TU CONTRASEÑA</span>
-                                    </div>
-                                    <input type="password" class="form-control" name="password"
-                                        placeholder="Ingresa tu contraseña" />
-                                </div>
+                            <input type="text" class="form-control" name="rut" placeholder="Ingresa tu rut" />
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <div class="col-form-label">
+                                <span>TELÉFONO</span>
                             </div>
-                            
-                        <div class="float-left mr-4 my-4">
-                            <a class="btn btn-link text-decoration-none" href="{% url 'login' %}">
-                                Volver
-                            </a>
+                            <input type="number" class="form-control" name="phone" placeholder="Ingresa tu teléfono" />
                         </div>
-                        <div class="float-right ml-4 my-4">
-                            <button class="btn btn-primary">
-                                Continuar
-                            </button>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <div class="col-form-label">
+                                <span>CONTRASEÑA</span>
+                            </div>
+                            <input type="password" class="form-control" name="password"
+                                placeholder="Ingresa tu contraseña" />
                         </div>
-                    </form>
-                </div>
+                        <div class="form-group col-12 col-md-6">
+                            <div class="col-form-label">
+                                <span>REPITE TU CONTRASEÑA</span>
+                            </div>
+                            <input type="password" class="form-control" name="password"
+                                placeholder="Ingresa tu contraseña" />
+                        </div>
+                    </div>
+
+                    <div class="float-left mr-4 my-4">
+                        <a class="btn btn-link text-decoration-none" href="{% url 'login' %}">
+                            Volver
+                        </a>
+                    </div>
+                    <div class="float-right ml-4 my-4">
+                        <button class="btn btn-primary">
+                            Continuar
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

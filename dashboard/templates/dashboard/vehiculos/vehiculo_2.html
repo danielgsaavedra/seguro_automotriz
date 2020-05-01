@@ -8,13 +8,14 @@
     <td>{{vehiculos.asegurado_rut_asegurado.rut_asegurado}}</td>
     <td>
         <div class="dropdown">
-            <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-ellipsis-v"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <button class="show_vehiculo_update dropdown-item" data-url="{% url 'vehiculo_update' vehiculos.patente_vehiculo %}">
-                    Editar Vehículo</button> 
+                <button class="show_vehiculo_update dropdown-item"
+                    data-url="{% url 'vehiculo_update' vehiculos.patente_vehiculo %}">
+                    Editar Vehículo</button>
                 <a class="dropdown-item" href="#">Finalizar Vehículo</a>
             </div>
         </div>

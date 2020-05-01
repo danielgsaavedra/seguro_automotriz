@@ -1,4 +1,5 @@
-<form action="" class="update_form_siniestro" method="POST" data-url="{% url 'siniestro_update' form.instance.nro_siniestro %}">
+<form action="" class="update_form_siniestro" method="POST"
+    data-url="{% url 'siniestro_update' form.instance.nro_siniestro %}">
     {% csrf_token %}
 
     <div class="modal-header bg-primary">

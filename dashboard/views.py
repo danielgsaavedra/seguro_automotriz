@@ -92,7 +92,7 @@ def AseguradoDelete(request, id):
     else:
         form = DeshabilitarAseguradoForm(instance=asegurado)
         data['form_is_valid'] = False
-        context = {'asegurado': asegurado,'form':form}
+        context = {'asegurado': asegurado, 'form': form}
         data['html_form'] = render_to_string(
             'dashboard/asegurados/asegurado_delete.html', context, request=request)
     return JsonResponse(data)

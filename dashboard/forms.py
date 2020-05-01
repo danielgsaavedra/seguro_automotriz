@@ -6,7 +6,8 @@ from .models import Poliza, Asegurado, Vehiculo, Siniestro
 class PolizaForm(forms.ModelForm):
     class Meta:
         model = Poliza
-        fields = '__all__'
+        fields = ['id_poliza', 'vigente', 'fecha_inicio', 'fecha_fin',
+                  'firma', 'asegurado_rut_asegurado', 'vehiculo_patente_vehiculo']
         widgets = {
             'id_poliza': forms.NumberInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa id póliza'}),
             'vigente': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa estado vigencia'}),
@@ -47,11 +48,14 @@ class AseguradoForm(forms.ModelForm):
             'usuario_rut_usuario': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut usuario'}),
         }
 
-#FORMULARIO  SINIESTROS
+# FORMULARIO  SINIESTROS
+
+
 class SiniestroForm(forms.ModelForm):
     class Meta:
         model = Siniestro
-        fields = '__all__'
+        fields = ['nro_siniestro', 'fecha_hr', 'descripcion', 'parte_policial', 'foto_licencia', 'tipo_accidente_id_tipo_acc',
+                  'est_siniestro_id_est_siniestro', 'taller_id_taller', 'grua_patente_grua', 'usuario_rut_usuario', 'poliza_id_poliza']
         widgets = {
             'nro_siniestro': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa n° de siniestro'}),
             'fecha_hr': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),

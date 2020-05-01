@@ -6,8 +6,8 @@
     {% else %}
     <td>NO</td>
     {% endif %}
-    <td>{{polizas.fecha_inicio}}</td>
-    <td>{{polizas.fecha_fin}}</td>
+    <td>{{polizas.fecha_inicio | date:'d-m-Y' }}</td>
+    <td>{{polizas.fecha_fin | date:'d-m-Y' }}</td>
     <td>{{polizas.asegurado_rut_asegurado.rut_asegurado}}</td>
     <td>{{polizas.vehiculo_patente_vehiculo}}</td>
     <td>

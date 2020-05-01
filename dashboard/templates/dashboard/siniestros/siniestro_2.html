@@ -2,7 +2,7 @@
 <tr>
     <th scope="row">{{siniestros.nro_siniestro}}</th>
     <td>{{siniestros.poliza_id_poliza}}</td>
-    <td>{{siniestros.fecha_hr}}</td>
+    <td>{{siniestros.fecha_hr | date:'d-m-Y' }}</td>
     <td>{{siniestros.tipo_accidente_id_tipo_acc}}</td>
 
     {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 1 %}

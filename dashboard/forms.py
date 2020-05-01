@@ -2,7 +2,7 @@ from django import forms
 from .models import Poliza, Asegurado, Vehiculo, Siniestro
 
 
-#FORMULARIO CREACION POLIZA
+# FORMULARIO POLIZA
 class PolizaForm(forms.ModelForm):
     class Meta:
         model = Poliza
@@ -17,7 +17,9 @@ class PolizaForm(forms.ModelForm):
             'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente vehículo'})
         }
 
-#FORMULARIO CREACION ASEGURADO
+# FORMULARIO ASEGURADO
+
+
 class AseguradoForm(forms.ModelForm):
 
     class Meta:
@@ -45,7 +47,7 @@ class AseguradoForm(forms.ModelForm):
             'usuario_rut_usuario': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut usuario'}),
         }
 
-
+#FORMULARIO  SINIESTROS
 class SiniestroForm(forms.ModelForm):
     class Meta:
         model = Siniestro
@@ -64,26 +66,30 @@ class SiniestroForm(forms.ModelForm):
             'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa id póliza'}),
         }
 
-#FORMULARIO BORRADO LOGICO ASEGURADO
+# FORMULARIO BORRADO LOGICO ASEGURADO
+
+
 class DeshabilitarAseguradoForm(forms.ModelForm):
 
     class Meta:
         model = Asegurado
-        fields =['estado']
+        fields = ['estado']
 
-#FORMULARIO CREACION VEHICULO
+# FORMULARIO VEHICULO
+
+
 class VehiculoForm(forms.ModelForm):
 
     class Meta:
         model = Vehiculo
         fields = [
-        'patente_vehiculo',
-        'anio',
-        'modelo',
-        'nro_motor',
-        'tipo_vehiculo_id_tipo_auto',
-        'marca_id_marca',
-        'asegurado_rut_asegurado'
+            'patente_vehiculo',
+            'anio',
+            'modelo',
+            'nro_motor',
+            'tipo_vehiculo_id_tipo_auto',
+            'marca_id_marca',
+            'asegurado_rut_asegurado'
         ]
         widgets = {
             'patente_vehiculo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente'}),
@@ -94,4 +100,3 @@ class VehiculoForm(forms.ModelForm):
             'marca_id_marca': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa marca'}),
             'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut usuario'}),
         }
-

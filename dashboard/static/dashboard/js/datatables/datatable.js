@@ -5,3 +5,7 @@ $(document).ready(function () {
 $(document).ready(function () {
   $('#table_poliza').DataTable();
 });
+
+$(document).ready(function () {
+  $('#table_usuario').DataTable();
+});

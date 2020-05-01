@@ -9,3 +9,11 @@ $(document).ready(function () {
 $(document).ready(function () {
   $('#table_usuario').DataTable();
 });
+
+$(document).ready(function () {
+  $('#table_asegurado').DataTable();
+});
+
+$(document).ready(function () {
+  $('#table_vehiculo').DataTable();
+});

@@ -1,0 +1,30 @@
+{% for talleres in talleres %}
+    <tr>
+        <th scope="row">{{ talleres.id_taller }}</th>
+        <td>{{ talleres.nombre }}</td>
+        <td>{{ talleres.telefono }}</td>
+        <td>{{ talleres.correo }}</td>
+        <td>{{ talleres.capacidad_taller }}</td>
+        <!-- <td>
+            <span class="badge badge-pill badge-success">En Curso</span>
+        </td> -->
+        <td>
+            <div class="dropdown">
+                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Editar Taller</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#eliminarTaller"
+                       href="#">Eliminar Taller</a>
+                </div>
+            </div>
+        </td>
+    </tr>
+{% empty %}
+    <tr>
+        <td colspan="7" class="text-center bg-warning">No hay talleres registrados</td>
+    </tr>
+
+{% endfor %}

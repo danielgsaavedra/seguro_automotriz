@@ -104,8 +104,6 @@ $(document).ready(function () {
     };
 
 
-
-
     var SaveFormSiniestro = function () {
         var form = $(this);
         $.ajax({
@@ -173,6 +171,51 @@ $(document).ready(function () {
         return false;
     }
 
+    var ShowTallerForm = function () {
+        var btn = $(this);
+        $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#modal_taller').modal('show')
+            },
+            success: function (data) {
+                $('#modal_taller .modal-content').html(data.html_form)
+            },
+            error: function () {
+                alert('Algo salió mal, intenta nuevamente.')
+            }
+        });
+    };
+
+    var SaveTallerForm = function () {
+
+        var form = $(this);
+        $.ajax({
+            url: form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType: 'json',
+            success: function (data) {
+                if (data.form_is_valid) {
+                    $('#table_taller tbody').html(data.talleres);
+                    $('#modal_taller').modal('hide');
+                    console.log('Taller registrado correctamente!');
+                    toastr.success('Exito');
+                } else {
+                    $('#modal_taller .modal-content').html(data.html_form)
+                }
+            },
+            error: function () {
+                toastr.error('No se pudo registrar taller, intente nuevamente.')
+            }
+        });
+        return false;
+    }
+
+
+
     //Crear Poliza
     $('.show_poliza').click(ShowFormPoliza);
     $('#modal_poliza').on('submit', '.create_form_polizas', SaveFormPoliza);
@@ -217,6 +260,10 @@ $(document).ready(function () {
     //Modificar Vehiculo
     $('#table_vehiculo').on('click', '.show_vehiculo_update', ShowVehiculoForm);
     $('#modal_vehiculo').on('submit', '.vehiculo_form_update', SaveVehiculoForm);
+
+    // //Crear Taller
+    $('.show_taller').click(ShowTallerForm);
+    $('#modal_taller').on('submit', '.create_form_taller', SaveTallerForm);
 
 
 });

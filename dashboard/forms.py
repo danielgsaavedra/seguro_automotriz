@@ -1,5 +1,5 @@
 from django import forms
-from .models import Poliza, Asegurado, Vehiculo, Siniestro
+from .models import Poliza, Asegurado, Vehiculo, Siniestro, Taller
 
 
 # FORMULARIO POLIZA
@@ -131,4 +131,24 @@ class VehiculoForm(forms.ModelForm):
             'tipo_vehiculo_id_tipo_auto': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa tipo de vehículo'}),
             'marca_id_marca': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa marca'}),
             'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut usuario'}),
+        }
+
+
+
+class TallerForm(forms.ModelForm):
+    class Meta:
+        model = Taller
+        fields = '__all__'
+        widgets = {
+            'id_taller': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingrese N° taller'}),
+            'nombre': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingrese nombre'}),
+            'razon_social': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingrese nombre'}),
+            'telefono': forms.NumberInput(attrs={'class': 'required form-control','placeholder': 'Ingrese numero telefónico'}),
+            'correo': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'ejemplo@correo.com'}),
+            'capacidad_taller': forms.NumberInput(attrs={'class': 'required form-control', 'placeholder': 'Ingrese capacidad máxima'}),
+            'estado': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingrese estado taller'}),
+            'estado_delete': forms.TextInput(attrs={'class': 'required form-control', 'placeholder':'Estado'}),
+            'usuario_rut_usuario': forms.Select(attrs={'class': 'required form-control', 'placeholder':'Seleccione Rut...'}),
+
+
         }

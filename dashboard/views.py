@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import TemplateView
-from .models import Usuario, Taller, Asegurado, Vehiculo, Poliza, Siniestro
+from .models import Usuario, Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm
+from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm
 
 # Create your views here.
 
@@ -31,7 +31,8 @@ def SaveAllAsegurado(request, form, template_name):
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            asegurados = Asegurado.objects.filter(estado=1).order_by('fecha_nacimiento')
+            asegurados = Asegurado.objects.filter(
+                estado=1).order_by('fecha_nacimiento')
             context = {'asegurados': asegurados}
             data['asegurados'] = render_to_string(
                 'dashboard/asegurados/asegurado_2.html', context)
@@ -229,11 +230,13 @@ def DeletePoliza(request, id):
 # Crud Siniestro
 def SaveAllSiniestro(request, form, template_name):
     data = dict()
+    estado = get_object_or_404(EstadoSiniestro, id_est_siniestro=7)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            siniestros = Siniestro.objects.all().order_by('-nro_siniestro')
+            siniestros = Siniestro.objects.all().exclude(
+                est_siniestro_id_est_siniestro=estado).order_by('nro_siniestro')
             context = {'siniestros': siniestros}
             data['siniestros'] = render_to_string(
                 'dashboard/siniestros/siniestro_2.html', context)
@@ -248,7 +251,9 @@ def SaveAllSiniestro(request, form, template_name):
 
 # Read
 def SiniestroView(request):
-    siniestros = Siniestro.objects.all().order_by('-nro_siniestro')
+    estado = get_object_or_404(EstadoSiniestro, id_est_siniestro=7)
+    siniestros = Siniestro.objects.all().exclude(
+        est_siniestro_id_est_siniestro=estado).order_by('nro_siniestro')
     context = {'siniestros': siniestros}
     return render(request, 'dashboard/siniestros/siniestro.html', context)
 
@@ -279,15 +284,23 @@ def UpdateSiniestro(request, id):
 def DeleteSiniestro(request, id):
     data = dict()
     siniestro = get_object_or_404(Siniestro, nro_siniestro=id)
+    estado = get_object_or_404(EstadoSiniestro, id_est_siniestro=7)
     if request.method == 'POST':
-        siniestro.delete()
-        data['form_is_valid'] = True
-        siniestro = Siniestro.objects.all()
-        context = {'siniestros': siniestros}
-        data['siniestros'] = render_to_string(
-            'dashboard/siniestros/siniestro_2.html', context)
+        form = DeshabilitarSiniestroForm(request.POST, instance=siniestro)
+        if form.is_valid():
+            siniestro = form.save(commit=False)
+            siniestro.est_siniestro_id_est_siniestro = estado
+            siniestro.save()
+            data['form_is_valid'] = True
+            siniestros = Siniestro.objects.all().exclude(
+                est_siniestro_id_est_siniestro=estado).order_by('nro_siniestro')
+            context = {'siniestros': siniestros}
+            data['siniestros'] = render_to_string(
+                'dashboard/siniestros/siniestro_2.html', context)
     else:
-        context = {'siniestro': siniestro}
+        form = DeshabilitarSiniestroForm(instance=siniestro)
+        data['form_is_valid'] = False
+        context = {'siniestro': siniestro, 'form': form}
         data['html_form'] = render_to_string(
             'dashboard/siniestros/siniestro_delete.html', context, request=request)
     return JsonResponse(data)

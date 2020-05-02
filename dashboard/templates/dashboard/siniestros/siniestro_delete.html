@@ -1,5 +1,5 @@
 <form action="" class="delete_form_siniestro" method="POST"
-    data-url="{% url 'siniestro_delete' siniestro.nro_siniestro %}">
+    data-url="{% url 'siniestro_delete' form.instance.nro_siniestro %}">
     {% csrf_token %}
 
     <div class="modal-header bg-danger">
@@ -11,7 +11,8 @@
     <div class="modal-body">
         <div class="form-row">
             <div class="col-12">
-                <h4>¿Seguro que deseas eliminar el siniestro n° <strong>{{siniestro.nro_siniestro}}</strong>?</h4>
+                <h4>¿Seguro que deseas eliminar el siniestro n° <strong>{{form.instance.nro_siniestro}}</strong>?</h4>
+                {{form.est_siniestro_id_est_siniestro}}
                 <br>
             </div>
             <div class="col-12">

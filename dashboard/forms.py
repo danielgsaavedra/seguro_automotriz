@@ -69,7 +69,7 @@ class DeshabilitarAseguradoForm(forms.ModelForm):
         model = Asegurado
         fields = ['estado']
         widgets = {
-            'estado': forms.HiddenInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa n° de siniestro', 'id': 'estado_asegurado'}),
+            'estado': forms.HiddenInput(attrs={'class': 'required form-control', 'id': 'estado_asegurado'}),
         }
 
 # FORMULARIO  SINIESTROS
@@ -94,6 +94,18 @@ class SiniestroForm(forms.ModelForm):
             'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa id póliza'}),
         }
 
+
+# FORMULARIO BORRADO LOGICO SINIESTRO
+
+
+class DeshabilitarSiniestroForm(forms.ModelForm):
+
+    class Meta:
+        model = Siniestro
+        fields = ['est_siniestro_id_est_siniestro']
+        widgets = {
+            'est_siniestro_id_est_siniestro': forms.HiddenInput(attrs={'class': 'required form-control',  'id': 'est_siniestro_id_est_siniestro_siniestro'}),
+        }
 
 # FORMULARIO VEHICULO
 

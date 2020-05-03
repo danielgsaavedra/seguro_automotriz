@@ -269,6 +269,10 @@ $(document).ready(function () {
     $('#table_taller').on('click', '.show_taller_update', ShowTallerForm);
     $('#modal_taller').on('submit', '.update_form_taller', SaveTallerForm);
 
+    //Eliminar Taller
+    $('#table_taller').on('click', '.show_taller_delete', ShowTallerForm);
+    $('#modal_taller').on('submit', '.delete_form_taller', SaveTallerForm);
+
 
 });
 

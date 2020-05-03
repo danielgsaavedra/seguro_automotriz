@@ -3,7 +3,7 @@ from django.views.generic.base import TemplateView
 from .models import Usuario, Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm
+from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm
 
 # Create your views here.
 
@@ -12,10 +12,7 @@ class DashboardView(TemplateView):
     template_name = 'dashboard/dashboard.html'
 
 
-def TallerView(request):
-    taller = Taller.objects.all().order_by('id_taller')
-    context = {'taller': taller}
-    return render(request, 'dashboard/taller.html', context)
+
 
 
 def UsuariosView(request):
@@ -303,4 +300,40 @@ def DeleteSiniestro(request, id):
         context = {'siniestro': siniestro, 'form': form}
         data['html_form'] = render_to_string(
             'dashboard/siniestros/siniestro_delete.html', context, request=request)
+    return JsonResponse(data)
+
+
+#Crud Taller
+
+#Listar
+def TallerView(request):
+    talleres = Taller.objects.all().order_by('id_taller')
+    context = {'talleres': talleres}
+    return render(request, 'dashboard/talleres/taller.html', context)
+
+#Crear
+def CreateTaller(request):
+    if request.method == 'POST':
+        form = TallerForm(request.POST)
+    else:
+        form = TallerForm()
+    return SaveAllTaller(request, form, 'dashboard/talleres/taller_create.html')
+
+#Guarda Todos los Cambios
+def SaveAllTaller(request, form, template_name):
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            talleres = Taller.objects.all().order_by('id_taller')
+            context = {'talleres': talleres}
+            data['talleres'] = render_to_string(
+                'dashboard/talleres/taller_2.html', context)
+        else:
+            data['form_is_valid'] = False
+
+    context = {'form': form}
+    data['html_form'] = render_to_string(
+        template_name, context, request=request)
     return JsonResponse(data)

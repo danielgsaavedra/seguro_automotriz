@@ -302,13 +302,14 @@ def DeleteSiniestro(request, id):
 
 # Crud Taller
 
+
 def SaveAllTaller(request, form, template_name):
     data = dict()
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            talleres = Taller.objects.all().order_by('id_taller')
+            talleres = Taller.objects.filter(estado_delete=1).order_by('id_taller')
             context = {'talleres': talleres}
             data['talleres'] = render_to_string(
                 'dashboard/talleres/taller_2.html', context)
@@ -337,3 +338,15 @@ def CreateTaller(request):
     else:
         form = TallerForm()
     return SaveAllTaller(request, form, 'dashboard/talleres/taller_create.html')
+ 
+#Actualizar
+
+
+def UpdateTaller(request, id):
+    taller = get_object_or_404(Taller, id_taller=id)
+    if request.method == 'POST':
+        form = TallerForm(request.POST, instance=taller)
+    else:
+        form = TallerForm(instance=taller)
+    return SaveAllTaller(request, form, 'dashboard/talleres/taller_update.html')
+

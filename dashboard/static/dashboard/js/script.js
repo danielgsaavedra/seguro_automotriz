@@ -261,9 +261,13 @@ $(document).ready(function () {
     $('#table_vehiculo').on('click', '.show_vehiculo_update', ShowVehiculoForm);
     $('#modal_vehiculo').on('submit', '.vehiculo_form_update', SaveVehiculoForm);
 
-    // //Crear Taller
+    //Crear Taller
     $('.show_taller').click(ShowTallerForm);
     $('#modal_taller').on('submit', '.create_form_taller', SaveTallerForm);
+
+    //Modificar Taller
+    $('#table_taller').on('click', '.show_taller_update', ShowTallerForm);
+    $('#modal_taller').on('submit', '.update_form_taller', SaveTallerForm);
 
 
 });

@@ -1,4 +1,3 @@
-
 from django.urls import path
 from django.conf.urls import url, include
 from .views import DashboardView, SiniestroView, UsuariosView, TallerView
@@ -15,6 +14,7 @@ urlpatterns = [
          views.DeleteSiniestro, name='siniestro_delete'),
     path('taller/', views.TallerView, name='taller'),
     path('taller/create/', views.CreateTaller, name='taller_create'),
+    path('taller/<str:id>/update', views.UpdateTaller, name='taller_update'),
     path('usuarios/', views.UsuariosView, name='usuarios'),
     path('asegurados/', views.AseguradosView, name='asegurados'),
     path('asegurados/create/', views.AseguradoCreate, name='asegurado_create'),

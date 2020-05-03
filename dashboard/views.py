@@ -12,9 +12,6 @@ class DashboardView(TemplateView):
     template_name = 'dashboard/dashboard.html'
 
 
-
-
-
 def UsuariosView(request):
     usuarios = Usuario.objects.all().order_by('rol_id_rol')
     context = {'usuarios': usuarios}
@@ -303,23 +300,8 @@ def DeleteSiniestro(request, id):
     return JsonResponse(data)
 
 
-#Crud Taller
+# Crud Taller
 
-#Listar
-def TallerView(request):
-    talleres = Taller.objects.all().order_by('id_taller')
-    context = {'talleres': talleres}
-    return render(request, 'dashboard/talleres/taller.html', context)
-
-#Crear
-def CreateTaller(request):
-    if request.method == 'POST':
-        form = TallerForm(request.POST)
-    else:
-        form = TallerForm()
-    return SaveAllTaller(request, form, 'dashboard/talleres/taller_create.html')
-
-#Guarda Todos los Cambios
 def SaveAllTaller(request, form, template_name):
     data = dict()
     if request.method == 'POST':
@@ -337,3 +319,21 @@ def SaveAllTaller(request, form, template_name):
     data['html_form'] = render_to_string(
         template_name, context, request=request)
     return JsonResponse(data)
+
+# Listar
+
+
+def TallerView(request):
+    talleres = Taller.objects.all().order_by('id_taller')
+    context = {'talleres': talleres}
+    return render(request, 'dashboard/talleres/taller.html', context)
+
+# Crear
+
+
+def CreateTaller(request):
+    if request.method == 'POST':
+        form = TallerForm(request.POST)
+    else:
+        form = TallerForm()
+    return SaveAllTaller(request, form, 'dashboard/talleres/taller_create.html')

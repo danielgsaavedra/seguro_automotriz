@@ -430,8 +430,8 @@ class Taller(models.Model):
     telefono = models.BigIntegerField(verbose_name='Teléfono')
     correo = models.CharField(max_length=30, verbose_name='Correo')
     capacidad_taller = models.IntegerField(verbose_name='Capacidad Taller')
-    estado = models.CharField(max_length=1, verbose_name='Estado')
-    estado_delete = models.CharField(max_length=1)
+    estado = models.CharField(max_length=1, verbose_name='Estado', default=1)
+    estado_delete = models.CharField(max_length=1, default=1)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario')
 

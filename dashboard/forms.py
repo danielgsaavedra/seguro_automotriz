@@ -138,7 +138,19 @@ class VehiculoForm(forms.ModelForm):
 class TallerForm(forms.ModelForm):
     class Meta:
         model = Taller
-        fields = '__all__'
+        fields = [
+            'id_taller',
+            'nombre',
+            'razon_social',
+            'telefono',
+            'correo',
+            'capacidad_taller',
+            'estado',
+            'usuario_rut_usuario',
+
+
+
+        ]
         widgets = {
             'id_taller': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingrese N° taller'}),
             'nombre': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingrese nombre'}),
@@ -146,9 +158,9 @@ class TallerForm(forms.ModelForm):
             'telefono': forms.NumberInput(attrs={'class': 'required form-control','placeholder': 'Ingrese numero telefónico'}),
             'correo': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'ejemplo@correo.com'}),
             'capacidad_taller': forms.NumberInput(attrs={'class': 'required form-control', 'placeholder': 'Ingrese capacidad máxima'}),
-            'estado': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingrese estado taller'}),
-            'estado_delete': forms.TextInput(attrs={'class': 'required form-control', 'placeholder':'Estado'}),
+            'estado': forms.TextInput(
+                attrs={'class': 'required form-control', 'placeholder': 'Ingresa estado taller'}),
             'usuario_rut_usuario': forms.Select(attrs={'class': 'required form-control', 'placeholder':'Seleccione Rut...'}),
-
-
         }
+
+

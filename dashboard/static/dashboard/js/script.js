@@ -208,7 +208,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                toastr.error('No se pudo registrar taller, intente nuevamente.')
+                toastr.error('Ocurrio un error, intente nuevamente.')
             }
         });
         return false;

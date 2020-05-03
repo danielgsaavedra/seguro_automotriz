@@ -5,6 +5,16 @@
         <td>{{ talleres.telefono }}</td>
         <td>{{ talleres.correo }}</td>
         <td>{{ talleres.capacidad_taller }}</td>
+        {% if talleres.estado == '1' %}
+            <td>
+                <span class="badge badge-pill badge-success">Si</span>
+            </td>
+        {% else %}
+            <td>
+                <span class="badge badge-pill badge-danger">No</span>
+            </td>
+        {% endif %}
+
         <!-- <td>
             <span class="badge badge-pill badge-success">En Curso</span>
         </td> -->

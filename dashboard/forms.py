@@ -158,3 +158,13 @@ class TallerForm(forms.ModelForm):
                 attrs={'class': 'required form-control', 'placeholder': 'Ingresa estado taller'}),
             'usuario_rut_usuario': forms.Select(attrs={'class': 'required form-control'}),
         }
+
+
+class DeshabilitarTallerForm(forms.ModelForm):
+
+    class Meta:
+        model = Taller
+        fields = ['estado_delete']
+        widgets = {
+            'estado_delete': forms.HiddenInput(attrs={'class': 'required form-control', 'id': 'estado_delete_taller'}),
+        }

@@ -3,7 +3,7 @@ from django.views.generic.base import TemplateView
 from .models import Usuario, Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm
+from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm,DeshabilitarTallerForm
 
 # Create your views here.
 
@@ -326,7 +326,7 @@ def SaveAllTaller(request, form, template_name):
 
 
 def TallerView(request):
-    talleres = Taller.objects.all().order_by('id_taller')
+    talleres = Taller.objects.filter(estado_delete=1).order_by('id_taller')
     context = {'talleres': talleres}
     return render(request, 'dashboard/talleres/taller.html', context)
 
@@ -350,3 +350,27 @@ def UpdateTaller(request, id):
     else:
         form = TallerForm(instance=taller)
     return SaveAllTaller(request, form, 'dashboard/talleres/taller_update.html')
+
+# Borrar
+
+def DeleteTaller(request, id):
+    data = dict()
+    taller = get_object_or_404(Taller, id_taller=id)
+    if request.method == 'POST':
+        form = DeshabilitarTallerForm(request.POST, instance=taller)
+        if form.is_valid():
+            taller = form.save(commit=False)
+            taller.estado_delete = "0"
+            taller.save()
+            data['form_is_valid'] = True
+            talleres = Taller.objects.filter(estado_delete=1).order_by('id_taller')
+            context = {'talleres': talleres}
+            data['talleres'] = render_to_string(
+                'dashboard/talleres/taller_2.html', context)
+    else:
+        form = DeshabilitarTallerForm(instance=taller)
+        data['form_is_valid'] = False
+        context = {'taller': taller, 'form': form}
+        data['html_form'] = render_to_string(
+            'dashboard/talleres/taller_delete.html', context, request=request)
+    return JsonResponse(data)

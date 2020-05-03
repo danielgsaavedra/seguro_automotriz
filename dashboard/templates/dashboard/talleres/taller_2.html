@@ -1,38 +1,37 @@
 {% for talleres in talleres %}
-    <tr>
-        <th scope="row">{{ talleres.id_taller }}</th>
-        <td>{{ talleres.nombre }}</td>
-        <td>{{ talleres.telefono }}</td>
-        <td>{{ talleres.correo }}</td>
-        <td>{{ talleres.capacidad_taller }}</td>
-        {% if talleres.estado == '1' %}
-            <td>
-                <span class="badge badge-pill badge-success">DISPONIBLE</span>
-            </td>
-        {% else %}
-            <td>
-                <span class="badge badge-pill badge-danger">NO DISPONIBLE</span>
-            </td>
-        {% endif %}
-        <td>
-            <div class="dropdown">
-                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
-                   data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-ellipsis-v"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <button class="show_taller_update dropdown-item"
-                            data-url="{% url 'taller_update' talleres.id_taller %}">
-                        Modificar Taller
-                    </button>
-                </div>
+<tr>
+    <th scope="row">{{ talleres.id_taller }}</th>
+    <td>{{ talleres.nombre }}</td>
+    <td>{{ talleres.telefono }}</td>
+    <td>{{ talleres.correo }}</td>
+    <td>{{ talleres.capacidad_taller }}</td>
+    {% if talleres.estado == '1' %}
+    <td>
+        <span class="badge badge-pill badge-success">DISPONIBLE</span>
+    </td>
+    {% else %}
+    <td>
+        <span class="badge badge-pill badge-danger">NO DISPONIBLE</span>
+    </td>
+    {% endif %}
+    <td>
+        <div class="dropdown">
+            <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <button class="show_taller_update dropdown-item"
+                    data-url="{% url 'taller_update' talleres.id_taller %}">
+                    Modificar Taller
+                </button>
             </div>
-        </td>
-    </tr>
+        </div>
+    </td>
+</tr>
 {% empty %}
-    <tr>
-        <td colspan="7" class="text-center bg-warning">No hay talleres registrados</td>
-    </tr>
+<tr>
+    <td colspan="7" class="text-center bg-warning">No hay talleres registrados</td>
+</tr>
 
 {% endfor %}

@@ -158,4 +158,3 @@ class TallerForm(forms.ModelForm):
                 attrs={'class': 'required form-control', 'placeholder': 'Ingresa estado taller'}),
             'usuario_rut_usuario': forms.Select(attrs={'class': 'required form-control'}),
         }
-

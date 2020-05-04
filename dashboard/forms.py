@@ -83,19 +83,20 @@ class DeshabilitarAseguradoForm(forms.ModelForm):
 class SiniestroForm(forms.ModelForm):
     class Meta:
         model = Siniestro
-        fields = ['fecha_hr', 'descripcion', 'parte_policial', 'foto_licencia']
+        fields = ['id', 'fecha_hr', 'descripcion', 'parte_policial', 'foto_licencia', 'tipo_accidente_id_tipo_acc',
+                  'est_siniestro_id_est_siniestro', 'taller_id_taller', 'grua_patente_grua', 'usuario_rut_usuario', 'poliza_id_poliza']
         widgets = {
-            # 'nro_siniestro': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa n° de siniestro'}),
+            'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
             'fecha_hr': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),
             'descripcion': forms.Textarea(attrs={'class': 'required form-control', 'placeholder': 'Ingrea una descripción'}),
             'parte_policial': forms.FileInput(attrs={'class': 'form-control'}),
             'foto_licencia': forms.FileInput(attrs={'class': 'form-control'}),
-            # 'tipo_accidente_id_tipo_acc': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa tipo accidente'}),
-            # 'est_siniestro_id_est_siniestro': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa estado siniestro'}),
-            # 'taller_id_taller': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa id taller'}),
-            # 'grua_patente_grua': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente grúa'}),
-            # 'usuario_rut_usuario': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa rut asegurado'}),
-            # 'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa id póliza'}),
+            'tipo_accidente_id_tipo_acc': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa tipo accidente'}),
+            'est_siniestro_id_est_siniestro': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa estado siniestro'}),
+            'taller_id_taller': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa id taller'}),
+            'grua_patente_grua': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente grúa'}),
+            'usuario_rut_usuario': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa rut asegurado'}),
+            'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa id póliza'}),
         }
 
 
@@ -106,10 +107,10 @@ class DeshabilitarSiniestroForm(forms.ModelForm):
 
     class Meta:
         model = Siniestro
-        fields = ['descripcion']
-        # widgets = {
-        #     'est_siniestro_id_est_siniestro': forms.HiddenInput(attrs={'class': 'required form-control',  'id': 'est_siniestro_id_est_siniestro_siniestro'}),
-        # }
+        fields = ['est_siniestro_id_est_siniestro']
+        widgets = {
+            'est_siniestro_id_est_siniestro': forms.HiddenInput(attrs={'class': 'required form-control',  'id': 'est_siniestro_id_est_siniestro_siniestro'}),
+        }
 
 # FORMULARIO VEHICULO
 

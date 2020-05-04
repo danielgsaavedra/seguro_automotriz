@@ -42,7 +42,7 @@ class Direccion(models.Model):
     usuario_rut_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', blank=True, null=True, verbose_name='Rut Usuario')
     asegurado_rut_asegurado = models.ForeignKey('Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', blank=True, null=True, verbose_name='Asegurado')
     servicio_grua_id_servicio = models.ForeignKey('ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio', blank=True, null=True, verbose_name='Servicio GRúa')
-    siniestro_nro_siniestro = models.ForeignKey('Siniestro', models.DO_NOTHING, db_column='siniestro_nro_siniestro', blank=True, null=True, verbose_name='N° Siniestro')
+    siniestro_id = models.ForeignKey('Siniestro', models.DO_NOTHING, db_column='siniestro_id', blank=True, null=True, verbose_name='ID Siniestro')
     taller_id_taller = models.ForeignKey('Taller', models.DO_NOTHING, db_column='taller_id_taller', blank=True, null=True, verbose_name='Taller')
 
     # class Meta:
@@ -76,14 +76,14 @@ class EstadoSiniestro(models.Model):
     #     verbose_name_plural = 'Estado Siniestros'
 
     def __str__(self):
-        return self.nombre
+        return str(self.nombre)
 
 
 class FormularioActa(models.Model):
     fecha_hora = models.DateField(verbose_name='Fecha')
     observaciones = models.CharField(max_length=300, blank=True, null=True, verbose_name='Observaciones')
     tipo_acta_id_tipo_acta = models.ForeignKey('TipoActa', models.DO_NOTHING, db_column='tipo_acta_id_tipo_acta', verbose_name='Tipo Acta',null=True)
-    siniestro_nro_siniestro = models.ForeignKey('Siniestro', models.DO_NOTHING, db_column='siniestro_nro_siniestro', verbose_name='ID Siniestro',null=True)
+    siniestro_id = models.ForeignKey('Siniestro', models.DO_NOTHING, db_column='siniestro_id', verbose_name='ID Siniestro',null=True)
     taller_id_taller = models.ForeignKey('Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller',null=True)
     usuario_rut_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario',null=True)
 
@@ -119,7 +119,7 @@ class InformeDano(models.Model):
     severidad_dano_id_seve_dano = models.ForeignKey('SeveridadDano', models.DO_NOTHING, db_column='severidad_dano_id_seve_dano', verbose_name='Severidad Daño',null=True)
     vehiculo_patente_vehiculo = models.ForeignKey('Vehiculo', models.DO_NOTHING, db_column='vehiculo_patente_vehiculo', verbose_name='Patente Vehículo',null=True)
     taller_id_taller = models.ForeignKey('Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller',null=True)
-    siniestro_nro_siniestro = models.ForeignKey('Siniestro', models.DO_NOTHING, db_column='siniestro_nro_siniestro', verbose_name='ID Siniestro',null=True)
+    siniestro_id = models.ForeignKey('Siniestro', models.DO_NOTHING, db_column='siniestro_id', verbose_name='ID Siniestro',null=True)
     usuario_rut_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario',null=True)
 
     # class Meta:
@@ -234,7 +234,7 @@ class RegPoliza(models.Model):
 
 class RegSiniestro(models.Model):
     nombre_registrador = models.CharField(max_length=30)
-    nro_siniestro = models.IntegerField()
+    id_siniestro = models.IntegerField()
     fecha_hora = models.DateField()
 
     # class Meta:
@@ -318,8 +318,8 @@ class Siniestro(models.Model):
     #     db_table = 'siniestro'
     #     verbose_name_plural = 'Siniestros'
 
-    # def __str__(self):
-    #     return self.nro_siniestro
+    def __str__(self):
+        return str(self.id)
 
 
 class Taller(models.Model):

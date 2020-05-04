@@ -12,55 +12,54 @@
         <div class="form-row">
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
-                    <span>N° TALLER</span>
-                </div>
-                {{ form.id_taller }}
-            </div>
-            <div class="form-group col-12 col-md-6">
-                <div class="col-form-label">
                     <span>NOMBRE</span>
                 </div>
                 {{ form.nombre }}
             </div>
-        </div>
-
-        <div class="form-row">
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>RAZÓN SOCIAL</span>
                 </div>
                 {{ form.razon_social }}
             </div>
+        </div>
+
+        <div class="form-row">
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>TELÉFONO</span>
                 </div>
-                {{ form.telefono }}
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="">+56</span>
+                    </div>
+                    {{form.telefono}}
+                </div>
             </div>
-        </div>
-
-        <div class="form-row">
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>CORREO</span>
                 </div>
                 {{ form.correo }}
             </div>
+        </div>
+
+        <div class="form-row">
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>CAPACIDAD</span>
                 </div>
                 {{ form.capacidad_taller }}
             </div>
-        </div>
-
-        <div class="form-row">
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>ESTADO</span>
                 </div>
                 {{ form.estado }}
             </div>
+        </div>
+
+        <div class="form-row">
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>RUT USUARIO</span>

@@ -1,5 +1,4 @@
-<form action="" class="update_form_siniestro" method="POST"
-    data-url="{% url 'siniestro_update' form.instance.nro_siniestro %}">
+<form action="" class="update_form_siniestro" method="POST" data-url="{% url 'siniestro_update' form.instance.id %}">
     {% csrf_token %}
 
     <div class="modal-header bg-primary">
@@ -14,15 +13,15 @@
         <div class="form-row">
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
-                    <span>N° SINIESTRO</span>
-                </div>
-                {{ form.nro_siniestro }}
-            </div>
-            <div class="form-group col-12 col-md-6">
-                <div class="col-form-label">
                     <span>ID PÓLIZA</span>
                 </div>
                 {{ form.poliza_id_poliza }}
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>FECHA</span>
+                </div>
+                {{ form.fecha_hr }}
             </div>
         </div>
 
@@ -72,17 +71,11 @@
         </div>
 
         <div class="form-row">
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12">
                 <div class="col-form-label">
                     <span>RUT USUARIO</span>
                 </div>
                 {{ form.usuario_rut_usuario }}
-            </div>
-            <div class="form-group col-12 col-md-6">
-                <div class="col-form-label">
-                    <span>FECHA</span>
-                </div>
-                {{ form.fecha_hr }}
             </div>
         </div>
 

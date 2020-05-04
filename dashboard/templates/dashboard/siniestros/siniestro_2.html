@@ -1,53 +1,53 @@
 {% for siniestros in siniestros %}
 <tr>
-    <th scope="row">{{siniestros.nro_siniestro}}</th>
-    <td>{{siniestros.poliza_id_poliza}}</td>
+    <td scope="row">{{siniestros.id }}</td>
+    <td>{{siniestros.poliza_id_poliza }}</td>
     <td>{{siniestros.fecha_hr | date:'d-m-Y' }}</td>
     <td>{{siniestros.tipo_accidente_id_tipo_acc}}</td>
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 1 %}
+    {% if siniestros.est_siniestro_id_est_siniestro.id == 1 %}
     <td>
         <span class="badge badge-pill badge-info">EN CURSO</span>
     </td>
     {% endif %}
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 2 %}
+    {% if siniestros.est_siniestro_id_est_siniestro.id == 2 %}
     <td>
         <span class="badge badge-pill badge-light">RECEPCIONADO</span>
     </td>
     {% endif %}
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 3 %}
+    {% if siniestros.est_siniestro_id_est_siniestro.id == 3 %}
     <td>
         <span class="badge badge-pill badge-primary">INSPECCIONADO</span>
     </td>
     {% endif %}
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 4 %}
+    {% if siniestros.est_siniestro_id_est_siniestro.id == 4 %}
     <td>
         <span class="badge badge-pill badge-warning">EN REPACIÓN</span>
     </td>
     {% endif %}
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 5 %}
+    {% if siniestros.est_siniestro_id_est_siniestro.id == 5 %}
     <td>
         <span class="badge badge-pill badge-danger">RECHAZADO</span>
     </td>
     {% endif %}
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 6 %}
+    {% if siniestros.est_siniestro_id_est_siniestro.id == 6 %}
     <td>
         <span class="badge badge-pill badge-success">REPARADO</span>
     </td>
     {% endif %}
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 7 %}
+    {% if siniestros.est_siniestro_id_est_siniestro.id == 7 %}
     <td>
         <span class="badge badge-pill badge-dark">FINALIZADO</span>
     </td>
     {% endif %}
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id_est_siniestro == 8 %}
+    {% if siniestros.est_siniestro_id_est_siniestro.id == 8 %}
     <td>
         <span class="badge badge-pill badge-secondary">PENDIENTE</span>
     </td>
@@ -63,10 +63,10 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <button class="show_siniestro_update dropdown-item"
-                    data-url="{% url 'siniestro_update' siniestros.nro_siniestro %}">
+                    data-url="{% url 'siniestro_update' siniestros.id %}">
                     Modificar Siniestro</button>
                 <button class="show_siniestro_delete dropdown-item"
-                    data-url="{% url 'siniestro_delete' siniestros.nro_siniestro %}">
+                    data-url="{% url 'siniestro_delete' siniestros.id %}">
                     Eliminar Siniestro</button>
             </div>
         </div>
@@ -74,6 +74,6 @@
 </tr>
 {% empty %}
 <tr>
-    <td colspan="7" class="text-center bg-warning">No hay siniestros</td>
+    <td colspan="8" class="text-center">No hay siniestros</td>
 </tr>
 {% endfor %}

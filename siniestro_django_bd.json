@@ -610,38 +610,10 @@
 	  }
 },
 {
-	"model": "dashboard.rol",
-	  "pk": 1,
-	  "fields":{
-		  "tipo_rol":"MESA DE AYUDA"
-		}
-},
-{
-	"model": "dashboard.rol",
-	  "pk": 2,
-	  "fields":{
-		  "tipo_rol":"LIQUIDADOR"
-		}
-},
-{
-	"model": "dashboard.rol",
-	  "pk": 3,
-	  "fields":{
-		  "tipo_rol":"PERSONAL TALLER"
-		}
-},
-{
-	"model": "dashboard.rol",
-	  "pk": 4,
-	  "fields":{
-		  "tipo_rol":"PERSONAL GRUA"
-		}
-},
-{
 	"model": "dashboard.tipovehiculo",
 	  "pk": 1,
 	  "fields":{
-		  "tipo":"AUTO"
+		  "tipo":"AUTOMOVIL"
 		}
 },
 {
@@ -1244,7 +1216,7 @@
 	  "pk": 1,
 	  "fields":{
 		  "nombre":"EN CURSO",
-		  "descripcion":"REGISTRO DEL SINIESTRO, TRASLADO A TALLER"
+		  "descripcion":"REGISTRO DEL SINIESTRO"
 	}
 },
 {
@@ -1252,7 +1224,7 @@
 	  "pk": 2,
 	  "fields":{
 		  "nombre":"RECEPCIONADO",
-		  "descripcion":"EL VEHÌCULO ES INGRESADO AL TALLER MECANICO ASIGNADO"
+		  "descripcion":"EL VEHÍCULO ES INGRESADO AL TALLER MECANICO ASIGNADO"
 	}
 },
 {
@@ -1260,7 +1232,7 @@
 	  "pk": 3,
 	  "fields":{
 		  "nombre":"INSPECCIONADO",
-		  "descripcion":"SE CREA EL INFORME DE DAÑOS VEHÌCULO"
+		  "descripcion":"SE CREA EL INFORME DE DAÑOS VEHÍCULO"
 	}
 },
 {
@@ -1268,7 +1240,7 @@
 	  "pk": 4,
 	  "fields":{
 		  "nombre":"EN REPARACION",
-		  "descripcion":"REPARANDO VEHÌCULO"
+		  "descripcion":"REPARANDO VEHÍCULO"
 	}
 },
 {
@@ -1284,7 +1256,7 @@
 	  "pk": 6,
 	  "fields":{
 		  "nombre":"REPARADO",
-		  "descripcion":"VEHÌCULO LISTO PARA SER RETIRADO"
+		  "descripcion":"VEHÍCULO LISTO PARA SER RETIRADO"
 	}
 },
 {
@@ -1300,7 +1272,7 @@
 	  "pk": 8,
 	  "fields":{
 		  "nombre":"PENDIENTE",
-		  "descripcion":"VEHÌCULO ESPERANDO DECISIÓN DE LA ASEGURADORA"
+		  "descripcion":"VEHÍCULO ESPERANDO DECISIÓN DE LA ASEGURADORA"
 	}
 },
 {
@@ -1313,7 +1285,7 @@
 		  "segundo_apellido":"PARRA",
 		  "correo":"LOBOS.JOAQUIN@HOTMAIL.COM",
 		  "telefono":934567226,
-		  "rol_id_rol":1
+		  "rol":1
 	}
 },
 {
@@ -1326,7 +1298,7 @@
 		  "segundo_apellido":"IBARRA",
 		  "correo":"PEREZ.DEIGO@HOTMAIL.COM",
 		  "telefono":987560724,
-		  "rol_id_rol":1
+		  "rol":1
 	}
 },
 {
@@ -1339,7 +1311,7 @@
 		  "segundo_apellido":"BELTRAN",
 		  "correo":"HIDALGO.JUAN@HOTMAIL.COM",
 		  "telefono":955364219,
-		  "rol_id_rol":1
+		  "rol":1
 	}
 },
 {
@@ -1352,7 +1324,7 @@
 		  "segundo_apellido":"SAAVEDRA",
 		  "correo":"DFABRIZIOCOPASAA@GMAIL.COM",
 		  "telefono":973014432,
-		  "rol_id_rol":2
+		  "rol":2
 	}
 },
 {
@@ -1365,7 +1337,7 @@
 		  "segundo_apellido":"CABRERA",
 		  "correo":"RODROGOROBADO@GMAIL.COM",
 		  "telefono":986904452,
-		  "rol_id_rol":2
+		  "rol":2
 	}
 },
 {
@@ -1378,7 +1350,7 @@
 		  "segundo_apellido":"MADARIAGA",
 		  "correo":"FELIPE.RONALD@HOTMAIL.COM",
 		  "telefono":949890065,
-		  "rol_id_rol":2
+		  "rol":2
 	}
 },
 {
@@ -1391,7 +1363,7 @@
 		  "segundo_apellido":"BERNAL",
 		  "correo":"DFABRIZIOCOPASAA@GMAIL.COM",
 		  "telefono":954982257,
-		  "rol_id_rol":3
+		  "rol":3
 	}
 },
 {
@@ -1404,7 +1376,7 @@
 		  "segundo_apellido":"URRUTIA",
 		  "correo":"ROSANDONU@GMAIL.COM",
 		  "telefono":999856321,
-		  "rol_id_rol":3
+		  "rol":3
 	}
 },
 {
@@ -1417,7 +1389,7 @@
 		  "segundo_apellido":"CABEZAS",
 		  "correo":"DANILOCABEZAS@HOTMAIL.COM",
 		  "telefono":957241905,
-		  "rol_id_rol":3
+		  "rol":3
 	}
 },
 {
@@ -1430,7 +1402,7 @@
 		  "segundo_apellido":"CATALAN",
 		  "correo":"FELIPE.CATALAN@HOTMAIL.COM",
 		  "telefono":986345676,
-		  "rol_id_rol":4
+		  "rol":4
 	}
 },
 {
@@ -1443,7 +1415,7 @@
 		  "segundo_apellido":"MOLINA",
 		  "correo":"YARE2519@GMAIL.COM",
 		  "telefono":967557486,
-		  "rol_id_rol":4
+		  "rol":4
 	}
 },
 {
@@ -1456,7 +1428,7 @@
 		  "segundo_apellido":"DELGADO",
 		  "correo":"PEDROCOLLADO@HOTMAIL.COM",
 		  "telefono":934512340,
-		  "rol_id_rol":4
+		  "rol":4
 	}
 },
 {
@@ -1556,9 +1528,9 @@
 		  "anio":2013,
 		  "modelo":"SPARK",
 		  "nro_motor":"9GAMM6101AB01512",
-		  "tipo_vehiculo_id_tipo_auto":1,
+		  "asegurado_rut_asegurado":"20554886-7",
 		  "marca_id_marca":9,
-		  "asegurado_rut_asegurado":"20554886-7"
+		  "tipo_vehiculo_id_tipo_auto":1
 	}
 },
 {
@@ -1568,9 +1540,9 @@
 		  "anio":2015,
 		  "modelo":"CIVIC",
 		  "nro_motor":"7YEAS4562JK4444",
-		  "tipo_vehiculo_id_tipo_auto":1,
+		  "asegurado_rut_asegurado":"19574568-3",
 		  "marca_id_marca":15,
-		  "asegurado_rut_asegurado":"19574568-3"
+		  "tipo_vehiculo_id_tipo_auto":1
 	}
 },
 {
@@ -1580,9 +1552,9 @@
 		  "anio":2015,
 		  "modelo":"F 750 GS",
 		  "nro_motor":"52WCV00967",
-		  "tipo_vehiculo_id_tipo_auto":3,
+		  "asegurado_rut_asegurado":"9078573-0",
 		  "marca_id_marca":6,
-		  "asegurado_rut_asegurado":"9078573-0"
+		  "tipo_vehiculo_id_tipo_auto":3
 	}
 },
 {
@@ -1592,9 +1564,9 @@
 		  "anio":2020,
 		  "modelo":"MURCIELAGO",
 		  "nro_motor":"WKL2500117",
-		  "tipo_vehiculo_id_tipo_auto":1,
+		  "asegurado_rut_asegurado":"19932098-5",
 		  "marca_id_marca":24,
-		  "asegurado_rut_asegurado":"19932098-5"
+		  "tipo_vehiculo_id_tipo_auto":1
 	}
 },
 {
@@ -1604,9 +1576,9 @@
 		  "anio":2016,
 		  "modelo":"LUV",
 		  "nro_motor":"K015453XS",
-		  "tipo_vehiculo_id_tipo_auto":2,
+		  "asegurado_rut_asegurado":"23568113-7",
 		  "marca_id_marca":9,
-		  "asegurado_rut_asegurado":"23568113-7"
+		  "tipo_vehiculo_id_tipo_auto":2
 	}
 },
 {
@@ -1616,9 +1588,9 @@
 		  "anio":2020,
 		  "modelo":"CELERIO",
 		  "nro_motor":"K025453XS",
-		  "tipo_vehiculo_id_tipo_auto":1,
+		  "asegurado_rut_asegurado":"13456223-1",
 		  "marca_id_marca":47,
-		  "asegurado_rut_asegurado":"13456223-1"
+		  "tipo_vehiculo_id_tipo_auto":1
 	}
 },
 {
@@ -1628,7 +1600,6 @@
 		  "vigente":"1",
 		  "fecha_inicio":"2020-04-14",
 		  "fecha_fin":"2021-04-13",
-		  "firma":"FOTITO FIRMA",
 		  "estado":"1",
 		  "asegurado_rut_asegurado":"20554886-7",
 		  "vehiculo_patente_vehiculo":"JP-DA-22"
@@ -1641,7 +1612,6 @@
 		  "vigente":"0",
 		  "fecha_inicio":"2020-05-17",
 		  "fecha_fin":"2021-05-16",
-		  "firma":"FOTITO FIRMA",
 		  "estado":"1",
 		  "asegurado_rut_asegurado":"19574568-3",
 		  "vehiculo_patente_vehiculo":"GW-RE-32"
@@ -1654,7 +1624,6 @@
 		  "vigente":"0",
 		  "fecha_inicio":"2018-07-10",
 		  "fecha_fin":"2019-07-09",
-		  "firma":"ALEJANDRO",
 		  "estado":"1",
 		  "asegurado_rut_asegurado":"9078573-0",
 		  "vehiculo_patente_vehiculo":"GR-PQ-12"
@@ -1667,7 +1636,6 @@
 		  "vigente":"1",
 		  "fecha_inicio":"2019-11-21",
 		  "fecha_fin":"2020-11-20",
-		  "firma":"JESUS",
 		  "estado":"1",
 		  "asegurado_rut_asegurado":"19932098-5",
 		  "vehiculo_patente_vehiculo":"FU-CK-69"
@@ -1680,7 +1648,6 @@
 		  "vigente":"1",
 		  "fecha_inicio":"2020-08-10",
 		  "fecha_fin":"2021-08-09",
-		  "firma":"AQUILES BAEZA",
 		  "estado":"1",
 		  "asegurado_rut_asegurado":"13456223-1",
 		  "vehiculo_patente_vehiculo":"RR-XZ-WW"
@@ -1693,7 +1660,6 @@
 		  "vigente":"0",
 		  "fecha_inicio":"2018-12-31",
 		  "fecha_fin":"2019-12-30",
-		  "firma":"LUIS LAZO",
 		  "estado":"1",
 		  "asegurado_rut_asegurado":"23568113-7",
 		  "vehiculo_patente_vehiculo":"YY-F8-CQ"
@@ -1832,95 +1798,95 @@
 	"model": "dashboard.planseguro",
 	  "pk": 1,
 	  "fields":{
-		  "tipo_plan_id_tip_plan":4,
+		  "deducible":0,
 		  "poliza_id_poliza":1,
-		  "deducible":0
+		  "tipo_plan_id_tip_plan":4
 	}
 },
 {
 	"model": "dashboard.planseguro",
 	  "pk": 2,
 	  "fields":{
-		  "tipo_plan_id_tip_plan":2,
+		  "deducible":20,
 		  "poliza_id_poliza":2,
-		  "deducible":20
+		  "tipo_plan_id_tip_plan":2
 	}
 },
 {
 	"model": "dashboard.planseguro",
 	  "pk": 3,
 	  "fields":{
-		  "tipo_plan_id_tip_plan":4,
+		  "deducible":10,
 		  "poliza_id_poliza":3,
-		  "deducible":10
+		  "tipo_plan_id_tip_plan":4
 	}
 },
 {
 	"model": "dashboard.planseguro",
 	  "pk": 4,
 	  "fields":{
-		  "tipo_plan_id_tip_plan":1,
+		  "deducible":5,
 		  "poliza_id_poliza":4,
-		  "deducible":5
+		  "tipo_plan_id_tip_plan":1
 	}
 },
 {
 	"model": "dashboard.planseguro",
 	  "pk": 5,
 	  "fields":{
-		  "tipo_plan_id_tip_plan":4,
+		  "deducible":0,
 		  "poliza_id_poliza":5,
-		  "deducible":0
+		  "tipo_plan_id_tip_plan":4
 	}
 },
 {
 	"model": "dashboard.planseguro",
 	  "pk": 6,
 	  "fields":{
-		  "tipo_plan_id_tip_plan":3,
+		  "deducible":10,
 		  "poliza_id_poliza":6,
-		  "deducible":10
+		  "tipo_plan_id_tip_plan":3
 	}
 },
 {
 	"model": "dashboard.siniestro",
-	  "pk": "A123",
+	  "pk": 1,
 	  "fields":{
 		  "fecha_hr":"2020-03-10",
 		  "descripcion":"CAYO SOBRE EL CAPO UNA RAMA DE ARBOL ABOLLANDO EL MALETERO",
-		  "tipo_accidente_id_tipo_acc":6,
 		  "est_siniestro_id_est_siniestro":7,
+		  "poliza_id_poliza":4,
 		  "taller_id_taller":2,
-		  "usuario_rut_usuario":"18704536-3",
-		  "poliza_id_poliza":4
+		  "tipo_accidente_id_tipo_acc":6,
+		  "usuario_rut_usuario":"18704536-3"
 	}
 },
 {
 	"model": "dashboard.siniestro",
-	  "pk": "A124",
+	  "pk": 2,
 	  "fields":{
 		  "fecha_hr":"2020-04-15",
 		  "descripcion":"IBA PISTEANDO COMO TODO UN CAMPEON, COMO TODO UN SCHUMACHER",
-		  "tipo_accidente_id_tipo_acc":1,
 		  "est_siniestro_id_est_siniestro":2,
-		  "taller_id_taller":1,
 		  "grua_patente_grua":"VH-RT-44",
-		  "usuario_rut_usuario":"18704536-3",
-		  "poliza_id_poliza":1
+		  "poliza_id_poliza":1,
+		  "taller_id_taller":1,
+		  "tipo_accidente_id_tipo_acc":1,
+		  "usuario_rut_usuario":"18704536-3"
 	}
 },
 {
 	"model": "dashboard.siniestro",
-	  "pk": "A100",
+	  "pk": 3,
 	  "fields":{
 		  "fecha_hr":"2020-03-01",
 		  "descripcion":"PAVIMENTO RESBALADIZO OCASIONO CHOQUE",
-		  "tipo_accidente_id_tipo_acc":1,
 		  "est_siniestro_id_est_siniestro":1,
-		  "taller_id_taller":3,
 		  "grua_patente_grua":"JJ-YY-21",
-		  "usuario_rut_usuario":"18704536-3",
-		  "poliza_id_poliza":5
+		  "poliza_id_poliza":5,
+		  "taller_id_taller":3,
+		  "tipo_accidente_id_tipo_acc":1,
+		  "usuario_rut_usuario":"18704536-3"
 	}
 },
 {
@@ -1929,9 +1895,9 @@
 	  "fields":{
 		  "fecha_hora":"2020-04-16",
 		  "observaciones":"EL VEHICULO LLEGO CON DAÑOS EN PUERTA IZQUIERDA Y CHASIS",
-		  "tipo_acta_id_tipo_acta":1,
-		  "siniestro_nro_siniestro":"A123",
+		  "siniestro_nro_siniestro":1,
 		  "taller_id_taller":2,
+		  "tipo_acta_id_tipo_acta":1,
 		  "usuario_rut_usuario":"10128673-4"
 	}
 },
@@ -1941,9 +1907,9 @@
 	  "fields":{
 		  "fecha_hora":"2019-09-10",
 		  "observaciones":"EL VEHICULO INGRESO AL TALLER FALTANDOLE LA RUEDA TRASERA DERECHA",
-		  "tipo_acta_id_tipo_acta":1,
-		  "siniestro_nro_siniestro":"A124",
+		  "siniestro_nro_siniestro":2,
 		  "taller_id_taller":1,
+		  "tipo_acta_id_tipo_acta":1,
 		  "usuario_rut_usuario":"16003846-2"
 	}
 },
@@ -1953,9 +1919,9 @@
 	  "fields":{
 		  "fecha_hora":"2019-11-07",
 		  "observaciones":"SE PUSO RUEDA FALTANTE, CENTRADO DE EJE TRASERO",
-		  "tipo_acta_id_tipo_acta":3,
-		  "siniestro_nro_siniestro":"A124",
+		  "siniestro_nro_siniestro":2,
 		  "taller_id_taller":1,
+		  "tipo_acta_id_tipo_acta":3,
 		  "usuario_rut_usuario":"16003846-2"
 		}
 },
@@ -1966,11 +1932,11 @@
 		  "fecha_hora":"2019-09-12",
 		  "observaciones":"EL VEHICULO PRESENTA DAÑOS EN EL TREN TRASESO, FUE IMPACTADO POR OTRO VEHICULO Y A CAUSA DE ESTO SE DAÑO LA RUEDA TRASERA DERECHA",
 		  "perdida_total":"0",
-		  "tipo_dano_id_tipo_dano":4,
 		  "severidad_dano_id_seve_dano":2,
-		  "vehiculo_patente_vehiculo":"JP-DA-22",
+		  "siniestro_nro_siniestro":2,
 		  "taller_id_taller":1,
-		  "siniestro_nro_siniestro":"A124",
+		  "tipo_dano_id_tipo_dano":4,
+		  "vehiculo_patente_vehiculo":"JP-DA-22",
 		  "usuario_rut_usuario":"16003846-2"
 	}
 },
@@ -2132,8 +2098,8 @@
 	  "fields":{
 		  "calle":"ACAPULCO",
 		  "numero":11230,
-		  "comuna_id_comuna":17,
-		  "asegurado_rut_asegurado":"20554886-7"
+		  "asegurado_rut_asegurado":"20554886-7",
+		  "comuna_id_comuna":17
 	}
 },
 {
@@ -2142,8 +2108,8 @@
 	  "fields":{
 		  "calle":"CHILITO",
 		  "numero":11,
-		  "comuna_id_comuna":5,
-		  "asegurado_rut_asegurado":"19574568-3"
+		  "asegurado_rut_asegurado":"19574568-3",
+		  "comuna_id_comuna":5
 	}
 },
 {
@@ -2152,8 +2118,8 @@
 	  "fields":{
 		  "calle":"ESPERANZA",
 		  "numero":333,
-		  "comuna_id_comuna":18,
-		  "asegurado_rut_asegurado":"9078573-0"
+		  "asegurado_rut_asegurado":"9078573-0",
+		  "comuna_id_comuna":18
 	}
 },
 {
@@ -2162,8 +2128,8 @@
 	  "fields":{
 		  "calle":"TRANSITO",
 		  "numero":33,
-		  "comuna_id_comuna":28,
-		  "asegurado_rut_asegurado":"19932098-5"
+		  "asegurado_rut_asegurado":"19932098-5",
+		  "comuna_id_comuna":28
 	}
 },
 {
@@ -2172,8 +2138,8 @@
 	  "fields":{
 		  "calle":"COLEGIO",
 		  "numero":2728,
-		  "comuna_id_comuna":33,
-		  "asegurado_rut_asegurado":"13456223-1"
+		  "asegurado_rut_asegurado":"13456223-1",
+		  "comuna_id_comuna":33
 	}
 },
 {
@@ -2182,8 +2148,8 @@
 	  "fields":{
 		  "calle":"PLUTON",
 		  "numero":28,
-		  "comuna_id_comuna":23,
-		  "asegurado_rut_asegurado":"23568113-7"
+		  "asegurado_rut_asegurado":"23568113-7",
+		  "comuna_id_comuna":23
 	}
 },
 {
@@ -2223,7 +2189,7 @@
 		  "calle":"BRUSELAS",
 		  "numero":256,
 		  "comuna_id_comuna":15,
-		  "siniestro_nro_siniestro":"A123"
+		  "siniestro_nro_siniestro":1
 	}
 },
 {
@@ -2233,7 +2199,7 @@
 		  "calle":"DAMASCO",
 		  "numero":1926,
 		  "comuna_id_comuna":45,
-		  "siniestro_nro_siniestro":"A124"
+		  "siniestro_nro_siniestro":2
 	}
 },
 {
@@ -2243,7 +2209,7 @@
 		  "calle":"REPUBLICA",
 		  "numero":1903,
 		  "comuna_id_comuna":12,
-		  "siniestro_nro_siniestro":"A100"
+		  "siniestro_nro_siniestro":3
 	}
 },
 {

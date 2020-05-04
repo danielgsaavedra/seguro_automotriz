@@ -33,25 +33,25 @@
                         <td>{{ usuario.primer_apellido }}</td>
                         <td>{{ usuario.correo }}</td>
                         <td>{{ usuario.telefono }}</td>
-                        {% if usuario.rol_id_rol.id_rol == 1 %}
+                        {% if usuario.rol == '1' %}
                         <td>
                             <span class="badge badge-pill badge-info">MESA DE AYUDA</span>
                         </td>
                         {% endif %}
 
-                        {% if usuario.rol_id_rol.id_rol == 2 %}
+                        {% if usuario.rol == '2' %}
                         <td>
                             <span class="badge badge-pill badge-success">LIQUIDADOR </span>
                         </td>
                         {% endif %}
 
-                        {% if usuario.rol_id_rol.id_rol == 3 %}
+                        {% if usuario.rol == '3' %}
                         <td>
                             <span class="badge badge-pill badge-danger">PERSONAL TALLER </span>
                         </td>
                         {% endif %}
 
-                        {% if usuario.rol_id_rol.id_rol == 4 %}
+                        {% if usuario.rol == '4' %}
                         <td>
                             <span class="badge badge-pill badge-warning">PERSONAL GRÚA </span>
                         </td>

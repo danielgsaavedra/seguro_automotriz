@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 
 # Create your models here.
 
@@ -454,9 +455,38 @@ class TipoVehiculo(models.Model):
     def __str__(self):
         return self.tipo
 
+class UsuarioManager(BaseUserManager):
 
-class Usuario(models.Model):
+    def create_user(self,email,rut_usuario,primer_nombre,primer_apellido,password = None):
+        if not email:
+            raise ValueError('El usuario debe tener un correo')
 
+        usuario = self.model(
+            rut_usuario = rut_usuario,
+            email = self.normalize_email(email),
+            primer_nombre = primer_nombre,
+            primer_apellido=primer_apellido
+        )
+
+        usuario.set_password(password)
+        usuario.save()
+        return usuario
+    
+    def create_superuser(self,email,rut_usuario,primer_nombre,primer_apellido,password):
+        usuario = self.create_user(
+            email,
+            rut_usuario = rut_usuario,
+            primer_nombre = primer_nombre,
+            primer_apellido=primer_apellido,
+            password=password
+        )
+
+        usuario.is_administrador = True
+        usuario.save()
+        return usuario
+
+class Usuario(AbstractBaseUser):
+    
     opciones = [
         (1, 'Mesa de Ayuda'),
         (2, 'Liquidador'),
@@ -464,19 +494,20 @@ class Usuario(models.Model):
         (4, 'Personal Grua'),
     ]
 
-    rut_usuario = models.CharField(
-        primary_key=True, max_length=12, verbose_name='Rut Usuario', null=True)
-    primer_nombre = models.CharField(
-        max_length=20, verbose_name='Primer Nombre')
-    segundo_nombre = models.CharField(
-        max_length=20, verbose_name='Segundo Nombre')
-    primer_apellido = models.CharField(
-        max_length=20, verbose_name='Apellido Paterno')
-    segundo_apellido = models.CharField(
-        max_length=20, verbose_name='Apellido Materno')
-    correo = models.CharField(max_length=50, verbose_name='Correo')
-    telefono = models.BigIntegerField(verbose_name='Teléfono')
-    rol = models.CharField(max_length=30, choices=opciones)
+    rut_usuario = models.CharField(unique=True, max_length=12, verbose_name='Rut Usuario')
+    primer_nombre = models.CharField(max_length=20, verbose_name='Primer Nombre')
+    segundo_nombre = models.CharField(max_length=20, verbose_name='Segundo Nombre',null=True)
+    primer_apellido = models.CharField(max_length=20, verbose_name='Apellido Paterno')
+    segundo_apellido = models.CharField(max_length=20, verbose_name='Apellido Materno',null=True)
+    email = models.EmailField(max_length=254, verbose_name='Correo',unique=True)
+    telefono = models.BigIntegerField(verbose_name='Teléfono',null=True)
+    rol = models.CharField(max_length=30,choices=opciones,null=True)
+    is_active = models.BooleanField(default=True)
+    is_administrador = models.BooleanField(default=False)
+    objects = UsuarioManager()
+
+    USERNAME_FIELD = 'rut_usuario'
+    REQUIRED_FIELDS = ['email','primer_nombre','primer_apellido']
 
     # class Meta:
     #     managed = False
@@ -485,7 +516,17 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.rut_usuario
-
+    
+    def has_perm(self,perm,obj = None):
+        return True
+    
+    def has_module_perms(self,app_label):
+        return True
+    
+    @property
+    def is_staff(self):
+        return self.is_administrador
+    
 
 class Vehiculo(models.Model):
     patente_vehiculo = models.CharField(
@@ -507,7 +548,6 @@ class Vehiculo(models.Model):
 
     def __str__(self):
         return self.patente_vehiculo
-
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150, blank=True, null=True)
@@ -537,25 +577,7 @@ class AuthPermission(models.Model):
         db_table = 'auth_permission'
         unique_together = (('content_type', 'codename'),)
 
-
-class AuthUser(models.Model):
-    password = models.CharField(max_length=128, blank=True, null=True)
-    last_login = models.DateTimeField(blank=True, null=True)
-    is_superuser = models.BooleanField()
-    username = models.CharField(
-        unique=True, max_length=150, blank=True, null=True)
-    first_name = models.CharField(max_length=30, blank=True, null=True)
-    last_name = models.CharField(max_length=150, blank=True, null=True)
-    email = models.CharField(max_length=254, blank=True, null=True)
-    is_staff = models.BooleanField()
-    is_active = models.BooleanField()
-    date_joined = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user'
-
-
+        
 class AuthUserGroups(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
     group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
@@ -584,7 +606,7 @@ class DjangoAdminLog(models.Model):
     change_message = models.TextField(blank=True, null=True)
     content_type = models.ForeignKey(
         'DjangoContentType', models.DO_NOTHING, blank=True, null=True)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    user = models.ForeignKey(Usuario, models.DO_NOTHING)
 
     class Meta:
         managed = False
@@ -611,11 +633,5 @@ class DjangoMigrations(models.Model):
         db_table = 'django_migrations'
 
 
-class DjangoSession(models.Model):
-    session_key = models.CharField(primary_key=True, max_length=40)
-    session_data = models.TextField(blank=True, null=True)
-    expire_date = models.DateTimeField()
 
-    class Meta:
-        managed = False
-        db_table = 'django_session'
+

@@ -2,17 +2,25 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 
 # Create your models here.
+
+
 class Asegurado(models.Model):
-    rut_asegurado = models.CharField(primary_key=True, max_length=12, verbose_name='Rut')
-    primer_nombre = models.CharField(max_length=20, verbose_name='Primer Nombre')
-    segundo_nombre = models.CharField(max_length=20, verbose_name='Segundo Nombre')
-    primer_apellido = models.CharField(max_length=20, verbose_name='Apellido Paterno')
-    segundo_apeliido = models.CharField(max_length=20, verbose_name='Apellido Materno')
+    rut_asegurado = models.CharField(
+        primary_key=True, max_length=12, verbose_name='Rut')
+    primer_nombre = models.CharField(
+        max_length=20, verbose_name='Primer Nombre')
+    segundo_nombre = models.CharField(
+        max_length=20, verbose_name='Segundo Nombre')
+    primer_apellido = models.CharField(
+        max_length=20, verbose_name='Apellido Paterno')
+    segundo_apeliido = models.CharField(
+        max_length=20, verbose_name='Apellido Materno')
     correo = models.CharField(max_length=50, verbose_name='Correo')
     telefono = models.BigIntegerField(verbose_name='Teléfono')
     fecha_nacimiento = models.DateField(verbose_name='Fecha Nacimiento')
     estado = models.CharField(max_length=1, default=1)
-    usuario_rut_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario',null = True)
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
 
     # class Meta:
     #     managed = False
@@ -25,7 +33,8 @@ class Asegurado(models.Model):
 
 class Comuna(models.Model):
     nombre = models.CharField(max_length=30, verbose_name='Nombre')
-    region_nro_region = models.ForeignKey('Region', models.DO_NOTHING, db_column='region_nro_region', verbose_name='Región',null=True)
+    region_nro_region = models.ForeignKey(
+        'Region', models.DO_NOTHING, db_column='region_nro_region', verbose_name='Región', null=True)
 
     # class Meta:
     #     managed = False
@@ -39,12 +48,18 @@ class Comuna(models.Model):
 class Direccion(models.Model):
     calle = models.CharField(max_length=50, verbose_name='Calle')
     numero = models.IntegerField(verbose_name='N°')
-    comuna_id_comuna = models.ForeignKey('Comuna', models.DO_NOTHING, db_column='comuna_id_comuna', verbose_name='Comuna',null=True)
-    usuario_rut_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', blank=True, null=True, verbose_name='Rut Usuario')
-    asegurado_rut_asegurado = models.ForeignKey('Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', blank=True, null=True, verbose_name='Asegurado')
-    servicio_grua_id_servicio = models.ForeignKey('ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio', blank=True, null=True, verbose_name='Servicio GRúa')
-    siniestro_id = models.ForeignKey('Siniestro', models.DO_NOTHING, db_column='siniestro_id', blank=True, null=True, verbose_name='ID Siniestro')
-    taller_id_taller = models.ForeignKey('Taller', models.DO_NOTHING, db_column='taller_id_taller', blank=True, null=True, verbose_name='Taller')
+    comuna_id_comuna = models.ForeignKey(
+        'Comuna', models.DO_NOTHING, db_column='comuna_id_comuna', verbose_name='Comuna', null=True)
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', blank=True, null=True, verbose_name='Rut Usuario')
+    asegurado_rut_asegurado = models.ForeignKey(
+        'Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', blank=True, null=True, verbose_name='Asegurado')
+    servicio_grua_id_servicio = models.ForeignKey(
+        'ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio', blank=True, null=True, verbose_name='Servicio GRúa')
+    siniestro_id = models.ForeignKey(
+        'Siniestro', models.DO_NOTHING, db_column='siniestro_id', blank=True, null=True, verbose_name='ID Siniestro')
+    taller_id_taller = models.ForeignKey(
+        'Taller', models.DO_NOTHING, db_column='taller_id_taller', blank=True, null=True, verbose_name='Taller')
 
     # class Meta:
     #     managed = False
@@ -82,11 +97,16 @@ class EstadoSiniestro(models.Model):
 
 class FormularioActa(models.Model):
     fecha_hora = models.DateField(verbose_name='Fecha')
-    observaciones = models.CharField(max_length=300, blank=True, null=True, verbose_name='Observaciones')
-    tipo_acta_id_tipo_acta = models.ForeignKey('TipoActa', models.DO_NOTHING, db_column='tipo_acta_id_tipo_acta', verbose_name='Tipo Acta',null=True)
-    siniestro_id = models.ForeignKey('Siniestro', models.DO_NOTHING, db_column='siniestro_id', verbose_name='ID Siniestro',null=True)
-    taller_id_taller = models.ForeignKey('Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller',null=True)
-    usuario_rut_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario',null=True)
+    observaciones = models.CharField(
+        max_length=300, blank=True, null=True, verbose_name='Observaciones')
+    tipo_acta_id_tipo_acta = models.ForeignKey(
+        'TipoActa', models.DO_NOTHING, db_column='tipo_acta_id_tipo_acta', verbose_name='Tipo Acta', null=True)
+    siniestro_id = models.ForeignKey(
+        'Siniestro', models.DO_NOTHING, db_column='siniestro_id', verbose_name='ID Siniestro', null=True)
+    taller_id_taller = models.ForeignKey(
+        'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', null=True)
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
 
     # class Meta:
     #     managed = False
@@ -98,10 +118,13 @@ class FormularioActa(models.Model):
 
 
 class Grua(models.Model):
-    patente_grua = models.CharField(primary_key=True, max_length=10, verbose_name='Patente Grúa')
+    patente_grua = models.CharField(
+        primary_key=True, max_length=10, verbose_name='Patente Grúa')
     estado = models.CharField(max_length=1, verbose_name='Estado')
-    servicio_grua_id_servicio = models.ForeignKey('ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio', verbose_name='Servicio Grúa',null=True)
-    usuario_rut_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario',null=True)
+    servicio_grua_id_servicio = models.ForeignKey(
+        'ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio', verbose_name='Servicio Grúa', null=True)
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
 
     # class Meta:
     #     managed = False
@@ -114,14 +137,22 @@ class Grua(models.Model):
 
 class InformeDano(models.Model):
     fecha_hora = models.DateField(verbose_name='Fecha')
-    observaciones = models.CharField(max_length=500, verbose_name='Observaciones')
-    perdida_total = models.CharField(max_length=1, blank=True, null=True, verbose_name='Perdida Total')
-    tipo_dano_id_tipo_dano = models.ForeignKey('TipoDano', models.DO_NOTHING, db_column='tipo_dano_id_tipo_dano', verbose_name='Tipo Daño',null=True)
-    severidad_dano_id_seve_dano = models.ForeignKey('SeveridadDano', models.DO_NOTHING, db_column='severidad_dano_id_seve_dano', verbose_name='Severidad Daño',null=True)
-    vehiculo_patente_vehiculo = models.ForeignKey('Vehiculo', models.DO_NOTHING, db_column='vehiculo_patente_vehiculo', verbose_name='Patente Vehículo',null=True)
-    taller_id_taller = models.ForeignKey('Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller',null=True)
-    siniestro_id = models.ForeignKey('Siniestro', models.DO_NOTHING, db_column='siniestro_id', verbose_name='ID Siniestro',null=True)
-    usuario_rut_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario',null=True)
+    observaciones = models.CharField(
+        max_length=500, verbose_name='Observaciones')
+    perdida_total = models.CharField(
+        max_length=1, blank=True, null=True, verbose_name='Perdida Total')
+    tipo_dano_id_tipo_dano = models.ForeignKey(
+        'TipoDano', models.DO_NOTHING, db_column='tipo_dano_id_tipo_dano', verbose_name='Tipo Daño', null=True)
+    severidad_dano_id_seve_dano = models.ForeignKey(
+        'SeveridadDano', models.DO_NOTHING, db_column='severidad_dano_id_seve_dano', verbose_name='Severidad Daño', null=True)
+    vehiculo_patente_vehiculo = models.ForeignKey(
+        'Vehiculo', models.DO_NOTHING, db_column='vehiculo_patente_vehiculo', verbose_name='Patente Vehículo', null=True)
+    taller_id_taller = models.ForeignKey(
+        'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', null=True)
+    siniestro_id = models.ForeignKey(
+        'Siniestro', models.DO_NOTHING, db_column='siniestro_id', verbose_name='ID Siniestro', null=True)
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
 
     # class Meta:
     #     managed = False
@@ -144,8 +175,10 @@ class Marca(models.Model):
 
 
 class PlanSeguro(models.Model):
-    tipo_plan_id_tip_plan = models.ForeignKey('TipoPlan', models.DO_NOTHING, db_column='tipo_plan_id_tip_plan', verbose_name='Tipo Plan',null=True)
-    poliza_id_poliza = models.ForeignKey('Poliza', models.DO_NOTHING, db_column='poliza_id_poliza', verbose_name='ID Póliza',null=True)
+    tipo_plan_id_tip_plan = models.ForeignKey(
+        'TipoPlan', models.DO_NOTHING, db_column='tipo_plan_id_tip_plan', verbose_name='Tipo Plan', null=True)
+    poliza_id_poliza = models.ForeignKey(
+        'Poliza', models.DO_NOTHING, db_column='poliza_id_poliza', verbose_name='ID Póliza', null=True)
     deducible = models.IntegerField(verbose_name='Deducible')
 
     # class Meta:
@@ -159,12 +192,15 @@ class PlanSeguro(models.Model):
 
 
 class Poliza(models.Model):
-    vigente = models.CharField(max_length=1, verbose_name='Vigencia', default=1)
+    vigente = models.CharField(
+        max_length=1, verbose_name='Vigencia', default=1)
     fecha_inicio = models.DateField(verbose_name='Fecha Inicio')
     fecha_fin = models.DateField(verbose_name='Fecha Termino')
     estado = models.CharField(max_length=1, default=1)
-    asegurado_rut_asegurado = models.ForeignKey('Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', verbose_name='Rut Asegurado',null=True)
-    vehiculo_patente_vehiculo = models.ForeignKey('Vehiculo', models.DO_NOTHING, db_column='vehiculo_patente_vehiculo', verbose_name='Patente Vehículo',null=True)
+    asegurado_rut_asegurado = models.ForeignKey(
+        'Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', verbose_name='Rut Asegurado', null=True)
+    vehiculo_patente_vehiculo = models.ForeignKey(
+        'Vehiculo', models.DO_NOTHING, db_column='vehiculo_patente_vehiculo', verbose_name='Patente Vehículo', null=True)
 
     # class Meta:
     #     managed = False
@@ -178,9 +214,12 @@ class Poliza(models.Model):
 class Presupuesto(models.Model):
     fecha_hora = models.DateField(verbose_name='Fecha')
     valor_total = models.IntegerField(verbose_name='Valor Total')
-    estado_id_est_presupuesto = models.ForeignKey('EstadoPresupuesto', models.DO_NOTHING, db_column='estado_id_est_presupuesto', verbose_name='ID Est. Presupuesto',null=True)
-    usuario_rut_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', blank=True, null=True, verbose_name='Rut Usuario')
-    informe_dano_id_info_dano = models.ForeignKey('InformeDano', models.DO_NOTHING, db_column='informe_dano_id_info_dano', verbose_name='ID Inf. Daño',null=True)
+    estado_id_est_presupuesto = models.ForeignKey(
+        'EstadoPresupuesto', models.DO_NOTHING, db_column='estado_id_est_presupuesto', verbose_name='ID Est. Presupuesto', null=True)
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', blank=True, null=True, verbose_name='Rut Usuario')
+    informe_dano_id_info_dano = models.ForeignKey(
+        'InformeDano', models.DO_NOTHING, db_column='informe_dano_id_info_dano', verbose_name='ID Inf. Daño', null=True)
 
     # class Meta:
     #     managed = False
@@ -274,12 +313,14 @@ class Region(models.Model):
     def __str__(self):
         return self.nombre
 
+
 class ServicioGrua(models.Model):
     nombre = models.CharField(max_length=400, verbose_name='Nombre')
     razon_social = models.CharField(max_length=50, verbose_name='Razón Social')
     telefono = models.BigIntegerField(verbose_name='Teléfono')
     correo = models.CharField(max_length=50, verbose_name='Correo')
-    usuario_rut_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario',null=True)
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
 
     # class Meta:
     #     managed = False
@@ -305,14 +346,22 @@ class SeveridadDano(models.Model):
 class Siniestro(models.Model):
     fecha_hr = models.DateField(verbose_name='Fecha Siniestro')
     descripcion = models.CharField(max_length=100, verbose_name='Descripción')
-    parte_policial = models.FileField(max_length=100, blank=True, null=True, verbose_name='Parte Policial')
-    foto_licencia = models.FileField(max_length=100, blank=True, null=True, verbose_name='Foto Licencia')
-    tipo_accidente_id_tipo_acc = models.ForeignKey('TipoAccidente', models.DO_NOTHING, db_column='tipo_accidente_id_tipo_acc', verbose_name='Tipo Accidente',null=True)
-    est_siniestro_id_est_siniestro = models.ForeignKey('EstadoSiniestro', models.DO_NOTHING, db_column='est_siniestro_id_est_siniestro', verbose_name='Estado Siniestro', default=1,null=True)
-    taller_id_taller = models.ForeignKey('Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller',null=True)
-    grua_patente_grua = models.ForeignKey('Grua', models.DO_NOTHING, db_column='grua_patente_grua', blank=True, null=True, verbose_name='Patente Grúa')
-    usuario_rut_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario',null=True)
-    poliza_id_poliza = models.ForeignKey('Poliza', models.DO_NOTHING, db_column='poliza_id_poliza', verbose_name='ID Póliza',null=True)
+    parte_policial = models.FileField(
+        max_length=100, blank=True, null=True, verbose_name='Parte Policial')
+    foto_licencia = models.FileField(
+        max_length=100, blank=True, null=True, verbose_name='Foto Licencia')
+    tipo_accidente_id_tipo_acc = models.ForeignKey(
+        'TipoAccidente', models.DO_NOTHING, db_column='tipo_accidente_id_tipo_acc', verbose_name='Tipo Accidente', null=True)
+    est_siniestro_id_est_siniestro = models.ForeignKey(
+        'EstadoSiniestro', models.DO_NOTHING, db_column='est_siniestro_id_est_siniestro', verbose_name='Estado Siniestro', default=1, null=True)
+    taller_id_taller = models.ForeignKey(
+        'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', null=True)
+    grua_patente_grua = models.ForeignKey(
+        'Grua', models.DO_NOTHING, db_column='grua_patente_grua', blank=True, null=True, verbose_name='Patente Grúa')
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    poliza_id_poliza = models.ForeignKey(
+        'Poliza', models.DO_NOTHING, db_column='poliza_id_poliza', verbose_name='ID Póliza', null=True)
 
     # class Meta:
     #     managed = False
@@ -329,9 +378,10 @@ class Taller(models.Model):
     telefono = models.BigIntegerField(verbose_name='Teléfono')
     correo = models.CharField(max_length=30, verbose_name='Correo')
     capacidad_taller = models.IntegerField(verbose_name='Capacidad Taller')
-    estado = models.CharField(max_length=1, verbose_name='Estado')
-    estado_delete = models.CharField(max_length=1)
-    usuario_rut_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario',null=True)
+    estado = models.CharField(max_length=1, verbose_name='Estado', default=1)
+    estado_delete = models.CharField(max_length=1, default=1)
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
 
     # class Meta:
     #     managed = False
@@ -438,10 +488,10 @@ class UsuarioManager(BaseUserManager):
 class Usuario(AbstractBaseUser):
     
     opciones = [
-    (1, 'Mesa de Ayuda'),
-    (2, 'Liquidador'),
-    (3, 'Personal Taller'),
-    (4, 'Personal Grua'),
+        (1, 'Mesa de Ayuda'),
+        (2, 'Liquidador'),
+        (3, 'Personal Taller'),
+        (4, 'Personal Grua'),
     ]
 
     rut_usuario = models.CharField(unique=True, max_length=12, verbose_name='Rut Usuario')
@@ -458,7 +508,6 @@ class Usuario(AbstractBaseUser):
 
     USERNAME_FIELD = 'rut_usuario'
     REQUIRED_FIELDS = ['email','primer_nombre','primer_apellido']
-
 
     # class Meta:
     #     managed = False
@@ -480,13 +529,17 @@ class Usuario(AbstractBaseUser):
     
 
 class Vehiculo(models.Model):
-    patente_vehiculo = models.CharField(primary_key=True, max_length=8, verbose_name='Patente')
+    patente_vehiculo = models.CharField(
+        primary_key=True, max_length=8, verbose_name='Patente')
     anio = models.IntegerField(verbose_name='Año')
     modelo = models.CharField(max_length=200, verbose_name='Modelo')
     nro_motor = models.CharField(max_length=100, verbose_name='N° Motor')
-    tipo_vehiculo_id_tipo_auto = models.ForeignKey('TipoVehiculo', models.DO_NOTHING, db_column='tipo_vehiculo_id_tipo_auto', verbose_name='Tipo Vehículo',null=True)
-    marca_id_marca = models.ForeignKey('Marca', models.DO_NOTHING, db_column='marca_id_marca', verbose_name='ID Marca',null=True)
-    asegurado_rut_asegurado = models.ForeignKey('Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', verbose_name='Rut Asegurado',null=True)
+    tipo_vehiculo_id_tipo_auto = models.ForeignKey(
+        'TipoVehiculo', models.DO_NOTHING, db_column='tipo_vehiculo_id_tipo_auto', verbose_name='Tipo Vehículo', null=True)
+    marca_id_marca = models.ForeignKey(
+        'Marca', models.DO_NOTHING, db_column='marca_id_marca', verbose_name='ID Marca', null=True)
+    asegurado_rut_asegurado = models.ForeignKey(
+        'Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', verbose_name='Rut Asegurado', null=True)
 
     # class Meta:
     #     managed = False
@@ -496,6 +549,88 @@ class Vehiculo(models.Model):
     def __str__(self):
         return self.patente_vehiculo
 
+class AuthGroup(models.Model):
+    name = models.CharField(unique=True, max_length=150, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'auth_group'
+
+
+class AuthGroupPermissions(models.Model):
+    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
+    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'auth_group_permissions'
+        unique_together = (('group', 'permission'),)
+
+
+class AuthPermission(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
+    codename = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'auth_permission'
+        unique_together = (('content_type', 'codename'),)
+
+        
+class AuthUserGroups(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'auth_user_groups'
+        unique_together = (('user', 'group'),)
+
+
+class AuthUserUserPermissions(models.Model):
+    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'auth_user_user_permissions'
+        unique_together = (('user', 'permission'),)
+
+
+class DjangoAdminLog(models.Model):
+    action_time = models.DateTimeField()
+    object_id = models.TextField(blank=True, null=True)
+    object_repr = models.CharField(max_length=200, blank=True, null=True)
+    action_flag = models.IntegerField()
+    change_message = models.TextField(blank=True, null=True)
+    content_type = models.ForeignKey(
+        'DjangoContentType', models.DO_NOTHING, blank=True, null=True)
+    user = models.ForeignKey(Usuario, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'django_admin_log'
+
+
+class DjangoContentType(models.Model):
+    app_label = models.CharField(max_length=100, blank=True, null=True)
+    model = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'django_content_type'
+        unique_together = (('app_label', 'model'),)
+
+
+class DjangoMigrations(models.Model):
+    app = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    applied = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'django_migrations'
 
 
 

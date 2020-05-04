@@ -310,7 +310,7 @@ def SaveAllTaller(request, form, template_name):
             form.save()
             data['form_is_valid'] = True
             talleres = Taller.objects.filter(
-                estado_delete=1).order_by('id_taller')
+                estado_delete=1).order_by('id')
             context = {'talleres': talleres}
             data['talleres'] = render_to_string(
                 'dashboard/talleres/taller_2.html', context)
@@ -326,7 +326,7 @@ def SaveAllTaller(request, form, template_name):
 
 
 def TallerView(request):
-    talleres = Taller.objects.filter(estado_delete=1).order_by('id_taller')
+    talleres = Taller.objects.filter(estado_delete=1).order_by('id')
     context = {'talleres': talleres}
     return render(request, 'dashboard/talleres/taller.html', context)
 
@@ -344,7 +344,7 @@ def CreateTaller(request):
 
 
 def UpdateTaller(request, id):
-    taller = get_object_or_404(Taller, id_taller=id)
+    taller = get_object_or_404(Taller, id=id)
     if request.method == 'POST':
         form = TallerForm(request.POST, instance=taller)
     else:
@@ -356,7 +356,7 @@ def UpdateTaller(request, id):
 
 def DeleteTaller(request, id):
     data = dict()
-    taller = get_object_or_404(Taller, id_taller=id)
+    taller = get_object_or_404(Taller, id=id)
     if request.method == 'POST':
         form = DeshabilitarTallerForm(request.POST, instance=taller)
         if form.is_valid():
@@ -365,7 +365,7 @@ def DeleteTaller(request, id):
             taller.save()
             data['form_is_valid'] = True
             talleres = Taller.objects.filter(
-                estado_delete=1).order_by('id_taller')
+                estado_delete=1).order_by('id')
             context = {'talleres': talleres}
             data['talleres'] = render_to_string(
                 'dashboard/talleres/taller_2.html', context)

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
 
 # Create your models here.
 class Asegurado(models.Model):
@@ -404,8 +405,37 @@ class TipoVehiculo(models.Model):
     def __str__(self):
         return self.tipo
 
+class UsuarioManager(BaseUserManager):
 
-class Usuario(models.Model):
+    def create_user(self,email,rut_usuario,primer_nombre,primer_apellido,password = None):
+        if not email:
+            raise ValueError('El usuario debe tener un correo')
+
+        usuario = self.model(
+            rut_usuario = rut_usuario,
+            email = self.normalize_email(email),
+            primer_nombre = primer_nombre,
+            primer_apellido=primer_apellido
+        )
+
+        usuario.set_password(password)
+        usuario.save()
+        return usuario
+    
+    def create_superuser(self,email,rut_usuario,primer_nombre,primer_apellido,password):
+        usuario = self.create_user(
+            email,
+            rut_usuario = rut_usuario,
+            primer_nombre = primer_nombre,
+            primer_apellido=primer_apellido,
+            password=password
+        )
+
+        usuario.is_administrador = True
+        usuario.save()
+        return usuario
+
+class Usuario(AbstractBaseUser):
     
     opciones = [
     (1, 'Mesa de Ayuda'),
@@ -414,14 +444,21 @@ class Usuario(models.Model):
     (4, 'Personal Grua'),
     ]
 
-    rut_usuario = models.CharField(primary_key=True, max_length=12, verbose_name='Rut Usuario',null=True)
+    rut_usuario = models.CharField(unique=True, max_length=12, verbose_name='Rut Usuario')
     primer_nombre = models.CharField(max_length=20, verbose_name='Primer Nombre')
-    segundo_nombre = models.CharField(max_length=20, verbose_name='Segundo Nombre')
+    segundo_nombre = models.CharField(max_length=20, verbose_name='Segundo Nombre',null=True)
     primer_apellido = models.CharField(max_length=20, verbose_name='Apellido Paterno')
-    segundo_apellido = models.CharField(max_length=20, verbose_name='Apellido Materno')
-    correo = models.CharField(max_length=50, verbose_name='Correo')
-    telefono = models.BigIntegerField(verbose_name='Teléfono')
-    rol = models.CharField(max_length=30,choices=opciones)
+    segundo_apellido = models.CharField(max_length=20, verbose_name='Apellido Materno',null=True)
+    email = models.EmailField(max_length=254, verbose_name='Correo',unique=True)
+    telefono = models.BigIntegerField(verbose_name='Teléfono',null=True)
+    rol = models.CharField(max_length=30,choices=opciones,null=True)
+    is_active = models.BooleanField(default=True)
+    is_administrador = models.BooleanField(default=False)
+    objects = UsuarioManager()
+
+    USERNAME_FIELD = 'rut_usuario'
+    REQUIRED_FIELDS = ['email','primer_nombre','primer_apellido']
+
 
     # class Meta:
     #     managed = False
@@ -430,7 +467,17 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.rut_usuario
-
+    
+    def has_perm(self,perm,obj = None):
+        return True
+    
+    def has_module_perms(self,app_label):
+        return True
+    
+    @property
+    def is_staff(self):
+        return self.is_administrador
+    
 
 class Vehiculo(models.Model):
     patente_vehiculo = models.CharField(primary_key=True, max_length=8, verbose_name='Patente')
@@ -450,110 +497,6 @@ class Vehiculo(models.Model):
         return self.patente_vehiculo
 
 
-class AuthGroup(models.Model):
-    name = models.CharField(unique=True, max_length=150, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group'
 
 
-class AuthGroupPermissions(models.Model):
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
 
-    class Meta:
-        managed = False
-        db_table = 'auth_group_permissions'
-        unique_together = (('group', 'permission'),)
-
-
-class AuthPermission(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True)
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
-    codename = models.CharField(max_length=100, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_permission'
-        unique_together = (('content_type', 'codename'),)
-
-
-class AuthUser(models.Model):
-    password = models.CharField(max_length=128, blank=True, null=True)
-    last_login = models.DateTimeField(blank=True, null=True)
-    is_superuser = models.BooleanField()
-    username = models.CharField(unique=True, max_length=150, blank=True, null=True)
-    first_name = models.CharField(max_length=30, blank=True, null=True)
-    last_name = models.CharField(max_length=150, blank=True, null=True)
-    email = models.CharField(max_length=254, blank=True, null=True)
-    is_staff = models.BooleanField()
-    is_active = models.BooleanField()
-    date_joined = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user'
-
-
-class AuthUserGroups(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user_groups'
-        unique_together = (('user', 'group'),)
-
-
-class AuthUserUserPermissions(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user_user_permissions'
-        unique_together = (('user', 'permission'),)
-
-class DjangoAdminLog(models.Model):
-    action_time = models.DateTimeField()
-    object_id = models.TextField(blank=True, null=True)
-    object_repr = models.CharField(max_length=200, blank=True, null=True)
-    action_flag = models.IntegerField()
-    change_message = models.TextField(blank=True, null=True)
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'django_admin_log'
-
-
-class DjangoContentType(models.Model):
-    app_label = models.CharField(max_length=100, blank=True, null=True)
-    model = models.CharField(max_length=100, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'django_content_type'
-        unique_together = (('app_label', 'model'),)
-
-
-class DjangoMigrations(models.Model):
-    app = models.CharField(max_length=255, blank=True, null=True)
-    name = models.CharField(max_length=255, blank=True, null=True)
-    applied = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'django_migrations'
-
-
-class DjangoSession(models.Model):
-    session_key = models.CharField(primary_key=True, max_length=40)
-    session_data = models.TextField(blank=True, null=True)
-    expire_date = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'django_session'

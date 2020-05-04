@@ -13,7 +13,7 @@ class DashboardView(TemplateView):
 
 
 def UsuariosView(request):
-    usuarios = Usuario.objects.all().order_by('rol_id_rol')
+    usuarios = Usuario.objects.all().order_by('rol')
     context = {'usuarios': usuarios}
     return render(request, 'dashboard/usuarios.html', context)
 

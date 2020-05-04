@@ -154,7 +154,7 @@ def SaveAllPoliza(request, form, template_name):
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            polizas = Poliza.objects.filter(estado=1).order_by('id_poliza')
+            polizas = Poliza.objects.filter(estado=1).order_by('id')
             context = {'polizas': polizas}
             data['polizas'] = render_to_string(
                 'dashboard/polizas/poliza_2.html', context)
@@ -170,7 +170,7 @@ def SaveAllPoliza(request, form, template_name):
 
 
 def PolizasView(request):
-    polizas = Poliza.objects.filter(estado=1).order_by('id_poliza')
+    polizas = Poliza.objects.filter(estado=1).order_by('id')
     context = {'polizas': polizas}
     return render(request, 'dashboard/polizas/poliza.html', context)
 
@@ -188,7 +188,7 @@ def CreatePoliza(request):
 
 
 def UpdatePoliza(request, id):
-    poliza = get_object_or_404(Poliza, id_poliza=id)
+    poliza = get_object_or_404(Poliza, id=id)
     if request.method == 'POST':
         form = PolizaForm(request.POST, instance=poliza)
     else:
@@ -200,7 +200,7 @@ def UpdatePoliza(request, id):
 
 def DeletePoliza(request, id):
     data = dict()
-    poliza = get_object_or_404(Poliza, id_poliza=id)
+    poliza = get_object_or_404(Poliza, id=id)
     if request.method == 'POST':
         form = DeshabilitarPolizaForm(request.POST, instance=poliza)
         if form.is_valid():
@@ -208,7 +208,7 @@ def DeletePoliza(request, id):
             poliza.estado = "0"
             poliza.save()
             data['form_is_valid'] = True
-            polizas = Poliza.objects.filter(estado=1).order_by('id_poliza')
+            polizas = Poliza.objects.filter(estado=1).order_by('id')
             context = {'polizas': polizas}
             data['polizas'] = render_to_string(
                 'dashboard/polizas/poliza_2.html', context)

@@ -170,8 +170,8 @@ class Poliza(models.Model):
     #     db_table = 'poliza'
     #     verbose_name_plural = 'Pólizas'
 
-    # def __str__(self):
-    #     return self.id
+    def __str__(self):
+        return str(self.id)
 
 
 class Presupuesto(models.Model):

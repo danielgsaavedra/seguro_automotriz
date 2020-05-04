@@ -6,14 +6,21 @@ from .models import Poliza, Asegurado, Vehiculo, Siniestro, Taller
 class PolizaForm(forms.ModelForm):
     class Meta:
         model = Poliza
-        fields = ['vigente', 'fecha_inicio', 'fecha_fin']
+        fields = [
+            'id',
+        'vigente', 
+        'fecha_inicio', 
+        'fecha_fin',
+        'asegurado_rut_asegurado',
+        'vehiculo_patente_vehiculo',
+        ]
         widgets = {
-            'vigente': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa estado vigencia'}),
+            'id':forms.HiddenInput(attrs={'class': 'required form-control'}),
+            'vigente': forms.HiddenInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa estado vigencia'}),
             'fecha_inicio': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),
             'fecha_fin': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),
-            'firma': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa firma'}),
-            # 'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut asegurado'}),
-            # 'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente vehículo'})
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut asegurado'}),
+            'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente vehículo'})
         }
 
 # FORMULARIO BORRADO LOGICO POLIZA

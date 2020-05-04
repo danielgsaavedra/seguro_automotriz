@@ -123,18 +123,18 @@ class VehiculoForm(forms.ModelForm):
             'anio',
             'modelo',
             'nro_motor',
-            # 'tipo_vehiculo_id_tipo_auto',
-            # 'marca_id_marca',
-            # 'asegurado_rut_asegurado'
+            'tipo_vehiculo_id_tipo_auto',
+            'marca_id_marca',
+            'asegurado_rut_asegurado'
         ]
         widgets = {
             'patente_vehiculo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente'}),
             'anio': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa año (YYYY)'}),
             'modelo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa modelo'}),
             'nro_motor': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su número del motor'}),
-            # 'tipo_vehiculo_id_tipo_auto': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa tipo de vehículo'}),
-            # 'marca_id_marca': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa marca'}),
-            # 'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut usuario'}),
+            'tipo_vehiculo_id_tipo_auto': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa tipo de vehículo'}),
+            'marca_id_marca': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa marca'}),
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut usuario'}),
         }
 
 

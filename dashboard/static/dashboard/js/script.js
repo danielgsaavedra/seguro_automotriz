@@ -72,13 +72,13 @@ $(document).ready(function () {
                     $('#table_asegurado tbody').html(data.asegurados);
                     $('#modal_asegurado').modal('hide');
                     console.log('Asegurado registrado correctamente!');
-                    toastr.success('Exito');
+                    toastr.success('Operación Exitosa!');
                 } else {
                     $('#modal_asegurado .modal-content').html(data.html_form)
                 }
             },
             error: function () {
-                toastr.error('No se pudo registrar asegurado, intente nuevamente.')
+                toastr.error('Algo salió mal, intenta nuevamente.')
             }
         });
         return false;
@@ -116,7 +116,7 @@ $(document).ready(function () {
                     $('#table_siniestro tbody').html(data.siniestros);
                     $('#modal_siniestro').modal('hide');
                     console.log('Success!');
-                    toastr.success('Yeah!');
+                    toastr.success('Operación Exitosa!');
                 } else {
                     $('#modal_siniestro .modal-content').html(data.html_form)
                 }
@@ -159,13 +159,13 @@ $(document).ready(function () {
                     $('#table_vehiculo tbody').html(data.vehiculos);
                     $('#modal_vehiculo').modal('hide');
                     console.log('Vehículo registrado correctamente!');
-                    toastr.success('Exito');
+                    toastr.success('Operación Exitosa!');
                 } else {
                     $('#modal_vehiculo .modal-content').html(data.html_form)
                 }
             },
             error: function () {
-                toastr.error('No se pudo registrar vehículo, intente nuevamente.')
+                toastr.error('Algo salió mal, intenta nuevamente.')
             }
         });
         return false;
@@ -202,13 +202,13 @@ $(document).ready(function () {
                     $('#table_taller tbody').html(data.talleres);
                     $('#modal_taller').modal('hide');
                     console.log('Taller registrado correctamente!');
-                    toastr.success('Exito');
+                    toastr.success('Operación Exitosa!');
                 } else {
                     $('#modal_taller .modal-content').html(data.html_form)
                 }
             },
             error: function () {
-                toastr.error('Ocurrio un error, intente nuevamente.')
+                toastr.error('Algo salió mal, intenta nuevamente.')
             }
         });
         return false;

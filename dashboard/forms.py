@@ -44,7 +44,7 @@ class AseguradoForm(forms.ModelForm):
             'correo',
             'telefono',
             'fecha_nacimiento',
-            # 'usuario_rut_usuario'
+            'usuario_rut_usuario'
         ]
         widgets = {
             'rut_asegurado': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su rut'}),
@@ -55,7 +55,7 @@ class AseguradoForm(forms.ModelForm):
             'correo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su correo'}),
             'telefono': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su teléfono'}),
             'fecha_nacimiento': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
-            # 'usuario_rut_usuario': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut usuario'}),
+            'usuario_rut_usuario': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut usuario'}),
         }
 
 # FORMULARIO BORRADO LOGICO ASEGURADO

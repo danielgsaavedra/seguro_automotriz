@@ -65,14 +65,6 @@ class AseguradoForm(forms.ModelForm):
             'usuario_rut_usuario': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut usuario'}),
         }
 
-    def clean(self):
-        primer_nombre = self.cleaned_data.get('primer_nombre')
-        print("holi")
-        if len(primer_nombre) < 3:
-            self._errors['primer_nombre'] = self.error_class([
-                'Minimo de 3 caracteres'
-            ])
-        return self.cleaned_data
 
 # FORMULARIO BORRADO LOGICO ASEGURADO
 

@@ -83,3 +83,12 @@ class UsuarioFormUpdate(forms.ModelForm):
             'rol': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa un rol'}),
             'is_administrador': forms.CheckboxInput(),
         }
+
+class DeshabilitarUsuarioForm(forms.ModelForm):
+
+    class Meta:
+        model = Usuario
+        fields = ['is_active']
+        widgets = {
+            'is_active': forms.HiddenInput(attrs={'class': 'required form-control', 'id': 'estado_usuario'}),
+        }

@@ -36,10 +36,10 @@
                 <i class="fas fa-ellipsis-v"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <button class="show_usuario_update dropdown-item"
-                    data-url="{% url 'usuario_update' usuario.id %}">
+                <button class="show_usuario_update dropdown-item" data-url="{% url 'usuario_update' usuario.id %}">
                     Editar Usuario</button>
-                <a class="dropdown-item" href="#">Eliminar Usuario</a>
+                <button class="show_usuario_delete dropdown-item"data-url="{% url 'usuario_delete' usuario.id %}">
+                    Eliminar Usuario</button>
             </div>
         </div>
     </td>

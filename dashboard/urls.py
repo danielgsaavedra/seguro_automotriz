@@ -1,11 +1,13 @@
 from django.urls import path
 from django.conf.urls import url, include
-from .views import DashboardView, SiniestroView, UsuariosView, TallerView
+from .views import DashboardView, SiniestroView, UsuariosView, TallerView, AseguradoConsultaView
 from . import views
 
 urlpatterns = [
 
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('asegurado-consulta/', views.AseguradoConsultaView, name='asegurado_consulta'),
+
     path('siniestros/', views.SiniestroView, name='siniestros'),
     path('siniestros/create', views.CreateSiniestro, name='siniestro_create'),
     path('siniestros/<str:id>/update',

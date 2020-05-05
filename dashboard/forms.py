@@ -16,11 +16,11 @@ class PolizaForm(forms.ModelForm):
         ]
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
-            'vigente': forms.HiddenInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa estado vigencia'}),
+            'vigente': forms.HiddenInput(attrs={'class': 'required form-control'}),
             'fecha_inicio': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),
             'fecha_fin': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),
-            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut asegurado'}),
-            'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente vehículo'})
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control'}),
+            'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control'})
         }
 
 # FORMULARIO BORRADO LOGICO POLIZA
@@ -55,14 +55,14 @@ class AseguradoForm(forms.ModelForm):
         ]
         widgets = {
             'rut_asegurado': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su rut', 'pattern': '^[0-9]{8,9}[-|‐]{1}[0-9kK]{1}$'}),
-            'primer_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su primer nombre', 'pattern': '[A-Za-z]+'}),
-            'segundo_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su segundo nombre', 'pattern': '[A-Za-z]+'}),
-            'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su primer apellido', 'pattern': '[A-Za-z]+'}),
-            'segundo_apeliido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su segundo apellido', 'pattern': '[A-Za-z]+'}),
+            'primer_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su primer nombre', 'pattern': '[A-Za-z ]+'}),
+            'segundo_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su segundo nombre', 'pattern': '[A-Za-z ]+'}),
+            'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su primer apellido', 'pattern': '[A-Za-z ]+'}),
+            'segundo_apeliido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su segundo apellido', 'pattern': '[A-Za-z ]+'}),
             'correo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'}),
             'telefono': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su teléfono', 'min': '9'}),
             'fecha_nacimiento': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'usuario_rut_usuario': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut usuario'}),
+            'usuario_rut_usuario': forms.Select(attrs={'class': 'form-control'}),
         }
 
 
@@ -92,12 +92,12 @@ class SiniestroForm(forms.ModelForm):
             'descripcion': forms.Textarea(attrs={'class': 'required form-control', 'placeholder': 'Ingrea una descripción'}),
             'parte_policial': forms.FileInput(attrs={'class': 'form-control'}),
             'foto_licencia': forms.FileInput(attrs={'class': 'form-control'}),
-            'tipo_accidente_id_tipo_acc': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa tipo accidente'}),
-            'est_siniestro_id_est_siniestro': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa estado siniestro'}),
-            'taller_id_taller': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa id taller'}),
-            'grua_patente_grua': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente grúa'}),
-            'usuario_rut_usuario': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa rut asegurado'}),
-            'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control', 'placeholder': 'Ingresa id póliza'}),
+            'tipo_accidente_id_tipo_acc': forms.Select(attrs={'class': 'required form-control'}),
+            'est_siniestro_id_est_siniestro': forms.Select(attrs={'class': 'required form-control'}),
+            'taller_id_taller': forms.Select(attrs={'class': 'required form-control'}),
+            'grua_patente_grua': forms.Select(attrs={'class': 'form-control'}),
+            'usuario_rut_usuario': forms.Select(attrs={'class': 'required form-control'}),
+            'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control'}),
         }
 
 
@@ -134,9 +134,9 @@ class VehiculoForm(forms.ModelForm):
             'anio': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa año (YYYY)'}),
             'modelo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa modelo'}),
             'nro_motor': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su número del motor'}),
-            'tipo_vehiculo_id_tipo_auto': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa tipo de vehículo'}),
-            'marca_id_marca': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa marca'}),
-            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut usuario'}),
+            'tipo_vehiculo_id_tipo_auto': forms.Select(attrs={'class': 'form-control'}),
+            'marca_id_marca': forms.Select(attrs={'class': 'form-control'}),
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control'}),
         }
 
 

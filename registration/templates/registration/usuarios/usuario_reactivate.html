@@ -1,0 +1,22 @@
+<form action="" class="reactivate_usuario_form" method="POST"
+    data-url="{% url 'usuario_reactivate' usuarioActivate.id %}">
+    {% csrf_token %}
+
+    <div class="modal-header bg-success">
+        <h5 class="modal-title text-light">Reactivar Usuario</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+            <p class="lead">¿Seguro que deseas reactivar el Usuario <strong>{{usuarioActivate.rut_usuario}}</strong>?
+            </p>
+            {{form.is_active}}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-outline-success">Reactivar</button>
+    </div>
+</form>

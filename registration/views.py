@@ -36,6 +36,38 @@ def UsuariosView(request):
     context = {'usuarios': usuarios}
     return render(request, 'registration/usuarios/usuarios.html', context)
 
+#Listar usuarios Inactivos
+@staff_member_required(login_url='login')
+def UsuariosDisableView(request):
+    usuariosDisable = Usuario.objects.filter(is_active=False).order_by('rol')
+    context = {'usuariosDisable': usuariosDisable}
+    return render(request, 'registration/usuarios/usuario_disabled.html', context)
+
+#Reactivar Usuario
+@staff_member_required(login_url='login')
+def ReactivateUsuario(request, id):
+    data = dict()
+    usuarioActivate = get_object_or_404(Usuario, id=id)
+    if request.method == 'POST':
+        form = DeshabilitarUsuarioForm(request.POST, instance=usuarioActivate)
+        if form.is_valid():
+            usuarioActivate = form.save(commit=False)
+            usuarioActivate.is_active = "1"
+            usuarioActivate.save()
+            data['form_is_valid'] = True
+            usuariosDisable = Usuario.objects.filter(is_active=0).order_by('rol')
+            context = {'usuariosDisable': usuariosDisable}
+            data['usuariosDisable'] = render_to_string(
+                'registration/usuarios/usuario_disabled_2.html.html', context)
+    else:
+        form = DeshabilitarUsuarioForm(instance=usuarioActivate)
+        data['form_is_valid'] = False
+        context = {'usuarioActivate': usuarioActivate, 'form': form}
+        data['html_form'] = render_to_string(
+            'registration/usuarios/usuario_reactivate.html', context, request=request)
+    return JsonResponse(data)
+
+
 #CREATE
 @staff_member_required(login_url='login')
 def UsuarioCreate(request):
@@ -54,6 +86,7 @@ def UsuarioUpdate(request, id):
     else:
         form = UsuarioFormUpdate(instance=usuario)
     return SaveAllUsuario(request, form, 'registration/usuarios/usuario_update.html')
+
 
 @staff_member_required(login_url='login')
 def UsuarioDelete(request, id):
@@ -77,6 +110,8 @@ def UsuarioDelete(request, id):
         data['html_form'] = render_to_string(
             'registration/usuarios/usuario_delete.html', context, request=request)
     return JsonResponse(data)
+
+
 
 class LoginPageView(TemplateView):
     template_name = "registration/login.html"

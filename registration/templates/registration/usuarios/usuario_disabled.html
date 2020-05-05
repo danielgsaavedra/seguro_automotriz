@@ -1,27 +1,22 @@
 {% extends "dashboard/base.html" %}
 
 {% block content %}
-    <button href="#" class="float-left d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <a class="text-decoration-none text-light"
-           href="{% url 'usuario_disabled' %}">
-          <i class="fas fa-users fa-sm text-white-50"></i> Usuarios inactivos
-        </a>
-    </button>
-
     <div class="d-sm-flex align-items-center justify-content-end mb-4">
-        <button href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm show-usuario"
-                data-url="{% url 'usuario_create' %}">
-            <i class="fas fa-users fa-sm text-white-50"></i> Registrar Usuarios
+        <button href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <a class="text-decoration-none text-light"
+              href="{% url 'usuarios' %}">
+              <i class="fas fa-users fa-sm text-white-50"></i> Usuarios
+            </a>
         </button>
     </div>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Usuarios</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Usuarios Inactivos</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered table-hover text-center" id="table_usuario" width="100%"
+                <table class="table table-bordered table-hover text-center" id="table_usuario_disable" width="100%"
                        cellspacing="0">
                     <thead>
                     <tr>
@@ -35,13 +30,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% include "registration/usuarios/usuarios_2.html" %}
+                    {% include "registration/usuarios/usuario_disabled_2.html" %}
                     </tbody>
                 </table>
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="modal_usuario" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_usuario_disabled" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
 

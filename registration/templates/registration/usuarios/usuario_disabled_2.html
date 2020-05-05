@@ -1,0 +1,49 @@
+{% for usuariosDisable in usuariosDisable %}
+<tr>
+    <th scope="row">{{ usuariosDisable.rut_usuario }}</th>
+    <td>{{ usuariosDisable.primer_nombre }}</td>
+    <td>{{ usuariosDisable.primer_apellido }}</td>
+    <td>{{ usuariosDisable.email }}</td>
+    <td>+56{{ usuariosDisable.telefono }}</td>
+    {% if usuariosDisable.rol == '1' %}
+    <td>
+        <span class="badge badge-pill badge-info">MESA DE AYUDA</span>
+    </td>
+    {% endif %}
+
+    {% if usuariosDisable.rol == '2' %}
+    <td>
+        <span class="badge badge-pill badge-success">LIQUIDADOR </span>
+    </td>
+    {% endif %}
+
+    {% if usuariosDisable.rol == '3' %}
+    <td>
+        <span class="badge badge-pill badge-danger">PERSONAL TALLER </span>
+    </td>
+    {% endif %}
+
+    {% if usuariosDisable.rol == '4' %}
+    <td>
+        <span class="badge badge-pill badge-warning">PERSONAL GRÚA </span>
+    </td>
+    {% endif %}
+
+    <td>
+        <div class="dropdown">
+            <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <button class="show_usuario_reactivate dropdown-item"data-url="{% url 'usuario_reactivate' usuariosDisable.id %}">
+                    Reactivar Usuario</button>
+            </div>
+        </div>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="7" class="text-center bg-warning">No hay Usuarios</td>
+</tr>
+{% endfor %}

@@ -1,6 +1,6 @@
 from django.urls import path
 from django.conf.urls import url, include
-from .views import DashboardView, TallerView
+from .views import DashboardView, TallerView, AseguradoConsultaView
 from . import views
 
 urlpatterns = [
@@ -19,7 +19,7 @@ urlpatterns = [
     path('taller/<str:id>/delete', views.DeleteTaller, name='taller_delete'),
     path('taller/<str:id>/reactivate', views.ReactivateTaller, name='taller_reactivate'),
     path('taller/disabled', views.TallerDisabledView, name='taller_disabled'),
-    path('usuarios/', views.UsuariosView, name='usuarios'),
+#     path('usuarios/', views.UsuariosView, name='usuarios'),
     path('asegurados/', views.AseguradosView, name='asegurados'),
     path('asegurados/disabled', views.AseguradosDisableView, name='asegurados_disabled'),
     path('asegurados/create/', views.AseguradoCreate, name='asegurado_create'),
@@ -38,4 +38,5 @@ urlpatterns = [
     path('polizas/<str:id>/update', views.UpdatePoliza, name='poliza_update'),
     path('polizas/<str:id>/delete', views.DeletePoliza, name='poliza_delete'),
     path('polizas/<str:id>/reactivate', views.ReactivatePoliza, name='poliza_reactivate'),
+    path('asegurado-consulta/', views.AseguradoConsultaView, name='asegurado_consulta'),
 ]

@@ -7,6 +7,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro
 from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
+from django.db.models import Q
 
 # Create your views here.
 
@@ -488,3 +489,19 @@ def ReactivateTaller(request, id):
         data['html_form'] = render_to_string(
             'dashboard/talleres/taller_reactivate.html', context, request=request)
     return JsonResponse(data)
+
+def AseguradoConsultaView(request):
+    queryset1 = request.GET.get("rut_asegurado")
+    queryset2 = request.GET.get("n_poliza")
+
+    siniestros = Siniestro.objects.all()
+    if queryset1:
+        siniestros = Siniestro.objects.filter(
+            Q(asegurado_rut_asegurado=queryset1) &
+            Q(poliza_id_poliza=queryset2)
+        )
+    else:
+        siniestros = Siniestro.objects.none()
+
+    return render(request, 'dashboard/asegurados/asegurado_consulta.html', {'siniestros': siniestros})
+

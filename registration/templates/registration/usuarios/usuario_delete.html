@@ -1,0 +1,22 @@
+<form action="" class="usuario_form_delete" method="POST"
+    data-url="{% url 'usuario_delete' form.instance.id %}">
+    {% csrf_token %}
+
+    <div class="modal-header bg-danger">
+        <h5 class="modal-title text-light">Eliminar Usuario</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+            <p class="lead">¿Seguro que deseas eliminar el Usuario <strong>{{form.instance.rut_usuario}}</strong>?
+            </p>
+            {{form.is_active}}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+    </div>
+</form>

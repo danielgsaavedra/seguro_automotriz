@@ -323,6 +323,10 @@ $(document).ready(function () {
     $('#table_usuario').on('click', '.show_usuario_update', ShowUsuarioForm);
     $('#modal_usuario').on('submit', '.usuario_form_update', SaveUsuarioForm);
 
+    //Eliminar Usuario
+    $('#table_usuario').on('click', '.show_usuario_delete', ShowUsuarioForm);
+    $('#modal_usuario').on('submit', '.usuario_form_delete', SaveUsuarioForm);
+
 
 });
 

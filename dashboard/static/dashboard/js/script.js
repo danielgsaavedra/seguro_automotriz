@@ -214,6 +214,48 @@ $(document).ready(function () {
         return false;
     }
 
+    var ShowUsuarioForm = function () {
+        var btn = $(this);
+        $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#modal_usuario').modal('show')
+            },
+            success: function (data) {
+                $('#modal_usuario .modal-content').html(data.html_form)
+            },
+            error: function () {
+                alert('Algo salió mal, intenta nuevamente.')
+            }
+        });
+    };
+
+    var SaveUsuarioForm = function () {
+        var form = $(this);
+        $.ajax({
+            url: form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType: 'json',
+            success: function (data) {
+                if (data.form_is_valid) {
+                    $('#table_usuario tbody').html(data.usuarios);
+                    $('#modal_usuario').modal('hide');
+                    console.log('Asegurado registrado correctamente!');
+                    toastr.success('Operación Exitosa!');
+                } else {
+                    $('#modal_usuario .modal-content').html(data.html_form)
+                }
+            },
+            error: function () {
+                toastr.error('Algo salió mal, intenta nuevamente.')
+            }
+        });
+        return false;
+    }
+
 
 
     //Crear Poliza
@@ -272,6 +314,10 @@ $(document).ready(function () {
     //Eliminar Taller
     $('#table_taller').on('click', '.show_taller_delete', ShowTallerForm);
     $('#modal_taller').on('submit', '.delete_form_taller', SaveTallerForm);
+
+    //Crear Usuario
+    $('.show-usuario ').click(ShowUsuarioForm);
+    $('#modal_usuario').on('submit', '.usuario_form', SaveUsuarioForm);
 
 
 });

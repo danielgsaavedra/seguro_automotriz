@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import TemplateView
-from .models import Usuario, Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro
+from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
@@ -10,13 +10,6 @@ from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, Vehicul
 
 class DashboardView(TemplateView):
     template_name = 'dashboard/dashboard.html'
-
-
-def UsuariosView(request):
-    usuarios = Usuario.objects.all().order_by('rol')
-    context = {'usuarios': usuarios}
-    return render(request, 'dashboard/usuarios.html', context)
-
 
 # Crud Asegurados
 def SaveAllAsegurado(request, form, template_name):

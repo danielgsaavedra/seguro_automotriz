@@ -456,7 +456,6 @@ class TipoVehiculo(models.Model):
         return self.tipo
 
 class UsuarioManager(BaseUserManager):
-
     def create_user(self,email,rut_usuario,primer_nombre,primer_apellido,password = None):
         if not email:
             raise ValueError('El usuario debe tener un correo')
@@ -467,7 +466,6 @@ class UsuarioManager(BaseUserManager):
             primer_nombre = primer_nombre,
             primer_apellido=primer_apellido
         )
-
         usuario.set_password(password)
         usuario.save()
         return usuario
@@ -480,7 +478,6 @@ class UsuarioManager(BaseUserManager):
             primer_apellido=primer_apellido,
             password=password
         )
-
         usuario.is_administrador = True
         usuario.save()
         return usuario
@@ -488,10 +485,10 @@ class UsuarioManager(BaseUserManager):
 class Usuario(AbstractBaseUser):
     
     opciones = [
-        (1, 'Mesa de Ayuda'),
-        (2, 'Liquidador'),
-        (3, 'Personal Taller'),
-        (4, 'Personal Grua'),
+        ("1", 'Mesa de Ayuda'),
+        ("2", 'Liquidador'),
+        ("3", 'Personal Taller'),
+        ("4", 'Personal Grua'),
     ]
 
     rut_usuario = models.CharField(unique=True, max_length=12, verbose_name='Rut Usuario')
@@ -548,90 +545,3 @@ class Vehiculo(models.Model):
 
     def __str__(self):
         return self.patente_vehiculo
-
-class AuthGroup(models.Model):
-    name = models.CharField(unique=True, max_length=150, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group'
-
-
-class AuthGroupPermissions(models.Model):
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group_permissions'
-        unique_together = (('group', 'permission'),)
-
-
-class AuthPermission(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True)
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
-    codename = models.CharField(max_length=100, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_permission'
-        unique_together = (('content_type', 'codename'),)
-
-        
-class AuthUserGroups(models.Model):
-    user = models.ForeignKey(Usuario, models.DO_NOTHING)
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user_groups'
-        unique_together = (('user', 'group'),)
-
-
-class AuthUserUserPermissions(models.Model):
-    user = models.ForeignKey(Usuario, models.DO_NOTHING)
-    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user_user_permissions'
-        unique_together = (('user', 'permission'),)
-
-
-class DjangoAdminLog(models.Model):
-    action_time = models.DateTimeField()
-    object_id = models.TextField(blank=True, null=True)
-    object_repr = models.CharField(max_length=200, blank=True, null=True)
-    action_flag = models.IntegerField()
-    change_message = models.TextField(blank=True, null=True)
-    content_type = models.ForeignKey(
-        'DjangoContentType', models.DO_NOTHING, blank=True, null=True)
-    user = models.ForeignKey(Usuario, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'django_admin_log'
-
-
-class DjangoContentType(models.Model):
-    app_label = models.CharField(max_length=100, blank=True, null=True)
-    model = models.CharField(max_length=100, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'django_content_type'
-        unique_together = (('app_label', 'model'),)
-
-
-class DjangoMigrations(models.Model):
-    app = models.CharField(max_length=255, blank=True, null=True)
-    name = models.CharField(max_length=255, blank=True, null=True)
-    applied = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'django_migrations'
-
-
-
-

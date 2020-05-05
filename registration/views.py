@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import TemplateView
 from django.utils.decorators import method_decorator
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy, reverse
@@ -28,12 +30,14 @@ def SaveAllUsuario(request, form, template_name):
     return JsonResponse(data)
 
 #READ
+@staff_member_required(login_url='login')
 def UsuariosView(request):
     usuarios = Usuario.objects.filter(is_active=True).order_by('rol')
     context = {'usuarios': usuarios}
     return render(request, 'registration/usuarios/usuarios.html', context)
 
 #CREATE
+@staff_member_required(login_url='login')
 def UsuarioCreate(request):
     if request.method == 'POST':
         form = UsuarioRegisterForm(request.POST)
@@ -42,6 +46,7 @@ def UsuarioCreate(request):
     return SaveAllUsuario(request, form, 'registration/usuarios/usuario_create.html')
 
 #UPDATE
+@staff_member_required(login_url='login')
 def UsuarioUpdate(request, id):
     usuario = get_object_or_404(Usuario, id=id)
     if request.method == 'POST':
@@ -50,6 +55,7 @@ def UsuarioUpdate(request, id):
         form = UsuarioFormUpdate(instance=usuario)
     return SaveAllUsuario(request, form, 'registration/usuarios/usuario_update.html')
 
+@staff_member_required(login_url='login')
 def UsuarioDelete(request, id):
     data = dict()
     usuario = get_object_or_404(Usuario, id=id)

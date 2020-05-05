@@ -22,7 +22,9 @@
                         <th scope="col">Año</th>
                         <th scope="col">N° Motor</th>
                         <th scope="col">RUT Asegurado</th>
+                        {% if  request.user.is_staff %}
                         <th scope="col">Opciones</th>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>

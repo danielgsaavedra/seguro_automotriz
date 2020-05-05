@@ -23,7 +23,9 @@
                         <th scope="col">Estado</th>
                         <th scope="col">Taller Asignado</th>
                         <th scope="col">Patente Grúa</th>
+                        {% if  request.user.is_staff %}
                         <th scope="col">Opciones</th>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>

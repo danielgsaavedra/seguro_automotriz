@@ -56,3 +56,30 @@ class UsuarioRegisterForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class UsuarioFormUpdate(forms.ModelForm):
+
+    class Meta:
+        model = Usuario
+        fields = [
+            'rut_usuario',
+            'primer_nombre',
+            'segundo_nombre',
+            'primer_apellido',
+            'segundo_apellido',
+            'email',
+            'telefono',
+            'rol',
+            'is_administrador'
+        ]
+        widgets = {
+            'rut_usuario': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT '}),
+            'primer_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer nombre'}),
+            'segundo_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo nombre'}),
+            'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer apellido'}),
+            'segundo_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo apellido'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa correo'}),
+            'telefono': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa telefono'}),
+            'rol': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa un rol'}),
+            'is_administrador': forms.CheckboxInput(),
+        }

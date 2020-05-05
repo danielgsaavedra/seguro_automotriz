@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy, reverse
 from dashboard.models import Usuario
-from .forms import UsuarioRegisterForm
+from .forms import UsuarioRegisterForm,UsuarioFormUpdate
 
 #CRUD USUARIOS
 def SaveAllUsuario(request, form, template_name):
@@ -40,6 +40,15 @@ def UsuarioCreate(request):
     else:
         form = UsuarioRegisterForm()
     return SaveAllUsuario(request, form, 'registration/usuarios/usuario_create.html')
+
+#UPDATE
+def UsuarioUpdate(request, id):
+    usuario = get_object_or_404(Usuario, id=id)
+    if request.method == 'POST':
+        form = UsuarioFormUpdate(request.POST, instance=usuario)
+    else:
+        form = UsuarioFormUpdate(instance=usuario)
+    return SaveAllUsuario(request, form, 'registration/usuarios/usuario_update.html')
 
 class LoginPageView(TemplateView):
     template_name = "registration/login.html"

@@ -9,5 +9,6 @@ urlpatterns = [
     path('registro/', RegisterPageView.as_view(), name='registro'),
     path('usuarios/', views.UsuariosView, name='usuarios'),
     path('usuarios/create/', views.UsuarioCreate, name='usuario_create'),
+    path('usuarios/<str:id>/update/',views.UsuarioUpdate, name='usuario_update'),
 
 ]

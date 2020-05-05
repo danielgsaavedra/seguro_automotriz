@@ -330,6 +330,12 @@ def TallerView(request):
     context = {'talleres': talleres}
     return render(request, 'dashboard/talleres/taller.html', context)
 
+#Listar talleres disabled
+def TallerDisabledView(request):
+    talleresDisable = Taller.objects.filter(estado_delete=0).order_by('id')
+    context = {'talleresDisable': talleresDisable}
+    return render(request, 'dashboard/talleres/taller_disabled.html', context)
+
 # Crear
 
 
@@ -375,4 +381,29 @@ def DeleteTaller(request, id):
         context = {'taller': taller, 'form': form}
         data['html_form'] = render_to_string(
             'dashboard/talleres/taller_delete.html', context, request=request)
+    return JsonResponse(data)
+
+
+
+def ReactivateTaller(request, id):
+    data = dict()
+    tallerActivate = get_object_or_404(Taller, id=id)
+    if request.method == 'POST':
+        form = DeshabilitarTallerForm(request.POST, instance=tallerActivate)
+        if form.is_valid():
+            tallerActivate = form.save(commit=False)
+            tallerActivate.estado_delete = "1"
+            tallerActivate.save()
+            data['form_is_valid'] = True
+            talleresDisable = Taller.objects.filter(
+                estado_delete=0).order_by('id')
+            context = {'talleresDisable': talleresDisable}
+            data['talleresDisable'] = render_to_string(
+                'dashboard/talleres/taller_disabled_2.html', context)
+    else:
+        form = DeshabilitarTallerForm(instance=tallerActivate)
+        data['form_is_valid'] = False
+        context = {'tallerActivate': tallerActivate, 'form': form}
+        data['html_form'] = render_to_string(
+            'dashboard/talleres/taller_reactivate.html', context, request=request)
     return JsonResponse(data)

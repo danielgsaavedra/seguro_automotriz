@@ -549,88 +549,88 @@ class Vehiculo(models.Model):
     def __str__(self):
         return self.patente_vehiculo
 
-class AuthGroup(models.Model):
-    name = models.CharField(unique=True, max_length=150, blank=True, null=True)
+# class AuthGroup(models.Model):
+#     name = models.CharField(unique=True, max_length=150, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'auth_group'
-
-
-class AuthGroupPermissions(models.Model):
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
-    permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group_permissions'
-        unique_together = (('group', 'permission'),)
+#     class Meta:
+#         managed = False
+#         db_table = 'auth_group'
 
 
-class AuthPermission(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True)
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
-    codename = models.CharField(max_length=100, blank=True, null=True)
+# class AuthGroupPermissions(models.Model):
+#     group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
+#     permission = models.ForeignKey('AuthPermission', models.DO_NOTHING)
 
-    class Meta:
-        managed = False
-        db_table = 'auth_permission'
-        unique_together = (('content_type', 'codename'),)
+#     class Meta:
+#         managed = False
+#         db_table = 'auth_group_permissions'
+#         unique_together = (('group', 'permission'),)
+
+
+# class AuthPermission(models.Model):
+#     name = models.CharField(max_length=255, blank=True, null=True)
+#     content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
+#     codename = models.CharField(max_length=100, blank=True, null=True)
+
+#     class Meta:
+#         managed = False
+#         db_table = 'auth_permission'
+#         unique_together = (('content_type', 'codename'),)
 
         
-class AuthUserGroups(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
+# class AuthUserGroups(models.Model):
+#     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+#     group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
 
-    class Meta:
-        managed = False
-        db_table = 'auth_user_groups'
-        unique_together = (('user', 'group'),)
-
-
-class AuthUserUserPermissions(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
-    permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user_user_permissions'
-        unique_together = (('user', 'permission'),)
+#     class Meta:
+#         managed = False
+#         db_table = 'auth_user_groups'
+#         unique_together = (('user', 'group'),)
 
 
-class DjangoAdminLog(models.Model):
-    action_time = models.DateTimeField()
-    object_id = models.TextField(blank=True, null=True)
-    object_repr = models.CharField(max_length=200, blank=True, null=True)
-    action_flag = models.IntegerField()
-    change_message = models.TextField(blank=True, null=True)
-    content_type = models.ForeignKey(
-        'DjangoContentType', models.DO_NOTHING, blank=True, null=True)
-    user = models.ForeignKey(Usuario, models.DO_NOTHING)
+# class AuthUserUserPermissions(models.Model):
+#     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+#     permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
 
-    class Meta:
-        managed = False
-        db_table = 'django_admin_log'
+#     class Meta:
+#         managed = False
+#         db_table = 'auth_user_user_permissions'
+#         unique_together = (('user', 'permission'),)
 
 
-class DjangoContentType(models.Model):
-    app_label = models.CharField(max_length=100, blank=True, null=True)
-    model = models.CharField(max_length=100, blank=True, null=True)
+# class DjangoAdminLog(models.Model):
+#     action_time = models.DateTimeField()
+#     object_id = models.TextField(blank=True, null=True)
+#     object_repr = models.CharField(max_length=200, blank=True, null=True)
+#     action_flag = models.IntegerField()
+#     change_message = models.TextField(blank=True, null=True)
+#     content_type = models.ForeignKey(
+#         'DjangoContentType', models.DO_NOTHING, blank=True, null=True)
+#     user = models.ForeignKey(Usuario, models.DO_NOTHING)
 
-    class Meta:
-        managed = False
-        db_table = 'django_content_type'
-        unique_together = (('app_label', 'model'),)
+#     class Meta:
+#         managed = False
+#         db_table = 'django_admin_log'
 
 
-class DjangoMigrations(models.Model):
-    app = models.CharField(max_length=255, blank=True, null=True)
-    name = models.CharField(max_length=255, blank=True, null=True)
-    applied = models.DateTimeField()
+# class DjangoContentType(models.Model):
+#     app_label = models.CharField(max_length=100, blank=True, null=True)
+#     model = models.CharField(max_length=100, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'django_migrations'
+#     class Meta:
+#         managed = False
+#         db_table = 'django_content_type'
+#         unique_together = (('app_label', 'model'),)
+
+
+# class DjangoMigrations(models.Model):
+#     app = models.CharField(max_length=255, blank=True, null=True)
+#     name = models.CharField(max_length=255, blank=True, null=True)
+#     applied = models.DateTimeField()
+
+#     class Meta:
+#         managed = False
+#         db_table = 'django_migrations'
 
 
 

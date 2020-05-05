@@ -214,6 +214,49 @@ $(document).ready(function () {
         return false;
     }
 
+    var ShowTallerDisableForm = function () {
+        var btn = $(this);
+        $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#modal_taller_disabled').modal('show')
+            },
+            success: function (data) {
+                $('#modal_taller_disabled .modal-content').html(data.html_form)
+            },
+            error: function () {
+                alert('Algo salió mal, intenta nuevamente.')
+            }
+        });
+    };
+
+    var SaveTallerDisableForm = function () {
+
+        var form = $(this);
+        $.ajax({
+            url: form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType: 'json',
+            success: function (data) {
+                if (data.form_is_valid) {
+                    $('#table_taller_disabled tbody').html(data.talleresDisable);
+                    $('#modal_taller_disabled').modal('hide');
+                    console.log('Taller Reactivado correctamente!');
+                    toastr.success('Operación Exitosa!');
+                } else {
+                    $('#modal_taller_disabled .modal-content').html(data.html_form)
+                }
+            },
+            error: function () {
+                toastr.error('Algo salió mal, intenta nuevamente.')
+            }
+        });
+        return false;
+    }
+
 
 
     //Crear Poliza
@@ -272,6 +315,10 @@ $(document).ready(function () {
     //Eliminar Taller
     $('#table_taller').on('click', '.show_taller_delete', ShowTallerForm);
     $('#modal_taller').on('submit', '.delete_form_taller', SaveTallerForm);
+
+    //Reactivar Taller
+    $('#table_taller_disabled').on('click', '.show_taller_reactivate', ShowTallerDisableForm);
+    $('#modal_taller_disabled').on('submit', '.reactivate_form_taller', SaveTallerDisableForm);
 
 
 });

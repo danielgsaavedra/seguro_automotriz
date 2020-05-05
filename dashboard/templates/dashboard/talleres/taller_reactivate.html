@@ -1,0 +1,26 @@
+<form action="" class="reactivate_form_taller" method="POST" data-url="{% url 'taller_reactivate' tallerActivate.id %}">
+    {% csrf_token %}
+
+    <div class="modal-header bg-success">
+        <h5 class="modal-title text-light">Reactivar Taller</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+            <div class="col-12">
+                <h4>¿Seguro que deseas Reactivar el taller n° <strong>{{tallerActivate.id}}</strong>?</h4>
+                {{form.estado_delete}}
+                <br>
+            </div>
+            <div class="col-12">
+                <p class="lead">Nombre: <strong>{{tallerActivate.nombre}}</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-outline-success">Reactivar Taller</button>
+    </div>
+</form>

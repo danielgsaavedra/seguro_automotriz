@@ -3,7 +3,9 @@ from django.views.generic.base import TemplateView
 from .models import Usuario, Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
+from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, \
+    DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
+
 
 # Create your views here.
 
@@ -38,6 +40,7 @@ def SaveAllAsegurado(request, form, template_name):
         template_name, context, request=request)
     return JsonResponse(data)
 
+
 # Read
 
 
@@ -46,6 +49,7 @@ def AseguradosView(request):
         estado=1).order_by('fecha_nacimiento')
     context = {'asegurados': asegurados}
     return render(request, 'dashboard/asegurados/asegurado.html', context)
+
 
 # Create
 
@@ -57,6 +61,7 @@ def AseguradoCreate(request):
         form = AseguradoForm()
     return SaveAllAsegurado(request, form, 'dashboard/asegurados/asegurado_create.html')
 
+
 # Update
 
 
@@ -67,6 +72,7 @@ def AseguradoUpdate(request, id):
     else:
         form = AseguradoForm(instance=asegurado)
     return SaveAllAsegurado(request, form, 'dashboard/asegurados/asegurado_update.html')
+
 
 # Delete
 
@@ -94,6 +100,7 @@ def AseguradoDelete(request, id):
             'dashboard/asegurados/asegurado_delete.html', context, request=request)
     return JsonResponse(data)
 
+
 # Crud Vehículos
 
 
@@ -115,6 +122,7 @@ def SaveAllVehiculo(request, form, template_name):
         template_name, context, request=request)
     return JsonResponse(data)
 
+
 # Read
 
 
@@ -122,6 +130,7 @@ def VehiculosView(request):
     vehiculos = Vehiculo.objects.all().order_by('anio')
     context = {'vehiculos': vehiculos}
     return render(request, 'dashboard/vehiculos/vehiculo.html', context)
+
 
 # Create
 
@@ -145,6 +154,7 @@ def VehiculoUpdate(request, id):
         form = VehiculoForm(instance=vehiculo)
     return SaveAllVehiculo(request, form, 'dashboard/vehiculos/vehiculo_update.html')
 
+
 # Crud Pólizas
 
 
@@ -166,6 +176,7 @@ def SaveAllPoliza(request, form, template_name):
         template_name, context, request=request)
     return JsonResponse(data)
 
+
 # Read
 
 
@@ -173,6 +184,13 @@ def PolizasView(request):
     polizas = Poliza.objects.filter(estado=1).order_by('id')
     context = {'polizas': polizas}
     return render(request, 'dashboard/polizas/poliza.html', context)
+
+
+# Listar polizas disabled
+def PolizasDisableView(request):
+    polizasDisable = Poliza.objects.filter(estado=0).order_by('id')
+    context = {'polizasDisable': polizasDisable}
+    return render(request, 'dashboard/polizas/poliza_disabled.html', context)
 
 # Create
 
@@ -184,6 +202,7 @@ def CreatePoliza(request):
         form = PolizaForm()
     return SaveAllPoliza(request, form, 'dashboard/polizas/poliza_create.html')
 
+
 # Update
 
 
@@ -194,6 +213,7 @@ def UpdatePoliza(request, id):
     else:
         form = PolizaForm(instance=poliza)
     return SaveAllPoliza(request, form, 'dashboard/polizas/poliza_update.html')
+
 
 # Delete
 
@@ -219,6 +239,29 @@ def DeletePoliza(request, id):
         data['html_form'] = render_to_string(
             'dashboard/polizas/poliza_delete.html', context, request=request)
     return JsonResponse(data)
+
+def ReactivatePoliza(request, id):
+    data = dict()
+    polizaActivate = get_object_or_404(Poliza, id=id)
+    if request.method == 'POST':
+        form = DeshabilitarPolizaForm(request.POST, instance=polizaActivate)
+        if form.is_valid():
+            polizaActivate = form.save(commit=False)
+            polizaActivate.estado = "1"
+            polizaActivate.save()
+            data['form_is_valid'] = True
+            polizasDisable = Poliza.objects.filter(estado=0).order_by('id')
+            context = {'polizasDisable': polizasDisable}
+            data['polizasDisable'] = render_to_string(
+                'dashboard/polizas/poliza_disabled_2.html', context)
+    else:
+        form = DeshabilitarPolizaForm(instance=polizaActivate)
+        data['form_is_valid'] = False
+        context = {'polizaActivate': polizaActivate, 'form': form}
+        data['html_form'] = render_to_string(
+            'dashboard/polizas/poliza_reactivate.html', context, request=request)
+    return JsonResponse(data)
+
 
 
 # Crud Siniestro
@@ -251,6 +294,7 @@ def SiniestroView(request):
     context = {'siniestros': siniestros}
     return render(request, 'dashboard/siniestros/siniestro.html', context)
 
+
 # # Create
 
 
@@ -260,6 +304,7 @@ def CreateSiniestro(request):
     else:
         form = SiniestroForm()
     return SaveAllSiniestro(request, form, 'dashboard/siniestros/siniestro_create.html')
+
 
 # # Update
 
@@ -271,6 +316,7 @@ def UpdateSiniestro(request, id):
     else:
         form = SiniestroForm(instance=siniestro)
     return SaveAllSiniestro(request, form, 'dashboard/siniestros/siniestro_update.html')
+
 
 # # Delete
 
@@ -322,6 +368,7 @@ def SaveAllTaller(request, form, template_name):
         template_name, context, request=request)
     return JsonResponse(data)
 
+
 # Listar
 
 
@@ -330,11 +377,13 @@ def TallerView(request):
     context = {'talleres': talleres}
     return render(request, 'dashboard/talleres/taller.html', context)
 
-#Listar talleres disabled
+
+# Listar talleres disabled
 def TallerDisabledView(request):
     talleresDisable = Taller.objects.filter(estado_delete=0).order_by('id')
     context = {'talleresDisable': talleresDisable}
     return render(request, 'dashboard/talleres/taller_disabled.html', context)
+
 
 # Crear
 
@@ -346,6 +395,7 @@ def CreateTaller(request):
         form = TallerForm()
     return SaveAllTaller(request, form, 'dashboard/talleres/taller_create.html')
 
+
 # Actualizar
 
 
@@ -356,6 +406,7 @@ def UpdateTaller(request, id):
     else:
         form = TallerForm(instance=taller)
     return SaveAllTaller(request, form, 'dashboard/talleres/taller_update.html')
+
 
 # Borrar
 
@@ -382,7 +433,6 @@ def DeleteTaller(request, id):
         data['html_form'] = render_to_string(
             'dashboard/talleres/taller_delete.html', context, request=request)
     return JsonResponse(data)
-
 
 
 def ReactivateTaller(request, id):

@@ -257,6 +257,49 @@ $(document).ready(function () {
         return false;
     }
 
+    var ShowPolizaDisableForm = function () {
+        var btn = $(this);
+        $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#modal_poliza_disabled').modal('show')
+            },
+            success: function (data) {
+                $('#modal_poliza_disabled .modal-content').html(data.html_form)
+            },
+            error: function () {
+                alert('Algo salió mal, intenta nuevamente.')
+            }
+        });
+    };
+
+    var SavePolizaDisableForm = function () {
+
+        var form = $(this);
+        $.ajax({
+            url: form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType: 'json',
+            success: function (data) {
+                if (data.form_is_valid) {
+                    $('#table_poliza_disabled tbody').html(data.polizasDisable);
+                    $('#modal_poliza_disabled').modal('hide');
+                    console.log('Póliza Habilitada correctamente!');
+                    toastr.success('Operación Exitosa!');
+                } else {
+                    $('#modal_poliza_disabled .modal-content').html(data.html_form)
+                }
+            },
+            error: function () {
+                toastr.error('Algo salió mal, intenta nuevamente.')
+            }
+        });
+        return false;
+    }
+
 
 
     //Crear Poliza
@@ -319,6 +362,10 @@ $(document).ready(function () {
     //Reactivar Taller
     $('#table_taller_disabled').on('click', '.show_taller_reactivate', ShowTallerDisableForm);
     $('#modal_taller_disabled').on('submit', '.reactivate_form_taller', SaveTallerDisableForm);
+
+    //Reactivar Póliza
+    $('#table_poliza_disabled').on('click', '.show_poliza_reactivate', ShowPolizaDisableForm);
+    $('#modal_poliza_disabled').on('submit', '.reactivate_form_poliza', SavePolizaDisableForm);
 
 
 });

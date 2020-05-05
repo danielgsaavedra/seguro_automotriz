@@ -29,8 +29,10 @@ urlpatterns = [
     path('vehiculos/create/', views.VehiculoCreate, name='vehiculo_create'),
     path('vehiculos/<str:id>/update/',
          views.VehiculoUpdate, name='vehiculo_update'),
+    path('polizas/disabled', views.PolizasDisableView, name='poliza_disabled'),
     path('polizas/', views.PolizasView, name='polizas'),
     path('polizas/create', views.CreatePoliza, name='poliza_create'),
     path('polizas/<str:id>/update', views.UpdatePoliza, name='poliza_update'),
     path('polizas/<str:id>/delete', views.DeletePoliza, name='poliza_delete'),
+    path('polizas/<str:id>/reactivate', views.ReactivatePoliza, name='poliza_reactivate'),
 ]

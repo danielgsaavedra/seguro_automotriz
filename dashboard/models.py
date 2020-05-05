@@ -16,7 +16,7 @@ class Asegurado(models.Model):
     segundo_apeliido = models.CharField(
         max_length=20, verbose_name='Apellido Materno')
     correo = models.CharField(max_length=50, verbose_name='Correo')
-    telefono = models.BigIntegerField(verbose_name='Teléfono')
+    telefono = models.IntegerField(verbose_name='Teléfono')
     fecha_nacimiento = models.DateField(verbose_name='Fecha Nacimiento')
     estado = models.CharField(max_length=1, default=1)
     usuario_rut_usuario = models.ForeignKey(
@@ -375,7 +375,7 @@ class Siniestro(models.Model):
 class Taller(models.Model):
     nombre = models.CharField(max_length=30, verbose_name='Nombre Taller')
     razon_social = models.CharField(max_length=50, verbose_name='Razón Social')
-    telefono = models.BigIntegerField(verbose_name='Teléfono')
+    telefono = models.IntegerField(verbose_name='Teléfono')
     correo = models.CharField(max_length=30, verbose_name='Correo')
     capacidad_taller = models.IntegerField(verbose_name='Capacidad Taller')
     estado = models.CharField(max_length=1, verbose_name='Estado', default=1)
@@ -579,7 +579,7 @@ class AuthPermission(models.Model):
 
         
 class AuthUserGroups(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    user = models.ForeignKey(Usuario, models.DO_NOTHING)
     group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
 
     class Meta:
@@ -589,7 +589,7 @@ class AuthUserGroups(models.Model):
 
 
 class AuthUserUserPermissions(models.Model):
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING)
+    user = models.ForeignKey(Usuario, models.DO_NOTHING)
     permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
 
     class Meta:

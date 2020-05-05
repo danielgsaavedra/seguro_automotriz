@@ -54,16 +54,25 @@ class AseguradoForm(forms.ModelForm):
             'usuario_rut_usuario'
         ]
         widgets = {
-            'rut_asegurado': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su rut'}),
-            'primer_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su primer nombre'}),
-            'segundo_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su segundo nombre'}),
-            'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su primer apellido'}),
-            'segundo_apeliido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su segundo apellido'}),
-            'correo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su correo'}),
-            'telefono': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su teléfono'}),
+            'rut_asegurado': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su rut', 'pattern': '^[0-9]{8,9}[-|‐]{1}[0-9kK]{1}$'}),
+            'primer_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su primer nombre', 'pattern': '[A-Za-z]+'}),
+            'segundo_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su segundo nombre', 'pattern': '[A-Za-z]+'}),
+            'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su primer apellido', 'pattern': '[A-Za-z]+'}),
+            'segundo_apeliido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su segundo apellido', 'pattern': '[A-Za-z]+'}),
+            'correo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'}),
+            'telefono': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su teléfono', 'min': '9'}),
             'fecha_nacimiento': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
             'usuario_rut_usuario': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Ingresa rut usuario'}),
         }
+
+    def clean(self):
+        primer_nombre = self.cleaned_data.get('primer_nombre')
+        print("holi")
+        if len(primer_nombre) < 3:
+            self._errors['primer_nombre'] = self.error_class([
+                'Minimo de 3 caracteres'
+            ])
+        return self.cleaned_data
 
 # FORMULARIO BORRADO LOGICO ASEGURADO
 
@@ -157,8 +166,8 @@ class TallerForm(forms.ModelForm):
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
             'nombre': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa nombre'}),
             'razon_social': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa razón social'}),
-            'telefono': forms.NumberInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa número de teléfono'}),
-            'correo': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa correo'}),
+            'telefono': forms.NumberInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa número de teléfono', 'min' : '9'}),
+            'correo': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa correo', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'}),
             'capacidad_taller': forms.NumberInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa capacidad máxima'}),
             'estado': forms.TextInput(
                 attrs={'class': 'required form-control', 'placeholder': 'Ingresa estado taller'}),

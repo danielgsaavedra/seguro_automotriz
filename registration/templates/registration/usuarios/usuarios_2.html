@@ -36,8 +36,9 @@
                 <i class="fas fa-ellipsis-v"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#regUser">Editar
-                    Usuario</a>
+                <button class="show_usuario_update dropdown-item"
+                    data-url="{% url 'usuario_update' usuario.id %}">
+                    Editar Usuario</button>
                 <a class="dropdown-item" href="#">Eliminar Usuario</a>
             </div>
         </div>

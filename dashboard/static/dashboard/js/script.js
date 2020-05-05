@@ -319,6 +319,10 @@ $(document).ready(function () {
     $('.show-usuario ').click(ShowUsuarioForm);
     $('#modal_usuario').on('submit', '.usuario_form', SaveUsuarioForm);
 
+    //Modificar Usuario
+    $('#table_usuario').on('click', '.show_usuario_update', ShowUsuarioForm);
+    $('#modal_usuario').on('submit', '.usuario_form_update', SaveUsuarioForm);
+
 
 });
 

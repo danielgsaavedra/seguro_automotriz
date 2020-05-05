@@ -16,7 +16,7 @@ class Asegurado(models.Model):
     segundo_apeliido = models.CharField(
         max_length=20, verbose_name='Apellido Materno')
     correo = models.CharField(max_length=50, verbose_name='Correo')
-    telefono = models.BigIntegerField(verbose_name='Teléfono')
+    telefono = models.IntegerField(verbose_name='Teléfono')
     fecha_nacimiento = models.DateField(verbose_name='Fecha Nacimiento')
     estado = models.CharField(max_length=1, default=1)
     usuario_rut_usuario = models.ForeignKey(
@@ -375,7 +375,7 @@ class Siniestro(models.Model):
 class Taller(models.Model):
     nombre = models.CharField(max_length=30, verbose_name='Nombre Taller')
     razon_social = models.CharField(max_length=50, verbose_name='Razón Social')
-    telefono = models.BigIntegerField(verbose_name='Teléfono')
+    telefono = models.IntegerField(verbose_name='Teléfono')
     correo = models.CharField(max_length=30, verbose_name='Correo')
     capacidad_taller = models.IntegerField(verbose_name='Capacidad Taller')
     estado = models.CharField(max_length=1, verbose_name='Estado', default=1)
@@ -545,4 +545,3 @@ class Vehiculo(models.Model):
 
     def __str__(self):
         return self.patente_vehiculo
-

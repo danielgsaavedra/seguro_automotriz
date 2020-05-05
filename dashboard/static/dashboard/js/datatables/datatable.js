@@ -79,6 +79,7 @@ $(document).ready(function () {
   });
 });
 
+
 $(document).ready(function () {
   $('#table_vehiculo').DataTable({
     "language": {

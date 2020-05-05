@@ -1,22 +1,18 @@
 {% extends "dashboard/base.html" %}
 
 {% block content %}
-    <button type="button" class="float-left d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
-        <a class="text-decoration-none text-light"
-           href="{% url 'siniestro_disabled' %}">
-            <i class="fas fa-file-invoice fa-sm text-white-50"></i> Siniestro finalizados
-        </a>
-    </button>
 
     <div class="d-sm-flex align-items-center justify-content-end mb-4">
-        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm show_siniestro"
-                data-url="{% url 'siniestro_create' %}">
-            <i class="fas fa-file-invoice fa-sm text-white-50"></i> Registrar Siniestro
+        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <a class="text-decoration-none text-light"
+               href="{% url 'siniestros' %}">
+                <i class="fas fa-file-invoice fa-sm text-white-50"></i> Siniestro
+            </a>
         </button>
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Siniestros</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Siniestros Finalizados</h6>
         </div>
 
         <div class="card-body">
@@ -32,22 +28,12 @@
                         <th scope="col">Estado</th>
                         <th scope="col">Taller Asignado</th>
                         <th scope="col">Patente Grúa</th>
-                        <th scope="col">Opciones</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% include "dashboard/siniestros/siniestro_2.html" %}
+                    {% include "dashboard/siniestros/siniestro_disabled_2.html" %}
                     </tbody>
                 </table>
-            </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="modal_siniestro" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-
-                </div>
             </div>
         </div>
     </div>

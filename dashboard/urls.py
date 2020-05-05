@@ -1,6 +1,6 @@
 from django.urls import path
 from django.conf.urls import url, include
-from .views import DashboardView, SiniestroView, UsuariosView, TallerView, TallerDisabledView
+from .views import DashboardView, SiniestroView, UsuariosView, TallerView
 from . import views
 
 urlpatterns = [
@@ -12,6 +12,7 @@ urlpatterns = [
          views.UpdateSiniestro, name='siniestro_update'),
     path('siniestros/<str:id>/delete',
          views.DeleteSiniestro, name='siniestro_delete'),
+    path('siniestros/disabled', views.SiniestroDisabledView, name='siniestro_disabled'),
     path('taller/', views.TallerView, name='taller'),
     path('taller/create/', views.CreateTaller, name='taller_create'),
     path('taller/<str:id>/update', views.UpdateTaller, name='taller_update'),

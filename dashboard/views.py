@@ -3,9 +3,7 @@ from django.views.generic.base import TemplateView
 from .models import Usuario, Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, \
-    DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
-
+from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
 
 # Create your views here.
 
@@ -298,7 +296,7 @@ def ReactivatePoliza(request, id):
 # Crud Siniestro
 def SaveAllSiniestro(request, form, template_name):
     data = dict()
-    estado = get_object_or_404(EstadoSiniestro, id=7)
+    estado = get_object_or_404(EstadoSiniestro, id=27)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
@@ -319,22 +317,26 @@ def SaveAllSiniestro(request, form, template_name):
 
 # Read
 def SiniestroView(request):
-    estado = get_object_or_404(EstadoSiniestro, id=7)
+    estado = get_object_or_404(EstadoSiniestro, id=27)
     siniestros = Siniestro.objects.all().exclude(
         est_siniestro_id_est_siniestro=estado).order_by('id')
     context = {'siniestros': siniestros}
     return render(request, 'dashboard/siniestros/siniestro.html', context)
 
+## Listar siniestros finalizandos
+def SiniestroDisabledView(request):
+    siniestrosDisable = Siniestro.objects.filter(est_siniestro_id_est_siniestro=27).order_by('id')
+    context = {'siniestrosDisable': siniestrosDisable}
+    return render(request, 'dashboard/siniestros/siniestro_disabled.html', context)
 
 # # Create
-
-
 def CreateSiniestro(request):
     if request.method == 'POST':
         form = SiniestroForm(request.POST)
     else:
         form = SiniestroForm()
     return SaveAllSiniestro(request, form, 'dashboard/siniestros/siniestro_create.html')
+
 
 
 # # Update
@@ -355,7 +357,7 @@ def UpdateSiniestro(request, id):
 def DeleteSiniestro(request, id):
     data = dict()
     siniestro = get_object_or_404(Siniestro, id=id)
-    estado = get_object_or_404(EstadoSiniestro, id=7)
+    estado = get_object_or_404(EstadoSiniestro, id=27)
     if request.method == 'POST':
         form = DeshabilitarSiniestroForm(request.POST, instance=siniestro)
         if form.is_valid():

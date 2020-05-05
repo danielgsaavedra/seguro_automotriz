@@ -1,0 +1,110 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'dashboard/css/style2.css' %}" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <title>Consulta Estado Siniestro</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <div class="row justify-content-center mt-4">
+            <div class="card shadow-sm mt-5">
+                <div class="card-body">
+                    <div class="text-center my-4">
+                        <h2 class="card-title">Consultar Estado Siniestro</h2>
+                        <p>Completa los campos para ver el estado de tu siniestro</p>
+                        <hr>
+                    </div>
+                    <div class="mx-5 clearfix">
+                        <form action="" method="GET">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group col-12 col-md-6">
+                                    <div class="col-form-label">
+                                        <span>RUT</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="rut_asegurado"
+                                        placeholder="Ingresa tu rut" required />
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <div class="col-form-label">
+                                        <span>N° DE PÓLIZA</span>
+                                    </div>
+                                    <input type="number" class="form-control" name="n_poliza"
+                                        placeholder="Ingresa n° de póliza" required />
+                                </div>
+                            </div>
+                            <div class="justify-content-center d-flex my-4">
+                                <button type="submit" id="searchSiniestro"
+                                    class="d-none d-sm-inline-block btn btn-primary shadow-sm">
+                                    <i class="fas fa-search fa-sm text-white-50"></i> Consultar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+            <div>
+                {% for siniestros in siniestros %}
+                <h2>Su siniestro se encuentra
+                    {% if siniestros.est_siniestro_id_est_siniestro.id == 1 %}
+                    <span class="badge badge-pill badge-info">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                    {% endif %}
+
+                    {% if siniestros.est_siniestro_id_est_siniestro.id == 2 %}
+                    <span class="badge badge-pill badge-light">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                    {% endif %}
+
+                    {% if siniestros.est_siniestro_id_est_siniestro.id == 3 %}
+                    <span class="badge badge-pill badge-primary">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                    {% endif %}
+
+                    {% if siniestros.est_siniestro_id_est_siniestro.id == 4 %}
+                    <span class="badge badge-pill badge-warning">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                    {% endif %}
+
+                    {% if siniestros.est_siniestro_id_est_siniestro.id == 5 %}
+                    <span class="badge badge-pill badge-danger">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                    {% endif %}
+
+                    {% if siniestros.est_siniestro_id_est_siniestro.id == 6 %}
+                    <span class="badge badge-pill badge-success">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                    {% endif %}
+
+                    {% if siniestros.est_siniestro_id_est_siniestro.id == 7 %}
+                    <span class="badge badge-pill badge-dark">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                    {% endif %}
+
+                    {% if siniestros.est_siniestro_id_est_siniestro.id == 8 %}
+                    <span class="badge badge-pill badge-secondary">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                    {% endif %}
+
+                </h2>
+                {% empty %}
+                <h2>No se encontraron siniestros</h2>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="{% static 'dashboard/js/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/popper.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/script.js' %}"></script>
+
+</body>
+
+</html>

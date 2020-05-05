@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 # Create your models here.
 
@@ -362,7 +362,8 @@ class Siniestro(models.Model):
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     poliza_id_poliza = models.ForeignKey(
         'Poliza', models.DO_NOTHING, db_column='poliza_id_poliza', verbose_name='ID Póliza', null=True)
-
+    asegurado_rut_asegurado = models.ForeignKey(
+        'Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', verbose_name='Rut Asegurado', null=True)
     # class Meta:
     #     managed = False
     #     db_table = 'siniestro'
@@ -455,26 +456,27 @@ class TipoVehiculo(models.Model):
     def __str__(self):
         return self.tipo
 
+
 class UsuarioManager(BaseUserManager):
-    def create_user(self,email,rut_usuario,primer_nombre,primer_apellido,password = None):
+    def create_user(self, email, rut_usuario, primer_nombre, primer_apellido, password=None):
         if not email:
             raise ValueError('El usuario debe tener un correo')
 
         usuario = self.model(
-            rut_usuario = rut_usuario,
-            email = self.normalize_email(email),
-            primer_nombre = primer_nombre,
+            rut_usuario=rut_usuario,
+            email=self.normalize_email(email),
+            primer_nombre=primer_nombre,
             primer_apellido=primer_apellido
         )
         usuario.set_password(password)
         usuario.save()
         return usuario
-    
-    def create_superuser(self,email,rut_usuario,primer_nombre,primer_apellido,password):
+
+    def create_superuser(self, email, rut_usuario, primer_nombre, primer_apellido, password):
         usuario = self.create_user(
             email,
-            rut_usuario = rut_usuario,
-            primer_nombre = primer_nombre,
+            rut_usuario=rut_usuario,
+            primer_nombre=primer_nombre,
             primer_apellido=primer_apellido,
             password=password
         )
@@ -482,8 +484,9 @@ class UsuarioManager(BaseUserManager):
         usuario.save()
         return usuario
 
+
 class Usuario(AbstractBaseUser):
-    
+
     opciones = [
         ("1", 'Mesa de Ayuda'),
         ("2", 'Liquidador'),
@@ -491,20 +494,26 @@ class Usuario(AbstractBaseUser):
         ("4", 'Personal Grua'),
     ]
 
-    rut_usuario = models.CharField(unique=True, max_length=12, verbose_name='Rut Usuario')
-    primer_nombre = models.CharField(max_length=20, verbose_name='Primer Nombre')
-    segundo_nombre = models.CharField(max_length=20, verbose_name='Segundo Nombre',null=True)
-    primer_apellido = models.CharField(max_length=20, verbose_name='Apellido Paterno')
-    segundo_apellido = models.CharField(max_length=20, verbose_name='Apellido Materno',null=True)
-    email = models.EmailField(max_length=254, verbose_name='Correo',unique=True)
-    telefono = models.BigIntegerField(verbose_name='Teléfono',null=True)
-    rol = models.CharField(max_length=30,choices=opciones,null=True)
+    rut_usuario = models.CharField(
+        unique=True, max_length=12, verbose_name='Rut Usuario')
+    primer_nombre = models.CharField(
+        max_length=20, verbose_name='Primer Nombre')
+    segundo_nombre = models.CharField(
+        max_length=20, verbose_name='Segundo Nombre', null=True)
+    primer_apellido = models.CharField(
+        max_length=20, verbose_name='Apellido Paterno')
+    segundo_apellido = models.CharField(
+        max_length=20, verbose_name='Apellido Materno', null=True)
+    email = models.EmailField(
+        max_length=254, verbose_name='Correo', unique=True)
+    telefono = models.BigIntegerField(verbose_name='Teléfono', null=True)
+    rol = models.CharField(max_length=30, choices=opciones, null=True)
     is_active = models.BooleanField(default=True)
     is_administrador = models.BooleanField(default=False)
     objects = UsuarioManager()
 
     USERNAME_FIELD = 'rut_usuario'
-    REQUIRED_FIELDS = ['email','primer_nombre','primer_apellido']
+    REQUIRED_FIELDS = ['email', 'primer_nombre', 'primer_apellido']
 
     # class Meta:
     #     managed = False
@@ -513,17 +522,17 @@ class Usuario(AbstractBaseUser):
 
     def __str__(self):
         return self.rut_usuario
-    
-    def has_perm(self,perm,obj = None):
+
+    def has_perm(self, perm, obj=None):
         return True
-    
-    def has_module_perms(self,app_label):
+
+    def has_module_perms(self, app_label):
         return True
-    
+
     @property
     def is_staff(self):
         return self.is_administrador
-    
+
 
 class Vehiculo(models.Model):
     patente_vehiculo = models.CharField(

@@ -214,18 +214,19 @@ $(document).ready(function () {
         return false;
     }
 
+
     var ShowTallerDisableForm = function () {
-        var btn = $(this);
+       var btn = $(this);
         $.ajax({
             url: btn.attr("data-url"),
             type: 'get',
             dataType: 'json',
             beforeSend: function () {
-                $('#modal_taller_disabled').modal('show')
+                  $('#modal_taller_disabled').modal('show')
             },
             success: function (data) {
                 $('#modal_taller_disabled .modal-content').html(data.html_form)
-            },
+                },
             error: function () {
                 alert('Algo salió mal, intenta nuevamente.')
             }
@@ -319,7 +320,48 @@ $(document).ready(function () {
     };
 
      var SaveAseguradoDisableForm = function () {
-
+            var form = $(this);
+        $.ajax({
+            url: form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType: 'json',
+            success: function (data) {
+                if (data.form_is_valid) {
+                  $('#table_asegurado_disabled tbody').html(data.aseguradosDisable);
+                    $('#modal_asegurado_disabled').modal('hide');
+                    console.log('Asegurado reactivado correctamente!');
+                    toastr.success('Operación Exitosa!');
+                } else {
+                    $('#modal_asegurado_disabled .modal-content').html(data.html_form)
+                    }
+            },
+            error: function () {
+                toastr.error('Algo salió mal, intenta nuevamente.')
+            }
+        });
+        return false;
+    }
+                 
+   var ShowUsuarioForm = function () {
+        var btn = $(this);
+        $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#modal_usuario').modal('show')
+            },
+            success: function (data) {
+                $('#modal_usuario .modal-content').html(data.html_form)
+            },
+            error: function () {
+                alert('Algo salió mal, intenta nuevamente.')
+            }
+        });
+    };
+     
+    var SaveUsuarioForm = function () {
         var form = $(this);
         $.ajax({
             url: form.attr('data-url'),
@@ -328,12 +370,12 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.form_is_valid) {
-                    $('#table_asegurado_disabled tbody').html(data.aseguradosDisable);
-                    $('#modal_asegurado_disabled').modal('hide');
-                    console.log('Asegurado reactivado correctamente!');
+                    $('#table_usuario tbody').html(data.usuarios);
+                    $('#modal_usuario').modal('hide');
+                    console.log('Asegurado registrado correctamente!');
                     toastr.success('Operación Exitosa!');
                 } else {
-                    $('#modal_asegurado_disabled .modal-content').html(data.html_form)
+                    $('#modal_usuario .modal-content').html(data.html_form)
                 }
             },
             error: function () {
@@ -342,7 +384,6 @@ $(document).ready(function () {
         });
         return false;
     }
-
 
 
     //Crear Poliza
@@ -381,7 +422,6 @@ $(document).ready(function () {
     $('#table_siniestro').on('click', '.show_siniestro_delete', ShowFormSiniestro);
     $('#modal_siniestro').on('submit', '.delete_form_siniestro', SaveFormSiniestro);
 
-
     //Crear Vehiculo
     $('.show-vehiculo').click(ShowVehiculoForm);
     $('#modal_vehiculo').on('submit', '.vehiculo_form', SaveVehiculoForm);
@@ -402,6 +442,7 @@ $(document).ready(function () {
     $('#table_taller').on('click', '.show_taller_delete', ShowTallerForm);
     $('#modal_taller').on('submit', '.delete_form_taller', SaveTallerForm);
 
+
     //Reactivar Taller
     $('#table_taller_disabled').on('click', '.show_taller_reactivate', ShowTallerDisableForm);
     $('#modal_taller_disabled').on('submit', '.reactivate_form_taller', SaveTallerDisableForm);
@@ -413,8 +454,18 @@ $(document).ready(function () {
     //Reactivar Asegurado
     $('#table_asegurado_disabled').on('click', '.show_asegurado_reactivate', ShowAseguradoDisableForm);
     $('#modal_asegurado_disabled').on('submit', '.reactivate_form_asegurado', SaveAseguradoDisableForm);
+  
+    //Crear Usuario
+    $('.show-usuario ').click(ShowUsuarioForm);
+    $('#modal_usuario').on('submit', '.usuario_form', SaveUsuarioForm);
+
+    //Modificar Usuario
+    $('#table_usuario').on('click', '.show_usuario_update', ShowUsuarioForm);
+    $('#modal_usuario').on('submit', '.usuario_form_update', SaveUsuarioForm);
+
+    //Eliminar Usuario
+    $('#table_usuario').on('click', '.show_usuario_delete', ShowUsuarioForm);
+    $('#modal_usuario').on('submit', '.usuario_form_delete', SaveUsuarioForm);
 
 
 });
-
-

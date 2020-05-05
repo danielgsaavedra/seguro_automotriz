@@ -1,0 +1,50 @@
+{% for usuario in usuarios %}
+<tr>
+    <th scope="row">{{ usuario.rut_usuario }}</th>
+    <td>{{ usuario.primer_nombre }}</td>
+    <td>{{ usuario.primer_apellido }}</td>
+    <td>{{ usuario.email }}</td>
+    <td>+56{{ usuario.telefono }}</td>
+    {% if usuario.rol == '1' %}
+    <td>
+        <span class="badge badge-pill badge-info">MESA DE AYUDA</span>
+    </td>
+    {% endif %}
+
+    {% if usuario.rol == '2' %}
+    <td>
+        <span class="badge badge-pill badge-success">LIQUIDADOR </span>
+    </td>
+    {% endif %}
+
+    {% if usuario.rol == '3' %}
+    <td>
+        <span class="badge badge-pill badge-danger">PERSONAL TALLER </span>
+    </td>
+    {% endif %}
+
+    {% if usuario.rol == '4' %}
+    <td>
+        <span class="badge badge-pill badge-warning">PERSONAL GRÚA </span>
+    </td>
+    {% endif %}
+
+    <td>
+        <div class="dropdown">
+            <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#regUser">Editar
+                    Usuario</a>
+                <a class="dropdown-item" href="#">Eliminar Usuario</a>
+            </div>
+        </div>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="7" class="text-center bg-warning">No hay Usuarios</td>
+</tr>
+{% endfor %}

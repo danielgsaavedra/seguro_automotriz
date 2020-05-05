@@ -1,0 +1,27 @@
+<form action="" class="reactivate_form_poliza" method="POST" data-url="{% url 'poliza_reactivate' polizaActivate.id %}">
+    {% csrf_token %}
+
+    <div class="modal-header bg-success">
+        <h5 class="modal-title text-light">Habilitar Póliza</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+            <div class="col-12">
+                <h4>¿Seguro que deseas habilitar la póliza n° <strong>{{polizaActivate.id}}</strong>?</h4>
+                {{form.estado}}
+                <br>
+            </div>
+            <div class="col-12">
+                <p class="lead">Rut Asegurado: <strong>{{polizaActivate.asegurado_rut_asegurado}}</strong></p>
+                <p class="lead">Patente Vehículo: <strong>{{polizaActivate.vehiculo_patente_vehiculo}}</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-outline-success">Habilitar Póliza</button>
+    </div>
+</form>

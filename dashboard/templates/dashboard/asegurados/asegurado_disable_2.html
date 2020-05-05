@@ -1,0 +1,29 @@
+{% for aseguradosDisable in aseguradosDisable %}
+<tr>
+    <th scope="row">{{ aseguradosDisable.rut_asegurado }}</th>
+    <td>{{aseguradosDisable.primer_nombre}}</td>
+    <td>{{aseguradosDisable.segundo_nombre}}</td>
+    <td>{{aseguradosDisable.primer_apellido}}</td>
+    <td>{{aseguradosDisable.segundo_apeliido}}</td>
+    <td>{{aseguradosDisable.correo}}</td>
+    <td>+569 {{aseguradosDisable.telefono}}</td>
+    <td>{{aseguradosDisable.fecha_nacimiento|date:'d-m-Y'}}</td>
+    <td>
+        <div class="dropdown">
+            <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <button class="show_asegurado_reactivate dropdown-item"
+                    data-url="{% url 'asegurado_reactivate' aseguradosDisable.rut_asegurado %}">
+                    Reactivar Asegurado</button>
+            </div>
+        </div>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="7" class="text-center bg-warning">No hay Asegurados</td>
+</tr>
+{% endfor %}

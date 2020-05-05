@@ -34,6 +34,7 @@ def SaveAllAsegurado(request, form, template_name):
         template_name, context, request=request)
     return JsonResponse(data)
 
+
 # Read
 
 @login_required(login_url='login')
@@ -43,6 +44,14 @@ def AseguradosView(request):
     context = {'asegurados': asegurados}
     return render(request, 'dashboard/asegurados/asegurado.html', context)
 
+#Listar usuarios deshabilitados
+def AseguradosDisableView(request):
+    aseguradosDisable = Asegurado.objects.filter(
+        estado=0).order_by('fecha_nacimiento')
+    context = {'aseguradosDisable': aseguradosDisable}
+    return render(request, 'dashboard/asegurados/asegurado_disable.html', context)
+
+
 # Create
 @login_required(login_url='login')
 def AseguradoCreate(request):
@@ -51,6 +60,7 @@ def AseguradoCreate(request):
     else:
         form = AseguradoForm()
     return SaveAllAsegurado(request, form, 'dashboard/asegurados/asegurado_create.html')
+
 
 # Update
 
@@ -62,6 +72,7 @@ def AseguradoUpdate(request, id):
     else:
         form = AseguradoForm(instance=asegurado)
     return SaveAllAsegurado(request, form, 'dashboard/asegurados/asegurado_update.html')
+
 
 # Delete
 
@@ -89,6 +100,31 @@ def AseguradoDelete(request, id):
             'dashboard/asegurados/asegurado_delete.html', context, request=request)
     return JsonResponse(data)
 
+#Reactivar asegurado
+def ReactivateAsegurado(request, id):
+    data = dict()
+    aseguradoActivate = get_object_or_404(Asegurado, rut_asegurado=id)
+    if request.method == 'POST':
+        form = DeshabilitarAseguradoForm(request.POST, instance=aseguradoActivate)
+        if form.is_valid():
+            aseguradoActivate = form.save(commit=False)
+            aseguradoActivate.estado = "1"
+            aseguradoActivate.save()
+            data['form_is_valid'] = True
+            aseguradosDisable = Asegurado.objects.filter(
+                estado=0).order_by('fecha_nacimiento')
+            context = {'aseguradosDisable': aseguradosDisable}
+            data['aseguradosDisable'] = render_to_string(
+                'dashboard/asegurados/asegurado_disable_2.html', context)
+    else:
+        form = DeshabilitarAseguradoForm(instance=aseguradoActivate)
+        data['form_is_valid'] = False
+        context = {'aseguradoActivate': aseguradoActivate, 'form': form}
+        data['html_form'] = render_to_string(
+            'dashboard/asegurados/asegurado_reactivate.html', context, request=request)
+    return JsonResponse(data)
+
+
 # Crud Vehículos
 
 
@@ -110,6 +146,7 @@ def SaveAllVehiculo(request, form, template_name):
         template_name, context, request=request)
     return JsonResponse(data)
 
+
 # Read
 
 @login_required(login_url='login')
@@ -117,6 +154,7 @@ def VehiculosView(request):
     vehiculos = Vehiculo.objects.all().order_by('anio')
     context = {'vehiculos': vehiculos}
     return render(request, 'dashboard/vehiculos/vehiculo.html', context)
+
 
 # Create
 
@@ -140,6 +178,7 @@ def VehiculoUpdate(request, id):
         form = VehiculoForm(instance=vehiculo)
     return SaveAllVehiculo(request, form, 'dashboard/vehiculos/vehiculo_update.html')
 
+
 # Crud Pólizas
 
 
@@ -161,6 +200,7 @@ def SaveAllPoliza(request, form, template_name):
         template_name, context, request=request)
     return JsonResponse(data)
 
+
 # Read
 
 @login_required(login_url='login')
@@ -168,6 +208,13 @@ def PolizasView(request):
     polizas = Poliza.objects.filter(estado=1).order_by('id')
     context = {'polizas': polizas}
     return render(request, 'dashboard/polizas/poliza.html', context)
+
+
+# Listar polizas disabled
+def PolizasDisableView(request):
+    polizasDisable = Poliza.objects.filter(estado=0).order_by('id')
+    context = {'polizasDisable': polizasDisable}
+    return render(request, 'dashboard/polizas/poliza_disabled.html', context)
 
 # Create
 
@@ -179,6 +226,7 @@ def CreatePoliza(request):
         form = PolizaForm()
     return SaveAllPoliza(request, form, 'dashboard/polizas/poliza_create.html')
 
+
 # Update
 
 @staff_member_required(login_url='login')
@@ -189,6 +237,7 @@ def UpdatePoliza(request, id):
     else:
         form = PolizaForm(instance=poliza)
     return SaveAllPoliza(request, form, 'dashboard/polizas/poliza_update.html')
+
 
 # Delete
 
@@ -215,11 +264,34 @@ def DeletePoliza(request, id):
             'dashboard/polizas/poliza_delete.html', context, request=request)
     return JsonResponse(data)
 
+def ReactivatePoliza(request, id):
+    data = dict()
+    polizaActivate = get_object_or_404(Poliza, id=id)
+    if request.method == 'POST':
+        form = DeshabilitarPolizaForm(request.POST, instance=polizaActivate)
+        if form.is_valid():
+            polizaActivate = form.save(commit=False)
+            polizaActivate.estado = "1"
+            polizaActivate.save()
+            data['form_is_valid'] = True
+            polizasDisable = Poliza.objects.filter(estado=0).order_by('id')
+            context = {'polizasDisable': polizasDisable}
+            data['polizasDisable'] = render_to_string(
+                'dashboard/polizas/poliza_disabled_2.html', context)
+    else:
+        form = DeshabilitarPolizaForm(instance=polizaActivate)
+        data['form_is_valid'] = False
+        context = {'polizaActivate': polizaActivate, 'form': form}
+        data['html_form'] = render_to_string(
+            'dashboard/polizas/poliza_reactivate.html', context, request=request)
+    return JsonResponse(data)
+
+
 
 # Crud Siniestro
 def SaveAllSiniestro(request, form, template_name):
     data = dict()
-    estado = get_object_or_404(EstadoSiniestro, id=7)
+    estado = get_object_or_404(EstadoSiniestro, id=27)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
@@ -241,11 +313,18 @@ def SaveAllSiniestro(request, form, template_name):
 # Read
 @login_required(login_url='login')
 def SiniestroView(request):
-    estado = get_object_or_404(EstadoSiniestro, id=7)
+    estado = get_object_or_404(EstadoSiniestro, id=27)
     siniestros = Siniestro.objects.all().exclude(
         est_siniestro_id_est_siniestro=estado).order_by('id')
     context = {'siniestros': siniestros}
     return render(request, 'dashboard/siniestros/siniestro.html', context)
+
+
+## Listar siniestros finalizandos
+def SiniestroDisabledView(request):
+    siniestrosDisable = Siniestro.objects.filter(est_siniestro_id_est_siniestro=27).order_by('id')
+    context = {'siniestrosDisable': siniestrosDisable}
+    return render(request, 'dashboard/siniestros/siniestro_disabled.html', context)
 
 # # Create
 
@@ -256,6 +335,7 @@ def CreateSiniestro(request):
     else:
         form = SiniestroForm()
     return SaveAllSiniestro(request, form, 'dashboard/siniestros/siniestro_create.html')
+
 
 # # Update
 
@@ -268,13 +348,14 @@ def UpdateSiniestro(request, id):
         form = SiniestroForm(instance=siniestro)
     return SaveAllSiniestro(request, form, 'dashboard/siniestros/siniestro_update.html')
 
+
 # # Delete
 
 @staff_member_required(login_url='login')
 def DeleteSiniestro(request, id):
     data = dict()
     siniestro = get_object_or_404(Siniestro, id=id)
-    estado = get_object_or_404(EstadoSiniestro, id=7)
+    estado = get_object_or_404(EstadoSiniestro, id=27)
     if request.method == 'POST':
         form = DeshabilitarSiniestroForm(request.POST, instance=siniestro)
         if form.is_valid():
@@ -318,6 +399,7 @@ def SaveAllTaller(request, form, template_name):
         template_name, context, request=request)
     return JsonResponse(data)
 
+
 # Listar
 
 @login_required(login_url='login')
@@ -325,6 +407,14 @@ def TallerView(request):
     talleres = Taller.objects.filter(estado_delete=1).order_by('id')
     context = {'talleres': talleres}
     return render(request, 'dashboard/talleres/taller.html', context)
+
+
+# Listar talleres disabled
+def TallerDisabledView(request):
+    talleresDisable = Taller.objects.filter(estado_delete=0).order_by('id')
+    context = {'talleresDisable': talleresDisable}
+    return render(request, 'dashboard/talleres/taller_disabled.html', context)
+
 
 # Crear
 
@@ -336,6 +426,7 @@ def CreateTaller(request):
         form = TallerForm()
     return SaveAllTaller(request, form, 'dashboard/talleres/taller_create.html')
 
+
 # Actualizar
 
 @staff_member_required(login_url='login')
@@ -346,6 +437,7 @@ def UpdateTaller(request, id):
     else:
         form = TallerForm(instance=taller)
     return SaveAllTaller(request, form, 'dashboard/talleres/taller_update.html')
+
 
 # Borrar
 
@@ -371,4 +463,28 @@ def DeleteTaller(request, id):
         context = {'taller': taller, 'form': form}
         data['html_form'] = render_to_string(
             'dashboard/talleres/taller_delete.html', context, request=request)
+    return JsonResponse(data)
+
+
+def ReactivateTaller(request, id):
+    data = dict()
+    tallerActivate = get_object_or_404(Taller, id=id)
+    if request.method == 'POST':
+        form = DeshabilitarTallerForm(request.POST, instance=tallerActivate)
+        if form.is_valid():
+            tallerActivate = form.save(commit=False)
+            tallerActivate.estado_delete = "1"
+            tallerActivate.save()
+            data['form_is_valid'] = True
+            talleresDisable = Taller.objects.filter(
+                estado_delete=0).order_by('id')
+            context = {'talleresDisable': talleresDisable}
+            data['talleresDisable'] = render_to_string(
+                'dashboard/talleres/taller_disabled_2.html', context)
+    else:
+        form = DeshabilitarTallerForm(instance=tallerActivate)
+        data['form_is_valid'] = False
+        context = {'tallerActivate': tallerActivate, 'form': form}
+        data['html_form'] = render_to_string(
+            'dashboard/talleres/taller_reactivate.html', context, request=request)
     return JsonResponse(data)

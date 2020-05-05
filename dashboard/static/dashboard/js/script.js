@@ -294,7 +294,6 @@ $(document).ready(function () {
     $('#table_siniestro').on('click', '.show_siniestro_delete', ShowFormSiniestro);
     $('#modal_siniestro').on('submit', '.delete_form_siniestro', SaveFormSiniestro);
 
-
     //Crear Vehiculo
     $('.show-vehiculo').click(ShowVehiculoForm);
     $('#modal_vehiculo').on('submit', '.vehiculo_form', SaveVehiculoForm);

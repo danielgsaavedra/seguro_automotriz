@@ -19,7 +19,6 @@ urlpatterns = [
     path('taller/<str:id>/delete', views.DeleteTaller, name='taller_delete'),
     path('taller/<str:id>/reactivate', views.ReactivateTaller, name='taller_reactivate'),
     path('taller/disabled', views.TallerDisabledView, name='taller_disabled'),
-#     path('usuarios/', views.UsuariosView, name='usuarios'),
     path('asegurados/', views.AseguradosView, name='asegurados'),
     path('asegurados/disabled', views.AseguradosDisableView, name='asegurados_disabled'),
     path('asegurados/create/', views.AseguradoCreate, name='asegurado_create'),

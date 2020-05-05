@@ -300,6 +300,49 @@ $(document).ready(function () {
         return false;
     }
 
+    var ShowAseguradoDisableForm = function () {
+        var btn = $(this);
+        $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#modal_asegurado_disabled').modal('show')
+            },
+            success: function (data) {
+                $('#modal_asegurado_disabled .modal-content').html(data.html_form)
+            },
+            error: function () {
+                alert('Algo salió mal, intenta nuevamente.')
+            }
+        });
+    };
+
+     var SaveAseguradoDisableForm = function () {
+
+        var form = $(this);
+        $.ajax({
+            url: form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType: 'json',
+            success: function (data) {
+                if (data.form_is_valid) {
+                    $('#table_asegurado_disabled tbody').html(data.aseguradosDisable);
+                    $('#modal_asegurado_disabled').modal('hide');
+                    console.log('Asegurado reactivado correctamente!');
+                    toastr.success('Operación Exitosa!');
+                } else {
+                    $('#modal_asegurado_disabled .modal-content').html(data.html_form)
+                }
+            },
+            error: function () {
+                toastr.error('Algo salió mal, intenta nuevamente.')
+            }
+        });
+        return false;
+    }
+
 
 
     //Crear Poliza
@@ -366,6 +409,10 @@ $(document).ready(function () {
     //Reactivar Póliza
     $('#table_poliza_disabled').on('click', '.show_poliza_reactivate', ShowPolizaDisableForm);
     $('#modal_poliza_disabled').on('submit', '.reactivate_form_poliza', SavePolizaDisableForm);
+
+    //Reactivar Asegurado
+    $('#table_asegurado_disabled').on('click', '.show_asegurado_reactivate', ShowAseguradoDisableForm);
+    $('#modal_asegurado_disabled').on('submit', '.reactivate_form_asegurado', SaveAseguradoDisableForm);
 
 
 });

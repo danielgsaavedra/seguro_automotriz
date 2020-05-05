@@ -50,6 +50,13 @@ def AseguradosView(request):
     context = {'asegurados': asegurados}
     return render(request, 'dashboard/asegurados/asegurado.html', context)
 
+#Listar usuarios deshabilitados
+def AseguradosDisableView(request):
+    aseguradosDisable = Asegurado.objects.filter(
+        estado=0).order_by('fecha_nacimiento')
+    context = {'aseguradosDisable': aseguradosDisable}
+    return render(request, 'dashboard/asegurados/asegurado_disable.html', context)
+
 
 # Create
 
@@ -98,6 +105,30 @@ def AseguradoDelete(request, id):
         context = {'asegurado': asegurado, 'form': form}
         data['html_form'] = render_to_string(
             'dashboard/asegurados/asegurado_delete.html', context, request=request)
+    return JsonResponse(data)
+
+#Reactivar asegurado
+def ReactivateAsegurado(request, id):
+    data = dict()
+    aseguradoActivate = get_object_or_404(Asegurado, rut_asegurado=id)
+    if request.method == 'POST':
+        form = DeshabilitarAseguradoForm(request.POST, instance=aseguradoActivate)
+        if form.is_valid():
+            aseguradoActivate = form.save(commit=False)
+            aseguradoActivate.estado = "1"
+            aseguradoActivate.save()
+            data['form_is_valid'] = True
+            aseguradosDisable = Asegurado.objects.filter(
+                estado=0).order_by('fecha_nacimiento')
+            context = {'aseguradosDisable': aseguradosDisable}
+            data['aseguradosDisable'] = render_to_string(
+                'dashboard/asegurados/asegurado_disable_2.html', context)
+    else:
+        form = DeshabilitarAseguradoForm(instance=aseguradoActivate)
+        data['form_is_valid'] = False
+        context = {'aseguradoActivate': aseguradoActivate, 'form': form}
+        data['html_form'] = render_to_string(
+            'dashboard/asegurados/asegurado_reactivate.html', context, request=request)
     return JsonResponse(data)
 
 

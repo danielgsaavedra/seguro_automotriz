@@ -1,0 +1,22 @@
+<form action="" class="reactivate_form_asegurado" method="POST"
+    data-url="{% url 'asegurado_reactivate' aseguradoActivate.rut_asegurado %}">
+    {% csrf_token %}
+
+    <div class="modal-header bg-success">
+        <h5 class="modal-title text-light">Activar Asegurado</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+            <p class="lead">¿Seguro que deseas activar el Asegurado <strong>{{aseguradoActivate.rut_asegurado}}</strong>?
+            </p>
+            {{form.estado}}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-outline-success">Activar</button>
+    </div>
+</form>

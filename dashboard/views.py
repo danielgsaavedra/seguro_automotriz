@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import TemplateView
-from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+from django.utils.decorators import method_decorator
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
+from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro
 from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
 
 # Create your views here.
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class DashboardView(TemplateView):
     template_name = 'dashboard/dashboard.html'
 
@@ -33,7 +36,7 @@ def SaveAllAsegurado(request, form, template_name):
 
 # Read
 
-
+@login_required(login_url='login')
 def AseguradosView(request):
     asegurados = Asegurado.objects.filter(
         estado=1).order_by('fecha_nacimiento')
@@ -41,8 +44,7 @@ def AseguradosView(request):
     return render(request, 'dashboard/asegurados/asegurado.html', context)
 
 # Create
-
-
+@login_required(login_url='login')
 def AseguradoCreate(request):
     if request.method == 'POST':
         form = AseguradoForm(request.POST)
@@ -52,7 +54,7 @@ def AseguradoCreate(request):
 
 # Update
 
-
+@staff_member_required(login_url='login')
 def AseguradoUpdate(request, id):
     asegurado = get_object_or_404(Asegurado, rut_asegurado=id)
     if request.method == 'POST':
@@ -63,7 +65,7 @@ def AseguradoUpdate(request, id):
 
 # Delete
 
-
+@staff_member_required(login_url='login')
 def AseguradoDelete(request, id):
     data = dict()
     asegurado = get_object_or_404(Asegurado, rut_asegurado=id)
@@ -110,7 +112,7 @@ def SaveAllVehiculo(request, form, template_name):
 
 # Read
 
-
+@login_required(login_url='login')
 def VehiculosView(request):
     vehiculos = Vehiculo.objects.all().order_by('anio')
     context = {'vehiculos': vehiculos}
@@ -118,7 +120,7 @@ def VehiculosView(request):
 
 # Create
 
-
+@login_required(login_url='login')
 def VehiculoCreate(request):
     if request.method == 'POST':
         form = VehiculoForm(request.POST)
@@ -129,7 +131,7 @@ def VehiculoCreate(request):
 
 # Update
 
-
+@staff_member_required(login_url='login')
 def VehiculoUpdate(request, id):
     vehiculo = get_object_or_404(Vehiculo, patente_vehiculo=id)
     if request.method == 'POST':
@@ -161,7 +163,7 @@ def SaveAllPoliza(request, form, template_name):
 
 # Read
 
-
+@login_required(login_url='login')
 def PolizasView(request):
     polizas = Poliza.objects.filter(estado=1).order_by('id')
     context = {'polizas': polizas}
@@ -169,7 +171,7 @@ def PolizasView(request):
 
 # Create
 
-
+@login_required(login_url='login')
 def CreatePoliza(request):
     if request.method == 'POST':
         form = PolizaForm(request.POST)
@@ -179,7 +181,7 @@ def CreatePoliza(request):
 
 # Update
 
-
+@staff_member_required(login_url='login')
 def UpdatePoliza(request, id):
     poliza = get_object_or_404(Poliza, id=id)
     if request.method == 'POST':
@@ -190,7 +192,7 @@ def UpdatePoliza(request, id):
 
 # Delete
 
-
+@staff_member_required(login_url='login')
 def DeletePoliza(request, id):
     data = dict()
     poliza = get_object_or_404(Poliza, id=id)
@@ -237,6 +239,7 @@ def SaveAllSiniestro(request, form, template_name):
 
 
 # Read
+@login_required(login_url='login')
 def SiniestroView(request):
     estado = get_object_or_404(EstadoSiniestro, id=7)
     siniestros = Siniestro.objects.all().exclude(
@@ -246,7 +249,7 @@ def SiniestroView(request):
 
 # # Create
 
-
+@login_required(login_url='login')
 def CreateSiniestro(request):
     if request.method == 'POST':
         form = SiniestroForm(request.POST)
@@ -256,7 +259,7 @@ def CreateSiniestro(request):
 
 # # Update
 
-
+@staff_member_required(login_url='login')
 def UpdateSiniestro(request, id):
     siniestro = get_object_or_404(Siniestro, id=id)
     if request.method == 'POST':
@@ -267,7 +270,7 @@ def UpdateSiniestro(request, id):
 
 # # Delete
 
-
+@staff_member_required(login_url='login')
 def DeleteSiniestro(request, id):
     data = dict()
     siniestro = get_object_or_404(Siniestro, id=id)
@@ -317,7 +320,7 @@ def SaveAllTaller(request, form, template_name):
 
 # Listar
 
-
+@login_required(login_url='login')
 def TallerView(request):
     talleres = Taller.objects.filter(estado_delete=1).order_by('id')
     context = {'talleres': talleres}
@@ -325,7 +328,7 @@ def TallerView(request):
 
 # Crear
 
-
+@login_required(login_url='login')
 def CreateTaller(request):
     if request.method == 'POST':
         form = TallerForm(request.POST)
@@ -335,7 +338,7 @@ def CreateTaller(request):
 
 # Actualizar
 
-
+@staff_member_required(login_url='login')
 def UpdateTaller(request, id):
     taller = get_object_or_404(Taller, id=id)
     if request.method == 'POST':
@@ -346,7 +349,7 @@ def UpdateTaller(request, id):
 
 # Borrar
 
-
+@staff_member_required(login_url='login')
 def DeleteTaller(request, id):
     data = dict()
     taller = get_object_or_404(Taller, id=id)

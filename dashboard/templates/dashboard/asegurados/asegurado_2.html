@@ -8,6 +8,7 @@
     <td>{{asegurados.correo}}</td>
     <td>+56{{asegurados.telefono}}</td>
     <td>{{asegurados.fecha_nacimiento|date:'d-m-Y'}}</td>
+    {% if  request.user.is_staff %}
     <td>
         <div class="dropdown">
             <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -24,6 +25,7 @@
             </div>
         </div>
     </td>
+    {% endif %}
 </tr>
 {% empty %}
 <tr>

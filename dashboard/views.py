@@ -292,7 +292,7 @@ def ReactivatePoliza(request, id):
 # Crud Siniestro
 def SaveAllSiniestro(request, form, template_name):
     data = dict()
-    estado = get_object_or_404(EstadoSiniestro, id=27)
+    estado = get_object_or_404(EstadoSiniestro, id=7)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
@@ -314,7 +314,7 @@ def SaveAllSiniestro(request, form, template_name):
 # Read
 @login_required(login_url='login')
 def SiniestroView(request):
-    estado = get_object_or_404(EstadoSiniestro, id=27)
+    estado = get_object_or_404(EstadoSiniestro, id=7)
     siniestros = Siniestro.objects.all().exclude(
         est_siniestro_id_est_siniestro=estado).order_by('id')
     context = {'siniestros': siniestros}
@@ -323,7 +323,7 @@ def SiniestroView(request):
 
 ## Listar siniestros finalizandos
 def SiniestroDisabledView(request):
-    siniestrosDisable = Siniestro.objects.filter(est_siniestro_id_est_siniestro=27).order_by('id')
+    siniestrosDisable = Siniestro.objects.filter(est_siniestro_id_est_siniestro=7).order_by('id')
     context = {'siniestrosDisable': siniestrosDisable}
     return render(request, 'dashboard/siniestros/siniestro_disabled.html', context)
 
@@ -356,7 +356,7 @@ def UpdateSiniestro(request, id):
 def DeleteSiniestro(request, id):
     data = dict()
     siniestro = get_object_or_404(Siniestro, id=id)
-    estado = get_object_or_404(EstadoSiniestro, id=27)
+    estado = get_object_or_404(EstadoSiniestro, id=7)
     if request.method == 'POST':
         form = DeshabilitarSiniestroForm(request.POST, instance=siniestro)
         if form.is_valid():

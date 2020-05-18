@@ -8,14 +8,16 @@ from django.contrib.auth.decorators import login_required
 from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro
 from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
 from django.db.models import Q
-
 # Create your views here.
+
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class DashboardView(TemplateView):
     template_name = 'dashboard/dashboard.html'
 
 # Crud Asegurados
+
+
 def SaveAllAsegurado(request, form, template_name):
     data = dict()
     if request.method == 'POST':
@@ -45,12 +47,14 @@ def AseguradosView(request):
     context = {'asegurados': asegurados}
     return render(request, 'dashboard/asegurados/asegurado.html', context)
 
-#Listar usuarios deshabilitados
+# Listar usuarios deshabilitados
+
+
 def AseguradosDisableView(request):
     aseguradosDisable = Asegurado.objects.filter(
         estado=0).order_by('fecha_nacimiento')
     context = {'aseguradosDisable': aseguradosDisable}
-    return render(request, 'dashboard/asegurados/asegurado_disable.html', context)
+    return render(request, 'dashboard/asegurados/asegurado_disabled.html', context)
 
 
 # Create
@@ -101,12 +105,15 @@ def AseguradoDelete(request, id):
             'dashboard/asegurados/asegurado_delete.html', context, request=request)
     return JsonResponse(data)
 
-#Reactivar asegurado
+# Reactivar asegurado
+
+
 def ReactivateAsegurado(request, id):
     data = dict()
     aseguradoActivate = get_object_or_404(Asegurado, rut_asegurado=id)
     if request.method == 'POST':
-        form = DeshabilitarAseguradoForm(request.POST, instance=aseguradoActivate)
+        form = DeshabilitarAseguradoForm(
+            request.POST, instance=aseguradoActivate)
         if form.is_valid():
             aseguradoActivate = form.save(commit=False)
             aseguradoActivate.estado = "1"
@@ -116,7 +123,7 @@ def ReactivateAsegurado(request, id):
                 estado=0).order_by('fecha_nacimiento')
             context = {'aseguradosDisable': aseguradosDisable}
             data['aseguradosDisable'] = render_to_string(
-                'dashboard/asegurados/asegurado_disable_2.html', context)
+                'dashboard/asegurados/asegurado_disabled_2.html', context)
     else:
         form = DeshabilitarAseguradoForm(instance=aseguradoActivate)
         data['form_is_valid'] = False
@@ -219,6 +226,7 @@ def PolizasDisableView(request):
 
 # Create
 
+
 @login_required(login_url='login')
 def CreatePoliza(request):
     if request.method == 'POST':
@@ -265,6 +273,7 @@ def DeletePoliza(request, id):
             'dashboard/polizas/poliza_delete.html', context, request=request)
     return JsonResponse(data)
 
+
 def ReactivatePoliza(request, id):
     data = dict()
     polizaActivate = get_object_or_404(Poliza, id=id)
@@ -286,7 +295,6 @@ def ReactivatePoliza(request, id):
         data['html_form'] = render_to_string(
             'dashboard/polizas/poliza_reactivate.html', context, request=request)
     return JsonResponse(data)
-
 
 
 # Crud Siniestro
@@ -321,13 +329,15 @@ def SiniestroView(request):
     return render(request, 'dashboard/siniestros/siniestro.html', context)
 
 
-## Listar siniestros finalizandos
+# Listar siniestros finalizandos
 def SiniestroDisabledView(request):
-    siniestrosDisable = Siniestro.objects.filter(est_siniestro_id_est_siniestro=7).order_by('id')
+    siniestrosDisable = Siniestro.objects.filter(
+        est_siniestro_id_est_siniestro=7).order_by('id')
     context = {'siniestrosDisable': siniestrosDisable}
     return render(request, 'dashboard/siniestros/siniestro_disabled.html', context)
 
 # # Create
+
 
 @login_required(login_url='login')
 def CreateSiniestro(request):
@@ -490,6 +500,7 @@ def ReactivateTaller(request, id):
             'dashboard/talleres/taller_reactivate.html', context, request=request)
     return JsonResponse(data)
 
+
 def AseguradoConsultaView(request):
     queryset1 = request.GET.get("rut_asegurado")
     queryset2 = request.GET.get("n_poliza")
@@ -505,3 +516,10 @@ def AseguradoConsultaView(request):
 
     return render(request, 'dashboard/asegurados/asegurado_consulta.html', {'siniestros': siniestros})
 
+
+def get_data(request, *args, **kwargs):
+    data = {
+        "siniestros" : 100,
+        "autos" : 10,
+    }
+    return JsonResponse(data)

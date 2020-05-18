@@ -2,24 +2,23 @@
 
 {% block content %}
 
-    <div class="d-sm-flex align-items-center justify-content-end mb-4">
-        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <a class="text-decoration-none text-light"
-               href="{% url 'siniestros' %}">
-                <i class="fas fa-file-invoice fa-sm text-white-50"></i> Siniestro
-            </a>
-        </button>
+<div class="d-sm-flex align-items-center justify-content-start mb-4">
+    <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a class="text-decoration-none text-light" href="{% url 'siniestros' %}">
+            <i class="fas fa-arrow-circle-left fa-sm text-white-50"></i> Volver
+        </a>
+    </button>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Siniestros Finalizados</h6>
     </div>
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Siniestros Finalizados</h6>
-        </div>
 
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover text-center" id="table_siniestro" width="100%"
-                       cellspacing="0">
-                    <thead>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center" id="table_siniestro" width="100%"
+                cellspacing="0">
+                <thead>
                     <tr>
                         <th scope="col">N° Siniestro</th>
                         <th scope="col">N° Póliza</th>
@@ -28,13 +27,13 @@
                         <th scope="col">Taller Asignado</th>
                         <th scope="col">Patente Grúa</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
                     {% include "dashboard/siniestros/siniestro_disabled_2.html" %}
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
 {% endblock %}

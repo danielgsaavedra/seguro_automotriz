@@ -1,2247 +1,2251 @@
 [
-{
-"model": "dashboard.region",
-  "pk": 1,
-  "fields": {
-	"nombre":"ARICA Y PARINACOTA"
+	{
+		"model": "dashboard.region",
+		"pk": 1,
+		"fields": {
+			"nombre": "ARICA Y PARINACOTA"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 2,
+		"fields": {
+			"nombre": "TARAPACA"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 3,
+		"fields": {
+			"nombre": "ANTOFAGASTA"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 4,
+		"fields": {
+			"nombre": "ATACAMA"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 5,
+		"fields": {
+			"nombre": "COQUIMBO"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 6,
+		"fields": {
+			"nombre": "VALPARAISO"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 7,
+		"fields": {
+			"nombre": "METROPOLITANA DE SANTIAGO"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 8,
+		"fields": {
+			"nombre": "LIBERTADOR GENERAL BERNARDO O HIGGINS"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 9,
+		"fields": {
+			"nombre": "MAULE"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 10,
+		"fields": {
+			"nombre": "NUBLE"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 11,
+		"fields": {
+			"nombre": "BIOBIO"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 12,
+		"fields": {
+			"nombre": "LA ARAUCANIA"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 13,
+		"fields": {
+			"nombre": "LOS RIOS"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 14,
+		"fields": {
+			"nombre": "LOS LAGOS"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 15,
+		"fields": {
+			"nombre": "AYSEN DEL GENERAL CARLOS IBANEZ DEL CAMPO"
+		}
+	},
+	{
+		"model": "dashboard.region",
+		"pk": 16,
+		"fields": {
+			"nombre": "MAGALLANES Y DE LA ANTARTICA CHILENA"
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 1,
+		"fields": {
+			"nombre": "ARICA",
+			"region_nro_region": 1
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 2,
+		"fields": {
+			"nombre": "CAMARONES",
+			"region_nro_region": 1
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 3,
+		"fields": {
+			"nombre": "GENERAL LAGOS",
+			"region_nro_region": 1
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 4,
+		"fields": {
+			"nombre": "IQUIQUE",
+			"region_nro_region": 2
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 5,
+		"fields": {
+			"nombre": "CAMINA",
+			"region_nro_region": 2
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 6,
+		"fields": {
+			"nombre": "COLCHANE",
+			"region_nro_region": 2
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 7,
+		"fields": {
+			"nombre": "ANTOFAGASTA",
+			"region_nro_region": 3
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 8,
+		"fields": {
+			"nombre": "MEJILLONES",
+			"region_nro_region": 3
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 9,
+		"fields": {
+			"nombre": "SIERRA GORDA",
+			"region_nro_region": 3
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 10,
+		"fields": {
+			"nombre": "SAN PEDRO DE ATACAMA",
+			"region_nro_region": 3
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 11,
+		"fields": {
+			"nombre": "MARIA ELENA",
+			"region_nro_region": 4
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 12,
+		"fields": {
+			"nombre": "TOCOPILLA",
+			"region_nro_region": 4
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 13,
+		"fields": {
+			"nombre": "COPIAPO",
+			"region_nro_region": 4
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 14,
+		"fields": {
+			"nombre": "TIERRA AMARILLA",
+			"region_nro_region": 4
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 15,
+		"fields": {
+			"nombre": "SALAMANCA",
+			"region_nro_region": 5
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 16,
+		"fields": {
+			"nombre": "COQUIMBO",
+			"region_nro_region": 5
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 17,
+		"fields": {
+			"nombre": "LA HIGUERA",
+			"region_nro_region": 5
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 18,
+		"fields": {
+			"nombre": "LA SERENA",
+			"region_nro_region": 5
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 19,
+		"fields": {
+			"nombre": "ISLA DE PASCUA",
+			"region_nro_region": 6
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 20,
+		"fields": {
+			"nombre": "QUILPUE",
+			"region_nro_region": 6
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 21,
+		"fields": {
+			"nombre": "VALPARAISO",
+			"region_nro_region": 6
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 22,
+		"fields": {
+			"nombre": "VILLA ALEMANA",
+			"region_nro_region": 6
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 23,
+		"fields": {
+			"nombre": "VINA DEL MAR",
+			"region_nro_region": 6
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 24,
+		"fields": {
+			"nombre": "PROVIDENCIA",
+			"region_nro_region": 7
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 25,
+		"fields": {
+			"nombre": "RECOLETA",
+			"region_nro_region": 7
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 26,
+		"fields": {
+			"nombre": "SANTIAGO",
+			"region_nro_region": 7
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 27,
+		"fields": {
+			"nombre": "VITACURA",
+			"region_nro_region": 7
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 28,
+		"fields": {
+			"nombre": "PEUMO",
+			"region_nro_region": 8
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 29,
+		"fields": {
+			"nombre": "RANCAGUA",
+			"region_nro_region": 8
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 30,
+		"fields": {
+			"nombre": "SAN VICENTE",
+			"region_nro_region": 8
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 31,
+		"fields": {
+			"nombre": "PICHILEMU",
+			"region_nro_region": 8
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 32,
+		"fields": {
+			"nombre": "SAGRADA FAMILIA",
+			"region_nro_region": 9
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 33,
+		"fields": {
+			"nombre": "LINARES",
+			"region_nro_region": 9
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 34,
+		"fields": {
+			"nombre": "MAULE",
+			"region_nro_region": 9
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 35,
+		"fields": {
+			"nombre": "TALCA",
+			"region_nro_region": 9
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 36,
+		"fields": {
+			"nombre": "CHILLAN",
+			"region_nro_region": 10
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 37,
+		"fields": {
+			"nombre": "COBQUECURA",
+			"region_nro_region": 10
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 38,
+		"fields": {
+			"nombre": "QUIRIHUE",
+			"region_nro_region": 10
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 39,
+		"fields": {
+			"nombre": "YUNGAY",
+			"region_nro_region": 10
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 40,
+		"fields": {
+			"nombre": "SAN ROSENDO",
+			"region_nro_region": 11
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 41,
+		"fields": {
+			"nombre": "CONCEPCION",
+			"region_nro_region": 11
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 42,
+		"fields": {
+			"nombre": "CORONEL",
+			"region_nro_region": 11
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 43,
+		"fields": {
+			"nombre": "HUALPEN",
+			"region_nro_region": 11
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 44,
+		"fields": {
+			"nombre": "NUEVA IMPERIAL",
+			"region_nro_region": 12
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 45,
+		"fields": {
+			"nombre": "PUCON",
+			"region_nro_region": 12
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 46,
+		"fields": {
+			"nombre": "TEMUCO",
+			"region_nro_region": 12
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 47,
+		"fields": {
+			"nombre": "VILLARRICA",
+			"region_nro_region": 12
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 48,
+		"fields": {
+			"nombre": "LANCO",
+			"region_nro_region": 13
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 49,
+		"fields": {
+			"nombre": "LOS LAGOS",
+			"region_nro_region": 13
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 50,
+		"fields": {
+			"nombre": "PANGUIPULLI",
+			"region_nro_region": 13
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 51,
+		"fields": {
+			"nombre": "VALDIVIA",
+			"region_nro_region": 13
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 52,
+		"fields": {
+			"nombre": "CASTRO",
+			"region_nro_region": 14
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 53,
+		"fields": {
+			"nombre": "PUERTO MONTT",
+			"region_nro_region": 14
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 54,
+		"fields": {
+			"nombre": "PUERTO VARAS",
+			"region_nro_region": 14
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 55,
+		"fields": {
+			"nombre": "OSORNO",
+			"region_nro_region": 14
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 56,
+		"fields": {
+			"nombre": "AYSEN",
+			"region_nro_region": 15
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 57,
+		"fields": {
+			"nombre": "COCHRANE",
+			"region_nro_region": 15
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 58,
+		"fields": {
+			"nombre": "O HIGGINS",
+			"region_nro_region": 15
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 59,
+		"fields": {
+			"nombre": "COYHAIQUE",
+			"region_nro_region": 15
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 60,
+		"fields": {
+			"nombre": "PUNTA ARENAS",
+			"region_nro_region": 16
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 61,
+		"fields": {
+			"nombre": "PORVENIR",
+			"region_nro_region": 16
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 62,
+		"fields": {
+			"nombre": "NATALES",
+			"region_nro_region": 16
+		}
+	},
+	{
+		"model": "dashboard.comuna",
+		"pk": 63,
+		"fields": {
+			"nombre": "TORRES DEL PAINE",
+			"region_nro_region": 16
+		}
+	},
+	{
+		"model": "dashboard.tipovehiculo",
+		"pk": 1,
+		"fields": {
+			"tipo": "AUTOMOVIL"
+		}
+	},
+	{
+		"model": "dashboard.tipovehiculo",
+		"pk": 2,
+		"fields": {
+			"tipo": "CAMIONETA"
+		}
+	},
+	{
+		"model": "dashboard.tipovehiculo",
+		"pk": 3,
+		"fields": {
+			"tipo": "MOTO"
+		}
+	},
+	{
+		"model": "dashboard.tipovehiculo",
+		"pk": 4,
+		"fields": {
+			"tipo": "CAMION"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 1,
+		"fields": {
+			"nombre": "ABARTH"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 2,
+		"fields": {
+			"nombre": "ALFA ROMEO"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 3,
+		"fields": {
+			"nombre": "ASTON MARTIN"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 4,
+		"fields": {
+			"nombre": "AUDI"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 5,
+		"fields": {
+			"nombre": "BENTLEY"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 6,
+		"fields": {
+			"nombre": "BMW"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 7,
+		"fields": {
+			"nombre": "CADILLAC"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 8,
+		"fields": {
+			"nombre": "CATERHAM"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 9,
+		"fields": {
+			"nombre": "CHEVROLET"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 10,
+		"fields": {
+			"nombre": "CITROEN"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 11,
+		"fields": {
+			"nombre": "DACIA"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 12,
+		"fields": {
+			"nombre": "FERRARI"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 13,
+		"fields": {
+			"nombre": "FIAT"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 14,
+		"fields": {
+			"nombre": "FORD"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 15,
+		"fields": {
+			"nombre": "HONDA"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 16,
+		"fields": {
+			"nombre": "INFINITI"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 17,
+		"fields": {
+			"nombre": "ISUZU"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 18,
+		"fields": {
+			"nombre": "IVECO"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 19,
+		"fields": {
+			"nombre": "JAGUAR"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 20,
+		"fields": {
+			"nombre": "JEEP"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 21,
+		"fields": {
+			"nombre": "KIA"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 22,
+		"fields": {
+			"nombre": "KTM"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 23,
+		"fields": {
+			"nombre": "LADA"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 24,
+		"fields": {
+			"nombre": "LAMBORGUINI"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 25,
+		"fields": {
+			"nombre": "LANCIA"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 26,
+		"fields": {
+			"nombre": "LAND ROVER"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 27,
+		"fields": {
+			"nombre": "LEXUS"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 28,
+		"fields": {
+			"nombre": "LOTUS"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 29,
+		"fields": {
+			"nombre": "MASERATI"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 30,
+		"fields": {
+			"nombre": "MAZDA"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 31,
+		"fields": {
+			"nombre": "MERCEDEZ-BENZ"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 32,
+		"fields": {
+			"nombre": "MINI"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 33,
+		"fields": {
+			"nombre": "MITSUBISHI"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 34,
+		"fields": {
+			"nombre": "MORGAN"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 35,
+		"fields": {
+			"nombre": "NISSAN"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 36,
+		"fields": {
+			"nombre": "OPAL"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 37,
+		"fields": {
+			"nombre": "PEUGEOT"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 38,
+		"fields": {
+			"nombre": "PIAGGIO"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 39,
+		"fields": {
+			"nombre": "PORSCHE"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 40,
+		"fields": {
+			"nombre": "RENAULT"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 41,
+		"fields": {
+			"nombre": "ROLLS-ROYCE"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 42,
+		"fields": {
+			"nombre": "SEAT"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 43,
+		"fields": {
+			"nombre": "SKODA"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 44,
+		"fields": {
+			"nombre": "SMART"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 45,
+		"fields": {
+			"nombre": "SSANGYONG"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 46,
+		"fields": {
+			"nombre": "SUBARU"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 47,
+		"fields": {
+			"nombre": "SUZUKI"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 48,
+		"fields": {
+			"nombre": "TATA"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 49,
+		"fields": {
+			"nombre": "TESLA"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 50,
+		"fields": {
+			"nombre": "TOYOTA"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 51,
+		"fields": {
+			"nombre": "VOLKSWAGEN"
+		}
+	},
+	{
+		"model": "dashboard.marca",
+		"pk": 52,
+		"fields": {
+			"nombre": "VOLVO"
+		}
+	},
+	{
+		"model": "dashboard.severidaddano",
+		"pk": 1,
+		"fields": {
+			"nombre": "BAJO"
+		}
+	},
+	{
+		"model": "dashboard.severidaddano",
+		"pk": 2,
+		"fields": {
+			"nombre": "MEDIO"
+		}
+	},
+	{
+		"model": "dashboard.severidaddano",
+		"pk": 3,
+		"fields": {
+			"nombre": "ALTO"
+		}
+	},
+	{
+		"model": "dashboard.tipodano",
+		"pk": 1,
+		"fields": {
+			"nombre": "ACCESORIOS FALTANTES",
+			"descripcion": "SI FALTA CUALQUIER ACCESORIOS COMO ESPEJOS RETROVISORES, LUCES, FOCOS, TAPICERIA"
+		}
+	},
+	{
+		"model": "dashboard.tipodano",
+		"pk": 2,
+		"fields": {
+			"nombre": "DESCUADRE DE CARROCERIA",
+			"descripcion": "SI HAY DESCUADRE DE LA CARROCERIA DEL VEHICULO"
+		}
+	},
+	{
+		"model": "dashboard.tipodano",
+		"pk": 3,
+		"fields": {
+			"nombre": "ABOLLADURAS",
+			"descripcion": "EXISTEN ABOLLADURAS EN ALGUNA PARTE DEL VEHICULO"
+		}
+	},
+	{
+		"model": "dashboard.tipodano",
+		"pk": 4,
+		"fields": {
+			"nombre": "RUEDAS DAÑADAS",
+			"descripcion": "ALGUNA RUEDA FALTANTE, DAÑADA, SIN AIRE"
+		}
+	},
+	{
+		"model": "dashboard.tipodano",
+		"pk": 5,
+		"fields": {
+			"nombre": "VIDRIOS DAÑADOS",
+			"descripcion": "VIDRIOS DE VENTANAS DAÑADOS O QUEBRADOS, VIDRIOS DELANTEROS Y\/O TRASEROS DAÑADOS O QUEBRADOS"
+		}
+	},
+	{
+		"model": "dashboard.tipodano",
+		"pk": 6,
+		"fields": {
+			"nombre": "PINTURA",
+			"descripcion": "SI LA PINTURA ESTA RAYADA, EN MAL ESTADO, O NO ESTA PINTADO"
+		}
+	},
+	{
+		"model": "dashboard.tipodano",
+		"pk": 7,
+		"fields": {
+			"nombre": "OTROS",
+			"descripcion": "CUALQUIER OTRO DAÑO"
+		}
+	},
+	{
+		"model": "dashboard.tipoaccidente",
+		"pk": 1,
+		"fields": {
+			"nombre": "DAÑOS MATERIALES AL VEHICULO"
+		}
+	},
+	{
+		"model": "dashboard.tipoaccidente",
+		"pk": 2,
+		"fields": {
+			"nombre": "ROBO, HURTO O USO NO AUTORIZADO"
+		}
+	},
+	{
+		"model": "dashboard.tipoaccidente",
+		"pk": 3,
+		"fields": {
+			"nombre": "RESPONSABILIDAD CIVIL"
+		}
+	},
+	{
+		"model": "dashboard.tipoaccidente",
+		"pk": 4,
+		"fields": {
+			"nombre": "ROBO DE ACCESORIOS"
+		}
+	},
+	{
+		"model": "dashboard.tipoaccidente",
+		"pk": 5,
+		"fields": {
+			"nombre": "DAÑOS MATERIALES POR ACTOS MALICIOSOS"
+		}
+	},
+	{
+		"model": "dashboard.tipoaccidente",
+		"pk": 6,
+		"fields": {
+			"nombre": "DAÑOS MATERIALES POR RIESGOS DE LA NATURALEZA"
+		}
+	},
+	{
+		"model": "dashboard.tipoaccidente",
+		"pk": 7,
+		"fields": {
+			"nombre": "DAÑOS MATERIALES POR HUELGA Y TERRORISMO"
+		}
+	},
+	{
+		"model": "dashboard.tipoaccidente",
+		"pk": 8,
+		"fields": {
+			"nombre": "DAÑOS MATERIALES CAUSADOS POR LA PROPIA CARGA"
+		}
+	},
+	{
+		"model": "dashboard.tipoaccidente",
+		"pk": 9,
+		"fields": {
+			"nombre": "DAÑOS A TERCEROS CAUSADOS POR LA PROPIA CARGA"
+		}
+	},
+	{
+		"model": "dashboard.tipoaccidente",
+		"pk": 10,
+		"fields": {
+			"nombre": "DEFENSA PENAL Y CONSTITUCION DE FIANZAS"
+		}
+	},
+	{
+		"model": "dashboard.tipoacta",
+		"pk": 1,
+		"fields": {
+			"nombre": "RECEPCION"
+		}
+	},
+	{
+		"model": "dashboard.tipoacta",
+		"pk": 2,
+		"fields": {
+			"nombre": "RECHAZO"
+		}
+	},
+	{
+		"model": "dashboard.tipoacta",
+		"pk": 3,
+		"fields": {
+			"nombre": "RETIRO"
+		}
+	},
+	{
+		"model": "dashboard.tipoplan",
+		"pk": 1,
+		"fields": {
+			"nombre": "CLASSIC",
+			"descripcion": "RESPONSABILIDAD CIVIL: UF 500,TIPO DE TALLER: MULTIMARCA. HUELGA Y TERRORISMO, ACTOS MALICIOSOS",
+			"valor": 20500,
+			"cobertura_max": 500000
+		}
+	},
+	{
+		"model": "dashboard.tipoplan",
+		"pk": 2,
+		"fields": {
+			"nombre": "MEDIUM",
+			"descripcion": "RESPONSABILIDAD CIVIL: UF 700,TIPO DE TALLER:MARCA. HUELGA Y TERRORISMO, ACTOS MALICIOSOS,DAÑOS GRANIZO, AUTO DE REEMPLAZO:15 DÍAS",
+			"valor": 29500,
+			"cobertura_max": 1000000
+		}
+	},
+	{
+		"model": "dashboard.tipoplan",
+		"pk": 3,
+		"fields": {
+			"nombre": "PREMIUM",
+			"descripcion": "RESPONSABILIDAD CIVIL: UF 850,TIPO DE TALLER:MARCA. HUELGA Y TERRORISMO,ACTOS MALICIOSOS,DAÑOS GRANIZO,DAÑOS MATERIALES POR PROPIA CARGA,AUTO DE REEMPLAZO:30 DÍAS",
+			"valor": 41000,
+			"cobertura_max": 2000000
+		}
+	},
+	{
+		"model": "dashboard.tipoplan",
+		"pk": 4,
+		"fields": {
+			"nombre": "FULL",
+			"descripcion": "RESPONSABILIDAD CIVIL: UF 1000,TIPO DE TALLER:MARCA. HUELGA Y TERRORISMO,ACTOS MALICIOSOS,DAÑOS GRANIZO,DAÑOS MATERIALES POR PROPIA CARGA,ROBO HURTO O USO NO AUTORIZADO,AUTO DE REEMPLAZO:ILIMITADO",
+			"valor": 100000,
+			"cobertura_max": 9999999999
+		}
+	},
+	{
+		"model": "dashboard.estadosiniestro",
+		"pk": 1,
+		"fields": {
+			"nombre": "EN CURSO",
+			"descripcion": "REGISTRO DEL SINIESTRO"
+		}
+	},
+	{
+		"model": "dashboard.estadosiniestro",
+		"pk": 2,
+		"fields": {
+			"nombre": "RECEPCIONADO",
+			"descripcion": "EL VEHÍCULO ES INGRESADO AL TALLER MECANICO ASIGNADO"
+		}
+	},
+	{
+		"model": "dashboard.estadosiniestro",
+		"pk": 3,
+		"fields": {
+			"nombre": "INSPECCIONADO",
+			"descripcion": "SE CREA EL INFORME DE DAÑOS VEHÍCULO"
+		}
+	},
+	{
+		"model": "dashboard.estadosiniestro",
+		"pk": 4,
+		"fields": {
+			"nombre": "EN REPARACION",
+			"descripcion": "REPARANDO VEHÍCULO"
+		}
+	},
+	{
+		"model": "dashboard.estadosiniestro",
+		"pk": 5,
+		"fields": {
+			"nombre": "RECHAZADO",
+			"descripcion": "PRESUPUESTO RECHAZADO"
+		}
+	},
+	{
+		"model": "dashboard.estadosiniestro",
+		"pk": 6,
+		"fields": {
+			"nombre": "REPARADO",
+			"descripcion": "VEHÍCULO LISTO PARA SER RETIRADO"
+		}
+	},
+	{
+		"model": "dashboard.estadosiniestro",
+		"pk": 7,
+		"fields": {
+			"nombre": "FINALIZADO",
+			"descripcion": "SINIESTRO FINALIZADO"
+		}
+	},
+	{
+		"model": "dashboard.estadosiniestro",
+		"pk": 8,
+		"fields": {
+			"nombre": "PENDIENTE",
+			"descripcion": "VEHÍCULO ESPERANDO DECISIÓN DE LA ASEGURADORA"
+		}
+	},
+	{
+		"model": "dashboard.usuario",
+		"pk": 1,
+		"fields": {
+			"password": "pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+			"rut_usuario": "18704536-3",
+			"primer_nombre": "JOAQUIN",
+			"segundo_nombre": "ESTEBAN",
+			"primer_apellido": "LOBOS",
+			"segundo_apellido": "PARRA",
+			"email": "LOBOS.JOAQUIN@HOTMAIL.COM",
+			"telefono": 934567226,
+			"rol": 1
+		}
+	},
+	{
+		"model": "dashboard.usuario",
+		"pk": 2,
+		"fields": {
+			"password": "pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+			"rut_usuario": "17553453-1",
+			"primer_nombre": "DIEGO",
+			"segundo_nombre": "ANDRES",
+			"primer_apellido": "PEREZ",
+			"segundo_apellido": "IBARRA",
+			"email": "PEREZ.DEIGO@HOTMAIL.COM",
+			"telefono": 987560724,
+			"rol": 1
+		}
+	},
+	{
+		"model": "dashboard.usuario",
+		"pk": 3,
+		"fields": {
+			"password": "pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+			"rut_usuario": "19545246-7",
+			"primer_nombre": "JUAN",
+			"segundo_nombre": "LUIS",
+			"primer_apellido": "HIDALGO",
+			"segundo_apellido": "BELTRAN",
+			"email": "HIDALGO.JUAN@HOTMAIL.COM",
+			"telefono": 955364219,
+			"rol": 1
+		}
+	},
+	{
+		"model": "dashboard.usuario",
+		"pk": 4,
+		"fields": {
+			"password": "pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+			"rut_usuario": "21583095-3",
+			"primer_nombre": "DANIEL",
+			"segundo_nombre": "FABRIZIO",
+			"primer_apellido": "COPANO",
+			"segundo_apellido": "SAAVEDRA",
+			"email": "DFABRIZIOCOPASAA@GMAIL.COM",
+			"telefono": 973014432,
+			"rol": 2
+		}
+	},
+	{
+		"model": "dashboard.usuario",
+		"pk": 5,
+		"fields": {
+			"password": "pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+			"rut_usuario": "15004863-K",
+			"primer_nombre": "RODRIGO",
+			"segundo_nombre": "SALOMON",
+			"primer_apellido": "HURTADO",
+			"segundo_apellido": "CABRERA",
+			"email": "RODROGOROBADO@GMAIL.COM",
+			"telefono": 986904452,
+			"rol": 2
+		}
+	},
+	{
+		"model": "dashboard.usuario",
+		"pk": 6,
+		"fields": {
+			"password": "pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+			"rut_usuario": "13934482-1",
+			"primer_nombre": "FELIPE",
+			"segundo_nombre": "RONALD",
+			"primer_apellido": "HUITO",
+			"segundo_apellido": "MADARIAGA",
+			"email": "FELIPE.RONALD@HOTMAIL.COM",
+			"telefono": 949890065,
+			"rol": 2
+		}
+	},
+	{
+		"model": "dashboard.usuario",
+		"pk": 8,
+		"fields": {
+			"password": "pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+			"rut_usuario": "16003846-2",
+			"primer_nombre": "ROBERTO",
+			"segundo_nombre": "DIEGO",
+			"primer_apellido": "SANDON",
+			"segundo_apellido": "URRUTIA",
+			"email": "ROSANDONU@GMAIL.COM",
+			"telefono": 999856321,
+			"rol": 3
+		}
+	},
+	{
+		"model": "dashboard.usuario",
+		"pk": 9,
+		"fields": {
+			"password": "pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+			"rut_usuario": "10128673-4",
+			"primer_nombre": "DANILO",
+			"segundo_nombre": "SAMUEL",
+			"primer_apellido": "MUÑOZ",
+			"segundo_apellido": "CABEZAS",
+			"email": "DANILOCABEZAS@HOTMAIL.COM",
+			"telefono": 957241905,
+			"rol": 3
+		}
+	},
+	{
+		"model": "dashboard.usuario",
+		"pk": 10,
+		"fields": {
+			"password": "pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+			"rut_usuario": "12693201-3",
+			"primer_nombre": "FELIPE",
+			"segundo_nombre": "ANDRES",
+			"primer_apellido": "CATALAN",
+			"segundo_apellido": "CATALAN",
+			"email": "FELIPE.CATALAN@HOTMAIL.COM",
+			"telefono": 986345676,
+			"rol": 4
+		}
+	},
+	{
+		"model": "dashboard.usuario",
+		"pk": 11,
+		"fields": {
+			"password": "pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+			"rut_usuario": "19252234-K",
+			"primer_nombre": "YARENKA",
+			"segundo_nombre": "MARCELA",
+			"primer_apellido": "TOLEDO",
+			"segundo_apellido": "MOLINA",
+			"email": "YARE2519@GMAIL.COM",
+			"telefono": 967557486,
+			"rol": 4
+		}
+	},
+	{
+		"model": "dashboard.usuario",
+		"pk": 12,
+		"fields": {
+			"password": "pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+			"rut_usuario": "19981900-3",
+			"primer_nombre": "PEDRO",
+			"segundo_nombre": "AGUIRRE",
+			"primer_apellido": "COLLADO",
+			"segundo_apellido": "DELGADO",
+			"email": "PEDROCOLLADO@HOTMAIL.COM",
+			"telefono": 934512340,
+			"rol": 4
+		}
+	},
+	{
+		"model": "dashboard.asegurado",
+		"pk": "20554886-7",
+		"fields": {
+			"primer_nombre": "ROSA",
+			"segundo_nombre": "ELIANA",
+			"primer_apellido": "PARRA",
+			"segundo_apeliido": "ROMAN",
+			"correo": "PARRA.ROSA@HOTMAIL.COM",
+			"telefono": 969871247,
+			"fecha_nacimiento": "1997-08-12",
+			"estado": "1",
+			"usuario_rut_usuario": 1
+		}
+	},
+	{
+		"model": "dashboard.asegurado",
+		"pk": "19574568-3",
+		"fields": {
+			"primer_nombre": "ENRIQUE",
+			"segundo_nombre": "SEBASTIAN",
+			"primer_apellido": "ROJAS",
+			"segundo_apeliido": "VERA",
+			"correo": "ROJAS.ENRIQUE@HOTMAIL.COM",
+			"telefono": 987225603,
+			"fecha_nacimiento": "1995-07-09",
+			"estado": "1",
+			"usuario_rut_usuario": 1
+		}
+	},
+	{
+		"model": "dashboard.asegurado",
+		"pk": "9078573-0",
+		"fields": {
+			"primer_nombre": "ALEJANDRO",
+			"segundo_nombre": "ELIAS",
+			"primer_apellido": "POBLETE",
+			"segundo_apeliido": "ROSALES",
+			"correo": "ALEJANDRO_PARROSA@HOTMAIL.COM",
+			"telefono": 967231011,
+			"fecha_nacimiento": "1967-02-17",
+			"estado": "1",
+			"usuario_rut_usuario": 1
+		}
+	},
+	{
+		"model": "dashboard.asegurado",
+		"pk": "19932098-5",
+		"fields": {
+			"primer_nombre": "JESUS",
+			"segundo_nombre": "ERNESTO",
+			"primer_apellido": "GONZALEZ",
+			"segundo_apeliido": "RICCO",
+			"correo": "JESUSGONZALEZRICCO@GMAIL.COM",
+			"telefono": 959085454,
+			"fecha_nacimiento": "1994-11-08",
+			"estado": "1",
+			"usuario_rut_usuario": 1
+		}
+	},
+	{
+		"model": "dashboard.asegurado",
+		"pk": "13456223-1",
+		"fields": {
+			"primer_nombre": "JULIO",
+			"segundo_nombre": "AQUILES",
+			"primer_apellido": "BAEZA",
+			"segundo_apeliido": "CARNAL",
+			"correo": "AQUILES.BAEZA@GMAIL.COM",
+			"telefono": 923456132,
+			"fecha_nacimiento": "1983-10-27",
+			"estado": "1",
+			"usuario_rut_usuario": 1
+		}
+	},
+	{
+		"model": "dashboard.asegurado",
+		"pk": "23568113-7",
+		"fields": {
+			"primer_nombre": "LUIS",
+			"segundo_nombre": "FELIPE",
+			"primer_apellido": "LAZO",
+			"segundo_apeliido": "LOYOLA",
+			"correo": "LUISLOYOLA@GMAIL.COM",
+			"telefono": 987225677,
+			"fecha_nacimiento": "1977-04-26",
+			"estado": "1",
+			"usuario_rut_usuario": 1
+		}
+	},
+	{
+		"model": "dashboard.vehiculo",
+		"pk": "JP-DA-22",
+		"fields": {
+			"anio": 2013,
+			"modelo": "SPARK",
+			"nro_motor": "9GAMM6101AB01512",
+			"asegurado_rut_asegurado": "20554886-7",
+			"marca_id_marca": 9,
+			"tipo_vehiculo_id_tipo_auto": 1
+		}
+	},
+	{
+		"model": "dashboard.vehiculo",
+		"pk": "GW-RE-32",
+		"fields": {
+			"anio": 2015,
+			"modelo": "CIVIC",
+			"nro_motor": "7YEAS4562JK4444",
+			"asegurado_rut_asegurado": "19574568-3",
+			"marca_id_marca": 15,
+			"tipo_vehiculo_id_tipo_auto": 1
+		}
+	},
+	{
+		"model": "dashboard.vehiculo",
+		"pk": "GR-PQ-12",
+		"fields": {
+			"anio": 2015,
+			"modelo": "F 750 GS",
+			"nro_motor": "52WCV00967",
+			"asegurado_rut_asegurado": "9078573-0",
+			"marca_id_marca": 6,
+			"tipo_vehiculo_id_tipo_auto": 3
+		}
+	},
+	{
+		"model": "dashboard.vehiculo",
+		"pk": "FU-CK-69",
+		"fields": {
+			"anio": 2020,
+			"modelo": "MURCIELAGO",
+			"nro_motor": "WKL2500117",
+			"asegurado_rut_asegurado": "19932098-5",
+			"marca_id_marca": 24,
+			"tipo_vehiculo_id_tipo_auto": 1
+		}
+	},
+	{
+		"model": "dashboard.vehiculo",
+		"pk": "YY-F8-CQ",
+		"fields": {
+			"anio": 2016,
+			"modelo": "LUV",
+			"nro_motor": "K015453XS",
+			"asegurado_rut_asegurado": "23568113-7",
+			"marca_id_marca": 9,
+			"tipo_vehiculo_id_tipo_auto": 2
+		}
+	},
+	{
+		"model": "dashboard.vehiculo",
+		"pk": "RR-XZ-WW",
+		"fields": {
+			"anio": 2020,
+			"modelo": "CELERIO",
+			"nro_motor": "K025453XS",
+			"asegurado_rut_asegurado": "13456223-1",
+			"marca_id_marca": 47,
+			"tipo_vehiculo_id_tipo_auto": 1
+		}
+	},
+	{
+		"model": "dashboard.poliza",
+		"pk": 1,
+		"fields": {
+			"vigente": "1",
+			"fecha_inicio": "2020-04-14",
+			"fecha_fin": "2021-04-13",
+			"estado": "1",
+			"asegurado_rut_asegurado": "20554886-7",
+			"vehiculo_patente_vehiculo": "JP-DA-22"
+		}
+	},
+	{
+		"model": "dashboard.poliza",
+		"pk": 2,
+		"fields": {
+			"vigente": "0",
+			"fecha_inicio": "2020-05-17",
+			"fecha_fin": "2021-05-16",
+			"estado": "1",
+			"asegurado_rut_asegurado": "19574568-3",
+			"vehiculo_patente_vehiculo": "GW-RE-32"
+		}
+	},
+	{
+		"model": "dashboard.poliza",
+		"pk": 3,
+		"fields": {
+			"vigente": "0",
+			"fecha_inicio": "2018-07-10",
+			"fecha_fin": "2019-07-09",
+			"estado": "1",
+			"asegurado_rut_asegurado": "9078573-0",
+			"vehiculo_patente_vehiculo": "GR-PQ-12"
+		}
+	},
+	{
+		"model": "dashboard.poliza",
+		"pk": 4,
+		"fields": {
+			"vigente": "1",
+			"fecha_inicio": "2019-11-21",
+			"fecha_fin": "2020-11-20",
+			"estado": "1",
+			"asegurado_rut_asegurado": "19932098-5",
+			"vehiculo_patente_vehiculo": "FU-CK-69"
+		}
+	},
+	{
+		"model": "dashboard.poliza",
+		"pk": 5,
+		"fields": {
+			"vigente": "1",
+			"fecha_inicio": "2020-08-10",
+			"fecha_fin": "2021-08-09",
+			"estado": "1",
+			"asegurado_rut_asegurado": "13456223-1",
+			"vehiculo_patente_vehiculo": "RR-XZ-WW"
+		}
+	},
+	{
+		"model": "dashboard.poliza",
+		"pk": 6,
+		"fields": {
+			"vigente": "0",
+			"fecha_inicio": "2018-12-31",
+			"fecha_fin": "2019-12-30",
+			"estado": "1",
+			"asegurado_rut_asegurado": "23568113-7",
+			"vehiculo_patente_vehiculo": "YY-F8-CQ"
+		}
+	},
+	{
+		"model": "dashboard.taller",
+		"pk": 1,
+		"fields": {
+			"nombre": "KUPARIKAS DETERMINATION",
+			"razon_social": "SERVICIO TECNICO DE AUTOMOVILES",
+			"telefono": 965874503,
+			"correo": "KURAPIKA.ROTO@GMAIL.COM",
+			"capacidad_taller": 20,
+			"estado": "0",
+			"estado_delete": "1",
+			"usuario_rut_usuario": 9
+		}
+	},
+	{
+		"model": "dashboard.taller",
+		"pk": 2,
+		"fields": {
+			"nombre": "EL CHANO",
+			"razon_social": "SERVICIO TECNICO DE AUTOMOVILES",
+			"telefono": 993302252,
+			"correo": "ELCHANOMOVIL@GMAIL.COM",
+			"capacidad_taller": 17,
+			"estado": "1",
+			"estado_delete": "1",
+			"usuario_rut_usuario": 8
+		}
+	},
+	{
+		"model": "dashboard.taller",
+		"pk": 3,
+		"fields": {
+			"nombre": "MI CACHARRITO",
+			"razon_social": "TALLER MECANICO LIMITADA",
+			"telefono": 957241905,
+			"correo": "MI.CACHARRITO@GMAIL.COM",
+			"capacidad_taller": 10,
+			"estado": "1",
+			"estado_delete": "1",
+			"usuario_rut_usuario": 9
+		}
+	},
+	{
+		"model": "dashboard.serviciogrua",
+		"pk": 1,
+		"fields": {
+			"nombre": "MATE S.A.",
+			"razon_social": "SERVICIO DE TRAYECTO DE SINIESTROS",
+			"telefono": 965214467,
+			"correo": "MATE.WEB@HOTMAIL.COM",
+			"usuario_rut_usuario": 10
+		}
+	},
+	{
+		"model": "dashboard.serviciogrua",
+		"pk": 2,
+		"fields": {
+			"nombre": "GRUFUS S.A.",
+			"razon_social": "SERVICIO DE TRAYECTO DE SINIESTROS",
+			"telefono": 979204460,
+			"correo": "RUFUS@HOTMAIL.COM",
+			"usuario_rut_usuario": 11
+		}
+	},
+	{
+		"model": "dashboard.serviciogrua",
+		"pk": 3,
+		"fields": {
+			"nombre": "A PAPTITA NOMAH",
+			"razon_social": "SERVICIO DE GRUA Y TRANSPORTES ESPECIALES",
+			"telefono": 931442147,
+			"correo": "APATITANOMAH@GMAIL.COM",
+			"usuario_rut_usuario": 12
+		}
+	},
+	{
+		"model": "dashboard.grua",
+		"pk": "GG-KK-69",
+		"fields": {
+			"estado": "0",
+			"servicio_grua_id_servicio": 1,
+			"usuario_rut_usuario": 10
+		}
+	},
+	{
+		"model": "dashboard.grua",
+		"pk": "JJ-YY-21",
+		"fields": {
+			"estado": "1",
+			"servicio_grua_id_servicio": 1,
+			"usuario_rut_usuario": 10
+		}
+	},
+	{
+		"model": "dashboard.grua",
+		"pk": "VH-RT-44",
+		"fields": {
+			"estado": "1",
+			"servicio_grua_id_servicio": 2,
+			"usuario_rut_usuario": 11
+		}
+	},
+	{
+		"model": "dashboard.grua",
+		"pk": "DN-97-02",
+		"fields": {
+			"estado": "0",
+			"servicio_grua_id_servicio": 2,
+			"usuario_rut_usuario": 11
+		}
+	},
+	{
+		"model": "dashboard.grua",
+		"pk": "SG-VG-12",
+		"fields": {
+			"estado": "0",
+			"servicio_grua_id_servicio": 3,
+			"usuario_rut_usuario": 12
+		}
+	},
+	{
+		"model": "dashboard.grua",
+		"pk": "ZZ-ZZ-13",
+		"fields": {
+			"estado": "1",
+			"servicio_grua_id_servicio": 3,
+			"usuario_rut_usuario": 12
+		}
+	},
+	{
+		"model": "dashboard.planseguro",
+		"pk": 1,
+		"fields": {
+			"deducible": 0,
+			"poliza_id_poliza": 1,
+			"tipo_plan_id_tip_plan": 4
+		}
+	},
+	{
+		"model": "dashboard.planseguro",
+		"pk": 2,
+		"fields": {
+			"deducible": 20,
+			"poliza_id_poliza": 2,
+			"tipo_plan_id_tip_plan": 2
+		}
+	},
+	{
+		"model": "dashboard.planseguro",
+		"pk": 3,
+		"fields": {
+			"deducible": 10,
+			"poliza_id_poliza": 3,
+			"tipo_plan_id_tip_plan": 4
+		}
+	},
+	{
+		"model": "dashboard.planseguro",
+		"pk": 4,
+		"fields": {
+			"deducible": 5,
+			"poliza_id_poliza": 4,
+			"tipo_plan_id_tip_plan": 1
+		}
+	},
+	{
+		"model": "dashboard.planseguro",
+		"pk": 5,
+		"fields": {
+			"deducible": 0,
+			"poliza_id_poliza": 5,
+			"tipo_plan_id_tip_plan": 4
+		}
+	},
+	{
+		"model": "dashboard.planseguro",
+		"pk": 6,
+		"fields": {
+			"deducible": 10,
+			"poliza_id_poliza": 6,
+			"tipo_plan_id_tip_plan": 3
+		}
+	},
+	{
+		"model": "dashboard.siniestro",
+		"pk": 1,
+		"fields": {
+			"fecha_hr": "2020-03-10",
+			"descripcion": "CAYO SOBRE EL CAPO UNA RAMA DE ARBOL ABOLLANDO EL MALETERO",
+			"asegurado_rut_asegurado": "19932098-5",
+			"est_siniestro_id_est_siniestro": 7,
+			"poliza_id_poliza": 4,
+			"taller_id_taller": 2,
+			"tipo_accidente_id_tipo_acc": 6,
+			"usuario_rut_usuario": 1
+		}
+	},
+	{
+		"model": "dashboard.siniestro",
+		"pk": 2,
+		"fields": {
+			"fecha_hr": "2020-04-15",
+			"descripcion": "IBA PISTEANDO COMO TODO UN CAMPEON, COMO TODO UN SCHUMACHER",
+			"asegurado_rut_asegurado": "20554886-7",
+			"est_siniestro_id_est_siniestro": 2,
+			"grua_patente_grua": "VH-RT-44",
+			"poliza_id_poliza": 1,
+			"taller_id_taller": 1,
+			"tipo_accidente_id_tipo_acc": 1,
+			"usuario_rut_usuario": 1
+		}
+	},
+	{
+		"model": "dashboard.siniestro",
+		"pk": 3,
+		"fields": {
+			"fecha_hr": "2020-03-01",
+			"descripcion": "PAVIMENTO RESBALADIZO OCASIONO CHOQUE",
+			"asegurado_rut_asegurado": "13456223-1",
+			"est_siniestro_id_est_siniestro": 1,
+			"grua_patente_grua": "JJ-YY-21",
+			"poliza_id_poliza": 5,
+			"taller_id_taller": 3,
+			"tipo_accidente_id_tipo_acc": 1,
+			"usuario_rut_usuario": 1
+		}
+	},
+	{
+		"model": "dashboard.formularioacta",
+		"pk": 1,
+		"fields": {
+			"fecha_hora": "2020-04-16",
+			"observaciones": "EL VEHICULO LLEGO CON DAÑOS EN PUERTA IZQUIERDA Y CHASIS",
+			"siniestro_id": 1,
+			"taller_id_taller": 2,
+			"tipo_acta_id_tipo_acta": 1,
+			"usuario_rut_usuario": 8
+		}
+	},
+	{
+		"model": "dashboard.formularioacta",
+		"pk": 2,
+		"fields": {
+			"fecha_hora": "2019-09-10",
+			"observaciones": "EL VEHICULO INGRESO AL TALLER FALTANDOLE LA RUEDA TRASERA DERECHA",
+			"siniestro_id": 2,
+			"taller_id_taller": 1,
+			"tipo_acta_id_tipo_acta": 1,
+			"usuario_rut_usuario": 8
+		}
+	},
+	{
+		"model": "dashboard.formularioacta",
+		"pk": 3,
+		"fields": {
+			"fecha_hora": "2019-11-07",
+			"observaciones": "SE PUSO RUEDA FALTANTE, CENTRADO DE EJE TRASERO",
+			"siniestro_id": 2,
+			"taller_id_taller": 1,
+			"tipo_acta_id_tipo_acta": 3,
+			"usuario_rut_usuario": 9
+		}
+	},
+	{
+		"model": "dashboard.informedano",
+		"pk": 1,
+		"fields": {
+			"fecha_hora": "2019-09-12",
+			"observaciones": "EL VEHICULO PRESENTA DAÑOS EN EL TREN TRASESO, FUE IMPACTADO POR OTRO VEHICULO Y A CAUSA DE ESTO SE DAÑO LA RUEDA TRASERA DERECHA",
+			"perdida_total": "0",
+			"severidad_dano_id_seve_dano": 2,
+			"siniestro_id": 2,
+			"taller_id_taller": 1,
+			"tipo_dano_id_tipo_dano": 4,
+			"vehiculo_patente_vehiculo": "JP-DA-22",
+			"usuario_rut_usuario": 9
+		}
+	},
+	{
+		"model": "dashboard.estadopresupuesto",
+		"pk": 1,
+		"fields": {
+			"nombre": "APROBADO"
+		}
+	},
+	{
+		"model": "dashboard.estadopresupuesto",
+		"pk": 2,
+		"fields": {
+			"nombre": "RECHAZADO"
+		}
+	},
+	{
+		"model": "dashboard.estadopresupuesto",
+		"pk": 3,
+		"fields": {
+			"nombre": "PENDIENTE"
+		}
+	},
+	{
+		"model": "dashboard.presupuesto",
+		"pk": 1,
+		"fields": {
+			"fecha_hora": "2019-09-12",
+			"valor_total": 300,
+			"estado_id_est_presupuesto": 1,
+			"usuario_rut_usuario": 4,
+			"informe_dano_id_info_dano": 1
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 1,
+		"fields": {
+			"calle": "SANTA JULIA",
+			"numero": 1222,
+			"comuna_id_comuna": 12,
+			"usuario_rut_usuario": 1
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 2,
+		"fields": {
+			"calle": "SAN ALFONZO",
+			"numero": 5562,
+			"comuna_id_comuna": 23,
+			"usuario_rut_usuario": 2
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 3,
+		"fields": {
+			"calle": "RIQUELME",
+			"numero": 62,
+			"comuna_id_comuna": 5,
+			"usuario_rut_usuario": 3
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 4,
+		"fields": {
+			"calle": "SERRANO",
+			"numero": 0,
+			"comuna_id_comuna": 7,
+			"usuario_rut_usuario": 4
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 5,
+		"fields": {
+			"calle": "DE TIN MARIN",
+			"numero": 1516,
+			"comuna_id_comuna": 62,
+			"usuario_rut_usuario": 5
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 6,
+		"fields": {
+			"calle": "DE DO PINGUE",
+			"numero": 1234,
+			"comuna_id_comuna": 56,
+			"usuario_rut_usuario": 6
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 8,
+		"fields": {
+			"calle": "MIRAMAR",
+			"numero": 1881,
+			"comuna_id_comuna": 33,
+			"usuario_rut_usuario": 8
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 9,
+		"fields": {
+			"calle": "NARNIA",
+			"numero": 5522,
+			"comuna_id_comuna": 13,
+			"usuario_rut_usuario": 9
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 10,
+		"fields": {
+			"calle": "LAUTARO",
+			"numero": 52,
+			"comuna_id_comuna": 3,
+			"usuario_rut_usuario": 10
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 11,
+		"fields": {
+			"calle": "LIBERTAD",
+			"numero": 1110,
+			"comuna_id_comuna": 22,
+			"usuario_rut_usuario": 11
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 12,
+		"fields": {
+			"calle": "PRAT",
+			"numero": 1230,
+			"comuna_id_comuna": 4,
+			"usuario_rut_usuario": 12
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 13,
+		"fields": {
+			"calle": "ACAPULCO",
+			"numero": 11230,
+			"asegurado_rut_asegurado": "20554886-7",
+			"comuna_id_comuna": 17
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 14,
+		"fields": {
+			"calle": "CHILITO",
+			"numero": 11,
+			"asegurado_rut_asegurado": "19574568-3",
+			"comuna_id_comuna": 5
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 15,
+		"fields": {
+			"calle": "ESPERANZA",
+			"numero": 333,
+			"asegurado_rut_asegurado": "9078573-0",
+			"comuna_id_comuna": 18
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 16,
+		"fields": {
+			"calle": "TRANSITO",
+			"numero": 33,
+			"asegurado_rut_asegurado": "19932098-5",
+			"comuna_id_comuna": 28
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 17,
+		"fields": {
+			"calle": "COLEGIO",
+			"numero": 2728,
+			"asegurado_rut_asegurado": "13456223-1",
+			"comuna_id_comuna": 33
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 18,
+		"fields": {
+			"calle": "PLUTON",
+			"numero": 28,
+			"asegurado_rut_asegurado": "23568113-7",
+			"comuna_id_comuna": 23
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 19,
+		"fields": {
+			"calle": "PARAISO",
+			"numero": 666,
+			"comuna_id_comuna": 5,
+			"servicio_grua_id_servicio": 1
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 20,
+		"fields": {
+			"calle": "VANUS",
+			"numero": 321,
+			"comuna_id_comuna": 44,
+			"servicio_grua_id_servicio": 2
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 21,
+		"fields": {
+			"calle": "MARTE",
+			"numero": 21,
+			"comuna_id_comuna": 57,
+			"servicio_grua_id_servicio": 3
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 22,
+		"fields": {
+			"calle": "BRUSELAS",
+			"numero": 256,
+			"comuna_id_comuna": 15,
+			"siniestro_id": 1
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 23,
+		"fields": {
+			"calle": "DAMASCO",
+			"numero": 1926,
+			"comuna_id_comuna": 45,
+			"siniestro_id": 2
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 24,
+		"fields": {
+			"calle": "REPUBLICA",
+			"numero": 1903,
+			"comuna_id_comuna": 12,
+			"siniestro_id": 3
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 25,
+		"fields": {
+			"calle": "HIJUELAS",
+			"numero": 47,
+			"comuna_id_comuna": 45,
+			"taller_id_taller": 1
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 26,
+		"fields": {
+			"calle": "GLADIOLOS",
+			"numero": 666,
+			"comuna_id_comuna": 39,
+			"taller_id_taller": 2
+		}
+	},
+	{
+		"model": "dashboard.direccion",
+		"pk": 27,
+		"fields": {
+			"calle": "EATSMAN",
+			"numero": 2098,
+			"comuna_id_comuna": 21,
+			"taller_id_taller": 3
+		
 	}
-},
-{
-"model": "dashboard.region",
-  "pk": 2,
-  "fields": {
-	"nombre":"TARAPACA"
-	}
-},
-{
-"model": "dashboard.region",
-  "pk": 3,
-  "fields": {
-	"nombre":"ANTOFAGASTA"
-	}
-},
-{
-"model": "dashboard.region",
-  "pk": 4,
-  "fields": {
-	"nombre":"ATACAMA"
-	}
-},
-{
-"model": "dashboard.region",
-  "pk": 5,
-  "fields": {
-	"nombre":"COQUIMBO"
-	}
-},
-{
-"model": "dashboard.region",
-  "pk": 6,
-  "fields": {
-	"nombre":"VALPARAISO"
-	}
-},
-{
-"model": "dashboard.region",
-  "pk": 7,
-  "fields": {
-	"nombre":"METROPOLITANA DE SANTIAGO"
-	}
-},
-{
-"model": "dashboard.region",
-  "pk": 8,
-  "fields": {
-	"nombre":"LIBERTADOR GENERAL BERNARDO O HIGGINS"
-	}
-},
-{
-"model": "dashboard.region",
-  "pk": 9,
-  "fields": {
-	"nombre":"MAULE"
-	}
-},
-{
-"model": "dashboard.region",
-  "pk": 10,
-  "fields": {
-	"nombre":"NUBLE"
-	}
-},
-{
-"model": "dashboard.region",
-  "pk": 11,
-  "fields": {
-	"nombre":"BIOBIO"
-	}
-},
-{
-"model": "dashboard.region",
-  "pk": 12,
-  "fields": {
-	"nombre":"LA ARAUCANIA"
-	}
-},
-{
-"model": "dashboard.region",
-  "pk": 13,
-  "fields": {
-	"nombre":"LOS RIOS"
-	}
-},
-{
-"model": "dashboard.region",
-  "pk": 14,
-  "fields": {
-	"nombre":"LOS LAGOS"
-	}
-},
-{
-"model": "dashboard.region",
-  "pk": 15,
-  "fields": {
-	"nombre":"AYSEN DEL GENERAL CARLOS IBANEZ DEL CAMPO"
-	}
-},
-{
-"model": "dashboard.region",
-  "pk": 16,
-  "fields": {
-	"nombre":"MAGALLANES Y DE LA ANTARTICA CHILENA"
-	}
-},
-{
-"model": "dashboard.comuna",
-  "pk": 1,
-  "fields": {
-	"nombre":"ARICA",
-	"region_nro_region":1
-	}
-},
-{
-"model": "dashboard.comuna",
-  "pk": 2,
-  "fields":{
-	"nombre":"CAMARONES",
-	"region_nro_region":1
-	}
-},
-{
-"model": "dashboard.comuna",
-  "pk": 3,
-  "fields":{
-	  "nombre":"GENERAL LAGOS",
-	  "region_nro_region":1}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 4,
-	  "fields":{
-		  "nombre":"IQUIQUE",
-		  "region_nro_region":2
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 5,
-	  "fields":{
-		  "nombre":"CAMINA",
-		  "region_nro_region":2
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 6,
-	  "fields":{
-		  "nombre":"COLCHANE",
-		  "region_nro_region":2
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 7,
-	  "fields":{"nombre":"ANTOFAGASTA",
-		"region_nro_region":3
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 8,
-	  "fields":{"nombre":"MEJILLONES",
-		"region_nro_region":3
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 9,
-	  "fields":{
-		  "nombre":"SIERRA GORDA",
-		  "region_nro_region":3
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 10,
-	  "fields":{
-		  "nombre":"SAN PEDRO DE ATACAMA",
-		  "region_nro_region":3
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 11,
-	  "fields":{
-		"nombre":"MARIA ELENA",
-		"region_nro_region":4
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 12,
-	  "fields":{
-		  "nombre":"TOCOPILLA",
-		  "region_nro_region":4
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 13,
-	  "fields":{
-		  "nombre":"COPIAPO",
-		  "region_nro_region":4
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 14,
-	  "fields":{
-		  "nombre":"TIERRA AMARILLA",
-		  "region_nro_region":4}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 15,
-	  "fields":{
-		  "nombre":"SALAMANCA",
-		  "region_nro_region":5
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 16,
-	  "fields":{
-		  "nombre":"COQUIMBO",
-		  "region_nro_region":5
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 17,
-	  "fields":
-	  {"nombre":"LA HIGUERA",
-		"region_nro_region":5
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 18,
-	  "fields":{
-		  "nombre":"LA SERENA",
-		  "region_nro_region":5
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 19,
-	  "fields":{
-		  "nombre":"ISLA DE PASCUA",
-		  "region_nro_region":6
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 20,
-	  "fields":{
-		"nombre":"QUILPUE",
-		"region_nro_region":6
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 21,
-	  "fields":{
-		  "nombre":"VALPARAISO",
-		  "region_nro_region":6
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 22,
-	  "fields":{
-		  "nombre":"VILLA ALEMANA",
-			"region_nro_region":6
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 23,
-	  "fields":{
-		  "nombre":"VINA DEL MAR",
-		"region_nro_region":6
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 24,
-	  "fields":{
-		  "nombre":"PROVIDENCIA",
-		  "region_nro_region":7
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 25,
-	  "fields":{
-		  "nombre":"RECOLETA",
-		  "region_nro_region":7
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 26,
-	  "fields":{
-		  "nombre":"SANTIAGO",
-		  "region_nro_region":7
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 27,
-	  "fields":{
-		  "nombre":"VITACURA",
-		  "region_nro_region":7
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 28,
-	  "fields":{
-		"nombre":"PEUMO",
-		"region_nro_region":8
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 29,
-	  "fields":{"nombre":"RANCAGUA",
-		"region_nro_region":8
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 30,
-	  "fields":{
-		  "nombre":"SAN VICENTE",
-		  "region_nro_region":8
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 31,
-	  "fields":{
-		  "nombre":"PICHILEMU",
-		  "region_nro_region":8
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 32,
-	  "fields":{
-		  "nombre":"SAGRADA FAMILIA",
-		  "region_nro_region":9
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 33,
-	  "fields":{"nombre":"LINARES",
-		"region_nro_region":9
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 34,
-	  "fields":{
-		  "nombre":"MAULE",
-		  "region_nro_region":9
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 35,
-	  "fields":{
-		  "nombre":"TALCA",
-		  "region_nro_region":9
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 36,
-	  "fields":{
-		  "nombre":"CHILLAN",
-		  "region_nro_region":10
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 37,
-	  "fields":{
-		  "nombre":"COBQUECURA",
-		  "region_nro_region":10
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 38,
-	  "fields":{
-		  "nombre":"QUIRIHUE",
-		  "region_nro_region":10
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 39,
-	  "fields":{
-		  "nombre":"YUNGAY",
-		  "region_nro_region":10
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 40,
-	  "fields":{
-		  "nombre":"SAN ROSENDO",
-		  "region_nro_region":11
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 41,
-	  "fields":{
-		  "nombre":"CONCEPCION",
-		  "region_nro_region":11
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 42,
-	  "fields":{
-		  "nombre":"CORONEL",
-		  "region_nro_region":11
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 43,
-	  "fields":{
-		  "nombre":"HUALPEN",
-		  "region_nro_region":11
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 44,
-	  "fields":{
-		  "nombre":"NUEVA IMPERIAL",
-		  "region_nro_region":12
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 45,
-	  "fields":{
-		  "nombre":"PUCON",
-		  "region_nro_region":12
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 46,
-	  "fields":{
-		  "nombre":"TEMUCO",
-		  "region_nro_region":12
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 47,
-	  "fields":{
-		  "nombre":"VILLARRICA",
-		  "region_nro_region":12
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 48,
-	  "fields":{
-		  "nombre":"LANCO",
-		  "region_nro_region":13
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 49,
-	  "fields":{
-		  "nombre":"LOS LAGOS",
-		  "region_nro_region":13
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 50,
-	  "fields":{
-		  "nombre":"PANGUIPULLI",
-		  "region_nro_region":13
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 51,
-	  "fields":{
-		  "nombre":"VALDIVIA",
-		  "region_nro_region":13
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 52,
-	  "fields":{
-		  "nombre":"CASTRO",
-		  "region_nro_region":14
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 53,
-	  "fields":{
-		  "nombre":"PUERTO MONTT",
-		  "region_nro_region":14
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 54,
-	  "fields":{
-		  "nombre":"PUERTO VARAS",
-		  "region_nro_region":14
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 55,
-	  "fields":{
-		  "nombre":"OSORNO",
-		"region_nro_region":14
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 56,
-	  "fields":{
-		  "nombre":"AYSEN",
-		"region_nro_region":15
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 57,
-	  "fields":{
-		  "nombre":"COCHRANE",
-		  "region_nro_region":15
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 58,
-	  "fields":{
-		  "nombre":"O HIGGINS",
-		  "region_nro_region":15
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 59,
-	  "fields":{
-		  "nombre":"COYHAIQUE",
-		  "region_nro_region":15
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 60,
-	  "fields":{
-		  "nombre":"PUNTA ARENAS",
-		  "region_nro_region":16
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 61,
-	  "fields":{
-		  "nombre":"PORVENIR",
-		  "region_nro_region":16
-	}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 62,
-	  "fields":{
-		  "nombre":"NATALES",
-		  "region_nro_region":16
-		}
-},
-{
-	"model": "dashboard.comuna",
-	  "pk": 63,
-	  "fields":{
-		  "nombre":"TORRES DEL PAINE",
-		  "region_nro_region":16
-	  }
-},
-{
-	"model": "dashboard.tipovehiculo",
-	  "pk": 1,
-	  "fields":{
-		  "tipo":"AUTOMOVIL"
-		}
-},
-{
-	"model": "dashboard.tipovehiculo",
-	  "pk": 2,
-	  "fields":{
-		  "tipo":"CAMIONETA"
-		}
-},
-{
-	"model": "dashboard.tipovehiculo",
-	  "pk": 3,
-	  "fields":{
-		  "tipo":"MOTO"
-		}
-},
-{
-	"model": "dashboard.tipovehiculo",
-	  "pk": 4,
-	  "fields":{
-		  "tipo":"CAMION"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 1,
-	  "fields":{
-		  "nombre":"ABARTH"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 2,
-	  "fields":{
-		  "nombre":"ALFA ROMEO"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 3,
-	  "fields":{
-		  "nombre":"ASTON MARTIN"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 4,
-	  "fields":{
-		  "nombre":"AUDI"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 5,
-	  "fields":{
-		  "nombre":"BENTLEY"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 6,
-	  "fields":{
-		  "nombre":"BMW"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 7,
-	  "fields":{
-		  "nombre":"CADILLAC"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 8,
-	  "fields":{
-		  "nombre":"CATERHAM"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 9,
-	  "fields":{
-		  "nombre":"CHEVROLET"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 10,
-	  "fields":{
-		  "nombre":"CITROEN"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 11,
-	  "fields":{
-		  "nombre":"DACIA"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 12,
-	  "fields":{
-		  "nombre":"FERRARI"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 13,
-	  "fields":{
-		  "nombre":"FIAT"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 14,
-	  "fields":{
-		  "nombre":"FORD"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 15,
-	  "fields":{
-		  "nombre":"HONDA"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 16,
-	  "fields":{
-		  "nombre":"INFINITI"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 17,
-	  "fields":{
-		  "nombre":"ISUZU"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 18,
-	  "fields":{
-		  "nombre":"IVECO"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 19,
-	  "fields":{
-		  "nombre":"JAGUAR"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 20,
-	  "fields":{
-		  "nombre":"JEEP"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 21,
-	  "fields":{
-		  "nombre":"KIA"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 22,
-	  "fields":{
-		  "nombre":"KTM"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 23,
-	  "fields":{
-		  "nombre":"LADA"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 24,
-	  "fields":{
-		  "nombre":"LAMBORGUINI"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 25,
-	  "fields":{
-		  "nombre":"LANCIA"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 26,
-	  "fields":{
-		  "nombre":"LAND ROVER"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 27,
-	  "fields":{
-		  "nombre":"LEXUS"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 28,
-	  "fields":{
-		  "nombre":"LOTUS"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 29,
-	  "fields":{
-		  "nombre":"MASERATI"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk":30,
-	  "fields":{
-		  "nombre":"MAZDA"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 31,
-	  "fields":{
-		  "nombre":"MERCEDEZ-BENZ"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 32,
-	  "fields":{
-		  "nombre":"MINI"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 33,
-	  "fields":{
-		  "nombre":"MITSUBISHI"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 34,
-	  "fields":{
-		  "nombre":"MORGAN"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 35,
-	  "fields":{
-		  "nombre":"NISSAN"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 36,
-	  "fields":{
-		  "nombre":"OPAL"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 37,
-	  "fields":{
-		  "nombre":"PEUGEOT"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 38,
-	  "fields":{
-		  "nombre":"PIAGGIO"
-		}
-}
-,
-{
-	"model": "dashboard.marca",
-	  "pk": 39,
-	  "fields":{
-		  "nombre":"PORSCHE"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 40,
-	  "fields":{
-		  "nombre":"RENAULT"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 41,
-	  "fields":{
-		  "nombre":"ROLLS-ROYCE"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 42,
-	  "fields":{
-		  "nombre":"SEAT"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 43,
-	  "fields":{
-		  "nombre":"SKODA"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 44,
-	  "fields":{
-		  "nombre":"SMART"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 45,
-	  "fields":{
-		  "nombre":"SSANGYONG"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 46,
-	  "fields":{
-		  "nombre":"SUBARU"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 47,
-	  "fields":{
-		  "nombre":"SUZUKI"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 48,
-	  "fields":{
-		  "nombre":"TATA"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 49,
-	  "fields":{
-		  "nombre":"TESLA"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 50,
-	  "fields":{
-		  "nombre":"TOYOTA"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 51,
-	  "fields":{
-		  "nombre":"VOLKSWAGEN"
-		}
-},
-{
-	"model": "dashboard.marca",
-	  "pk": 52,
-	  "fields":{
-		  "nombre":"VOLVO"
-		}
-},
-{
-	"model": "dashboard.severidaddano",
-	  "pk": 1,
-	  "fields":{
-		  "nombre":"BAJO"
-		}
-},
-{
-	"model": "dashboard.severidaddano",
-	  "pk": 2,
-	  "fields":{
-		  "nombre":"MEDIO"
-		}
-},
-{
-	"model": "dashboard.severidaddano",
-	  "pk": 3,
-	  "fields":{
-		  "nombre":"ALTO"
-		}
-},
-{
-	"model": "dashboard.tipodano",
-	  "pk": 1,
-	  "fields":{
- 		"nombre":"ACCESORIOS FALTANTES",
- 		"descripcion":"SI FALTA CUALQUIER ACCESORIOS COMO ESPEJOS RETROVISORES, LUCES, FOCOS, TAPICERIA"
-	}
-}
-,
-{
-	"model": "dashboard.tipodano",
-	  "pk": 2,
-	  "fields":{
-		"nombre":"DESCUADRE DE CARROCERIA",
-		"descripcion":"SI HAY DESCUADRE DE LA CARROCERIA DEL VEHICULO"
-	}
-},
-{
-	"model": "dashboard.tipodano",
-	  "pk": 3,
-	  "fields":{
-		  "nombre":"ABOLLADURAS",
-		  "descripcion":"EXISTEN ABOLLADURAS EN ALGUNA PARTE DEL VEHICULO"
-	}
-},
-{
-	"model": "dashboard.tipodano",
-	  "pk": 4,
-	  "fields":{
-		  "nombre":"RUEDAS DAÑADAS",
-		  "descripcion":"ALGUNA RUEDA FALTANTE, DAÑADA, SIN AIRE"
-	}
-},
-{
-	"model": "dashboard.tipodano",
-	  "pk": 5,
-	  "fields":{
-		  "nombre":"VIDRIOS DAÑADOS",
-		  "descripcion":"VIDRIOS DE VENTANAS DAÑADOS O QUEBRADOS, VIDRIOS DELANTEROS Y\/O TRASEROS DAÑADOS O QUEBRADOS"
-	}
-},
-{
-	"model": "dashboard.tipodano",
-	  "pk": 6,
-	  "fields":{
-		  "nombre":"PINTURA",
-		  "descripcion":"SI LA PINTURA ESTA RAYADA, EN MAL ESTADO, O NO ESTA PINTADO"
-	}
-},
-{
-	"model": "dashboard.tipodano",
-	  "pk": 7,
-	  "fields":{
-		  "nombre":"OTROS",
-		  "descripcion":"CUALQUIER OTRO DAÑO"
-	}
-},
-{
-	"model": "dashboard.tipoaccidente",
-	  "pk": 1,
-	  "fields":{
-		  "nombre":"DAÑOS MATERIALES AL VEHICULO"
-	}
-},
-{
-	"model": "dashboard.tipoaccidente",
-	  "pk": 2,
-	  "fields":{
-		  "nombre":"ROBO, HURTO O USO NO AUTORIZADO"
-	}
-},
-{
-	"model": "dashboard.tipoaccidente",
-	  "pk": 3,
-	  "fields":{
-		  "nombre":"RESPONSABILIDAD CIVIL"
-	}
-},
-{
-	"model": "dashboard.tipoaccidente",
-	  "pk": 4,
-	  "fields":{
-		  "nombre":"ROBO DE ACCESORIOS"
-	}
-},
-{
-	"model": "dashboard.tipoaccidente",
-	  "pk": 5,
-	  "fields":{
-		  "nombre":"DAÑOS MATERIALES POR ACTOS MALICIOSOS"
-	}
-},
-{
-	"model": "dashboard.tipoaccidente",
-	  "pk": 6,
-	  "fields":{
-		  "nombre":"DAÑOS MATERIALES POR RIESGOS DE LA NATURALEZA"
-	}
-},
-{
-	"model": "dashboard.tipoaccidente",
-	  "pk": 7,
-	  "fields":{
-		  "nombre":"DAÑOS MATERIALES POR HUELGA Y TERRORISMO"
-	}
-},
-{
-	"model": "dashboard.tipoaccidente",
-	  "pk": 8,
-	  "fields":{
-		  "nombre":"DAÑOS MATERIALES CAUSADOS POR LA PROPIA CARGA"
-	}
-},
-{
-	"model": "dashboard.tipoaccidente",
-	  "pk": 9,
-	  "fields":{
-		  "nombre":"DAÑOS A TERCEROS CAUSADOS POR LA PROPIA CARGA"
-	}
-},
-{
-	"model": "dashboard.tipoaccidente",
-	  "pk": 10,
-	  "fields":{
-		  "nombre":"DEFENSA PENAL Y CONSTITUCION DE FIANZAS"
-	}
-},
-{
-	"model": "dashboard.tipoacta",
-	  "pk": 1,
-	  "fields":{
-		  "nombre":"RECEPCION"
-	}
-},
-{
-	"model": "dashboard.tipoacta",
-	  "pk": 2,
-	  "fields":{
-		  "nombre":"RECHAZO"
-	}
-},
-{
-	"model": "dashboard.tipoacta",
-	  "pk": 3,
-	  "fields":	{
-		  "nombre":"RETIRO"
-	}
-},
-{
-	"model": "dashboard.tipoplan",
-	  "pk": 1,
-	  "fields":{
-		  "nombre":"CLASSIC",
-		  "descripcion":"RESPONSABILIDAD CIVIL: UF 500,TIPO DE TALLER: MULTIMARCA. HUELGA Y TERRORISMO, ACTOS MALICIOSOS",
-		  "valor":20500,
-		  "cobertura_max":500000
-	}
-},
-{
-	"model": "dashboard.tipoplan",
-	  "pk": 2,
-	  "fields":{
-		  "nombre":"MEDIUM",
-		  "descripcion":"RESPONSABILIDAD CIVIL: UF 700,TIPO DE TALLER:MARCA. HUELGA Y TERRORISMO, ACTOS MALICIOSOS,DAÑOS GRANIZO, AUTO DE REEMPLAZO:15 DÍAS",
-		  "valor":29500,
-		  "cobertura_max":1000000
-	}
-},
-{
-	"model": "dashboard.tipoplan",
-	  "pk": 3,
-	  "fields":{
-		  "nombre":"PREMIUM",
-		  "descripcion":"RESPONSABILIDAD CIVIL: UF 850,TIPO DE TALLER:MARCA. HUELGA Y TERRORISMO,ACTOS MALICIOSOS,DAÑOS GRANIZO,DAÑOS MATERIALES POR PROPIA CARGA,AUTO DE REEMPLAZO:30 DÍAS",
-		  "valor":41000,
-		  "cobertura_max":2000000
-	}
-},
-{
-	"model": "dashboard.tipoplan",
-	  "pk": 4,
-	  "fields":{
-		  "nombre":"FULL",
-		  "descripcion":"RESPONSABILIDAD CIVIL: UF 1000,TIPO DE TALLER:MARCA. HUELGA Y TERRORISMO,ACTOS MALICIOSOS,DAÑOS GRANIZO,DAÑOS MATERIALES POR PROPIA CARGA,ROBO HURTO O USO NO AUTORIZADO,AUTO DE REEMPLAZO:ILIMITADO",
-		  "valor":100000,
-		  "cobertura_max":9999999999
-	}
-},
-{
-	"model": "dashboard.estadosiniestro",
-	  "pk": 1,
-	  "fields":{
-		  "nombre":"EN CURSO",
-		  "descripcion":"REGISTRO DEL SINIESTRO"
-	}
-},
-{
-	"model": "dashboard.estadosiniestro",
-	  "pk": 2,
-	  "fields":{
-		  "nombre":"RECEPCIONADO",
-		  "descripcion":"EL VEHÍCULO ES INGRESADO AL TALLER MECANICO ASIGNADO"
-	}
-},
-{
-	"model": "dashboard.estadosiniestro",
-	  "pk": 3,
-	  "fields":{
-		  "nombre":"INSPECCIONADO",
-		  "descripcion":"SE CREA EL INFORME DE DAÑOS VEHÍCULO"
-	}
-},
-{
-	"model": "dashboard.estadosiniestro",
-	  "pk": 4,
-	  "fields":{
-		  "nombre":"EN REPARACION",
-		  "descripcion":"REPARANDO VEHÍCULO"
-	}
-},
-{
-	"model": "dashboard.estadosiniestro",
-	  "pk": 5,
-	  "fields":{
-		  "nombre":"RECHAZADO",
-		  "descripcion":"PRESUPUESTO RECHAZADO"
-	}
-},
-{
-	"model": "dashboard.estadosiniestro",
-	  "pk": 6,
-	  "fields":{
-		  "nombre":"REPARADO",
-		  "descripcion":"VEHÍCULO LISTO PARA SER RETIRADO"
-	}
-},
-{
-	"model": "dashboard.estadosiniestro",
-	  "pk": 7,
-	  "fields":{
-		  "nombre":"FINALIZADO",
-		  "descripcion":"SINIESTRO FINALIZADO"
-	}
-},
-{
-	"model": "dashboard.estadosiniestro",
-	  "pk": 8,
-	  "fields":{
-		  "nombre":"PENDIENTE",
-		  "descripcion":"VEHÍCULO ESPERANDO DECISIÓN DE LA ASEGURADORA"
-	}
-},
-{
-	"model": "dashboard.usuario",
-	  "pk": 1,
-	  "fields":{
-		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
-		  "rut_usuario":"18704536-3",
-		  "primer_nombre":"JOAQUIN",
-		  "segundo_nombre":"ESTEBAN",
-		  "primer_apellido":"LOBOS",
-		  "segundo_apellido":"PARRA",
-		  "email":"LOBOS.JOAQUIN@HOTMAIL.COM",
-		  "telefono":934567226,
-		  "rol":1
-	}
-},
-{
-	"model": "dashboard.usuario",
-	  "pk": 2,
-	  "fields":{
-		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
-		  "rut_usuario":"17553453-1",
-		  "primer_nombre":"DIEGO",
-		  "segundo_nombre":"ANDRES",
-		  "primer_apellido":"PEREZ",
-		  "segundo_apellido":"IBARRA",
-		  "email":"PEREZ.DEIGO@HOTMAIL.COM",
-		  "telefono":987560724,
-		  "rol":1
-	}
-},
-{
-	"model": "dashboard.usuario",
-	  "pk": 3,
-	  "fields":{
-		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
-		  "rut_usuario":"19545246-7",
-		  "primer_nombre":"JUAN",
-		  "segundo_nombre":"LUIS",
-		  "primer_apellido":"HIDALGO",
-		  "segundo_apellido":"BELTRAN",
-		  "email":"HIDALGO.JUAN@HOTMAIL.COM",
-		  "telefono":955364219,
-		  "rol":1
-	}
-},
-{
-	"model": "dashboard.usuario",
-	  "pk": 4,
-	  "fields":{
-		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
-		  "rut_usuario":"21583095-3",
-		  "primer_nombre":"DANIEL",
-		  "segundo_nombre":"FABRIZIO",
-		  "primer_apellido":"COPANO",
-		  "segundo_apellido":"SAAVEDRA",
-		  "email":"DFABRIZIOCOPASAA@GMAIL.COM",
-		  "telefono":973014432,
-		  "rol":2
-	}
-},
-{
-	"model": "dashboard.usuario",
-	  "pk": 5,
-	  "fields":{
-		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
-		  "rut_usuario":"15004863-K",
-		  "primer_nombre":"RODRIGO",
-		  "segundo_nombre":"SALOMON",
-		  "primer_apellido":"HURTADO",
-		  "segundo_apellido":"CABRERA",
-		  "email":"RODROGOROBADO@GMAIL.COM",
-		  "telefono":986904452,
-		  "rol":2
-	}
-},
-{
-	"model": "dashboard.usuario",
-	  "pk": 6,
-	  "fields":{
-		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
-		  "rut_usuario":"13934482-1",
-		  "primer_nombre":"FELIPE",
-		  "segundo_nombre":"RONALD",
-		  "primer_apellido":"HUITO",
-		  "segundo_apellido":"MADARIAGA",
-		  "email":"FELIPE.RONALD@HOTMAIL.COM",
-		  "telefono":949890065,
-		  "rol":2
-	}
-},
-{
-	"model": "dashboard.usuario",
-	  "pk": 8,
-	  "fields":{
-		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
-		  "rut_usuario":"16003846-2",
-		  "primer_nombre":"ROBERTO",
-		  "segundo_nombre":"DIEGO",
-		  "primer_apellido":"SANDON",
-		  "segundo_apellido":"URRUTIA",
-		  "email":"ROSANDONU@GMAIL.COM",
-		  "telefono":999856321,
-		  "rol":3
-	}
-},
-{
-	"model": "dashboard.usuario",
-	  "pk": 9,
-	  "fields":{
-		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
-		  "rut_usuario":"10128673-4",
-		  "primer_nombre":"DANILO",
-		  "segundo_nombre":"SAMUEL",
-		  "primer_apellido":"MUÑOZ",
-		  "segundo_apellido":"CABEZAS",
-		  "email":"DANILOCABEZAS@HOTMAIL.COM",
-		  "telefono":957241905,
-		  "rol":3
-	}
-},
-{
-	"model": "dashboard.usuario",
-	  "pk": 10,
-	  "fields":{
-		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
-		  "rut_usuario":"12693201-3",
-		  "primer_nombre":"FELIPE",
-		  "segundo_nombre":"ANDRES",
-		  "primer_apellido":"CATALAN",
-		  "segundo_apellido":"CATALAN",
-		  "email":"FELIPE.CATALAN@HOTMAIL.COM",
-		  "telefono":986345676,
-		  "rol":4
-	}
-},
-{
-	"model": "dashboard.usuario",
-	  "pk": 11,
-	  "fields":{
-		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
-		  "rut_usuario":"19252234-K",
-		  "primer_nombre":"YARENKA",
-		  "segundo_nombre":"MARCELA",
-		  "primer_apellido":"TOLEDO",
-		  "segundo_apellido":"MOLINA",
-		  "email":"YARE2519@GMAIL.COM",
-		  "telefono":967557486,
-		  "rol":4
-	}
-},
-{
-	"model": "dashboard.usuario",
-	  "pk": 12,
-	  "fields":{
-		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
-		  "rut_usuario":"19981900-3",
-		  "primer_nombre":"PEDRO",
-		  "segundo_nombre":"AGUIRRE",
-		  "primer_apellido":"COLLADO",
-		  "segundo_apellido":"DELGADO",
-		  "email":"PEDROCOLLADO@HOTMAIL.COM",
-		  "telefono":934512340,
-		  "rol":4
-	}
-},
-{
-	"model": "dashboard.asegurado",
-	  "pk": "20554886-7",
-	  "fields":{
-		  "primer_nombre":"ROSA",
-		  "segundo_nombre":"ELIANA",
-		  "primer_apellido":"PARRA",
-		  "segundo_apeliido":"ROMAN",
-		  "correo":"PARRA.ROSA@HOTMAIL.COM",
-		  "telefono":969871247,
-		  "fecha_nacimiento":"1997-08-12",
-		  "estado":"1",
-		  "usuario_rut_usuario":1
-	}
-},
-{
-	"model": "dashboard.asegurado",
-	  "pk": "19574568-3",
-	  "fields":{
-		  "primer_nombre":"ENRIQUE",
-		  "segundo_nombre":"SEBASTIAN",
-		  "primer_apellido":"ROJAS",
-		  "segundo_apeliido":"VERA",
-		  "correo":"ROJAS.ENRIQUE@HOTMAIL.COM",
-		  "telefono":987225603,
-		  "fecha_nacimiento":"1995-07-09",
-		  "estado":"1",
-		  "usuario_rut_usuario":1
-	}
-},
-{
-	"model": "dashboard.asegurado",
-	  "pk": "9078573-0",
-	  "fields":{
-		  "primer_nombre":"ALEJANDRO",
-		  "segundo_nombre":"ELIAS",
-		  "primer_apellido":"POBLETE",
-		  "segundo_apeliido":"ROSALES",
-		  "correo":"ALEJANDRO_PARROSA@HOTMAIL.COM",
-		  "telefono":967231011,
-		  "fecha_nacimiento":"1967-02-17",
-		  "estado":"1",
-		  "usuario_rut_usuario":1
-	}
-},
-{
-	"model": "dashboard.asegurado",
-	  "pk": "19932098-5",
-	  "fields":{
-		  "primer_nombre":"JESUS",
-		  "segundo_nombre":"ERNESTO",
-		  "primer_apellido":"GONZALEZ",
-		  "segundo_apeliido":"RICCO",
-		  "correo":"JESUSGONZALEZRICCO@GMAIL.COM",
-		  "telefono":959085454,
-		  "fecha_nacimiento":"1994-11-08",
-		  "estado":"1",
-		  "usuario_rut_usuario":1
-	}
-},
-{
-	"model": "dashboard.asegurado",
-	  "pk": "13456223-1",
-	  "fields":{
-		  "primer_nombre":"JULIO",
-		  "segundo_nombre":"AQUILES",
-		  "primer_apellido":"BAEZA",
-		  "segundo_apeliido":"CARNAL",
-		  "correo":"AQUILES.BAEZA@GMAIL.COM",
-		  "telefono":923456132,
-		  "fecha_nacimiento":"1983-10-27",
-		  "estado":"1",
-		  "usuario_rut_usuario":1
-	}
-},
-{
-	"model": "dashboard.asegurado",
-	  "pk": "23568113-7",
-	  "fields":{
-		  "primer_nombre":"LUIS",
-		  "segundo_nombre":"FELIPE",
-		  "primer_apellido":"LAZO",
-		  "segundo_apeliido":"LOYOLA",
-		  "correo":"LUISLOYOLA@GMAIL.COM",
-		  "telefono":987225677,
-		  "fecha_nacimiento":"1977-04-26",
-		  "estado":"1",
-		  "usuario_rut_usuario":1
-	}
-},
-{
-	"model": "dashboard.vehiculo",
-	  "pk": "JP-DA-22",
-	  "fields":{
-		  "anio":2013,
-		  "modelo":"SPARK",
-		  "nro_motor":"9GAMM6101AB01512",
-		  "asegurado_rut_asegurado":"20554886-7",
-		  "marca_id_marca":9,
-		  "tipo_vehiculo_id_tipo_auto":1
-	}
-},
-{
-	"model": "dashboard.vehiculo",
-	  "pk": "GW-RE-32",
-	  "fields":{
-		  "anio":2015,
-		  "modelo":"CIVIC",
-		  "nro_motor":"7YEAS4562JK4444",
-		  "asegurado_rut_asegurado":"19574568-3",
-		  "marca_id_marca":15,
-		  "tipo_vehiculo_id_tipo_auto":1
-	}
-},
-{
-	"model": "dashboard.vehiculo",
-	  "pk": "GR-PQ-12",
-	  "fields":{
-		  "anio":2015,
-		  "modelo":"F 750 GS",
-		  "nro_motor":"52WCV00967",
-		  "asegurado_rut_asegurado":"9078573-0",
-		  "marca_id_marca":6,
-		  "tipo_vehiculo_id_tipo_auto":3
-	}
-},
-{
-	"model": "dashboard.vehiculo",
-	  "pk": "FU-CK-69",
-	  "fields":{
-		  "anio":2020,
-		  "modelo":"MURCIELAGO",
-		  "nro_motor":"WKL2500117",
-		  "asegurado_rut_asegurado":"19932098-5",
-		  "marca_id_marca":24,
-		  "tipo_vehiculo_id_tipo_auto":1
-	}
-},
-{
-	"model": "dashboard.vehiculo",
-	  "pk": "YY-F8-CQ",
-	  "fields":{
-		  "anio":2016,
-		  "modelo":"LUV",
-		  "nro_motor":"K015453XS",
-		  "asegurado_rut_asegurado":"23568113-7",
-		  "marca_id_marca":9,
-		  "tipo_vehiculo_id_tipo_auto":2
-	}
-},
-{
-	"model": "dashboard.vehiculo",
-	  "pk": "RR-XZ-WW",
-	  "fields":{
-		  "anio":2020,
-		  "modelo":"CELERIO",
-		  "nro_motor":"K025453XS",
-		  "asegurado_rut_asegurado":"13456223-1",
-		  "marca_id_marca":47,
-		  "tipo_vehiculo_id_tipo_auto":1
-	}
-},
-{
-	"model": "dashboard.poliza",
-	  "pk": 1,
-	  "fields":{
-		  "vigente":"1",
-		  "fecha_inicio":"2020-04-14",
-		  "fecha_fin":"2021-04-13",
-		  "estado":"1",
-		  "asegurado_rut_asegurado":"20554886-7",
-		  "vehiculo_patente_vehiculo":"JP-DA-22"
-	}
-},
-{
-	"model": "dashboard.poliza",
-	  "pk": 2,
-	  "fields":{
-		  "vigente":"0",
-		  "fecha_inicio":"2020-05-17",
-		  "fecha_fin":"2021-05-16",
-		  "estado":"1",
-		  "asegurado_rut_asegurado":"19574568-3",
-		  "vehiculo_patente_vehiculo":"GW-RE-32"
-	}
-},
-{
-	"model": "dashboard.poliza",
-	  "pk": 3,
-	  "fields":{
-		  "vigente":"0",
-		  "fecha_inicio":"2018-07-10",
-		  "fecha_fin":"2019-07-09",
-		  "estado":"1",
-		  "asegurado_rut_asegurado":"9078573-0",
-		  "vehiculo_patente_vehiculo":"GR-PQ-12"
-	}
-},
-{
-	"model": "dashboard.poliza",
-	  "pk": 4,
-	  "fields":{
-		  "vigente":"1",
-		  "fecha_inicio":"2019-11-21",
-		  "fecha_fin":"2020-11-20",
-		  "estado":"1",
-		  "asegurado_rut_asegurado":"19932098-5",
-		  "vehiculo_patente_vehiculo":"FU-CK-69"
-	}
-},
-{
-	"model": "dashboard.poliza",
-	  "pk": 5,
-	  "fields":{
-		  "vigente":"1",
-		  "fecha_inicio":"2020-08-10",
-		  "fecha_fin":"2021-08-09",
-		  "estado":"1",
-		  "asegurado_rut_asegurado":"13456223-1",
-		  "vehiculo_patente_vehiculo":"RR-XZ-WW"
-	}
-},
-{
-	"model": "dashboard.poliza",
-	  "pk": 6,
-	  "fields":{
-		  "vigente":"0",
-		  "fecha_inicio":"2018-12-31",
-		  "fecha_fin":"2019-12-30",
-		  "estado":"1",
-		  "asegurado_rut_asegurado":"23568113-7",
-		  "vehiculo_patente_vehiculo":"YY-F8-CQ"
-	}
-},
-{
-	"model": "dashboard.taller",
-	  "pk": 1,
-	  "fields":{
-		  "nombre":"KUPARIKAS DETERMINATION",
-		  "razon_social":"SERVICIO TECNICO DE AUTOMOVILES",
-		  "telefono":965874503,
-		  "correo":"KURAPIKA.ROTO@GMAIL.COM",
-		  "capacidad_taller":20,
-		  "estado":"0",
-		  "estado_delete":"1",
-		  "usuario_rut_usuario":9
-	}
-},
-{
-	"model": "dashboard.taller",
-	  "pk": 2,
-	  "fields":{
-		  "nombre":"EL CHANO",
-		  "razon_social":"SERVICIO TECNICO DE AUTOMOVILES",
-		  "telefono":993302252,
-		  "correo":"ELCHANOMOVIL@GMAIL.COM",
-		  "capacidad_taller":17,
-		  "estado":"1",
-		  "estado_delete":"1",
-		  "usuario_rut_usuario":8
-	}
-},
-{
-	"model": "dashboard.taller",
-	  "pk": 3,
-	  "fields":{
-		  "nombre":"MI CACHARRITO",
-		  "razon_social":"TALLER MECANICO LIMITADA",
-		  "telefono":957241905,
-		  "correo":"MI.CACHARRITO@GMAIL.COM",
-		  "capacidad_taller":10,
-		  "estado":"1",
-		  "estado_delete":"1",
-		  "usuario_rut_usuario":9
-	}
-},
-{
-	"model": "dashboard.serviciogrua",
-	  "pk": 1,
-	  "fields":{
-		  "nombre":"MATE S.A.",
-		  "razon_social":"SERVICIO DE TRAYECTO DE SINIESTROS",
-		  "telefono":965214467,
-		  "correo":"MATE.WEB@HOTMAIL.COM",
-		  "usuario_rut_usuario":10
-	}
-},
-{
-	"model": "dashboard.serviciogrua",
-	  "pk": 2,
-	  "fields":{
-		  "nombre":"GRUFUS S.A.",
-		  "razon_social":"SERVICIO DE TRAYECTO DE SINIESTROS",
-		  "telefono":979204460,
-		  "correo":"RUFUS@HOTMAIL.COM",
-		  "usuario_rut_usuario":11
-	}
-},
-{
-	"model": "dashboard.serviciogrua",
-	  "pk": 3,
-	  "fields":{
-		  "nombre":"A PAPTITA NOMAH",
-		  "razon_social":"SERVICIO DE GRUA Y TRANSPORTES ESPECIALES",
-		  "telefono":931442147,
-		  "correo":"APATITANOMAH@GMAIL.COM",
-		  "usuario_rut_usuario":12
-	}
-},
-{
-	"model": "dashboard.grua",
-	  "pk": "GG-KK-69",
-	  "fields":{
-		  "estado":"0",
-		  "servicio_grua_id_servicio":1,
-		  "usuario_rut_usuario":10
-	}
-},
-{
-	"model": "dashboard.grua",
-	  "pk": "JJ-YY-21",
-	  "fields":{
-		  "estado":"1",
-		  "servicio_grua_id_servicio":1,
-		  "usuario_rut_usuario":10
-	}
-},
-{
-	"model": "dashboard.grua",
-	  "pk": "VH-RT-44",
-	  "fields":{
-		  "estado":"1",
-		  "servicio_grua_id_servicio":2,
-		  "usuario_rut_usuario":11
-	}
-},
-{
-	"model": "dashboard.grua",
-	  "pk": "DN-97-02",
-	  "fields":{
-		  "estado":"0",
-		  "servicio_grua_id_servicio":2,
-		  "usuario_rut_usuario":11
-	}
-},
-{
-	"model": "dashboard.grua",
-	  "pk": "SG-VG-12",
-	  "fields":{
-		  "estado":"0",
-		  "servicio_grua_id_servicio":3,
-		  "usuario_rut_usuario":12
-	}
-},
-{
-	"model": "dashboard.grua",
-	  "pk": "ZZ-ZZ-13",
-	  "fields":{
-		  "estado":"1",
-		  "servicio_grua_id_servicio":3,
-		  "usuario_rut_usuario":12
-	}
-},
-{
-	"model": "dashboard.planseguro",
-	  "pk": 1,
-	  "fields":{
-		  "deducible":0,
-		  "poliza_id_poliza":1,
-		  "tipo_plan_id_tip_plan":4
-	}
-},
-{
-	"model": "dashboard.planseguro",
-	  "pk": 2,
-	  "fields":{
-		  "deducible":20,
-		  "poliza_id_poliza":2,
-		  "tipo_plan_id_tip_plan":2
-	}
-},
-{
-	"model": "dashboard.planseguro",
-	  "pk": 3,
-	  "fields":{
-		  "deducible":10,
-		  "poliza_id_poliza":3,
-		  "tipo_plan_id_tip_plan":4
-	}
-},
-{
-	"model": "dashboard.planseguro",
-	  "pk": 4,
-	  "fields":{
-		  "deducible":5,
-		  "poliza_id_poliza":4,
-		  "tipo_plan_id_tip_plan":1
-	}
-},
-{
-	"model": "dashboard.planseguro",
-	  "pk": 5,
-	  "fields":{
-		  "deducible":0,
-		  "poliza_id_poliza":5,
-		  "tipo_plan_id_tip_plan":4
-	}
-},
-{
-	"model": "dashboard.planseguro",
-	  "pk": 6,
-	  "fields":{
-		  "deducible":10,
-		  "poliza_id_poliza":6,
-		  "tipo_plan_id_tip_plan":3
-	}
-},
-{
-	"model": "dashboard.siniestro",
-	  "pk": 1,
-	  "fields":{
-		  "fecha_hr":"2020-03-10",
-		  "descripcion":"CAYO SOBRE EL CAPO UNA RAMA DE ARBOL ABOLLANDO EL MALETERO",
-		  "asegurado_rut_asegurado":"19932098-5",
-		  "est_siniestro_id_est_siniestro":7,
-		  "poliza_id_poliza":4,
-		  "taller_id_taller":2,
-		  "tipo_accidente_id_tipo_acc":6,
-		  "usuario_rut_usuario":1
-	}
-},
-{
-	"model": "dashboard.siniestro",
-	  "pk": 2,
-	  "fields":{
-		  "fecha_hr":"2020-04-15",
-		  "descripcion":"IBA PISTEANDO COMO TODO UN CAMPEON, COMO TODO UN SCHUMACHER",
-		  "asegurado_rut_asegurado":"20554886-7",
-		  "est_siniestro_id_est_siniestro":2,
-		  "grua_patente_grua":"VH-RT-44",
-		  "poliza_id_poliza":1,
-		  "taller_id_taller":1,
-		  "tipo_accidente_id_tipo_acc":1,
-		  "usuario_rut_usuario":1
-	}
-},
-{
-	"model": "dashboard.siniestro",
-	  "pk": 3,
-	  "fields":{
-		  "fecha_hr":"2020-03-01",
-		  "descripcion":"PAVIMENTO RESBALADIZO OCASIONO CHOQUE",
-		  "asegurado_rut_asegurado":"13456223-1",
-		  "est_siniestro_id_est_siniestro":1,
-		  "grua_patente_grua":"JJ-YY-21",
-		  "poliza_id_poliza":5,
-		  "taller_id_taller":3,
-		  "tipo_accidente_id_tipo_acc":1,
-		  "usuario_rut_usuario":1
-	}
-},
-{
-	"model": "dashboard.formularioacta",
-	  "pk": 1,
-	  "fields":{
-		  "fecha_hora":"2020-04-16",
-		  "observaciones":"EL VEHICULO LLEGO CON DAÑOS EN PUERTA IZQUIERDA Y CHASIS",
-		  "siniestro_id":1,
-		  "taller_id_taller":2,
-		  "tipo_acta_id_tipo_acta":1,
-		  "usuario_rut_usuario":8
-	}
-},
-{
-	"model": "dashboard.formularioacta",
-	  "pk": 2,
-	  "fields":{
-		  "fecha_hora":"2019-09-10",
-		  "observaciones":"EL VEHICULO INGRESO AL TALLER FALTANDOLE LA RUEDA TRASERA DERECHA",
-		  "siniestro_id":2,
-		  "taller_id_taller":1,
-		  "tipo_acta_id_tipo_acta":1,
-		  "usuario_rut_usuario":8
-	}
-},
-{
-	"model": "dashboard.formularioacta",
-	  "pk": 3,
-	  "fields":{
-		  "fecha_hora":"2019-11-07",
-		  "observaciones":"SE PUSO RUEDA FALTANTE, CENTRADO DE EJE TRASERO",
-		  "siniestro_id":2,
-		  "taller_id_taller":1,
-		  "tipo_acta_id_tipo_acta":3,
-		  "usuario_rut_usuario":9
-		}
-},
-{
-	"model": "dashboard.informedano",
-	  "pk": 1,
-	  "fields":{
-		  "fecha_hora":"2019-09-12",
-		  "observaciones":"EL VEHICULO PRESENTA DAÑOS EN EL TREN TRASESO, FUE IMPACTADO POR OTRO VEHICULO Y A CAUSA DE ESTO SE DAÑO LA RUEDA TRASERA DERECHA",
-		  "perdida_total":"0",
-		  "severidad_dano_id_seve_dano":2,
-		  "siniestro_id":2,
-		  "taller_id_taller":1,
-		  "tipo_dano_id_tipo_dano":4,
-		  "vehiculo_patente_vehiculo":"JP-DA-22",
-		  "usuario_rut_usuario":9
-	}
-},
-{
-	"model": "dashboard.estadopresupuesto",
-	  "pk": 1,
-	  "fields":{
-		  "nombre":"APROBADO"
-	}
-},
-{
-	"model": "dashboard.estadopresupuesto",
-	  "pk": 2,
-	  "fields":{
-		  "nombre":"RECHAZADO"
-	}
-},
-{
-	"model": "dashboard.estadopresupuesto",
-	  "pk": 3,
-	  "fields":{
-		  "nombre":"PENDIENTE"
-	}
-},
-{
-	"model": "dashboard.presupuesto",
-	  "pk": 1,
-	  "fields":{
-		  "fecha_hora":"2019-09-12",
-		  "valor_total":300,
-		  "estado_id_est_presupuesto":1,
-		  "usuario_rut_usuario":4,
-		  "informe_dano_id_info_dano":1
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 1,
-	  "fields":{
-		  "calle":"SANTA JULIA",
-		  "numero":1222,
-		  "comuna_id_comuna":12,
-		  "usuario_rut_usuario":1
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 2,
-	  "fields":{
-		  "calle":"SAN ALFONZO",
-		  "numero":5562,
-		  "comuna_id_comuna":23,
-		  "usuario_rut_usuario":2
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 3,
-	  "fields":{
-		  "calle":"RIQUELME",
-		  "numero":62,
-		  "comuna_id_comuna":5,
-		  "usuario_rut_usuario":3
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 4,
-	  "fields":{
-		  "calle":"SERRANO",
-		  "numero":0,
-		  "comuna_id_comuna":7,
-		  "usuario_rut_usuario":4
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 5,
-	  "fields":{
-		  "calle":"DE TIN MARIN",
-		  "numero":1516,
-		  "comuna_id_comuna":62,
-		  "usuario_rut_usuario":5
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 6,
-	  "fields":{
-		  "calle":"DE DO PINGUE",
-		  "numero":1234,
-		  "comuna_id_comuna":56,
-		  "usuario_rut_usuario":6
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 8,
-	  "fields":{
-		  "calle":"MIRAMAR",
-		  "numero":1881,
-		  "comuna_id_comuna":33,
-		  "usuario_rut_usuario":8
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 9,
-	  "fields":{
-		  "calle":"NARNIA",
-		  "numero":5522,
-		  "comuna_id_comuna":13,
-		  "usuario_rut_usuario":9
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 10,
-	  "fields":{
-		  "calle":"LAUTARO",
-		  "numero":52,
-		  "comuna_id_comuna":3,
-		  "usuario_rut_usuario":10
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 11,
-	  "fields":{
-		  "calle":"LIBERTAD",
-		  "numero":1110,
-		  "comuna_id_comuna":22,
-		  "usuario_rut_usuario":11
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 12,
-	  "fields":{
-		  "calle":"PRAT",
-		  "numero":1230,
-		  "comuna_id_comuna":4,
-		  "usuario_rut_usuario":12
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 13,
-	  "fields":{
-		  "calle":"ACAPULCO",
-		  "numero":11230,
-		  "asegurado_rut_asegurado":"20554886-7",
-		  "comuna_id_comuna":17
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 14,
-	  "fields":{
-		  "calle":"CHILITO",
-		  "numero":11,
-		  "asegurado_rut_asegurado":"19574568-3",
-		  "comuna_id_comuna":5
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 15,
-	  "fields":{
-		  "calle":"ESPERANZA",
-		  "numero":333,
-		  "asegurado_rut_asegurado":"9078573-0",
-		  "comuna_id_comuna":18
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 16,
-	  "fields":{
-		  "calle":"TRANSITO",
-		  "numero":33,
-		  "asegurado_rut_asegurado":"19932098-5",
-		  "comuna_id_comuna":28
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 17,
-	  "fields":{
-		  "calle":"COLEGIO",
-		  "numero":2728,
-		  "asegurado_rut_asegurado":"13456223-1",
-		  "comuna_id_comuna":33
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 18,
-	  "fields":{
-		  "calle":"PLUTON",
-		  "numero":28,
-		  "asegurado_rut_asegurado":"23568113-7",
-		  "comuna_id_comuna":23
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 19,
-	  "fields":{
-		  "calle":"PARAISO",
-		  "numero":666,
-		  "comuna_id_comuna":5,
-		  "servicio_grua_id_servicio":1
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 20,
-	  "fields":{
-		  "calle":"VANUS",
-		  "numero":321,
-		  "comuna_id_comuna":44,
-		  "servicio_grua_id_servicio":2
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 21,
-	  "fields":{
-		  "calle":"MARTE",
-		  "numero":21,
-		  "comuna_id_comuna":57,
-		  "servicio_grua_id_servicio":3
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 22,
-	  "fields":{
-		  "calle":"BRUSELAS",
-		  "numero":256,
-		  "comuna_id_comuna":15,
-		  "siniestro_id":1
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 23,
-	  "fields":{
-		  "calle":"DAMASCO",
-		  "numero":1926,
-		  "comuna_id_comuna":45,
-		  "siniestro_id":2
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 24,
-	  "fields":{
-		  "calle":"REPUBLICA",
-		  "numero":1903,
-		  "comuna_id_comuna":12,
-		  "siniestro_id":3
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 25,
-	  "fields":{
-		  "calle":"HIJUELAS",
-		  "numero":47,
-		  "comuna_id_comuna":45,
-		  "taller_id_taller":1
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 26,
-	  "fields":{
-		  "calle":"GLADIOLOS",
-		  "numero":666,
-		  "comuna_id_comuna":39,
-		  "taller_id_taller":2
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 27,
-	  "fields":{
-		  "calle":"EATSMAN",
-		  "numero":2098,
-		  "comuna_id_comuna":21,
-		  "taller_id_taller":3
-	}
-}
 ]

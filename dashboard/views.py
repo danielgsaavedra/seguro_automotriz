@@ -515,11 +515,3 @@ def AseguradoConsultaView(request):
         siniestros = Siniestro.objects.none()
 
     return render(request, 'dashboard/asegurados/asegurado_consulta.html', {'siniestros': siniestros})
-
-
-def get_data(request, *args, **kwargs):
-    data = {
-        "siniestros" : 100,
-        "autos" : 10,
-    }
-    return JsonResponse(data)

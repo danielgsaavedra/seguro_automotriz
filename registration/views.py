@@ -20,7 +20,7 @@ def SaveAllUsuario(request, form, template_name):
                 is_active=True).order_by('rol')
             context = {'usuarios': usuarios,'form':form}
             data['usuarios'] = render_to_string(
-                'registration/usuarios/usuarios_2.html', context)
+                'registration/usuarios/usuario_2.html', context)
         else:
             data['form_is_valid'] = False
 
@@ -34,7 +34,7 @@ def SaveAllUsuario(request, form, template_name):
 def UsuariosView(request):
     usuarios = Usuario.objects.filter(is_active=True).order_by('rol')
     context = {'usuarios': usuarios}
-    return render(request, 'registration/usuarios/usuarios.html', context)
+    return render(request, 'registration/usuarios/usuario.html', context)
 
 #CREATE
 @staff_member_required(login_url='login')
@@ -69,7 +69,7 @@ def UsuarioDelete(request, id):
             usuarios = Usuario.objects.filter(is_active=True).order_by('rol')
             context = {'usuarios': usuarios}
             data['usuarios'] = render_to_string(
-                'registration/usuarios/usuarios_2.html', context)
+                'registration/usuarios/usuario_2.html', context)
     else:
         form = DeshabilitarUsuarioForm(instance=usuario)
         data['form_is_valid'] = False

@@ -1,23 +1,22 @@
 {% extends "dashboard/base.html" %}
 
 {% block content %}
-    <div class="d-sm-flex align-items-center justify-content-end mb-4">
-        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <a class="text-decoration-none text-light"
-               href="{% url 'polizas' %}">
-                <i class="fas fa-file-invoice fa-sm text-white-50"></i> Pólizas
-            </a>
-        </button>
+<div class="d-sm-flex align-items-center justify-content-start mb-4">
+    <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a class="text-decoration-none text-light" href="{% url 'polizas' %}">
+            <i class="fas fa-arrow-circle-left fa-sm text-white-50"></i> Volver
+        </a>
+    </button>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Pólizas inactivas</h6>
     </div>
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Pólizas inactivas</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover text-center" id="table_poliza_disabled" width="100%"
-                       cellspacing="0">
-                    <thead>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center" id="table_poliza_disabled" width="100%"
+                cellspacing="0">
+                <thead>
                     <tr>
                         <th scope="col">N° Póliza</th>
                         <th scope="col">Fecha Inicio</th>
@@ -27,25 +26,24 @@
                         <th scope="col">Estado</th>
                         <th scope="col">Opciones</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
                     {% include "dashboard/polizas/poliza_disabled_2.html" %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="modal_poliza_disabled" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-
-                </div>
-            </div>
-
+                </tbody>
+            </table>
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="modal_poliza_disabled" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 {% endblock %}
-

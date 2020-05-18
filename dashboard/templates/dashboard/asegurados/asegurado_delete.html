@@ -3,20 +3,20 @@
     {% csrf_token %}
 
     <div class="modal-header bg-danger">
-        <h5 class="modal-title text-light">Eliminar Asegurado</h5>
+        <h5 class="modal-title text-light">Desactivar Asegurado</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
     </div>
     <div class="modal-body">
         <div class="form-row">
-            <p class="lead">¿Seguro que deseas eliminar el Asegurado <strong>{{form.instance.rut_asegurado}}</strong>?
+            <p class="lead">¿Seguro que deseas desactivar el asegurado <strong>{{form.instance.rut_asegurado}}</strong>?
             </p>
             {{form.estado}}
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+        <button type="submit" class="btn btn-outline-danger">Desactivar</button>
     </div>
 </form>

@@ -37,7 +37,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'dashboard' %}">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-chart-pie"></i>
                     <span>Dashboard</span></a>
             </li>
             <hr class="sidebar-divider">
@@ -83,7 +83,7 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{% url 'polizas' %}">
-                    <i class="fas fa-file-invoice-dollar"></i>
+                    <i class="fas fa-file-contract"></i>
                     <span>Pólizas</span>
                 </a>
             </li>
@@ -131,13 +131,17 @@
                     </button>
 
                     <ul class="navbar-nav ml-auto">
-                        <div class="topbar-divider d-none d-sm-block"></div>
 
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-white-600">{{request.user.primer_nombre}}</span>
-                                <i class="far fa-user"></i>
+                                <span class="mr-2 d-none d-lg-inline text-white-600">{{request.user.primer_nombre}}
+                                </span>
+                                {% if  request.user.is_staff %}
+                                <i class="fas fa-user-cog"></i>
+                                {% else %}
+                                <i class="fas fa-user"></i>
+                                {% endif %}
                             </a>
                             {% if not request.user.is_staff %}
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -151,7 +155,7 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="{% url 'admin:login' %}">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Adminstrador
                                 </a>
                                 <div class="dropdown-divider"></div>

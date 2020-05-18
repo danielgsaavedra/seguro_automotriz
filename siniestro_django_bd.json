@@ -1277,156 +1277,165 @@
 },
 {
 	"model": "dashboard.usuario",
-	  "pk": "18704536-3",
+	  "pk": 1,
 	  "fields":{
+		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+		  "rut_usuario":"18704536-3",
 		  "primer_nombre":"JOAQUIN",
 		  "segundo_nombre":"ESTEBAN",
 		  "primer_apellido":"LOBOS",
 		  "segundo_apellido":"PARRA",
-		  "correo":"LOBOS.JOAQUIN@HOTMAIL.COM",
+		  "email":"LOBOS.JOAQUIN@HOTMAIL.COM",
 		  "telefono":934567226,
 		  "rol":1
 	}
 },
 {
 	"model": "dashboard.usuario",
-	  "pk": "17553453-1",
+	  "pk": 2,
 	  "fields":{
+		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+		  "rut_usuario":"17553453-1",
 		  "primer_nombre":"DIEGO",
 		  "segundo_nombre":"ANDRES",
 		  "primer_apellido":"PEREZ",
 		  "segundo_apellido":"IBARRA",
-		  "correo":"PEREZ.DEIGO@HOTMAIL.COM",
+		  "email":"PEREZ.DEIGO@HOTMAIL.COM",
 		  "telefono":987560724,
 		  "rol":1
 	}
 },
 {
 	"model": "dashboard.usuario",
-	  "pk": "19545246-7",
+	  "pk": 3,
 	  "fields":{
+		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+		  "rut_usuario":"19545246-7",
 		  "primer_nombre":"JUAN",
 		  "segundo_nombre":"LUIS",
 		  "primer_apellido":"HIDALGO",
 		  "segundo_apellido":"BELTRAN",
-		  "correo":"HIDALGO.JUAN@HOTMAIL.COM",
+		  "email":"HIDALGO.JUAN@HOTMAIL.COM",
 		  "telefono":955364219,
 		  "rol":1
 	}
 },
 {
 	"model": "dashboard.usuario",
-	  "pk": "21583095-3",
+	  "pk": 4,
 	  "fields":{
+		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+		  "rut_usuario":"21583095-3",
 		  "primer_nombre":"DANIEL",
 		  "segundo_nombre":"FABRIZIO",
 		  "primer_apellido":"COPANO",
 		  "segundo_apellido":"SAAVEDRA",
-		  "correo":"DFABRIZIOCOPASAA@GMAIL.COM",
+		  "email":"DFABRIZIOCOPASAA@GMAIL.COM",
 		  "telefono":973014432,
 		  "rol":2
 	}
 },
 {
 	"model": "dashboard.usuario",
-	  "pk": "15004863-K",
+	  "pk": 5,
 	  "fields":{
+		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+		  "rut_usuario":"15004863-K",
 		  "primer_nombre":"RODRIGO",
 		  "segundo_nombre":"SALOMON",
 		  "primer_apellido":"HURTADO",
 		  "segundo_apellido":"CABRERA",
-		  "correo":"RODROGOROBADO@GMAIL.COM",
+		  "email":"RODROGOROBADO@GMAIL.COM",
 		  "telefono":986904452,
 		  "rol":2
 	}
 },
 {
 	"model": "dashboard.usuario",
-	  "pk": "13934482-1",
+	  "pk": 6,
 	  "fields":{
+		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+		  "rut_usuario":"13934482-1",
 		  "primer_nombre":"FELIPE",
 		  "segundo_nombre":"RONALD",
 		  "primer_apellido":"HUITO",
 		  "segundo_apellido":"MADARIAGA",
-		  "correo":"FELIPE.RONALD@HOTMAIL.COM",
+		  "email":"FELIPE.RONALD@HOTMAIL.COM",
 		  "telefono":949890065,
 		  "rol":2
 	}
 },
 {
 	"model": "dashboard.usuario",
-	  "pk": "16003846-2",
+	  "pk": 8,
 	  "fields":{
-		  "primer_nombre":"JUAN",
-		  "segundo_nombre":"GABRIEL",
-		  "primer_apellido":"BERNAL",
-		  "segundo_apellido":"BERNAL",
-		  "correo":"DFABRIZIOCOPASAA@GMAIL.COM",
-		  "telefono":954982257,
-		  "rol":3
-	}
-},
-{
-	"model": "dashboard.usuario",
-	  "pk": "10128673-4",
-	  "fields":{
+		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+		  "rut_usuario":"16003846-2",
 		  "primer_nombre":"ROBERTO",
 		  "segundo_nombre":"DIEGO",
 		  "primer_apellido":"SANDON",
 		  "segundo_apellido":"URRUTIA",
-		  "correo":"ROSANDONU@GMAIL.COM",
+		  "email":"ROSANDONU@GMAIL.COM",
 		  "telefono":999856321,
 		  "rol":3
 	}
 },
 {
 	"model": "dashboard.usuario",
-	  "pk": "12693201-3",
+	  "pk": 9,
 	  "fields":{
+		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+		  "rut_usuario":"10128673-4",
 		  "primer_nombre":"DANILO",
 		  "segundo_nombre":"SAMUEL",
 		  "primer_apellido":"MUÑOZ",
 		  "segundo_apellido":"CABEZAS",
-		  "correo":"DANILOCABEZAS@HOTMAIL.COM",
+		  "email":"DANILOCABEZAS@HOTMAIL.COM",
 		  "telefono":957241905,
 		  "rol":3
 	}
 },
 {
 	"model": "dashboard.usuario",
-	  "pk": "19252234-K",
+	  "pk": 10,
 	  "fields":{
+		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+		  "rut_usuario":"12693201-3",
 		  "primer_nombre":"FELIPE",
 		  "segundo_nombre":"ANDRES",
 		  "primer_apellido":"CATALAN",
 		  "segundo_apellido":"CATALAN",
-		  "correo":"FELIPE.CATALAN@HOTMAIL.COM",
+		  "email":"FELIPE.CATALAN@HOTMAIL.COM",
 		  "telefono":986345676,
 		  "rol":4
 	}
 },
 {
 	"model": "dashboard.usuario",
-	  "pk": "19981900-3",
+	  "pk": 11,
 	  "fields":{
+		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+		  "rut_usuario":"19252234-K",
 		  "primer_nombre":"YARENKA",
 		  "segundo_nombre":"MARCELA",
 		  "primer_apellido":"TOLEDO",
 		  "segundo_apellido":"MOLINA",
-		  "correo":"YARE2519@GMAIL.COM",
+		  "email":"YARE2519@GMAIL.COM",
 		  "telefono":967557486,
 		  "rol":4
 	}
 },
 {
 	"model": "dashboard.usuario",
-	  "pk": "23456234-7",
+	  "pk": 12,
 	  "fields":{
+		  "password":"pbkdf2_sha256$180000$Rro9dLPTDqRF$r6A7kYbqdxiKFLXHicUX/na3hf1XCEtqI81zbLtKnd4=",
+		  "rut_usuario":"19981900-3",
 		  "primer_nombre":"PEDRO",
 		  "segundo_nombre":"AGUIRRE",
 		  "primer_apellido":"COLLADO",
 		  "segundo_apellido":"DELGADO",
-		  "correo":"PEDROCOLLADO@HOTMAIL.COM",
+		  "email":"PEDROCOLLADO@HOTMAIL.COM",
 		  "telefono":934512340,
 		  "rol":4
 	}
@@ -1443,7 +1452,7 @@
 		  "telefono":969871247,
 		  "fecha_nacimiento":"1997-08-12",
 		  "estado":"1",
-		  "usuario_rut_usuario":"18704536-3"
+		  "usuario_rut_usuario":1
 	}
 },
 {
@@ -1458,7 +1467,7 @@
 		  "telefono":987225603,
 		  "fecha_nacimiento":"1995-07-09",
 		  "estado":"1",
-		  "usuario_rut_usuario":"18704536-3"
+		  "usuario_rut_usuario":1
 	}
 },
 {
@@ -1473,7 +1482,7 @@
 		  "telefono":967231011,
 		  "fecha_nacimiento":"1967-02-17",
 		  "estado":"1",
-		  "usuario_rut_usuario":"18704536-3"
+		  "usuario_rut_usuario":1
 	}
 },
 {
@@ -1488,7 +1497,7 @@
 		  "telefono":959085454,
 		  "fecha_nacimiento":"1994-11-08",
 		  "estado":"1",
-		  "usuario_rut_usuario":"18704536-3"
+		  "usuario_rut_usuario":1
 	}
 },
 {
@@ -1503,7 +1512,7 @@
 		  "telefono":923456132,
 		  "fecha_nacimiento":"1983-10-27",
 		  "estado":"1",
-		  "usuario_rut_usuario":"18704536-3"
+		  "usuario_rut_usuario":1
 	}
 },
 {
@@ -1518,7 +1527,7 @@
 		  "telefono":987225677,
 		  "fecha_nacimiento":"1977-04-26",
 		  "estado":"1",
-		  "usuario_rut_usuario":"18704536-3"
+		  "usuario_rut_usuario":1
 	}
 },
 {
@@ -1676,7 +1685,7 @@
 		  "capacidad_taller":20,
 		  "estado":"0",
 		  "estado_delete":"1",
-		  "usuario_rut_usuario":"16003846-2"
+		  "usuario_rut_usuario":9
 	}
 },
 {
@@ -1690,7 +1699,7 @@
 		  "capacidad_taller":17,
 		  "estado":"1",
 		  "estado_delete":"1",
-		  "usuario_rut_usuario":"10128673-4"
+		  "usuario_rut_usuario":8
 	}
 },
 {
@@ -1704,7 +1713,7 @@
 		  "capacidad_taller":10,
 		  "estado":"1",
 		  "estado_delete":"1",
-		  "usuario_rut_usuario":"12693201-3"
+		  "usuario_rut_usuario":9
 	}
 },
 {
@@ -1715,7 +1724,7 @@
 		  "razon_social":"SERVICIO DE TRAYECTO DE SINIESTROS",
 		  "telefono":965214467,
 		  "correo":"MATE.WEB@HOTMAIL.COM",
-		  "usuario_rut_usuario":"19252234-K"
+		  "usuario_rut_usuario":10
 	}
 },
 {
@@ -1726,7 +1735,7 @@
 		  "razon_social":"SERVICIO DE TRAYECTO DE SINIESTROS",
 		  "telefono":979204460,
 		  "correo":"RUFUS@HOTMAIL.COM",
-		  "usuario_rut_usuario":"19981900-3"
+		  "usuario_rut_usuario":11
 	}
 },
 {
@@ -1737,7 +1746,7 @@
 		  "razon_social":"SERVICIO DE GRUA Y TRANSPORTES ESPECIALES",
 		  "telefono":931442147,
 		  "correo":"APATITANOMAH@GMAIL.COM",
-		  "usuario_rut_usuario":"23456234-7"
+		  "usuario_rut_usuario":12
 	}
 },
 {
@@ -1746,7 +1755,7 @@
 	  "fields":{
 		  "estado":"0",
 		  "servicio_grua_id_servicio":1,
-		  "usuario_rut_usuario":"19252234-K"
+		  "usuario_rut_usuario":10
 	}
 },
 {
@@ -1755,7 +1764,7 @@
 	  "fields":{
 		  "estado":"1",
 		  "servicio_grua_id_servicio":1,
-		  "usuario_rut_usuario":"19252234-K"
+		  "usuario_rut_usuario":10
 	}
 },
 {
@@ -1764,7 +1773,7 @@
 	  "fields":{
 		  "estado":"1",
 		  "servicio_grua_id_servicio":2,
-		  "usuario_rut_usuario":"19981900-3"
+		  "usuario_rut_usuario":11
 	}
 },
 {
@@ -1773,7 +1782,7 @@
 	  "fields":{
 		  "estado":"0",
 		  "servicio_grua_id_servicio":2,
-		  "usuario_rut_usuario":"19981900-3"
+		  "usuario_rut_usuario":11
 	}
 },
 {
@@ -1782,7 +1791,7 @@
 	  "fields":{
 		  "estado":"0",
 		  "servicio_grua_id_servicio":3,
-		  "usuario_rut_usuario":"23456234-7"
+		  "usuario_rut_usuario":12
 	}
 },
 {
@@ -1791,7 +1800,7 @@
 	  "fields":{
 		  "estado":"1",
 		  "servicio_grua_id_servicio":3,
-		  "usuario_rut_usuario":"23456234-7"
+		  "usuario_rut_usuario":12
 	}
 },
 {
@@ -1854,11 +1863,12 @@
 	  "fields":{
 		  "fecha_hr":"2020-03-10",
 		  "descripcion":"CAYO SOBRE EL CAPO UNA RAMA DE ARBOL ABOLLANDO EL MALETERO",
+		  "asegurado_rut_asegurado":"19932098-5",
 		  "est_siniestro_id_est_siniestro":7,
 		  "poliza_id_poliza":4,
 		  "taller_id_taller":2,
 		  "tipo_accidente_id_tipo_acc":6,
-		  "usuario_rut_usuario":"18704536-3"
+		  "usuario_rut_usuario":1
 	}
 },
 {
@@ -1867,12 +1877,13 @@
 	  "fields":{
 		  "fecha_hr":"2020-04-15",
 		  "descripcion":"IBA PISTEANDO COMO TODO UN CAMPEON, COMO TODO UN SCHUMACHER",
+		  "asegurado_rut_asegurado":"20554886-7",
 		  "est_siniestro_id_est_siniestro":2,
 		  "grua_patente_grua":"VH-RT-44",
 		  "poliza_id_poliza":1,
 		  "taller_id_taller":1,
 		  "tipo_accidente_id_tipo_acc":1,
-		  "usuario_rut_usuario":"18704536-3"
+		  "usuario_rut_usuario":1
 	}
 },
 {
@@ -1881,12 +1892,13 @@
 	  "fields":{
 		  "fecha_hr":"2020-03-01",
 		  "descripcion":"PAVIMENTO RESBALADIZO OCASIONO CHOQUE",
+		  "asegurado_rut_asegurado":"13456223-1",
 		  "est_siniestro_id_est_siniestro":1,
 		  "grua_patente_grua":"JJ-YY-21",
 		  "poliza_id_poliza":5,
 		  "taller_id_taller":3,
 		  "tipo_accidente_id_tipo_acc":1,
-		  "usuario_rut_usuario":"18704536-3"
+		  "usuario_rut_usuario":1
 	}
 },
 {
@@ -1895,10 +1907,10 @@
 	  "fields":{
 		  "fecha_hora":"2020-04-16",
 		  "observaciones":"EL VEHICULO LLEGO CON DAÑOS EN PUERTA IZQUIERDA Y CHASIS",
-		  "siniestro_nro_siniestro":1,
+		  "siniestro_id":1,
 		  "taller_id_taller":2,
 		  "tipo_acta_id_tipo_acta":1,
-		  "usuario_rut_usuario":"10128673-4"
+		  "usuario_rut_usuario":8
 	}
 },
 {
@@ -1907,10 +1919,10 @@
 	  "fields":{
 		  "fecha_hora":"2019-09-10",
 		  "observaciones":"EL VEHICULO INGRESO AL TALLER FALTANDOLE LA RUEDA TRASERA DERECHA",
-		  "siniestro_nro_siniestro":2,
+		  "siniestro_id":2,
 		  "taller_id_taller":1,
 		  "tipo_acta_id_tipo_acta":1,
-		  "usuario_rut_usuario":"16003846-2"
+		  "usuario_rut_usuario":8
 	}
 },
 {
@@ -1919,10 +1931,10 @@
 	  "fields":{
 		  "fecha_hora":"2019-11-07",
 		  "observaciones":"SE PUSO RUEDA FALTANTE, CENTRADO DE EJE TRASERO",
-		  "siniestro_nro_siniestro":2,
+		  "siniestro_id":2,
 		  "taller_id_taller":1,
 		  "tipo_acta_id_tipo_acta":3,
-		  "usuario_rut_usuario":"16003846-2"
+		  "usuario_rut_usuario":9
 		}
 },
 {
@@ -1933,11 +1945,11 @@
 		  "observaciones":"EL VEHICULO PRESENTA DAÑOS EN EL TREN TRASESO, FUE IMPACTADO POR OTRO VEHICULO Y A CAUSA DE ESTO SE DAÑO LA RUEDA TRASERA DERECHA",
 		  "perdida_total":"0",
 		  "severidad_dano_id_seve_dano":2,
-		  "siniestro_nro_siniestro":2,
+		  "siniestro_id":2,
 		  "taller_id_taller":1,
 		  "tipo_dano_id_tipo_dano":4,
 		  "vehiculo_patente_vehiculo":"JP-DA-22",
-		  "usuario_rut_usuario":"16003846-2"
+		  "usuario_rut_usuario":9
 	}
 },
 {
@@ -1968,7 +1980,7 @@
 		  "fecha_hora":"2019-09-12",
 		  "valor_total":300,
 		  "estado_id_est_presupuesto":1,
-		  "usuario_rut_usuario":"21583095-3",
+		  "usuario_rut_usuario":4,
 		  "informe_dano_id_info_dano":1
 	}
 },
@@ -1979,7 +1991,7 @@
 		  "calle":"SANTA JULIA",
 		  "numero":1222,
 		  "comuna_id_comuna":12,
-		  "usuario_rut_usuario":"18704536-3"
+		  "usuario_rut_usuario":1
 	}
 },
 {
@@ -1989,7 +2001,7 @@
 		  "calle":"SAN ALFONZO",
 		  "numero":5562,
 		  "comuna_id_comuna":23,
-		  "usuario_rut_usuario":"17553453-1"
+		  "usuario_rut_usuario":2
 	}
 },
 {
@@ -1999,7 +2011,7 @@
 		  "calle":"RIQUELME",
 		  "numero":62,
 		  "comuna_id_comuna":5,
-		  "usuario_rut_usuario":"19545246-7"
+		  "usuario_rut_usuario":3
 	}
 },
 {
@@ -2009,7 +2021,7 @@
 		  "calle":"SERRANO",
 		  "numero":0,
 		  "comuna_id_comuna":7,
-		  "usuario_rut_usuario":"21583095-3"
+		  "usuario_rut_usuario":4
 	}
 },
 {
@@ -2019,7 +2031,7 @@
 		  "calle":"DE TIN MARIN",
 		  "numero":1516,
 		  "comuna_id_comuna":62,
-		  "usuario_rut_usuario":"15004863-K"
+		  "usuario_rut_usuario":5
 	}
 },
 {
@@ -2029,17 +2041,7 @@
 		  "calle":"DE DO PINGUE",
 		  "numero":1234,
 		  "comuna_id_comuna":56,
-		  "usuario_rut_usuario":"13934482-1"
-	}
-},
-{
-	"model": "dashboard.direccion",
-	  "pk": 7,
-	  "fields":{
-		  "calle":"AGUAS AZULES",
-		  "numero":14,
-		  "comuna_id_comuna":16,
-		  "usuario_rut_usuario":"16003846-2"
+		  "usuario_rut_usuario":6
 	}
 },
 {
@@ -2049,7 +2051,7 @@
 		  "calle":"MIRAMAR",
 		  "numero":1881,
 		  "comuna_id_comuna":33,
-		  "usuario_rut_usuario":"10128673-4"
+		  "usuario_rut_usuario":8
 	}
 },
 {
@@ -2059,7 +2061,7 @@
 		  "calle":"NARNIA",
 		  "numero":5522,
 		  "comuna_id_comuna":13,
-		  "usuario_rut_usuario":"12693201-3"
+		  "usuario_rut_usuario":9
 	}
 },
 {
@@ -2069,7 +2071,7 @@
 		  "calle":"LAUTARO",
 		  "numero":52,
 		  "comuna_id_comuna":3,
-		  "usuario_rut_usuario":"19252234-K"
+		  "usuario_rut_usuario":10
 	}
 },
 {
@@ -2079,7 +2081,7 @@
 		  "calle":"LIBERTAD",
 		  "numero":1110,
 		  "comuna_id_comuna":22,
-		  "usuario_rut_usuario":"19981900-3"
+		  "usuario_rut_usuario":11
 	}
 },
 {
@@ -2089,7 +2091,7 @@
 		  "calle":"PRAT",
 		  "numero":1230,
 		  "comuna_id_comuna":4,
-		  "usuario_rut_usuario":"23456234-7"
+		  "usuario_rut_usuario":12
 	}
 },
 {
@@ -2189,7 +2191,7 @@
 		  "calle":"BRUSELAS",
 		  "numero":256,
 		  "comuna_id_comuna":15,
-		  "siniestro_nro_siniestro":1
+		  "siniestro_id":1
 	}
 },
 {
@@ -2199,7 +2201,7 @@
 		  "calle":"DAMASCO",
 		  "numero":1926,
 		  "comuna_id_comuna":45,
-		  "siniestro_nro_siniestro":2
+		  "siniestro_id":2
 	}
 },
 {
@@ -2209,7 +2211,7 @@
 		  "calle":"REPUBLICA",
 		  "numero":1903,
 		  "comuna_id_comuna":12,
-		  "siniestro_nro_siniestro":3
+		  "siniestro_id":3
 	}
 },
 {

@@ -7,11 +7,11 @@
     <td>{{polizasDisable.vehiculo_patente_vehiculo}}</td>
     {% if polizasDisable.estado == '0' %}
     <td>
-        <span class="badge badge-pill badge-danger">Inactiva</span>
+        <span class="badge badge-pill badge-danger">INACTIVA</span>
     </td>
     {% else %}
     <td>
-        <span class="badge badge-pill badge-success">Activa</span>
+        <span class="badge badge-pill badge-success">ACTIVA</span>
     </td>
     {% endif %}
     <td>
@@ -21,8 +21,9 @@
                 <i class="fas fa-ellipsis-v"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <button class="show_poliza_reactivate dropdown-item" data-url="{% url 'poliza_reactivate' polizasDisable.id %}">
-                    Habilitar Póliza</button>
+                <button class="show_poliza_reactivate dropdown-item"
+                    data-url="{% url 'poliza_reactivate' polizasDisable.id %}">
+                    Activar Póliza</button>
             </div>
         </div>
     </td>

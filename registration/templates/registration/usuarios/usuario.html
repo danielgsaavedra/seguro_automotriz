@@ -1,6 +1,12 @@
 {% extends "dashboard/base.html" %}
 
 {% block content %}
+<button class="float-left d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm ">
+    <a class="text-decoration-none text-light" href="javascript:void(0)">
+        <i class="fas fa-users fa-sm text-white-50"></i> Usuarios Inactivos
+    </a>
+</button>
+
 <div class="d-sm-flex align-items-center justify-content-end mb-4">
     <button href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm show-usuario"
         data-url="{% url 'usuario_create' %}">
@@ -26,7 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% include "registration/usuarios/usuarios_2.html" %}
+                    {% include "registration/usuarios/usuario_2.html" %}
                 </tbody>
             </table>
         </div>
@@ -35,8 +41,10 @@
     <div class="modal fade" id="modal_usuario" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                
+
             </div>
         </div>
     </div>
-    {% endblock %}
+</div>
+
+{% endblock %}

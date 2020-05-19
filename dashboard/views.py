@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro
 from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
 from django.db.models import Q
+from django.db.models import Count
 # Create your views here.
 
 
@@ -515,3 +516,13 @@ def AseguradoConsultaView(request):
         siniestros = Siniestro.objects.none()
 
     return render(request, 'dashboard/asegurados/asegurado_consulta.html', {'siniestros': siniestros})
+
+
+class pie_chart(TemplateView):
+    template_name = 'dashboard/dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["qs"] = Siniestro.objects.values('tipo_accidente_id_tipo_acc').annotate(
+            dcount=Count('tipo_accidente_id_tipo_acc'))
+        return context

@@ -51,7 +51,6 @@ class AseguradoForm(forms.ModelForm):
             'correo',
             'telefono',
             'fecha_nacimiento',
-            'usuario_rut_usuario'
         ]
         widgets = {
             'rut_asegurado': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su rut', 'pattern': '^[0-9]{8,9}[-|‐]{1}[0-9kK]{1}$'}),
@@ -62,7 +61,6 @@ class AseguradoForm(forms.ModelForm):
             'correo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'}),
             'telefono': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su teléfono', 'min': '9'}),
             'fecha_nacimiento': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'usuario_rut_usuario': forms.Select(attrs={'class': 'form-control'}),
         }
 
 

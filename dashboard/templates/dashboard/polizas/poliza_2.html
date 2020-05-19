@@ -14,7 +14,6 @@
     <td>{{polizas.fecha_fin | date:'d-m-Y' }}</td>
     <td>{{polizas.asegurado_rut_asegurado.rut_asegurado}}</td>
     <td>{{polizas.vehiculo_patente_vehiculo}}</td>
-    {% if request.user.is_staff %}
     <td>
         <div class="dropdown">
             <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -29,7 +28,6 @@
             </div>
         </div>
     </td>
-    {% endif %}
 </tr>
 {% empty %}
 <tr>

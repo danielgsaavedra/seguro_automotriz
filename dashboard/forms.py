@@ -53,7 +53,7 @@ class AseguradoForm(forms.ModelForm):
             'fecha_nacimiento',
         ]
         widgets = {
-            'rut_asegurado': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su rut', 'pattern': '^[0-9]{8,9}[-|‐]{1}[0-9kK]{1}$'}),
+            'rut_asegurado': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su rut', 'pattern': '^[0-9]{7,9}[-|‐]{1}[0-9kK]{1}$'}),
             'primer_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su primer nombre', 'pattern': '[A-Za-z ]+'}),
             'segundo_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su segundo nombre', 'pattern': '[A-Za-z ]+'}),
             'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su primer apellido', 'pattern': '[A-Za-z ]+'}),

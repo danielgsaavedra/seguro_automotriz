@@ -38,7 +38,49 @@
                 </thead>
 
                 <tbody>
-                    {% include "dashboard/talleres/taller_2.html" %}
+                    {% for talleres in talleres %}
+                    <tr>
+                        <th scope="row">{{ talleres.id }}</th>
+                        <td>{{ talleres.nombre }}</td>
+                        <td>{{ talleres.telefono }}</td>
+                        <td>{{ talleres.correo }}</td>
+                        <td>{{ talleres.capacidad_taller }}</td>
+                        {% if talleres.estado == '1' %}
+                        <td>
+                            <span class="badge badge-pill badge-success">DISPONIBLE</span>
+                        </td>
+                        {% else %}
+                        <td>
+                            <span class="badge badge-pill badge-danger">NO DISPONIBLE</span>
+                        </td>
+                        {% endif %}
+                        {% if  request.user.is_staff %}
+                        <td>
+                            <div class="dropdown">
+                                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <button class="show_taller_update dropdown-item"
+                                        data-url="{% url 'taller_update' talleres.id %}">
+                                        Modificar Taller
+                                    </button>
+                                    <button class="show_taller_delete dropdown-item"
+                                        data-url="{% url 'taller_delete' talleres.id %}">
+                                        Desactivar Taller
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center">No hay talleres</td>
+                    </tr>
+
+                    {% endfor %}
                 </tbody>
 
             </table>

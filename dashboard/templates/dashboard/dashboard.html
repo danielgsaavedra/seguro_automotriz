@@ -7,7 +7,7 @@
             class="fas fa-download fa-sm text-white-50"></i> Generar Reporte</a>
 </div>
 <div class="row">
-    <div class="col-xl-8 col-md-7 col-12">
+    <div class="col-md-7 col-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Costos Reparaciones</h6>
@@ -20,28 +20,54 @@
         </div>
     </div>
 
-    <div class="col-xl-4 col-md-5 col-12">
+    <div class="col-md-5 col-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Daños Frecuentes</h6>
             </div>
             <div class="card-body">
-                <div class="chart-pie pt-4">
-                    <canvas id="myPieChart"></canvas>
-                </div>
-                <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                        <i class="fas fa-circle text-primary"></i> Choque
-                    </span>
-                    <span class="mr-2">
-                        <i class="fas fa-circle text-success"></i> Robo
-                    </span>
-                    <span class="mr-2">
-                        <i class="fas fa-circle text-info"></i> Natural
-                    </span>
+                <div class="p-4">
+                    <canvas id="myChart" width="400" height="300"></canvas>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}
+
+{% block script %}
+<script>
+    $(document).ready(function () {
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [{% for item in qs %}'{{item.tipo_accidente_id_tipo_acc}}' ,{% endfor %}],
+        datasets: [{
+            data: [{% for item in qs %}'{{item.dcount}}', {% endfor %}],
+        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#ef962d'],
+        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#de7119'],
+        hoverBorderColor: "rgba(234, 236, 244, 1)",
+        }],
+        },
+        options: {
+        maintainAspectRatio: false,
+        tooltips: {
+            backgroundColor: "rgb(255,255,255)",
+            bodyFontColor: "#6e707e",
+            borderColor: '#dddfeb',
+            borderWidth: 1,
+            xPadding: 15,
+            yPadding: 15,
+            displayColors: false,
+            caretPadding: 10,
+        },
+        legend: {
+            display: false
+        },
+        cutoutPercentage: 50,
+    }
+    });
+});
+</script>
+{% endblock script %}

@@ -2,9 +2,13 @@
 <tr>
     <th scope="row">{{polizas.id}}</th>
     {% if polizas.vigente == '1' %}
-    <td>SÍ</td>
+    <td>
+        <span class="badge badge-pill badge-success">VIGENTE</span>
+    </td>
     {% else %}
-    <td>NO</td>
+    <td>
+        <span class="badge badge-pill badge-danger">NO VIGENTE</span>
+    </td>
     {% endif %}
     <td>{{polizas.fecha_inicio | date:'d-m-Y' }}</td>
     <td>{{polizas.fecha_fin | date:'d-m-Y' }}</td>

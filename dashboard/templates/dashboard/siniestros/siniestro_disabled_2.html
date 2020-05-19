@@ -5,53 +5,6 @@
     <td>{{siniestrosDisable.fecha_hr | date:'d-m-Y' }}</td>
     <td>{{siniestrosDisable.tipo_accidente_id_tipo_acc}}</td>
 
-    {% if siniestrosDisable.est_siniestro_id_est_siniestro.id == 1 %}
-    <td>
-        <span class="badge badge-pill badge-info">{{siniestrosDisable.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
-
-    {% if siniestrosDisable.est_siniestro_id_est_siniestro.id == 2 %}
-    <td>
-        <span class="badge badge-pill badge-light">{{siniestrosDisable.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
-
-    {% if siniestrosDisable.est_siniestro_id_est_siniestro.id == 3 %}
-    <td>
-        <span class="badge badge-pill badge-primary">{{siniestrosDisable.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
-
-    {% if siniestrosDisable.est_siniestro_id_est_siniestro.id == 4 %}
-    <td>
-        <span class="badge badge-pill badge-warning">{{siniestrosDisable.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
-
-    {% if siniestrosDisable.est_siniestro_id_est_siniestro.id == 5 %}
-    <td>
-        <span class="badge badge-pill badge-danger">{{siniestrosDisable.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
-
-    {% if siniestrosDisable.est_siniestro_id_est_siniestro.id == 6 %}
-    <td>
-        <span class="badge badge-pill badge-success">{{siniestrosDisable.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
-
-    {% if siniestrosDisable.est_siniestro_id_est_siniestro.id == 7 %}
-    <td>
-        <span class="badge badge-pill badge-dark">{{siniestrosDisable.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
-
-    {% if siniestrosDisable.est_siniestro_id_est_siniestro.id == 8 %}
-    <td>
-        <span class="badge badge-pill badge-secondary">{{siniestrosDisable.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
 
     <td>{{siniestrosDisable.taller_id_taller}}</td>
     {% if siniestrosDisable.grua_patente_grua == null %}

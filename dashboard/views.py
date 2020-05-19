@@ -62,6 +62,8 @@ def AseguradosDisableView(request):
 def AseguradoCreate(request):
     if request.method == 'POST':
         form = AseguradoForm(request.POST)
+        asegurado = form.save(commit=False)
+        asegurado.usuario_rut_usuario = request.user
     else:
         form = AseguradoForm()
     return SaveAllAsegurado(request, form, 'dashboard/asegurados/asegurado_create.html')

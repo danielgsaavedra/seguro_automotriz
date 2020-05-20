@@ -16,6 +16,14 @@ from django.db.models import Count
 class DashboardView(TemplateView):
     template_name = 'dashboard/dashboard.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["qs1"] = Siniestro.objects.values('tipo_accidente_id_tipo_acc').annotate(
+            dcount=Count('tipo_accidente_id_tipo_acc'))
+        context["qs2"] = Siniestro.objects.values('est_siniestro_id_est_siniestro').annotate(
+            dcount=Count('est_siniestro_id_est_siniestro'))
+        return context
+
 # Crud Asegurados
 
 
@@ -518,13 +526,3 @@ def AseguradoConsultaView(request):
         siniestros = Siniestro.objects.none()
 
     return render(request, 'dashboard/asegurados/asegurado_consulta.html', {'siniestros': siniestros})
-
-
-class pie_chart(TemplateView):
-    template_name = 'dashboard/dashboard.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["qs"] = Siniestro.objects.values('tipo_accidente_id_tipo_acc').annotate(
-            dcount=Count('tipo_accidente_id_tipo_acc'))
-        return context

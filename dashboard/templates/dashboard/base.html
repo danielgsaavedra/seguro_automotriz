@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="{% static 'dashboard/img/favicon.ico' %}" type="image/x-icon">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -26,7 +27,7 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-    <title>Seguros Virgolini</title>
+    <title>{% block title %}{% endblock title %}</title>
 
 </head>
 
@@ -192,7 +193,9 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; JDF 2020</span>
+                        <span>Copyright &copy; 2020-2021 <strong>Seguros Virgolini</strong></span>
+                        <br>
+                        <div class="mt-2"><strong>Versión 2.0</strong></div>
                     </div>
                 </div>
             </footer>

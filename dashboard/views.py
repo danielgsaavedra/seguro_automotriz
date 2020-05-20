@@ -526,3 +526,7 @@ def AseguradoConsultaView(request):
         siniestros = Siniestro.objects.none()
 
     return render(request, 'dashboard/asegurados/asegurado_consulta.html', {'siniestros': siniestros})
+
+
+class HomeView(TemplateView):
+    template_name = 'dashboard/home.html'

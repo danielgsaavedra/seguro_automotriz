@@ -1,0 +1,17 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+<div class="card shadow mb-4">
+    <!-- <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Home</h6>
+    </div> -->
+    <div class="card-body">
+        <div class="text-center">
+            <h3>Bienvenido <strong>{{request.user.primer_nombre}} {{request.user.primer_apellido}}</strong></h3>
+            <a class="text-decoration-none" href="javascript:void(0)">{{request.user.email}}</a>
+            <br>
+            <span>Última conexión: {{request.user.last_login}}</span>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -3,12 +3,14 @@
 {% block content %}
 <div class="row justify-content-center mt-4" id="">
     <div class="card shadow-sm mt-5">
-        <div class="card-body">
-            <div class="text-center mt-4 mb-4">
-                <h5 class="card-title">Inicia Sesión</h5>
+        <div class="card-header">
+            <div class="text-center my-2">
+                <h3 class="card-title">Inicia Sesión</h3>
                 <div class="card-text">Ingresa tus datos para comenzar</div>
             </div>
-            <hr>
+        </div>
+
+        <div class="card-body">
             <div class="mx-5 clearfix">
                 <form action="" method="post">{% csrf_token %}
                     <div class="mensajes">
@@ -38,7 +40,7 @@
 
                     </div>
                     <div class="float-left mr-4 my-4">
-                        <a class="btn btn-info" href="{% url 'asegurado_consulta' %}">
+                        <a class="text-decoration-none" href="{% url 'asegurado_consulta' %}">
                             ¿Eres cliente? Click aquí
                         </a>
                     </div>

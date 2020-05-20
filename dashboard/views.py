@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 from django.views.generic.base import TemplateView
 from django.http import JsonResponse
 from django.template.loader import render_to_string
@@ -352,8 +353,12 @@ def SiniestroDisabledView(request):
 
 @login_required(login_url='login')
 def CreateSiniestro(request):
+    estado = get_object_or_404(EstadoSiniestro, id=1)
     if request.method == 'POST':
         form = SiniestroForm(request.POST)
+        siniestro = form.save(commit=False)
+        siniestro.usuario_rut_usuario = request.user
+        siniestro.est_siniestro_id_est_siniestro = estado
     else:
         form = SiniestroForm()
     return SaveAllSiniestro(request, form, 'dashboard/siniestros/siniestro_create.html')
@@ -444,6 +449,9 @@ def TallerDisabledView(request):
 def CreateTaller(request):
     if request.method == 'POST':
         form = TallerForm(request.POST)
+        taller = form.save(commit=False)
+        taller.usuario_rut_usuario = request.user
+        taller.estado = 1
     else:
         form = TallerForm()
     return SaveAllTaller(request, form, 'dashboard/talleres/taller_create.html')

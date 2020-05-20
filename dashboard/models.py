@@ -344,7 +344,7 @@ class SeveridadDano(models.Model):
 
 
 class Siniestro(models.Model):
-    fecha_hr = models.DateField(verbose_name='Fecha Siniestro')
+    fecha_hr = models.DateField(verbose_name='Fecha Siniestro',auto_now=True)
     descripcion = models.CharField(max_length=100, verbose_name='Descripción')
     parte_policial = models.FileField(
         max_length=100, blank=True, null=True, verbose_name='Parte Policial')

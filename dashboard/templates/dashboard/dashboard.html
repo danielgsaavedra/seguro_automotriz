@@ -1,5 +1,5 @@
-{% extends "dashboard/base.html" %}
-
+{% extends "dashboard/base.html" %} 
+{% block title %}Dashboard{% endblock title %}
 {% block content %}
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
@@ -10,64 +10,179 @@
     <div class="col-md-7 col-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Costos Reparaciones</h6>
+                <h6 class="m-0 font-weight-bold text-primary">
+                    Tipos de accidentes
+                </h6>
             </div>
             <div class="card-body">
-                <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                </div>
+                <canvas id="BarChart" width="400" height="400"></canvas>
             </div>
         </div>
     </div>
-
     <div class="col-md-5 col-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Daños Frecuentes</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Estado siniestros</h6>
             </div>
             <div class="card-body">
-                <div class="p-4">
-                    <canvas id="myChart" width="400" height="300"></canvas>
-                </div>
+                <canvas id="PieChart" width="400" height="400"></canvas>
             </div>
         </div>
     </div>
 </div>
-{% endblock content %}
 
-{% block script %}
+<div class="row"></div>
+
+{% endblock content %} {% block script %}
 <script>
     $(document).ready(function () {
-        var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
+        var ctx = document.getElementById('BarChart').getContext('2d');
+        var BarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    {% for item in qs1 %}
+                        {% if item.tipo_accidente_id_tipo_acc == 1 %}
+                            "DAÑOS AL VEHÍCULO"
+                        {% endif %}
+                        {% if item.tipo_accidente_id_tipo_acc == 2 %}
+                            "ROBO, HURTO O USO NO AUTORIZADO"
+                        {% endif %}
+                        {% if item.tipo_accidente_id_tipo_acc == 3 %}
+                            "RESPONSABILIDAD CIVIL"
+                        {% endif %}
+                        {% if item.tipo_accidente_id_tipo_acc == 4 %}
+                            "ROBO DE ACCESORIOS"
+                        {% endif %}
+                        {% if item.tipo_accidente_id_tipo_acc == 5 %}
+                            "ACTOS MALICIOSOS"
+                        {% endif %}
+                        {% if item.tipo_accidente_id_tipo_acc == 6 %}
+                            "RIESGOS DE LA NATURALEZA"
+                        {% endif %}
+                        {% if item.tipo_accidente_id_tipo_acc == 7 %}
+                            "HUELGA Y TERRORISMO"
+                        {% endif %}
+                        {% if item.tipo_accidente_id_tipo_acc == 8 %}
+                            "CAUSADOS POR LA PROPIA CARGA"
+                        {% endif %}
+                        {% if item.tipo_accidente_id_tipo_acc == 9 %}
+                            "CAUSADOS A TERCEROS"
+                        {% endif %}
+                        {% if item.tipo_accidente_id_tipo_acc == 10 %}
+                            "DEFENSA PENAL Y CONSTITUCIÓN DE FIANZAS"
+                        {% endif %}
+                    , {% endfor %}
+                ],
+                datasets: [{
+                    label: "Total",
+                    data: [{% for item in qs1 %}'{{item.dcount}}', {% endfor %}],
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                }],
+            },
+            options: {
+                layout: {
+                    padding: {
+                        left: 30,
+                        right: 30,
+                        top: 30,
+                        bottom: 30,
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: 'Tipos de accidentes más frecuentes'
+                },
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                        gridLines: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        maxBarThickness: 60,
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                        gridLines: {
+                            color: "rgb(234, 236, 244)",
+                            zeroLineColor: "rgb(234, 236, 244)",
+                            drawBorder: false,
+                            borderDash: [2],
+                            zeroLineBorderDash: [2]
+                        }
+                    }]
+                }
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        var ctx = document.getElementById("PieChart");
+        var PieChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: [{% for item in qs %}'{{item.tipo_accidente_id_tipo_acc}}' ,{% endfor %}],
-        datasets: [{
-            data: [{% for item in qs %}'{{item.dcount}}', {% endfor %}],
-        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#ef962d'],
-        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#de7119'],
-        hoverBorderColor: "rgba(234, 236, 244, 1)",
-        }],
-        },
-        options: {
-        maintainAspectRatio: false,
-        tooltips: {
-            backgroundColor: "rgb(255,255,255)",
-            bodyFontColor: "#6e707e",
-            borderColor: '#dddfeb',
-            borderWidth: 1,
-            xPadding: 15,
-            yPadding: 15,
-            displayColors: false,
-            caretPadding: 10,
-        },
-        legend: {
-            display: false
-        },
-        cutoutPercentage: 50,
-    }
+                labels: [
+                    {% for item in qs2 %}
+                        {% if item.est_siniestro_id_est_siniestro == 1 %}
+                            "EN CURSO"
+                        {% endif %}
+                        {% if item.est_siniestro_id_est_siniestro == 2 %}
+                            "RECEPCIONADO"
+                        {% endif %}
+                        {% if item.est_siniestro_id_est_siniestro == 3 %}
+                            "INSPECCIONADO"
+                        {% endif %}
+                        {% if item.est_siniestro_id_est_siniestro == 4 %}
+                            "EN REPARACIÓN"
+                        {% endif %}
+                        {% if item.est_siniestro_id_est_siniestro == 5 %}
+                            "RECHAZADO"
+                        {% endif %}
+                        {% if item.est_siniestro_id_est_siniestro == 6 %}
+                            "REPARADO"
+                        {% endif %}
+                        {% if item.est_siniestro_id_est_siniestro == 7 %}
+                            "FINALIZADO"
+                        {% endif %}
+                        {% if item.est_siniestro_id_est_siniestro == 8 %}
+                            "PENDIENTE"
+                        {% endif %}
+                    , {% endfor %}
+                ],
+                datasets: [{
+                    data: [{% for item in qs2 %}'{{item.dcount}}', {% endfor %}],
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                }],
+            },
+            options: {
+                layout: {
+                    padding: {
+                        left: 30,
+                        right: 30,
+                        top: 30,
+                        bottom: 30,
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                },
+                title: {
+                    display: true,
+                    text: 'Estado actual de los siniestros'
+                },
+            },
+        });
     });
-});
 </script>
 {% endblock script %}

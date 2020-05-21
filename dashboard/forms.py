@@ -83,7 +83,7 @@ class SiniestroForm(forms.ModelForm):
     class Meta:
         model = Siniestro
         fields = ['id', 'descripcion', 'parte_policial', 'foto_licencia', 'tipo_accidente_id_tipo_acc',
-                   'taller_id_taller', 'grua_patente_grua', 'poliza_id_poliza']
+                   'taller_id_taller', 'grua_patente_grua', 'poliza_id_poliza','asegurado_rut_asegurado']
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
             'descripcion': forms.Textarea(attrs={'class': 'required form-control', 'placeholder': 'Ingrea una descripción'}),
@@ -93,6 +93,7 @@ class SiniestroForm(forms.ModelForm):
             'taller_id_taller': forms.Select(attrs={'class': 'required form-control'}),
             'grua_patente_grua': forms.Select(attrs={'class': 'form-control'}),
             'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control'}),
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'required form-control'}),
         }
 
 

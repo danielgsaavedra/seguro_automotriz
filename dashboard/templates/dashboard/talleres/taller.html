@@ -1,12 +1,11 @@
 {% extends "dashboard/base.html" %}
 {% block title %}Módulo Taller{% endblock title %}
 {% block content %}
-<!-- boton para activar modal -->
-<button type="button" class="float-left d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm ">
-    <a class="text-decoration-none text-light" href="{% url 'taller_disabled' %}">
+<a class="text-decoration-none text-light" href="{% url 'taller_disabled' %}">
+    <button type="button" class="float-left d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm ">
         <i class="fas fa-tools fa-sm text-white-50"></i> Talleres Inactivos
-    </a>
-</button>
+    </button>
+</a>
 <div class="d-sm-flex align-items-center justify-content-end mb-4">
     <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm show_taller"
         data-url="{% url 'taller_create' %}">

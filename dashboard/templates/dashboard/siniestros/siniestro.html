@@ -31,6 +31,7 @@
                         <th scope="col">Estado</th>
                         <th scope="col">Taller Asignado</th>
                         <th scope="col">Patente Grúa</th>
+                        <th scope="col">Rut Asegurado</th>
                         {% if  request.user.is_staff %}
                         <th scope="col">Opciones</th>
                         {% endif %}
@@ -106,6 +107,7 @@
                         {% else %}
                         <td>{{siniestros.grua_patente_grua}}</td>
                         {% endif %}
+                        <td>{{siniestros.asegurado_rut_asegurado}}</td>
                         {% if  request.user.is_staff %}
                         <td>
                             <div class="dropdown">

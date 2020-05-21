@@ -1,11 +1,11 @@
 {% extends "dashboard/base.html" %}
 {% block title %}Módulo Póliza{% endblock title %}
 {% block content %}
-<button type="button" class="float-left d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
-    <a class="text-decoration-none text-light" href="{% url 'poliza_disabled' %}">
+<a class="text-decoration-none text-light" href="{% url 'poliza_disabled' %}">
+    <button type="button" class="float-left d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
         <i class="fas fa-file-contract fa-sm text-white-50"></i> Pólizas Inactivas
-    </a>
-</button>
+    </button>
+</a>
 
 <div class="d-sm-flex align-items-center justify-content-end mb-4">
     <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm show_poliza"

@@ -82,20 +82,18 @@ class DeshabilitarAseguradoForm(forms.ModelForm):
 class SiniestroForm(forms.ModelForm):
     class Meta:
         model = Siniestro
-        fields = ['id', 'fecha_hr', 'descripcion', 'parte_policial', 'foto_licencia', 'tipo_accidente_id_tipo_acc',
-                  'est_siniestro_id_est_siniestro', 'taller_id_taller', 'grua_patente_grua', 'usuario_rut_usuario', 'poliza_id_poliza']
+        fields = ['id', 'descripcion', 'parte_policial', 'foto_licencia', 'tipo_accidente_id_tipo_acc',
+                   'taller_id_taller', 'grua_patente_grua', 'poliza_id_poliza','asegurado_rut_asegurado']
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
-            'fecha_hr': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),
             'descripcion': forms.Textarea(attrs={'class': 'required form-control', 'placeholder': 'Ingrea una descripción'}),
             'parte_policial': forms.FileInput(attrs={'class': 'form-control'}),
             'foto_licencia': forms.FileInput(attrs={'class': 'form-control'}),
             'tipo_accidente_id_tipo_acc': forms.Select(attrs={'class': 'required form-control'}),
-            'est_siniestro_id_est_siniestro': forms.Select(attrs={'class': 'required form-control'}),
             'taller_id_taller': forms.Select(attrs={'class': 'required form-control'}),
             'grua_patente_grua': forms.Select(attrs={'class': 'form-control'}),
-            'usuario_rut_usuario': forms.Select(attrs={'class': 'required form-control'}),
             'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control'}),
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'required form-control'}),
         }
 
 
@@ -148,9 +146,6 @@ class TallerForm(forms.ModelForm):
             'telefono',
             'correo',
             'capacidad_taller',
-            'estado',
-            # 'estado_delete',
-            'usuario_rut_usuario',
         ]
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
@@ -159,10 +154,6 @@ class TallerForm(forms.ModelForm):
             'telefono': forms.NumberInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa número de teléfono', 'min' : '9'}),
             'correo': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa correo', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'}),
             'capacidad_taller': forms.NumberInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa capacidad máxima'}),
-            'estado': forms.TextInput(
-                attrs={'class': 'required form-control', 'placeholder': 'Ingresa estado taller'}),
-            # 'estado_delete': forms.HiddenInput(attrs={'class': 'required form-control'}),
-            'usuario_rut_usuario': forms.Select(attrs={'class': 'required form-control'}),
         }
 
 

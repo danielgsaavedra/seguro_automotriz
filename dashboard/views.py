@@ -57,7 +57,7 @@ def AseguradosView(request):
     context = {'asegurados': asegurados}
     return render(request, 'dashboard/asegurados/asegurado.html', context)
 
-# Listar usuarios deshabilitados
+# Listar usuarios Deshabilitados
 
 
 def AseguradosDisableView(request):

@@ -2,11 +2,11 @@
 {% block title %}Pólizas Inactivas{% endblock title %}
 {% block content %}
 <div class="d-sm-flex align-items-center justify-content-start mb-4">
-    <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <a class="text-decoration-none text-light" href="{% url 'polizas' %}">
-            <i class="fas fa-arrow-circle-left fa-sm text-white-50"></i> Volver
+    <div class="text-center d-none d-md-inline">
+        <a class="text-decoration-none" href="{% url 'polizas' %}">
+            <i class="fas fa-arrow-circle-left"></i> Volver
         </a>
-    </button>
+    </div>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">

@@ -35,7 +35,7 @@
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="javascript:void(0)">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
                 <div class="sidebar-brand-icon">
                     <img src="{% static 'dashboard/img/seguro-icon.png' %}" width="50" height="50"
                         class="d-inline-block align-top" alt="">
@@ -52,20 +52,6 @@
             </li>
             <hr class="sidebar-divider">
 
-            {% if  request.user.is_staff %}
-            <div class="sidebar-heading">
-                Módulo Usuarios
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'usuarios' %}">
-                    <i class="fas fa-users"></i>
-                    <span>Usuarios</span>
-                </a>
-            </li>
-
-            <hr class="sidebar-divider">
-            {% endif %}
             <div class="sidebar-heading">
                 Módulo Asegurados
             </div>
@@ -124,8 +110,22 @@
                 </a>
 
             </li>
+            <hr class="sidebar-divider">
 
-            <hr class="sidebar-divider d-none d-md-block">
+            {% if  request.user.is_staff %}
+            <div class="sidebar-heading">
+                Módulo Usuarios
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'usuarios' %}">
+                    <i class="fas fa-users"></i>
+                    <span>Usuarios</span>
+                </a>
+            </li>
+            <hr class="sidebar-divider">
+            {% endif %}
+
 
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -220,8 +220,8 @@
                 </div>
                 <div class="modal-body">Presiona "Salir" para cerrar sesión.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-outline-danger" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-outline-primary" href="{% url 'logout' %}">Salir</a>
+                    <button class="btn btn-outline-dark" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-outline-danger" href="{% url 'logout' %}">Salir</a>
                 </div>
             </div>
         </div>

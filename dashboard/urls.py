@@ -1,6 +1,6 @@
 from django.urls import path
 from django.conf.urls import url, include
-from .views import DashboardView, TallerView, AseguradoConsultaView
+from .views import DashboardView, TallerView, AseguradoConsultaView, HomeView
 from . import views
 
 urlpatterns = [
@@ -44,4 +44,5 @@ urlpatterns = [
          views.ReactivatePoliza, name='poliza_reactivate'),
     path('asegurado-consulta/', views.AseguradoConsultaView,
          name='asegurado_consulta'),
+    path('home/', HomeView.as_view(), name='home'),
 ]

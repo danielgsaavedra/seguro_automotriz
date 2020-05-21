@@ -17,21 +17,23 @@
     <div class="container-fluid">
 
         <div class="row mt-2">
-            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm ">
-                <a class="text-decoration-none text-light" href="{% url 'login' %}">
-                    <i class="fas fa-arrow-circle-left fa-sm text-white-50"></i> Volver
+            <div class="text-center d-none d-md-inline">
+                <a class="text-decoration-none" href="{% url 'login' %}">
+                    <i class="fas fa-arrow-circle-left"></i> Volver
                 </a>
-            </button>
+            </div>
         </div>
 
         <div class="row justify-content-center mt-4">
             <div class="card shadow-sm mt-5">
-                <div class="card-body">
-                    <div class="text-center my-4">
-                        <h2 class="card-title">Consultar Estado Siniestro</h2>
-                        <p>Completa los campos para ver el estado de tu siniestro</p>
-                        <hr>
+                <div class="card-header">
+                    <div class="text-center">
+                        <h3 class="card-title">Consultar Estado Siniestro</h3>
+                        <span>Completa los campos para ver el estado de tu siniestro</span>
                     </div>
+                </div>
+
+                <div class="card-body">
                     <div class="mx-5 clearfix">
                         <form action="" method="GET">
                             {% csrf_token %}
@@ -65,7 +67,7 @@
         <div class="row justify-content-center mt-5">
             <div>
                 {% for siniestros in siniestros %}
-                <h2>Su siniestro se encuentra
+                <h2>Su siniestro se encuentra:
                     {% if siniestros.est_siniestro_id_est_siniestro.id == 1 %}
                     <span class="badge badge-pill badge-info">{{siniestros.est_siniestro_id_est_siniestro}}</span>
                     {% endif %}

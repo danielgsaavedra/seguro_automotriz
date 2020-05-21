@@ -28,8 +28,6 @@ class DashboardView(TemplateView):
         return context
 
 # Crud Asegurados
-
-
 def SaveAllAsegurado(request, form, template_name):
     data = dict()
     if request.method == 'POST':

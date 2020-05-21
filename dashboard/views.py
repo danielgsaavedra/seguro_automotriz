@@ -10,6 +10,8 @@ from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSinies
 from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
 from django.db.models import Q
 from django.db.models import Count
+from django.db import connection
+
 # Create your views here.
 
 
@@ -431,6 +433,8 @@ def SaveAllTaller(request, form, template_name):
 
 @login_required(login_url='login')
 def TallerView(request):
+    with connection.cursor() as cursor:
+        cursor.callproc('SP_ESTADO_TALLER')
     talleres = Taller.objects.filter(estado_delete=1).order_by('id')
     context = {'talleres': talleres}
     return render(request, 'dashboard/talleres/taller.html', context)

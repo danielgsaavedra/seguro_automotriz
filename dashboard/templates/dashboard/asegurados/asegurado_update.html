@@ -1,4 +1,5 @@
-<form action="" class="asegurado_form_update" method="POST"
+{% load static %}
+<form action="" class="asegurado_form_update needs-validation" method="POST"
     data-url="{% url 'asegurado_update' form.instance.rut_asegurado %}">
     {% csrf_token %}
     <div class="modal-header  bg-primary">
@@ -14,6 +15,8 @@
                     <span>RUT</span>
                 </div>
                 {{form.rut_asegurado}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_rut"></div>
             </div>
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
@@ -24,6 +27,8 @@
                         <span class="input-group-text" id="">+56</span>
                     </div>
                     {{form.telefono}}
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback" id="error_telefono"></div>
                 </div>
             </div>
         </div>
@@ -33,12 +38,16 @@
                     <span>PRIMER NOMBRE</span>
                 </div>
                 {{form.primer_nombre}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_p_nombre"></div>
             </div>
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>SEGUNDO NOMBRE</span>
                 </div>
                 {{form.segundo_nombre}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_s_nombre"></div>
             </div>
         </div>
         <div class="form-row">
@@ -47,12 +56,16 @@
                     <span>PRIMER APELLIDO</span>
                 </div>
                 {{form.primer_apellido}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_p_apellido"></div>
             </div>
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>SEGUNDO APELLIDO</span>
                 </div>
                 {{form.segundo_apeliido}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_s_apellido"></div>
             </div>
         </div>
         <div class="form-row">
@@ -61,6 +74,8 @@
                     <span>CORREO</span>
                 </div>
                 {{form.correo}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_correo"></div>
             </div>
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
@@ -72,6 +87,9 @@
     </div>
     <div class="modal-footer">
         <button class="btn btn-outline-dark" type="button" data-dismiss="modal">Cancelar</button>
-        <button class="btn btn-outline-primary" type="submit">Modificar</button>
+        <button class="btn btn-outline-primary" type="submit" id="bEnviar">Modificar</button>
     </div>
 </form>
+{% block script %}
+<script src="{% static 'dashboard/js/validar_asegurado.js' %}"></script>
+{% endblock script %}

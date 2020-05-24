@@ -16,7 +16,7 @@ class Asegurado(models.Model):
     segundo_apeliido = models.CharField(
         max_length=20, verbose_name='Apellido Materno')
     correo = models.CharField(max_length=50, verbose_name='Correo')
-    telefono = models.IntegerField(verbose_name='Teléfono')
+    telefono = models.CharField(verbose_name='Teléfono',max_length=9)
     fecha_nacimiento = models.DateField(verbose_name='Fecha Nacimiento')
     estado = models.CharField(max_length=1, default=1)
     usuario_rut_usuario = models.ForeignKey(

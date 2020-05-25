@@ -3,12 +3,14 @@ from dashboard.models import Usuario
 
 class UsuarioRegisterForm(forms.ModelForm):
 
-    password1 = forms.CharField(widget= forms.PasswordInput(
+    password1 = forms.CharField(max_length=12,widget= forms.PasswordInput(
         attrs={
             'class': 'form-control', 
             'placeholder': 'Ingresa contraseña',
             'id':'password1',
-            'required':'required',}
+            'required':'required',
+            'pattern':'^[a-zA-Z0-9._%+-]{5,}'
+            }
     ))
 
     password2 = forms.CharField(widget= forms.PasswordInput(

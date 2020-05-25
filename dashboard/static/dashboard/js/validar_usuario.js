@@ -2,6 +2,7 @@ window.onload = iniciar();
 
 function iniciar() {
     document.getElementById("bEnviar").addEventListener('click', validar, false);
+    document.getElementById("bEnviar").addEventListener('click', validaPassword2, false);
     document.getElementById("id_rut_usuario").addEventListener('keyup',validaRut);
     document.getElementById("p_nombre_usuario").addEventListener('keyup',validaPrimerNombre);
     document.getElementById("telefono_usuario").addEventListener('keyup',validaTelefono);
@@ -236,11 +237,13 @@ function clearErrorPassword1(elemento) {
     elemento.className = "form-control is-valid";
 }
 
-function validaPassword2() {
+function validaPassword2(e) {
     var elemento = document.getElementById("password2");
     var password = document.getElementById("password1").value;
+    
     if (elemento.value != password || elemento.value == "") {
         error_password2(elemento, "Contraseña no coincide");
+        e.preventDefault();
         return false;
     }
     clearErrorPassword2(elemento);

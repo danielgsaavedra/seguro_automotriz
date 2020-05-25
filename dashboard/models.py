@@ -506,7 +506,7 @@ class Usuario(AbstractBaseUser):
         max_length=20, verbose_name='Apellido Materno', null=True)
     email = models.EmailField(
         max_length=254, verbose_name='Correo', unique=True)
-    telefono = models.BigIntegerField(verbose_name='Teléfono', null=True)
+    telefono = models.CharField(verbose_name='Teléfono', null=True,max_length=9)
     rol = models.CharField(max_length=30, choices=opciones, null=True)
     is_active = models.BooleanField(default=True)
     is_administrador = models.BooleanField(default=False)

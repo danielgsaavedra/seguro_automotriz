@@ -53,14 +53,14 @@ class AseguradoForm(forms.ModelForm):
             'fecha_nacimiento',
         ]
         widgets = {
-            'rut_asegurado': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su rut', 'pattern': '^[0-9]{7,9}[-|‐]{1}[0-9kK]{1}$'}),
-            'primer_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su primer nombre', 'pattern': '[A-Za-z ]{3,}','id':'p_nombre_asegurado','onkeypress': 'return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122)'}),
-            'segundo_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su segundo nombre', 'pattern': '[A-Za-z ]{3,}','id':'s_nombre_asegurado','onkeypress': 'return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122)'}),
-            'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su primer apellido', 'pattern': '[A-Za-z ]{3,}','id':'p_apellido_asegurado','onkeypress': 'return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122)'}),
-            'segundo_apeliido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su segundo apellido', 'pattern': '[A-Za-z ]{3,}','id':'s_apellido_asegurado','onkeypress': 'return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122)'}),
-            'correo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$','id':'correo_asegurado'}),
-            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su teléfono', 'pattern': '[0-9]{9,}','onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)','id':'telefono_asegurado'}),
-            'fecha_nacimiento': forms.TextInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'rut_asegurado': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT', 'pattern': '^[0-9]{7,9}[-|‐]{1}[0-9kK]{1}$'}),
+            'primer_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer nombre', 'pattern': '[A-Za-z ]{3,}','id':'p_nombre_asegurado','onkeypress': 'return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122)'}),
+            'segundo_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo nombre', 'pattern': '[A-Za-z ]{3,}','id':'s_nombre_asegurado','onkeypress': 'return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122)'}),
+            'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer apellido', 'pattern': '[A-Za-z ]{3,}','id':'p_apellido_asegurado','onkeypress': 'return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122)'}),
+            'segundo_apeliido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo apellido', 'pattern': '[A-Za-z ]{3,}','id':'s_apellido_asegurado','onkeypress': 'return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122)'}),
+            'correo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$','id':'correo_asegurado'}),
+            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa teléfono', 'pattern': '[0-9]{9,}','onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)','id':'telefono_asegurado'}),
+            'fecha_nacimiento': forms.TextInput(attrs={'class': 'form-control', 'type': 'date','id':'fecha_asegurado'}),
         }
 
 

@@ -221,6 +221,9 @@ function validaPassword1() {
         if (elemento.validity.valueMissing) {
             error_password1(elemento, "Debe ingresar una contraseña");
         }
+        if (elemento.validity.patternMismatch) {
+            error_password1(elemento, "La contraseña debe contener entre 5 y 12 caracteres");
+        }
         return false;
     }
     clearErrorPassword1(elemento);

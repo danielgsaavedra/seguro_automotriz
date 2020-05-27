@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{% static 'dashboard/js/datatables/dataTables.bootstrap4.min.css' %}" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300&display=swap" rel="stylesheet">
 
     <!--Chart js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
@@ -43,6 +44,7 @@
                 <div class="sidebar-brand-text mx-3">Seguros Virgolini</div>
             </a>
 
+            {% if  request.user.rol == '1' %}
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
@@ -125,7 +127,65 @@
             </li>
             <hr class="sidebar-divider">
             {% endif %}
+            {% endif %}
 
+            <!-- Taller -->
+            {% if  request.user.rol == '3' %}
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Dashboard</span></a>
+            </li>
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Módulo Actas
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse"
+                    data-target="#collapseActas" aria-expanded="true" aria-controls="collapseActas">
+                    <i class="far fa-file-alt"></i>
+                    <span>Generar Actas</span>
+                </a>
+                <div id="collapseActas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{% url 'acta_recepcion' %}">Recepción</a>
+                        <a class="collapse-item" href="{% url 'acta_retiro' %}">Retiro / Rechazo</a>
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Módulo Informes
+            </div>
+
+            <li class="nav-item">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'informe_daños' %}">
+                    <i class="fas fa-notes-medical"></i>
+                    <span>Informe de Daños</span>
+                </a>
+            </li>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Módulo Presupuesto
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'presupuesto' %}">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Generar Presupuesto</span>
+                </a>
+            </li>
+            <hr class="sidebar-divider">
+            {% endif %}
 
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>

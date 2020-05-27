@@ -1,9 +1,12 @@
 from django import forms
-from .models import Poliza, Asegurado, Vehiculo, Siniestro, Taller
+from .models import Poliza, Asegurado, Vehiculo, Siniestro, Taller, Grua
 
 
 # FORMULARIO POLIZA
 class PolizaForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(PolizaForm, self).__init__(*args, **kwargs)
+        self.fields['asegurado_rut_asegurado'].queryset = Asegurado.objects.filter(estado=1)
     class Meta:
         model = Poliza
         fields = [
@@ -83,6 +86,9 @@ class SiniestroForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(SiniestroForm, self).__init__(*args, **kwargs)
         self.fields['taller_id_taller'].queryset = Taller.objects.filter(estado=1)
+        self.fields['grua_patente_grua'].queryset = Grua.objects.filter(estado=1)
+        self.fields['asegurado_rut_asegurado'].queryset = Asegurado.objects.filter(estado=1)
+
     class Meta:
         model = Siniestro
         fields = ['id', 'descripcion', 'parte_policial', 'foto_licencia', 'tipo_accidente_id_tipo_acc',

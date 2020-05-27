@@ -116,6 +116,9 @@ class DeshabilitarSiniestroForm(forms.ModelForm):
 
 
 class VehiculoForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(VehiculoForm, self).__init__(*args, **kwargs)
+        self.fields['asegurado_rut_asegurado'].queryset = Asegurado.objects.filter(estado=1)
 
     class Meta:
         model = Vehiculo

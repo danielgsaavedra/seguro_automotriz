@@ -80,6 +80,9 @@ class DeshabilitarAseguradoForm(forms.ModelForm):
 
 
 class SiniestroForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(SiniestroForm, self).__init__(*args, **kwargs)
+        self.fields['taller_id_taller'].queryset = Taller.objects.filter(estado=1)
     class Meta:
         model = Siniestro
         fields = ['id', 'descripcion', 'parte_policial', 'foto_licencia', 'tipo_accidente_id_tipo_acc',

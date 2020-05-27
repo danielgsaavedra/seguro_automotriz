@@ -85,3 +85,35 @@ class LoginPageView(TemplateView):
 class RegisterPageView(TemplateView):
     template_name = "registration/registro.html"
 
+
+#Listar Usuarios Inactivos
+@staff_member_required(login_url='login')
+def UsuariosDisableView(request):
+    usuariosDisable = Usuario.objects.filter(is_active=False).order_by('rol')
+    context = {'usuariosDisable': usuariosDisable}
+    return render(request, 'registration/usuarios/usuario_disabled.html', context)
+
+
+@staff_member_required(login_url='login')
+def ReactivateUsuario(request, id):
+    data = dict()
+    usuarioActivate = get_object_or_404(Usuario, id=id)
+    if request.method == 'POST':
+        form = DeshabilitarUsuarioForm(request.POST, instance=usuarioActivate)
+        if form.is_valid():
+            usuarioActivate = form.save(commit=False)
+            usuarioActivate.is_active = True
+            usuarioActivate.save()
+            data['form_is_valid'] = True
+            usuariosDisable = Usuario.objects.filter(is_active=False).order_by('rol')
+            context = {'usuariosDisable': usuariosDisable}
+            data['usuariosDisable'] = render_to_string(
+                'registration/usuarios/usuario_disabled_2.html', context)
+    else:
+        form = DeshabilitarUsuarioForm(instance=usuarioActivate)
+        data['form_is_valid'] = False
+        context = {'usuarioActivate': usuarioActivate, 'form': form}
+        data['html_form'] = render_to_string(
+            'registration/usuarios/usuario_reactivate.html', context, request=request)
+    return JsonResponse(data)
+

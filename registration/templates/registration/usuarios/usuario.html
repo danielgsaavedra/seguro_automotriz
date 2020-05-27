@@ -1,8 +1,8 @@
 {% extends "dashboard/base.html" %}
 {% block title %}Módulo Usuarios{% endblock title %}
 {% block content %}
-<a class="text-decoration-none text-light" href="javascript:void(0)">
-    <button class="float-left d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm ">
+<a class="text-decoration-none text-light" href="{% url 'usuarios_disabled' %}" >
+    <button href="#" class="float-left d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm " >
         <i class="fas fa-users fa-sm text-white-50"></i> Usuarios Inactivos
     </button>
 </a>

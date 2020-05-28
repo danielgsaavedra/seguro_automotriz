@@ -1,7 +1,6 @@
-<form action="" class="create_form_siniestro" method="POST" data-url="{% url 'siniestro_create' %}">
+{% load static %}
+<form action="" class="create_form_siniestro needs-validation" method="POST" data-url="{% url 'siniestro_create' %}">
     {% csrf_token %}
-
-
     <div class="modal-header bg-success">
         <h5 class="modal-title text-light">Registrar Siniestro</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
@@ -15,12 +14,16 @@
                     <span>N° PÓLIZA</span>
                 </div>
                 {{ form.poliza_id_poliza }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_poliza"></div>
             </div>
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>TIPO ACCIDENTE</span>
                 </div>
                 {{ form.tipo_accidente_id_tipo_acc }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_tipo"></div>
             </div>
         </div>
 
@@ -44,6 +47,8 @@
                     <span>TALLER</span>
                 </div>
                 {{ form.taller_id_taller }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_taller"></div>
             </div>
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
@@ -58,6 +63,8 @@
                     <span>RUT ASEGURADO</span>
                 </div>
                 {{ form.asegurado_rut_asegurado }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_rut_asegurado"></div>
             </div>
         </div>
         <div class="form-row">
@@ -66,11 +73,17 @@
                     <span>DESCRIPCIÓN</span>
                 </div>
                 {{ form.descripcion }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_descripcion"></div>
+                <div class="invalid-feedback" id="error_largo"></div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-outline-success">Registrar</button>
+        <button type="submit" class="btn btn-outline-success" id="bEnviar">Registrar</button>
     </div>
 </form>
+{% block script %}
+<script src="{% static 'dashboard/js/validar_siniestro.js' %}"></script>
+{% endblock script %}

@@ -40,7 +40,7 @@ def UsuariosView(request):
 @staff_member_required(login_url='login')
 def UsuarioCreate(request):
     if request.method == 'POST':
-        form = UsuarioRegisterForm(request.POST)
+        form = UsuarioRegisterForm(request.POST)      
     else:
         form = UsuarioRegisterForm()
     return SaveAllUsuario(request, form, 'registration/usuarios/usuario_create.html')

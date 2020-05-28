@@ -96,7 +96,7 @@ class EstadoSiniestro(models.Model):
 
 
 class FormularioActa(models.Model):
-    fecha_hora = models.DateField(verbose_name='Fecha')
+    fecha_hora = models.DateField(verbose_name='Fecha',auto_now=True)
     observaciones = models.CharField(
         max_length=300, blank=True, null=True, verbose_name='Observaciones')
     tipo_acta_id_tipo_acta = models.ForeignKey(

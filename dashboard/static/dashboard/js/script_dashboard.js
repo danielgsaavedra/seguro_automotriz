@@ -385,6 +385,48 @@ $(document).ready(function () {
         return false;
     }
 
+    var ShowUsuarioDisableForm = function () {
+        var btn = $(this);
+        $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#modal_usuario_disabled').modal('show')
+            },
+            success: function (data) {
+                $('#modal_usuario_disabled .modal-content').html(data.html_form)
+            },
+            error: function () {
+                alert('Algo salió mal, intenta nuevamente.')
+            }
+        });
+    };
+
+    var SaveUsuarioDisableForm = function () {
+            var form = $(this);
+        $.ajax({
+            url: form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType: 'json',
+            success: function (data) {
+                if (data.form_is_valid) {
+                  $('#table_usuario_disabled tbody').html(data.usuariosDisable);
+                    $('#modal_usuario_disabled').modal('hide');
+                    console.log('Usuario reactivado correctamente!');
+                    toastr.success('Operación Exitosa!');
+                } else {
+                    $('#modal_usuario_disabled .modal-content').html(data.html_form)
+                    }
+            },
+            error: function () {
+                toastr.error('Algo salió mal, intenta nuevamente.')
+            }
+        });
+        return false;
+    }
+
 
     //Crear Poliza
     $('.show_poliza').click(ShowFormPoliza);
@@ -454,7 +496,7 @@ $(document).ready(function () {
     //Reactivar Asegurado
     $('#table_asegurado_disabled').on('click', '.show_asegurado_reactivate', ShowAseguradoDisableForm);
     $('#modal_asegurado_disabled').on('submit', '.reactivate_form_asegurado', SaveAseguradoDisableForm);
-  
+
     //Crear Usuario
     $('.show-usuario ').click(ShowUsuarioForm);
     $('#modal_usuario').on('submit', '.usuario_form', SaveUsuarioForm);
@@ -466,6 +508,10 @@ $(document).ready(function () {
     //Eliminar Usuario
     $('#table_usuario').on('click', '.show_usuario_delete', ShowUsuarioForm);
     $('#modal_usuario').on('submit', '.usuario_form_delete', SaveUsuarioForm);
+
+    //Reactivar Usuario
+    $('#table_usuario_disabled').on('click', '.show_usuario_reactivate', ShowUsuarioDisableForm);
+    $('#modal_usuario_disabled').on('submit', '.reactivate_form_usuario', SaveUsuarioDisableForm);
 
 
 });

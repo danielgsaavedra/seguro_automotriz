@@ -39,7 +39,7 @@
                 <button class="show_usuario_update dropdown-item" data-url="{% url 'usuario_update' usuario.id %}">
                     Editar Usuario</button>
                 {% if  not usuario.is_administrador %}
-                <button class="show_usuario_delete dropdown-item"data-url="{% url 'usuario_delete' usuario.id %}">
+                <button class="show_usuario_delete dropdown-item" data-url="{% url 'usuario_delete' usuario.id %}">
                     Eliminar Usuario</button>
                 {% endif %}
             </div>

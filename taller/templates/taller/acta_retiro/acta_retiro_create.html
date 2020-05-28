@@ -1,0 +1,54 @@
+<form action="" class="create_form_acta_retiro" method="POST" data-url="{% url 'acta_retiro_create' %}">
+    {% csrf_token %}
+
+
+    <div class="modal-header bg-success">
+        <h5 class="modal-title text-light">Generar Acta de Retiro</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>N° SINIESTRO</span>
+                </div>
+                {{ form.siniestro_id }}
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>TALLER</span>
+                </div>
+                {{ form.taller_id_taller }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>TIPO ACTA</span>
+                </div>
+                {{ form.tipo_acta_id_tipo_acta }}
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>RUT USUARIO</span>
+                </div>
+                {{ form.usuario_rut_usuario }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="col-form-label">
+                    <span>OBSERVACIONES</span>
+                </div>
+                {{ form.observaciones }}
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-outline-success">Generar</button>
+    </div>
+</form>

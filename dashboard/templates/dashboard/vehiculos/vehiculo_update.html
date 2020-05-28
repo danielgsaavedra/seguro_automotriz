@@ -1,4 +1,5 @@
-<form action="" class="vehiculo_form_update" method="POST"
+{% load static %}
+<form action="" class="vehiculo_form_update needs-validation" method="POST"
     data-url="{% url 'vehiculo_update' form.instance.patente_vehiculo%}">
     {% csrf_token %}
 
@@ -17,12 +18,16 @@
                     <span>PATENTE</span>
                 </div>
                 {{ form.patente_vehiculo }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_patente"></div>
             </div>
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>MODELO</span>
                 </div>
                 {{ form.modelo }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_modelo"></div>
             </div>
         </div>
 
@@ -32,12 +37,16 @@
                     <span>N° MOTOR</span>
                 </div>
                 {{ form.nro_motor }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_motor"></div>
             </div>
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>AÑO</span>
                 </div>
                 {{ form.anio }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_anio"></div>
             </div>
         </div>
 
@@ -47,12 +56,16 @@
                     <span>MARCA</span>
                 </div>
                 {{ form.marca_id_marca }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_marca"></div>
             </div>
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>TIPO VEHÍCULO</span>
                 </div>
                 {{ form.tipo_vehiculo_id_tipo_auto }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_tipo"></div>
             </div>
         </div>
         <div class="form-row">
@@ -61,11 +74,16 @@
                     <span>RUT ASEGURADO</span>
                 </div>
                 {{form.asegurado_rut_asegurado}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_rut"></div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-outline-primary">Modificar</button>
+        <button type="submit" class="btn btn-outline-primary" id="bEnviar">Modificar</button>
     </div>
 </form>
+{% block script %}
+<script src="{% static 'dashboard/js/validar_vehiculo.js' %}"></script>
+{% endblock script %}

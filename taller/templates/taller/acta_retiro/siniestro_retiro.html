@@ -9,7 +9,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered table-hover text-center" id="table_siniestro" width="100%"
+            <table class="table table-bordered table-hover text-center" id="table_siniestro_retiro" width="100%"
                 cellspacing="0">
                 <thead>
                     <tr>
@@ -41,9 +41,11 @@
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <button class="dropdown-item" data-url="#">
+                                    <button type="button" class="dropdown-item show_acta_retiro"
+                                        data-url="{% url 'acta_retiro_create' %}">
                                         Generar Acta Retiro</button>
-                                    <button class="dropdown-item" data-url="#">
+                                    <button type="button" class="dropdown-item show_acta_rechazo"
+                                        data-url="{% url 'acta_rechazo_create' %}">
                                         Generar Acta Rechazo</button>
                                 </div>
                             </div>
@@ -56,6 +58,20 @@
                     {% endfor %}
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_acta_retiro" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_acta_rechazo" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+            </div>
         </div>
     </div>
 </div>

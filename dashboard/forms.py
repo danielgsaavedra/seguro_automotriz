@@ -4,6 +4,7 @@ from .models import Poliza, Asegurado, Vehiculo, Siniestro, Taller, Grua
 
 # FORMULARIO POLIZA
 class PolizaForm(forms.ModelForm):
+
     def __init__(self, *args, **kwargs):
         super(PolizaForm, self).__init__(*args, **kwargs)
         self.fields['asegurado_rut_asegurado'].queryset = Asegurado.objects.filter(
@@ -24,15 +25,15 @@ class PolizaForm(forms.ModelForm):
             'vigente': forms.HiddenInput(attrs={'class': 'required form-control'}),
             'fecha_inicio': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),
             'fecha_fin': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),
-            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control'}),
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'onchange': "cargarPatentes();"}),
             'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control'})
-        }
+    }
+
 
 # FORMULARIO BORRADO LOGICO POLIZA
 
 
 class DeshabilitarPolizaForm(forms.ModelForm):
-
     class Meta:
         model = Poliza
         fields = ['estado']
@@ -40,11 +41,11 @@ class DeshabilitarPolizaForm(forms.ModelForm):
             'estado': forms.HiddenInput(attrs={'class': 'required form-control', 'id': 'estado_poliza'}),
         }
 
+
 # FORMULARIO ASEGURADO
 
 
 class AseguradoForm(forms.ModelForm):
-
     class Meta:
         model = Asegurado
         fields = [
@@ -73,13 +74,13 @@ class AseguradoForm(forms.ModelForm):
 
 
 class DeshabilitarAseguradoForm(forms.ModelForm):
-
     class Meta:
         model = Asegurado
         fields = ['estado']
         widgets = {
             'estado': forms.HiddenInput(attrs={'class': 'required form-control', 'id': 'estado_asegurado'}),
         }
+
 
 # FORMULARIO  SINIESTROS
 
@@ -100,14 +101,14 @@ class SiniestroForm(forms.ModelForm):
                   'taller_id_taller', 'grua_patente_grua', 'poliza_id_poliza', 'asegurado_rut_asegurado']
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
-            'descripcion': forms.Textarea(attrs={'class': 'required form-control', 'placeholder': 'Ingrea una descripción'}),
+            'descripcion': forms.Textarea(attrs={'class': 'required form-control','placeholder':'Ingrea una descripción','id':'descripcion'}),
             'parte_policial': forms.FileInput(attrs={'class': 'form-control'}),
             'foto_licencia': forms.FileInput(attrs={'class': 'form-control'}),
-            'tipo_accidente_id_tipo_acc': forms.Select(attrs={'class': 'required form-control'}),
-            'taller_id_taller': forms.Select(attrs={'class': 'required form-control'}),
+            'tipo_accidente_id_tipo_acc': forms.Select(attrs={'class': 'required form-control','id':'tipo_accidente'}),
+            'taller_id_taller': forms.Select(attrs={'class': 'required form-control','id':'taller'}),
             'grua_patente_grua': forms.Select(attrs={'class': 'form-control'}),
-            'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control'}),
-            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'required form-control'}),
+            'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control','id':'poliza'}),
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'required form-control','id':'asegurado_rut'}),
         }
 
 
@@ -115,13 +116,14 @@ class SiniestroForm(forms.ModelForm):
 
 
 class DeshabilitarSiniestroForm(forms.ModelForm):
-
     class Meta:
         model = Siniestro
         fields = ['est_siniestro_id_est_siniestro']
         widgets = {
-            'est_siniestro_id_est_siniestro': forms.HiddenInput(attrs={'class': 'required form-control',  'id': 'est_siniestro_id_est_siniestro_siniestro'}),
+            'est_siniestro_id_est_siniestro': forms.HiddenInput(
+                attrs={'class': 'required form-control', 'id': 'est_siniestro_id_est_siniestro_siniestro'}),
         }
+
 
 # FORMULARIO VEHICULO
 
@@ -144,13 +146,13 @@ class VehiculoForm(forms.ModelForm):
             'asegurado_rut_asegurado'
         ]
         widgets = {
-            'patente_vehiculo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente', 'id': 'patente'}),
-            'anio': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa año (YYYY)'}),
-            'modelo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa modelo'}),
-            'nro_motor': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su número del motor'}),
-            'tipo_vehiculo_id_tipo_auto': forms.Select(attrs={'class': 'form-control'}),
-            'marca_id_marca': forms.Select(attrs={'class': 'form-control'}),
-            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control'}),
+            'patente_vehiculo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente','id':'patente','pattern':'^[a-zA-Z0-9._%+-]{8,}'}),
+            'anio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa año (YYYY)','pattern': '[0-9]{4,}','id':'anio','onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)'}),
+            'modelo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa modelo','id':'modelo','pattern':'^[a-zA-Z0-9._%+-]{4,}'}),
+            'nro_motor': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su número del motor','id':'motor','pattern':'^[a-zA-Z0-9._%+-]{4,}'}),
+            'tipo_vehiculo_id_tipo_auto': forms.Select(attrs={'class': 'form-control','id':'tipo_vehi'}),
+            'marca_id_marca': forms.Select(attrs={'class': 'form-control','id':'marca_vehi'}),
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control','id':'rut_asegurado_vehi'}),
         }
 
 
@@ -167,16 +169,15 @@ class TallerForm(forms.ModelForm):
         ]
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
-            'nombre': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa nombre'}),
-            'razon_social': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa razón social'}),
-            'telefono': forms.NumberInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa número de teléfono', 'min': '11', 'id': 'telefono_taller'}),
-            'correo': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa correo', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'}),
-            'capacidad_taller': forms.NumberInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa capacidad máxima'}),
+            'nombre': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa nombre','pattern': '[A-Za-z ]{3,}','id':'nombre_taller','onkeypress': 'return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122)'}),
+            'razon_social': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa razón social','pattern':'^[a-zA-Z0-9._%+-]{4,}','id':'razon_social'}),
+            'telefono': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa número de teléfono', 'pattern': '[0-9 ]{11,}','onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)','id':'telefono_taller'}),
+            'correo': forms.TextInput(attrs={'class': 'required form-control','type':'email', 'placeholder': 'Ingresa correo', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$','id':'correo_taller'}),
+            'capacidad_taller': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa capacidad máxima','id':'capacidad','onkeypress': 'return soloNumeros(event)','onKeyUp':'pierdeFoco(this)'}),
         }
 
 
 class DeshabilitarTallerForm(forms.ModelForm):
-
     class Meta:
         model = Taller
         fields = ['estado_delete']

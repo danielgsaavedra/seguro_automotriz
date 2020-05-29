@@ -11,6 +11,7 @@ from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, Vehicul
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -26,6 +27,7 @@ class DashboardView(TemplateView):
         context["qs2"] = Siniestro.objects.values('est_siniestro_id_est_siniestro').annotate(
             dcount=Count('est_siniestro_id_est_siniestro'))
         return context
+
 
 # Crud Asegurados
 
@@ -60,6 +62,7 @@ def AseguradosView(request):
         usuario_rut_usuario=user).order_by('rut_asegurado')
     context = {'asegurados': asegurados}
     return render(request, 'dashboard/asegurados/asegurado.html', context)
+
 
 # Listar usuarios Deshabilitados
 
@@ -120,6 +123,7 @@ def AseguradoDelete(request, id):
         data['html_form'] = render_to_string(
             'dashboard/asegurados/asegurado_delete.html', context, request=request)
     return JsonResponse(data)
+
 
 # Reactivar asegurado
 
@@ -250,6 +254,7 @@ def PolizasDisableView(request):
     context = {'polizasDisable': polizasDisable}
     return render(request, 'dashboard/polizas/poliza_disabled.html', context)
 
+
 # Create
 
 
@@ -262,6 +267,26 @@ def CreatePoliza(request):
     else:
         form = PolizaForm()
     return SaveAllPoliza(request, form, 'dashboard/polizas/poliza_create.html')
+
+
+def load_patentes(request):
+    rut_asegurado = request.GET.get('rut')
+    patentes = Vehiculo.objects.filter(asegurado_rut_asegurado=rut_asegurado)
+    options = '<option value=""  selected="selected">---------</option>'
+
+    for patente in patentes:
+        options += '<option value="%s">%s</option>' % (
+            patente,
+            patente
+        )
+
+    response = {}
+    response['patentes'] = options
+    return JsonResponse(response)
+
+
+
+
 
 
 # Update
@@ -365,6 +390,7 @@ def SiniestroDisabledView(request):
         est_siniestro_id_est_siniestro=7).order_by('id')
     context = {'siniestrosDisable': siniestrosDisable}
     return render(request, 'dashboard/siniestros/siniestro_disabled.html', context)
+
 
 # # Create
 

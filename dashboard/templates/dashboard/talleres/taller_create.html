@@ -1,4 +1,5 @@
-<form action="" class="create_form_taller" method="POST" data-url="{% url 'taller_create' %}">
+{% load static %}
+<form action="" class="create_form_taller needs-validation" method="POST" data-url="{% url 'taller_create' %}">
     {% csrf_token %}
     <div class="modal-header bg-success">
         <h5 class="modal-title text-light">Registrar Taller</h5>
@@ -15,12 +16,16 @@
                     <span>NOMBRE</span>
                 </div>
                 {{ form.nombre }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_nombre"></div>
             </div>
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>RAZÓN SOCIAL</span>
                 </div>
                 {{ form.razon_social }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_razon"></div>
             </div>
         </div>
 
@@ -34,6 +39,8 @@
                         <span class="input-group-text" id="">+56</span>
                     </div>
                     {{form.telefono}}
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback" id="error_telefono"></div>
                 </div>
             </div>
             <div class="form-group col-12 col-md-6">
@@ -41,6 +48,8 @@
                     <span>CAPACIDAD</span>
                 </div>
                 {{ form.capacidad_taller }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_capacidad"></div>
             </div>
         </div>
 
@@ -50,13 +59,16 @@
                     <span>CORREO</span>
                 </div>
                 {{ form.correo }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_correo"></div>
             </div>  
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-outline-success">Registrar</button>
+        <button type="submit" class="btn btn-outline-success" id="bEnviar">Registrar</button>
     </div>
-
-
 </form>
+{% block script %}
+<script src="{% static 'dashboard/js/validar_taller.js' %}"></script>
+{% endblock script %}

@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 class Asegurado(models.Model):
     rut_asegurado = models.CharField(
-        primary_key=True, max_length=12, verbose_name='Rut')
+        primary_key=True, max_length=10, verbose_name='Rut')
     primer_nombre = models.CharField(
         max_length=20, verbose_name='Primer Nombre')
     segundo_nombre = models.CharField(
@@ -204,10 +204,6 @@ class Poliza(models.Model):
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
 
-    # class Meta:
-    #     managed = False
-    #     db_table = 'poliza'
-    #     verbose_name_plural = 'Pólizas'
 
     def __str__(self):
         return str(self.id)
@@ -346,8 +342,8 @@ class SeveridadDano(models.Model):
 
 
 class Siniestro(models.Model):
-    fecha_hr = models.DateField(verbose_name='Fecha Siniestro', auto_now=True)
-    descripcion = models.CharField(max_length=100, verbose_name='Descripción')
+    fecha_hr = models.DateField(verbose_name='Fecha Siniestro',auto_now=True)
+    descripcion = models.CharField(max_length=1024, verbose_name='Descripción')
     parte_policial = models.FileField(
         max_length=100, blank=True, null=True, verbose_name='Parte Policial')
     foto_licencia = models.FileField(
@@ -378,9 +374,9 @@ class Siniestro(models.Model):
 class Taller(models.Model):
     nombre = models.CharField(max_length=30, verbose_name='Nombre Taller')
     razon_social = models.CharField(max_length=50, verbose_name='Razón Social')
-    telefono = models.IntegerField(verbose_name='Teléfono')
+    telefono = models.CharField(verbose_name='Teléfono',max_length=9)
     correo = models.CharField(max_length=30, verbose_name='Correo')
-    capacidad_taller = models.IntegerField(verbose_name='Capacidad Taller')
+    capacidad_taller = models.CharField(verbose_name='Capacidad Taller',max_length=3)
     estado = models.CharField(max_length=1, verbose_name='Estado', default=1)
     estado_delete = models.CharField(max_length=1, default=1)
     usuario_rut_usuario = models.ForeignKey(
@@ -497,7 +493,7 @@ class Usuario(AbstractBaseUser):
     ]
 
     rut_usuario = models.CharField(
-        unique=True, max_length=12, verbose_name='Rut Usuario')
+        unique=True, max_length=10, verbose_name='Rut Usuario')
     primer_nombre = models.CharField(
         max_length=20, verbose_name='Primer Nombre')
     segundo_nombre = models.CharField(
@@ -540,8 +536,8 @@ class Usuario(AbstractBaseUser):
 class Vehiculo(models.Model):
     patente_vehiculo = models.CharField(
         primary_key=True, max_length=8, verbose_name='Patente')
-    anio = models.IntegerField(verbose_name='Año')
-    modelo = models.CharField(max_length=200, verbose_name='Modelo')
+    anio = models.CharField(verbose_name='Año',max_length=4)
+    modelo = models.CharField(max_length=50, verbose_name='Modelo')
     nro_motor = models.CharField(max_length=100, verbose_name='N° Motor')
     tipo_vehiculo_id_tipo_auto = models.ForeignKey(
         'TipoVehiculo', models.DO_NOTHING, db_column='tipo_vehiculo_id_tipo_auto', verbose_name='Tipo Vehículo', null=True)

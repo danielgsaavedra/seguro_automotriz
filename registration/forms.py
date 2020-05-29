@@ -14,7 +14,7 @@ class UsuarioRegisterForm(forms.ModelForm):
         }
     ))
 
-    password2 = forms.CharField(widget=forms.PasswordInput(
+    password2 = forms.CharField(max_length=12,widget= forms.PasswordInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'Ingresa nuevamente contraseña',

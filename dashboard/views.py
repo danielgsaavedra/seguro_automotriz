@@ -6,9 +6,8 @@ from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
-from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro
-from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, \
-    DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
+from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario
+from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -31,14 +30,17 @@ class DashboardView(TemplateView):
 
 
 # Crud Asegurados
+
+
 def SaveAllAsegurado(request, form, template_name):
     data = dict()
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            asegurados = Asegurado.objects.filter(
-                estado=1).order_by('fecha_nacimiento')
+            asegurados = Asegurado.objects.all().exclude(estado=0).filter(
+                usuario_rut_usuario=user).order_by('rut_asegurado')
             context = {'asegurados': asegurados}
             data['asegurados'] = render_to_string(
                 'dashboard/asegurados/asegurado_2.html', context)
@@ -55,8 +57,9 @@ def SaveAllAsegurado(request, form, template_name):
 
 @login_required(login_url='login')
 def AseguradosView(request):
-    asegurados = Asegurado.objects.filter(
-        estado=1).order_by('fecha_nacimiento')
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
+    asegurados = Asegurado.objects.all().exclude(estado=0).filter(
+        usuario_rut_usuario=user).order_by('rut_asegurado')
     context = {'asegurados': asegurados}
     return render(request, 'dashboard/asegurados/asegurado.html', context)
 
@@ -66,7 +69,7 @@ def AseguradosView(request):
 
 def AseguradosDisableView(request):
     aseguradosDisable = Asegurado.objects.filter(
-        estado=0).order_by('fecha_nacimiento')
+        estado=0).order_by('rut_asegurado')
     context = {'aseguradosDisable': aseguradosDisable}
     return render(request, 'dashboard/asegurados/asegurado_disabled.html', context)
 
@@ -155,11 +158,13 @@ def ReactivateAsegurado(request, id):
 
 def SaveAllVehiculo(request, form, template_name):
     data = dict()
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            vehiculos = Vehiculo.objects.all().order_by('anio')
+            vehiculos = Vehiculo.objects.all().filter(
+                usuario_rut_usuario=user).order_by('anio')
             context = {'vehiculos': vehiculos}
             data['vehiculos'] = render_to_string(
                 'dashboard/vehiculos/vehiculo_2.html', context)
@@ -176,7 +181,9 @@ def SaveAllVehiculo(request, form, template_name):
 
 @login_required(login_url='login')
 def VehiculosView(request):
-    vehiculos = Vehiculo.objects.all().order_by('anio')
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
+    vehiculos = Vehiculo.objects.all().filter(
+        usuario_rut_usuario=user).order_by('anio')
     context = {'vehiculos': vehiculos}
     return render(request, 'dashboard/vehiculos/vehiculo.html', context)
 
@@ -187,6 +194,8 @@ def VehiculosView(request):
 def VehiculoCreate(request):
     if request.method == 'POST':
         form = VehiculoForm(request.POST)
+        vehiculo = form.save(commit=False)
+        vehiculo.usuario_rut_usuario = request.user
     else:
         form = VehiculoForm()
     return SaveAllVehiculo(request, form, 'dashboard/vehiculos/vehiculo_create.html')
@@ -209,11 +218,13 @@ def VehiculoUpdate(request, id):
 
 def SaveAllPoliza(request, form, template_name):
     data = dict()
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            polizas = Poliza.objects.filter(estado=1).order_by('id')
+            polizas = Poliza.objects.all().exclude(
+                estado=0).filter(usuario_rut_usuario=user).order_by('id')
             context = {'polizas': polizas}
             data['polizas'] = render_to_string(
                 'dashboard/polizas/poliza_2.html', context)
@@ -230,7 +241,9 @@ def SaveAllPoliza(request, form, template_name):
 
 @login_required(login_url='login')
 def PolizasView(request):
-    polizas = Poliza.objects.filter(estado=1).order_by('id')
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
+    polizas = Poliza.objects.all().exclude(
+        estado=0).filter(usuario_rut_usuario=user).order_by('id')
     context = {'polizas': polizas}
     return render(request, 'dashboard/polizas/poliza.html', context)
 
@@ -249,6 +262,8 @@ def PolizasDisableView(request):
 def CreatePoliza(request):
     if request.method == 'POST':
         form = PolizaForm(request.POST)
+        poliza = form.save(commit=False)
+        poliza.usuario_rut_usuario = request.user
     else:
         form = PolizaForm()
     return SaveAllPoliza(request, form, 'dashboard/polizas/poliza_create.html')
@@ -339,12 +354,13 @@ def ReactivatePoliza(request, id):
 def SaveAllSiniestro(request, form, template_name):
     data = dict()
     estado = get_object_or_404(EstadoSiniestro, id=7)
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
             siniestros = Siniestro.objects.all().exclude(
-                est_siniestro_id_est_siniestro=estado).order_by('id')
+                est_siniestro_id_est_siniestro=estado).filter(usuario_rut_usuario=user).order_by('id')
             context = {'siniestros': siniestros}
             data['siniestros'] = render_to_string(
                 'dashboard/siniestros/siniestro_2.html', context)
@@ -361,8 +377,9 @@ def SaveAllSiniestro(request, form, template_name):
 @login_required(login_url='login')
 def SiniestroView(request):
     estado = get_object_or_404(EstadoSiniestro, id=7)
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     siniestros = Siniestro.objects.all().exclude(
-        est_siniestro_id_est_siniestro=estado).order_by('id')
+        est_siniestro_id_est_siniestro=estado).filter(usuario_rut_usuario=user).order_by('id')
     context = {'siniestros': siniestros}
     return render(request, 'dashboard/siniestros/siniestro.html', context)
 
@@ -436,12 +453,13 @@ def DeleteSiniestro(request, id):
 
 def SaveAllTaller(request, form, template_name):
     data = dict()
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
-            talleres = Taller.objects.filter(
-                estado_delete=1).order_by('id')
+            talleres = Taller.objects.all().exclude(estado_delete=0).filter(
+                usuario_rut_usuario=user).order_by('id')
             context = {'talleres': talleres}
             data['talleres'] = render_to_string(
                 'dashboard/talleres/taller_2.html', context)
@@ -458,9 +476,11 @@ def SaveAllTaller(request, form, template_name):
 
 @login_required(login_url='login')
 def TallerView(request):
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     with connection.cursor() as cursor:
         cursor.callproc('SP_ESTADO_TALLER')
-    talleres = Taller.objects.filter(estado_delete=1).order_by('id')
+    talleres = Taller.objects.all().exclude(estado_delete=0).filter(
+        usuario_rut_usuario=user).order_by('id')
     context = {'talleres': talleres}
     return render(request, 'dashboard/talleres/taller.html', context)
 

@@ -16,7 +16,7 @@ class Asegurado(models.Model):
     segundo_apeliido = models.CharField(
         max_length=20, verbose_name='Apellido Materno')
     correo = models.CharField(max_length=50, verbose_name='Correo')
-    telefono = models.CharField(verbose_name='Teléfono',max_length=9)
+    telefono = models.CharField(verbose_name='Teléfono', max_length=11)
     fecha_nacimiento = models.DateField(verbose_name='Fecha Nacimiento')
     estado = models.CharField(max_length=1, default=1)
     usuario_rut_usuario = models.ForeignKey(
@@ -96,7 +96,7 @@ class EstadoSiniestro(models.Model):
 
 
 class FormularioActa(models.Model):
-    fecha_hora = models.DateField(verbose_name='Fecha',auto_now=True)
+    fecha_hora = models.DateField(verbose_name='Fecha', auto_now=True)
     observaciones = models.CharField(
         max_length=300, blank=True, null=True, verbose_name='Observaciones')
     tipo_acta_id_tipo_acta = models.ForeignKey(
@@ -201,6 +201,8 @@ class Poliza(models.Model):
         'Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', verbose_name='Rut Asegurado', null=True)
     vehiculo_patente_vehiculo = models.ForeignKey(
         'Vehiculo', models.DO_NOTHING, db_column='vehiculo_patente_vehiculo', verbose_name='Patente Vehículo', null=True)
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
 
 
     def __str__(self):
@@ -502,7 +504,8 @@ class Usuario(AbstractBaseUser):
         max_length=20, verbose_name='Apellido Materno', null=True)
     email = models.EmailField(
         max_length=254, verbose_name='Correo', unique=True)
-    telefono = models.CharField(verbose_name='Teléfono', null=True,max_length=9)
+    telefono = models.CharField(
+        verbose_name='Teléfono', null=True, max_length=9)
     rol = models.CharField(max_length=30, choices=opciones, null=True)
     is_active = models.BooleanField(default=True)
     is_administrador = models.BooleanField(default=False)
@@ -542,7 +545,8 @@ class Vehiculo(models.Model):
         'Marca', models.DO_NOTHING, db_column='marca_id_marca', verbose_name='ID Marca', null=True)
     asegurado_rut_asegurado = models.ForeignKey(
         'Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', verbose_name='Rut Asegurado', null=True)
-
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     # class Meta:
     #     managed = False
     #     db_table = 'vehiculo'

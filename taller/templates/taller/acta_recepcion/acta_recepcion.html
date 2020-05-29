@@ -1,0 +1,59 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Actas Recepción{% endblock title %}
+{% block content %}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Actas Recepción</h6>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center" id="table_acta_recepcion" width="100%"
+                cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">ID Acta</th>
+                        <th scope="col">Fecha Creación</th>
+                        <th scope="col">N° Siniestro</th>
+                        <th scope="col">Taller</th>
+                        <th scope="col">Tipo Acta</th>
+                        <th scope="col">Rut Usuario</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for actas in actas %}
+                    <tr>
+                        <th scope="row">{{ actas.id }}</th>
+                        <td>{{ actas.fecha_hora | date:'d-m-Y' }}</td>
+                        <td>{{ actas.siniestro_id}}</td>
+                        <td>{{ actas.taller_id_taller}}</td>
+                        <td> <span class="badge badge-pill badge-info">{{ actas.tipo_acta_id_tipo_acta }}</span></td>
+                        <td>{{ actas.usuario_rut_usuario }}</td>
+                        <td>
+                            <div class="dropdown">
+                                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <button type="button" class="dropdown-item show_acta_recepcion" data-url="#">
+                                        Exportar en PDF
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="8" class="text-center">No hay actas</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

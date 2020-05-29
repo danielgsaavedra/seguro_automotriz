@@ -1,3 +1,4 @@
+{% load static %}
 <form action="" class="vehiculo_form" method="POST" data-url="{% url 'vehiculo_create' %}">
     {% csrf_token %}
 
@@ -68,3 +69,7 @@
         <button type="submit" class="btn btn-outline-success">Crear</button>
     </div>
 </form>
+
+{% block scriptPatente %}
+<script src="{% static 'dashboard/js/formato_patente.js' %}"></script>
+{% endblock scriptPatente %}

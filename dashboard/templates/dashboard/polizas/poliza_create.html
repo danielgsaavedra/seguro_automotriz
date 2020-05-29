@@ -10,8 +10,8 @@
     <div class="modal-body">
 
         <div class="form-row">
-            {{form.id}}
-            {{form.vigente}}
+            {{ form.id }}
+            {{ form.vigente }}
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>FECHA INICIO</span>
@@ -38,6 +38,7 @@
                 <div class="col-form-label">
                     <span>PATENTE VEHÍCULO</span>
                 </div>
+
                 {{ form.vehiculo_patente_vehiculo }}
             </div>
         </div>
@@ -48,3 +49,24 @@
         <button type="submit" class="btn btn-outline-success">Crear</button>
     </div>
 </form>
+<script type="text/javascript">
+
+    function cargarPatentes() {
+        var rut = document.getElementById('poli_rut_asegurado').value;
+        if (rut != null) {
+            var request = $.ajax({
+                type: 'GET',
+                url: "{%  url 'load_patentes' %}",
+                data: {"rut": rut},
+            });
+            request.done(function (response) {
+                // Agregamos los resultados al select
+                $("#poli_patente").html(response.patentes);
+                $("#poli_patente").trigger("change");
+            });
+        }
+    }
+
+
+</script>
+

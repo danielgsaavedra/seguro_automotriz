@@ -4,9 +4,12 @@ from .models import Poliza, Asegurado, Vehiculo, Siniestro, Taller, Grua
 
 # FORMULARIO POLIZA
 class PolizaForm(forms.ModelForm):
+
     def __init__(self, *args, **kwargs):
         super(PolizaForm, self).__init__(*args, **kwargs)
         self.fields['asegurado_rut_asegurado'].queryset = Asegurado.objects.filter(estado=1)
+        # self.fields['vehiculo_patente_vehiculo'].queryset = Vehiculo.objects.none()
+
     class Meta:
         model = Poliza
         fields = [
@@ -22,15 +25,15 @@ class PolizaForm(forms.ModelForm):
             'vigente': forms.HiddenInput(attrs={'class': 'required form-control'}),
             'fecha_inicio': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),
             'fecha_fin': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),
-            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control'}),
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'onchange': "cargarPatentes();"}),
             'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control'})
-        }
+    }
+
 
 # FORMULARIO BORRADO LOGICO POLIZA
 
 
 class DeshabilitarPolizaForm(forms.ModelForm):
-
     class Meta:
         model = Poliza
         fields = ['estado']
@@ -38,11 +41,11 @@ class DeshabilitarPolizaForm(forms.ModelForm):
             'estado': forms.HiddenInput(attrs={'class': 'required form-control', 'id': 'estado_poliza'}),
         }
 
+
 # FORMULARIO ASEGURADO
 
 
 class AseguradoForm(forms.ModelForm):
-
     class Meta:
         model = Asegurado
         fields = [
@@ -71,13 +74,13 @@ class AseguradoForm(forms.ModelForm):
 
 
 class DeshabilitarAseguradoForm(forms.ModelForm):
-
     class Meta:
         model = Asegurado
         fields = ['estado']
         widgets = {
             'estado': forms.HiddenInput(attrs={'class': 'required form-control', 'id': 'estado_asegurado'}),
         }
+
 
 # FORMULARIO  SINIESTROS
 
@@ -92,7 +95,7 @@ class SiniestroForm(forms.ModelForm):
     class Meta:
         model = Siniestro
         fields = ['id', 'descripcion', 'parte_policial', 'foto_licencia', 'tipo_accidente_id_tipo_acc',
-                   'taller_id_taller', 'grua_patente_grua', 'poliza_id_poliza','asegurado_rut_asegurado']
+                  'taller_id_taller', 'grua_patente_grua', 'poliza_id_poliza', 'asegurado_rut_asegurado']
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
             'descripcion': forms.Textarea(attrs={'class': 'required form-control','placeholder':'Ingrea una descripción','id':'descripcion'}),
@@ -110,13 +113,14 @@ class SiniestroForm(forms.ModelForm):
 
 
 class DeshabilitarSiniestroForm(forms.ModelForm):
-
     class Meta:
         model = Siniestro
         fields = ['est_siniestro_id_est_siniestro']
         widgets = {
-            'est_siniestro_id_est_siniestro': forms.HiddenInput(attrs={'class': 'required form-control',  'id': 'est_siniestro_id_est_siniestro_siniestro'}),
+            'est_siniestro_id_est_siniestro': forms.HiddenInput(
+                attrs={'class': 'required form-control', 'id': 'est_siniestro_id_est_siniestro_siniestro'}),
         }
+
 
 # FORMULARIO VEHICULO
 
@@ -170,7 +174,6 @@ class TallerForm(forms.ModelForm):
 
 
 class DeshabilitarTallerForm(forms.ModelForm):
-
     class Meta:
         model = Taller
         fields = ['estado_delete']

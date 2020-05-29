@@ -202,10 +202,6 @@ class Poliza(models.Model):
     vehiculo_patente_vehiculo = models.ForeignKey(
         'Vehiculo', models.DO_NOTHING, db_column='vehiculo_patente_vehiculo', verbose_name='Patente Vehículo', null=True)
 
-    # class Meta:
-    #     managed = False
-    #     db_table = 'poliza'
-    #     verbose_name_plural = 'Pólizas'
 
     def __str__(self):
         return str(self.id)

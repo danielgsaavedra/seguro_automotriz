@@ -25,8 +25,8 @@ class PolizaForm(forms.ModelForm):
             'vigente': forms.HiddenInput(attrs={'class': 'required form-control'}),
             'fecha_inicio': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),
             'fecha_fin': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),
-            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'onchange': "cargarPatentes();"}),
-            'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control'})
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'onchange': "cargarPatentes();",'id': 'poli_rut_asegurado'}),
+            'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control', 'id': 'poli_patente'})
     }
 
 

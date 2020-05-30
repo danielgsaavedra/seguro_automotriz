@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.conf.urls import include, url
 from .views import SiniestrosRecepcionView, SiniestrosRetiroView, InformeDañosView, PresupuestoView, ActaRecepcionView
 
 urlpatterns = [
@@ -13,4 +14,6 @@ urlpatterns = [
     path('informe_daños/', views.InformeDañosView, name='informe_daños'),
     path('acta_rechazo/', views.ActaRechazoView, name='acta_rechazo'),
     path('presupuesto/', views.PresupuestoView, name='presupuesto'),
+    url(r'^actaRecepcionViewPdf/(?P<pk>[0-9]+)/$', views.actaRecepcionViewPdf, name='actaRecepcionViewPdf'),
+    url(r'^actaRecepcionPdf/(?P<pk>[0-9]+)/$', views.actaRecepcionPdf, name='actaRecepcionPdf'),
 ]

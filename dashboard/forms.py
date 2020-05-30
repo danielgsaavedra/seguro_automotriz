@@ -4,9 +4,11 @@ from .models import Poliza, Asegurado, Vehiculo, Siniestro, Taller, Grua
 
 # FORMULARIO POLIZA
 class PolizaForm(forms.ModelForm):
+
     def __init__(self, *args, **kwargs):
         super(PolizaForm, self).__init__(*args, **kwargs)
         self.fields['asegurado_rut_asegurado'].queryset = Asegurado.objects.filter(estado=1)
+
     class Meta:
         model = Poliza
         fields = [
@@ -20,10 +22,10 @@ class PolizaForm(forms.ModelForm):
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
             'vigente': forms.HiddenInput(attrs={'class': 'required form-control'}),
-            'fecha_inicio': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),
-            'fecha_fin': forms.TextInput(attrs={'class': 'required form-control', 'type': 'date'}),
-            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control'}),
-            'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control'})
+            'fecha_inicio': forms.TextInput(attrs={'class': 'required form-control','id':'fecha_inicio','readonly':'False'}),
+            'fecha_fin': forms.TextInput(attrs={'class': 'required form-control','id':'fecha_fin','placeholder': 'Ingresa fecha de termino'}),
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control','id':'poli_rut_asegurado'}),
+            'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control','id':'poli_patente'})
         }
 
 # FORMULARIO BORRADO LOGICO POLIZA
@@ -83,6 +85,7 @@ class DeshabilitarAseguradoForm(forms.ModelForm):
 
 
 class SiniestroForm(forms.ModelForm):
+
     def __init__(self, *args, **kwargs):
         super(SiniestroForm, self).__init__(*args, **kwargs)
         self.fields['taller_id_taller'].queryset = Taller.objects.filter(estado=1)
@@ -122,11 +125,13 @@ class DeshabilitarSiniestroForm(forms.ModelForm):
 
 
 class VehiculoForm(forms.ModelForm):
+
     def __init__(self, *args, **kwargs):
         super(VehiculoForm, self).__init__(*args, **kwargs)
         self.fields['asegurado_rut_asegurado'].queryset = Asegurado.objects.filter(estado=1)
 
     class Meta:
+
         model = Vehiculo
         fields = [
             'patente_vehiculo',
@@ -149,6 +154,7 @@ class VehiculoForm(forms.ModelForm):
 
 
 class TallerForm(forms.ModelForm):
+
     class Meta:
         model = Taller
         fields = [

@@ -182,7 +182,7 @@ function clearErrorRut(elemento) {
 }
 
 function validar(e) {
-    if (validaPatente() || validaModelo() || validaMotor() || validaAnio()|| validaMarca()|| validaTipo() || validaRutAsegurado()) {
+    if (validaPatente() && validaModelo() && validaMotor() && validaAnio() && validaMarca() && validaTipo() && validaRutAsegurado()) {
         return true
     } else {
         e.preventDefault();

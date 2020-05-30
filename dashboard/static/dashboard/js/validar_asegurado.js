@@ -214,8 +214,8 @@ function clearErrorFecha(elemento) {
 
 
 function validar(e) {
-    if (validaRut() || validaPrimerNombre() || validaTelefono() || validaSegundoNombre() 
-    || validaPrimerApellido() || validaSegundoApellido() || validaCorreo() || validaFecha()) {
+    if (validaRut() && validaTelefono() && validaPrimerNombre() && validaSegundoNombre() 
+    && validaPrimerApellido() && validaSegundoApellido() && validaCorreo() && validaFecha()) {
         return true 
     } else {
         e.preventDefault();

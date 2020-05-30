@@ -264,8 +264,8 @@ function clearErrorPassword2(elemento) {
 }
 
 function validar(e) {
-    if (validaRut() || validaPrimerNombre() || validaTelefono() || validaSegundoNombre() 
-    || validaPrimerApellido() || validaSegundoApellido() || validaCorreo() || validaRol() || validaPassword1() || validaPassword2()) {
+    if (validaRol() && validaRut() && validaTelefono() && validaPrimerNombre()  && validaSegundoNombre() 
+    && validaPrimerApellido() && validaSegundoApellido() && validaCorreo() &&  validaPassword1() && validaPassword2()) {
         return true 
     } else {
         e.preventDefault();

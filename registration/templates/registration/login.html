@@ -1,6 +1,6 @@
 {% extends "registration/base.html" %}
-{% block title %}Login{% endblock title %}
 {% load static %}
+{% block title %}Login{% endblock title %}
 {% block content %}
 <div class="row justify-content-center mt-4" id="">
     <div class="card shadow-sm mt-5">
@@ -13,34 +13,33 @@
 
         <div class="card-body">
             <div class="mx-5 clearfix">
-                <form action="" method="post">{% csrf_token %}
-                    <div class="mensajes">
-                        {% if form.non_field_errors %}
-                        <p style="color: #e74a3b;"><b>Usuario o Contraseña incorrectos , prueba denuevo.</b>
-                        </p>
-                        {% endif %}
-                    </div>
-
-                    <div class="mensajes">
-                        {% if 'register' in request.GET %}
-                        <p style="color: #1cc88a;"><b>Usuario registrado correctamente !</b></p>
-                        {% endif %}
-                    </div>
+                <form action="" method="POST" class="needs-validation">
+                    {% csrf_token %}
 
                     <div class="form-group">
                         <div class="col-form-label">
                             <strong>RUT</strong>
                         </div>
-                        <input type="text" class="form-control required" placeholder="Ingresa rut" name="username"
-                            oninput="checkRut(this)">
+                        <input type="text" class="form-control" placeholder="Ingresa rut" name="username" id="rut_user"
+                            required oninput="checkRut(this)" pattern="^[0-9]{7,9}[-|‐]{1}[0-9kK]{1}$" maxlength="10">
+                        <div class="valid-feedback"></div>
+                        <div class="invalid-feedback" id="error_rut"></div>
 
                     </div>
                     <div class="form-group">
                         <div class="col-form-label">
                             <strong>CONTRASEÑA</strong>
                         </div>
-                        <input type="password" class="form-control required" placeholder="Contraseña" name="password">
-
+                        <input type="password" class="form-control" placeholder="Contraseña" name="password" id="pass"
+                            required>
+                        <div class="valid-feedback"></div>
+                        <div class="invalid-feedback" id="error_pass"></div>
+                        <div class="mt-1">
+                            {% if form.non_field_errors %}
+                            <span style="color: #e74a3b;">Rut o contraseña incorrectos, intenta
+                                nuevamente</span>
+                            {% endif %}
+                        </div>
                     </div>
                     <div class="float-left mr-4 my-4">
                         <a class="text-decoration-none" href="{% url 'asegurado_consulta' %}">
@@ -48,7 +47,7 @@
                         </a>
                     </div>
                     <div class="float-right mr-4 my-4">
-                        <input type="submit" value="Entrar" class="btn btn-block btn-primary">
+                        <button type="submit" class="btn btn-block btn-primary shadow-sm" id="login_btn">Entrar</button>
                     </div>
                     <!-- <p><small>¿Haz olvidado tu contraseña?, presiona <a href="{% url 'password_reset' %}"><strong>aquí</strong></a> para restaurarla</small></p>    -->
                 </form>
@@ -59,5 +58,74 @@
 {% endblock %}
 
 {% block script %}
+<script type="text/javascript">
+    window.onload = iniciar();
+
+    function iniciar() {
+        document.getElementById("login_btn").addEventListener('click', validar, false);
+        document.getElementById("rut_user").addEventListener('keyup', validaRut);
+        document.getElementById("pass").addEventListener('keyup', validaPass);
+    }
+
+    function validaRut() {
+        var elemento = document.getElementById("rut_user");
+        if (!elemento.checkValidity()) {
+            if (elemento.validity.valueMissing) {
+                error_rut(elemento, "Debe introducir un Rut");
+            }
+            if (elemento.validity.patternMismatch) {
+                error_rut(elemento, "Debe ingresar un Rut válido");
+            }
+            return false;
+        }
+        clear_error_rut(elemento);
+        return true;
+
+    }
+
+    function error_rut(elemento, mensaje) {
+        document.getElementById("error_rut").innerHTML = mensaje;
+        elemento.className = "form-control is-invalid";
+    }
+
+    function clear_error_rut(elemento) {
+        document.getElementById("error_rut").innerHTML = "";
+        elemento.className = "form-control is-valid";
+    }
+
+
+    function validaPass() {
+        var elemento = document.getElementById("pass");
+        if (!elemento.checkValidity()) {
+            if (elemento.validity.valueMissing) {
+                error_pass(elemento, "Debe introducir una contraseña");
+            }
+            return false;
+        }
+        clear_error_pass(elemento);
+        return true;
+
+    }
+
+    function error_pass(elemento, mensaje) {
+        document.getElementById("error_pass").innerHTML = mensaje;
+        elemento.className = "form-control is-invalid";
+    }
+
+    function clear_error_pass(elemento) {
+        document.getElementById("error_pass").innerHTML = "";
+        elemento.className = "form-control is-valid";
+    }
+
+    function validar(e) {
+        if (validaRut() && validaPass()) {
+            return true
+        } else {
+            e.preventDefault();
+            return false;
+        }
+    }
+</script>
+
 <script src="{% static 'dashboard/js/formato_rut.js' %}"></script>
 {% endblock script %}

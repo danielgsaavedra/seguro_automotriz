@@ -22,7 +22,7 @@ function validaRut() {
             error_rut(elemento, "Debe introducir un Rut");
         }
         if (elemento.validity.patternMismatch) {
-            error_rut(elemento, "Ingresa RUT con '-' y sin puntos (XXXXXXX-X)");
+            error_rut(elemento, "Debe ingresar un Rut válido");
         }
         return false;
     }

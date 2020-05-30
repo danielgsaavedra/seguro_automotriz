@@ -37,6 +37,9 @@
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="https://unpkg.com/imask"></script>
+
     <title>{% block title %}{% endblock title %}</title>
 
 </head>
@@ -172,7 +175,8 @@
                     <i class="fas fa-archive"></i>
                     <span>Ver Actas</span>
                 </a>
-                <div id="collapseActasList" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseActasList" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{% url 'acta_recepcion' %}">Recepción</a>
                         <a class="collapse-item" href="{% url 'acta_retiro' %}">Retiro</a>

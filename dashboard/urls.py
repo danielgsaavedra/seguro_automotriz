@@ -45,4 +45,6 @@ urlpatterns = [
     path('asegurado-consulta/', views.AseguradoConsultaView,
          name='asegurado_consulta'),
     path('home/', HomeView.as_view(), name='home'),
+    url(r'^load_patentes/$', views.load_patentes, name='load_patentes'),
+
 ]

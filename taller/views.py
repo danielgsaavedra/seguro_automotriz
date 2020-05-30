@@ -7,7 +7,9 @@ from django.utils import timezone
 from django.http import JsonResponse
 from .forms import ActasForm
 from dashboard.models import Siniestro, EstadoSiniestro, FormularioActa, TipoActa
-
+from django.db import connection
+import pdfkit
+from django.http import HttpResponse
 
 # ACTA RECEPCION
 def SaveAllActaRecepcion(request, form, template_name):
@@ -145,3 +147,44 @@ def PresupuestoView(request):
         est_siniestro_id_est_siniestro=estado).order_by('id')
     context = {'siniestros': siniestros}
     return render(request, 'taller/presupuesto.html', context)
+
+
+# @login_required(login_url='login')
+# def VerActaRecepcion(request):
+#     datosSiniestros = Siniestro.objects.raw('SELECT * FROM Platform')
+#     datosSiniestros = Siniestro.objects.get(id=id)
+#     actaRecepcion = FormularioActa.objects.filter(id=datosSiniestros).order_by('id')
+#
+#
+#     context = {'actaRecepcion': actaRecepcion, 'datosSiniestros':datosSiniestros }
+#     print(actaRecepcion)
+#     return render(request, 'taller/acta_recepcion/acta_pdf.html', context)
+#
+#
+
+# @login_required(login_url='login')
+def actaRecepcionViewPdf(request, pk):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.SEGUNDO_NOMBRE,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) WHERE(f.tipo_acta_id_tipo_acta=1 AND S.ID="+pk +")")
+        dato = cursor.fetchall()
+        dato = list(dato)
+        print(dato)
+    return render(request, 'taller/acta_recepcion/pdf/acta_pdf.html', {'dato': dato})
+
+# @login_required(login_url='login')
+def actaRecepcionPdf(request, pk):
+    options = {
+        'page-size' : 'Letter',
+        'margin-top' : '0.5in',
+        'margin-right' : '1in',
+        'margin-bottom' : '0.5in',
+        'margin-left' : '1in',
+        'encoding' : "UTF-8",
+    }
+
+    path_wkthmltopdf = b'C:\wkhtmltopdf\\bin\wkhtmltopdf.exe'
+    config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
+    pdf = pdfkit.from_url('http://127.0.0.1:8000/actaRecepcionViewPdf/'+ str(pk), False, options=options, configuration=config)
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="ActaRecepcion.pdf" '
+    return response

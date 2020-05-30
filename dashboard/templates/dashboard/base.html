@@ -258,7 +258,6 @@
 
                 </nav>
 
-                {% block script %} {% endblock script %}
 
                 <div class="container-fluid">
 
@@ -304,6 +303,8 @@
             </div>
         </div>
     </div>
+
+    {% block script %} {% endblock script %}
 
     <script src="{% static 'dashboard/js/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'dashboard/js/popper.min.js' %}"></script>

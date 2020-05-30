@@ -35,7 +35,7 @@
 
                 <div class="card-body">
                     <div class="mx-5 clearfix">
-                        <form action="" method="GET">
+                        <form action="" method="GET" class="needs-validation">
                             {% csrf_token %}
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-6">
@@ -43,14 +43,19 @@
                                         <span>RUT</span>
                                     </div>
                                     <input type="text" class="form-control" name="rut_asegurado"
-                                        placeholder="Ingresa tu rut" required />
+                                        placeholder="Ingresa tu rut" required oninput="checkRut(this)"
+                                        pattern="^[0-9]{7,9}[-|‐]{1}[0-9kK]{1}$" maxlength="10" id="rut_asegurado" />
+                                    <div class="valid-feedback"></div>
+                                    <div class="invalid-feedback" id="error_rut"></div>
                                 </div>
                                 <div class="form-group col-12 col-md-6">
                                     <div class="col-form-label">
                                         <span>N° DE PÓLIZA</span>
                                     </div>
                                     <input type="number" class="form-control" name="n_poliza"
-                                        placeholder="Ingresa n° de póliza" required />
+                                        placeholder="Ingresa n° de póliza" required id="poliza_consulta" />
+                                    <div class="valid-feedback"></div>
+                                    <div class="invalid-feedback" id="error_pol"></div>
                                 </div>
                             </div>
                             <div class="justify-content-center d-flex my-4">
@@ -114,7 +119,77 @@
     <script src="{% static 'dashboard/js/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'dashboard/js/popper.min.js' %}"></script>
     <script src="{% static 'dashboard/js/bootstrap/bootstrap.min.js' %}"></script>
-    <script src="{% static 'dashboard/js/script.js' %}"></script>
+    <script src="{% static 'dashboard/js/formato_rut.js' %}"></script>
+    <script type="text/javascript">
+        window.onload = iniciar();
+
+        function iniciar() {
+            document.getElementById("searchSiniestro").addEventListener('click', validar, false);
+            document.getElementById("rut_asegurado").addEventListener('keyup', validaRut);
+            document.getElementById("poliza_consulta").addEventListener('keyup', validaPoliza);
+
+
+        }
+
+        function validaRut() {
+            var elemento = document.getElementById("rut_asegurado");
+            if (!elemento.checkValidity()) {
+                if (elemento.validity.valueMissing) {
+                    error_rut(elemento, "Debe introducir un Rut");
+                }
+                if (elemento.validity.patternMismatch) {
+                    error_rut(elemento, "Debe ingresar un Rut válido");
+                }
+                return false;
+            }
+            clear_error_rut(elemento);
+            return true;
+
+        }
+
+        function error_rut(elemento, mensaje) {
+            document.getElementById("error_rut").innerHTML = mensaje;
+            elemento.className = "form-control is-invalid";
+        }
+
+        function clear_error_rut(elemento) {
+            document.getElementById("error_rut").innerHTML = "";
+            elemento.className = "form-control is-valid";
+        }
+
+
+        function validaPoliza() {
+            var elemento = document.getElementById("poliza_consulta");
+            if (!elemento.checkValidity()) {
+                if (elemento.validity.valueMissing) {
+                    error_pol(elemento, "Debe introducir un n° de póliza");
+                }
+                return false;
+            }
+            clear_error_pol(elemento);
+            return true;
+
+        }
+
+        function error_pol(elemento, mensaje) {
+            document.getElementById("error_pol").innerHTML = mensaje;
+            elemento.className = "form-control is-invalid";
+        }
+
+        function clear_error_pol(elemento) {
+            document.getElementById("error_pol").innerHTML = "";
+            elemento.className = "form-control is-valid";
+        }
+
+        function validar(e) {
+            if (validaRut() && validaPoliza()) {
+                return true
+            } else {
+                e.preventDefault();
+                return false;
+            }
+        }
+    </script>
 
 </body>
 

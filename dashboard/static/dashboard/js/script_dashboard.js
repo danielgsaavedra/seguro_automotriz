@@ -10,7 +10,8 @@ $(document).ready(function () {
                 $('#modal_poliza').modal('show')
             },
             success: function (data) {
-                $('#modal_poliza .modal-content').html(data.html_form)
+                $('#modal_poliza .modal-content').html(data.html_form);
+                $('#fecha_inicio').val( moment().format('DD/MM/yy') );
             },
             error: function () {
                 alert('Algo salió mal, intenta nuevamente.')
@@ -216,17 +217,17 @@ $(document).ready(function () {
 
 
     var ShowTallerDisableForm = function () {
-       var btn = $(this);
+        var btn = $(this);
         $.ajax({
             url: btn.attr("data-url"),
             type: 'get',
             dataType: 'json',
             beforeSend: function () {
-                  $('#modal_taller_disabled').modal('show')
+                $('#modal_taller_disabled').modal('show')
             },
             success: function (data) {
                 $('#modal_taller_disabled .modal-content').html(data.html_form)
-                },
+            },
             error: function () {
                 alert('Algo salió mal, intenta nuevamente.')
             }
@@ -319,8 +320,8 @@ $(document).ready(function () {
         });
     };
 
-     var SaveAseguradoDisableForm = function () {
-            var form = $(this);
+    var SaveAseguradoDisableForm = function () {
+        var form = $(this);
         $.ajax({
             url: form.attr('data-url'),
             data: form.serialize(),
@@ -328,13 +329,13 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.form_is_valid) {
-                  $('#table_asegurado_disabled tbody').html(data.aseguradosDisable);
+                    $('#table_asegurado_disabled tbody').html(data.aseguradosDisable);
                     $('#modal_asegurado_disabled').modal('hide');
                     console.log('Asegurado reactivado correctamente!');
                     toastr.success('Operación Exitosa!');
                 } else {
                     $('#modal_asegurado_disabled .modal-content').html(data.html_form)
-                    }
+                }
             },
             error: function () {
                 toastr.error('Algo salió mal, intenta nuevamente.')
@@ -342,8 +343,8 @@ $(document).ready(function () {
         });
         return false;
     }
-                 
-   var ShowUsuarioForm = function () {
+
+    var ShowUsuarioForm = function () {
         var btn = $(this);
         $.ajax({
             url: btn.attr("data-url"),
@@ -360,7 +361,7 @@ $(document).ready(function () {
             }
         });
     };
-     
+
     var SaveUsuarioForm = function () {
         var form = $(this);
         $.ajax({
@@ -404,7 +405,7 @@ $(document).ready(function () {
     };
 
     var SaveUsuarioDisableForm = function () {
-            var form = $(this);
+        var form = $(this);
         $.ajax({
             url: form.attr('data-url'),
             data: form.serialize(),
@@ -412,13 +413,13 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.form_is_valid) {
-                  $('#table_usuario_disabled tbody').html(data.usuariosDisable);
+                    $('#table_usuario_disabled tbody').html(data.usuariosDisable);
                     $('#modal_usuario_disabled').modal('hide');
                     console.log('Usuario reactivado correctamente!');
                     toastr.success('Operación Exitosa!');
                 } else {
                     $('#modal_usuario_disabled .modal-content').html(data.html_form)
-                    }
+                }
             },
             error: function () {
                 toastr.error('Algo salió mal, intenta nuevamente.')

@@ -8,7 +8,6 @@ function iniciar() {
     document.getElementById("taller").addEventListener('change',validaTaller);
     document.getElementById("asegurado_rut").addEventListener('change',validaRutAsegurado);
     document.getElementById("descripcion").addEventListener('keyup',validaDescripcion,false);
-    
 }
 
 function validaNumPoliza() {
@@ -133,7 +132,7 @@ function clearErrorDescripcion(elemento) {
 }
 
 function validar(e) {
-    if (validaNumPoliza() || validaAccidente() || validaTaller() || validaRutAsegurado() || validaDescripcion()) {
+    if (validaNumPoliza() && validaAccidente() && validaTaller() && validaRutAsegurado() && validaDescripcion()) {
         return true
     } else {
         e.preventDefault();

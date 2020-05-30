@@ -7,6 +7,29 @@ function iniciar() {
     document.getElementById("telefono_taller").addEventListener('keyup', validaTelefono);
     document.getElementById("correo_taller").addEventListener('keyup', validaCorreo);
     document.getElementById("capacidad").addEventListener('keyup', validaCapacidad);
+    document.getElementById('capacidad').addEventListener('keydown', function (evento) {
+        const teclaPresionada = evento.key;
+        const teclaPresionadaEsUnNumero =
+            Number.isInteger(parseInt(teclaPresionada));
+
+        const sePresionoUnaTeclaNoAdmitida =
+            teclaPresionada != 'ArrowDown' &&
+            teclaPresionada != 'ArrowUp' &&
+            teclaPresionada != 'ArrowLeft' &&
+            teclaPresionada != 'ArrowRight' &&
+            teclaPresionada != 'Backspace' &&
+            teclaPresionada != 'Delete' &&
+            teclaPresionada != 'Enter' &&
+            !teclaPresionadaEsUnNumero;
+        const comienzaPorCero =
+        document.getElementById('capacidad').value.length === 0 &&
+            teclaPresionada == 0;
+
+        if (sePresionoUnaTeclaNoAdmitida || comienzaPorCero) {
+            evento.preventDefault();
+        }
+
+    });
 }
 
 function validaNombre() {
@@ -135,18 +158,10 @@ function clearErrorCapacidad(elemento) {
     elemento.className = "form-control is-valid";
 }
 
-function soloNumeros(e) {
-    var key = window.Event ? e.which : e.keyCode;
-    return ((key >= 48 && key <= 57) || (key == 8))
-}
 
-function pierdeFoco(e) {
-    var valor = e.value.replace(/^0*/, '');
-    e.value = valor;
-}
 
 function validar(e) {
-    if (validaNombre() || validaRazon() || validaTelefono() || validaCorreo() || validaCapacidad()) {
+    if (validaNombre() && validaRazon() && validaTelefono() && validaCapacidad() && validaCorreo() ) {
         return true
     } else {
         e.preventDefault();

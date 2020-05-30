@@ -94,6 +94,8 @@ class SiniestroForm(forms.ModelForm):
             estado=1)
         self.fields['asegurado_rut_asegurado'].queryset = Asegurado.objects.filter(
             estado=1)
+        self.fields['poliza_id_poliza'].queryset = Poliza.objects.filter(
+            vigente=1)
 
     class Meta:
         model = Siniestro
@@ -108,7 +110,7 @@ class SiniestroForm(forms.ModelForm):
             'taller_id_taller': forms.Select(attrs={'class': 'required form-control','id':'taller'}),
             'grua_patente_grua': forms.Select(attrs={'class': 'form-control'}),
             'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control','id':'poliza'}),
-            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'required form-control','id':'asegurado_rut'}),
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'required form-control','id':'asegurado_rut','onchange': "cargarPoliza();"}),
         }
 
 

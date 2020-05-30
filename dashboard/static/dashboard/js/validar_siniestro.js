@@ -132,7 +132,7 @@ function clearErrorDescripcion(elemento) {
 }
 
 function validar(e) {
-    if (validaNumPoliza() && validaAccidente() && validaTaller() && validaRutAsegurado() && validaDescripcion()) {
+    if (validaRutAsegurado() && validaNumPoliza()  && validaTaller() && validaAccidente() &&  validaDescripcion()) {
         return true
     } else {
         e.preventDefault();

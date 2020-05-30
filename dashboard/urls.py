@@ -46,5 +46,6 @@ urlpatterns = [
          name='asegurado_consulta'),
     path('home/', HomeView.as_view(), name='home'),
     url(r'^load_patentes/$', views.load_patentes, name='load_patentes'),
+    url(r'^load_polizas/$', views.load_poliza, name='load_poliza'),
 
 ]

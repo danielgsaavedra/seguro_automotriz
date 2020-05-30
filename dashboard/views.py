@@ -285,10 +285,6 @@ def load_patentes(request):
     return JsonResponse(response)
 
 
-
-
-
-
 # Update
 
 @staff_member_required(login_url='login')
@@ -406,6 +402,21 @@ def CreateSiniestro(request):
     else:
         form = SiniestroForm()
     return SaveAllSiniestro(request, form, 'dashboard/siniestros/siniestro_create.html')
+
+
+def load_poliza(request):
+    rut_asegurado = request.GET.get('rut_ase')
+    polizas = Poliza.objects.filter(Q(asegurado_rut_asegurado=rut_asegurado) & Q(vigente=1))
+    options = '<option value=""  selected="selected">---------</option>'
+    for poliza in polizas:
+        options += '<option value="%s">%s</option>' % (
+            poliza,
+            poliza
+        )
+
+    response = {}
+    response['polizas'] = options
+    return JsonResponse(response)
 
 
 # # Update
@@ -573,7 +584,6 @@ def AseguradoConsultaView(request):
     queryset1 = request.GET.get("rut_asegurado")
     queryset2 = request.GET.get("n_poliza")
 
-    siniestros = Siniestro.objects.all()
     if queryset1:
         siniestros = Siniestro.objects.filter(
             Q(asegurado_rut_asegurado=queryset1) &

@@ -17,8 +17,6 @@
                         <th scope="col">Fecha Creación</th>
                         <th scope="col">N° Siniestro</th>
                         <th scope="col">Taller</th>
-                        <th scope="col">Tipo Acta</th>
-                        <th scope="col">Rut Usuario</th>
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
@@ -29,8 +27,6 @@
                         <td>{{ actas.fecha_hora | date:'d-m-Y' }}</td>
                         <td>{{ actas.siniestro_id}}</td>
                         <td>{{ actas.taller_id_taller}}</td>
-                        <td> <span class="badge badge-pill badge-success">{{ actas.tipo_acta_id_tipo_acta }}</span></td>
-                        <td>{{ actas.usuario_rut_usuario }}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"

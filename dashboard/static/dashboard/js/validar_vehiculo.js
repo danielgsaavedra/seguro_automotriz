@@ -6,9 +6,9 @@ function iniciar() {
     document.getElementById("modelo").addEventListener('keyup', validaModelo);
     document.getElementById("motor").addEventListener('keyup', validaMotor);
     document.getElementById("anio").addEventListener('keyup', validaAnio);
-    document.getElementById("marca_vehi").addEventListener('change',validaMarca);
-    document.getElementById("tipo_vehi").addEventListener('change',validaTipo);
-    document.getElementById("rut_asegurado_vehi").addEventListener('change',validaRutAsegurado);
+    document.getElementById("marca_vehi").addEventListener('change', validaMarca);
+    document.getElementById("tipo_vehi").addEventListener('change', validaTipo);
+    document.getElementById("rut_asegurado_vehi").addEventListener('change', validaRutAsegurado);
 }
 
 function validaPatente() {

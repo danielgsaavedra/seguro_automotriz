@@ -3,11 +3,11 @@ window.onload = iniciar();
 function iniciar() {
     document.getElementById("bEnviar").addEventListener('click', validar, false);
     document.getElementById("bEnviar").addEventListener('click', validaDescripcion, false);
-    document.getElementById("poliza").addEventListener('change',validaNumPoliza);
-    document.getElementById("tipo_accidente").addEventListener('change',validaAccidente);
-    document.getElementById("taller").addEventListener('change',validaTaller);
-    document.getElementById("asegurado_rut").addEventListener('change',validaRutAsegurado);
-    document.getElementById("descripcion").addEventListener('keyup',validaDescripcion,false);
+    document.getElementById("poliza").addEventListener('change', validaNumPoliza);
+    document.getElementById("tipo_accidente").addEventListener('change', validaAccidente);
+    document.getElementById("taller").addEventListener('change', validaTaller);
+    document.getElementById("asegurado_rut").addEventListener('change', validaRutAsegurado);
+    document.getElementById("descripcion").addEventListener('keyup', validaDescripcion, false);
 }
 
 function validaNumPoliza() {
@@ -132,7 +132,7 @@ function clearErrorDescripcion(elemento) {
 }
 
 function validar(e) {
-    if (validaRutAsegurado() && validaNumPoliza()  && validaTaller() && validaAccidente() &&  validaDescripcion()) {
+    if (validaRutAsegurado() && validaNumPoliza() && validaTaller() && validaAccidente() && validaDescripcion()) {
         return true
     } else {
         e.preventDefault();

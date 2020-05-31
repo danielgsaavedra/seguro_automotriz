@@ -22,7 +22,7 @@ function iniciar() {
             teclaPresionada != 'Enter' &&
             !teclaPresionadaEsUnNumero;
         const comienzaPorCero =
-        document.getElementById('capacidad').value.length === 0 &&
+            document.getElementById('capacidad').value.length === 0 &&
             teclaPresionada == 0;
 
         if (sePresionoUnaTeclaNoAdmitida || comienzaPorCero) {
@@ -161,7 +161,7 @@ function clearErrorCapacidad(elemento) {
 
 
 function validar(e) {
-    if (validaNombre() && validaRazon() && validaTelefono() && validaCapacidad() && validaCorreo() ) {
+    if (validaNombre() && validaRazon() && validaTelefono() && validaCapacidad() && validaCorreo()) {
         return true
     } else {
         e.preventDefault();

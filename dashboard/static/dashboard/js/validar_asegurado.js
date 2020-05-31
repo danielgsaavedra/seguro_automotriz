@@ -2,14 +2,14 @@ window.onload = iniciar();
 
 function iniciar() {
     document.getElementById("bEnviar").addEventListener('click', validar, false);
-    document.getElementById("id_rut_asegurado").addEventListener('keyup',validaRut);
-    document.getElementById("p_nombre_asegurado").addEventListener('keyup',validaPrimerNombre);
-    document.getElementById("telefono_asegurado").addEventListener('keyup',validaTelefono);
-    document.getElementById("s_nombre_asegurado").addEventListener('keyup',validaSegundoNombre);
-    document.getElementById("p_apellido_asegurado").addEventListener('keyup',validaPrimerApellido);
-    document.getElementById("s_apellido_asegurado").addEventListener('keyup',validaSegundoApellido);
-    document.getElementById("correo_asegurado").addEventListener('keyup',validaCorreo);
-    document.getElementById("fecha_asegurado").addEventListener('change',validaFecha);
+    document.getElementById("id_rut_asegurado").addEventListener('keyup', validaRut);
+    document.getElementById("p_nombre_asegurado").addEventListener('keyup', validaPrimerNombre);
+    document.getElementById("telefono_asegurado").addEventListener('keyup', validaTelefono);
+    document.getElementById("s_nombre_asegurado").addEventListener('keyup', validaSegundoNombre);
+    document.getElementById("p_apellido_asegurado").addEventListener('keyup', validaPrimerApellido);
+    document.getElementById("s_apellido_asegurado").addEventListener('keyup', validaSegundoApellido);
+    document.getElementById("correo_asegurado").addEventListener('keyup', validaCorreo);
+    document.getElementById("fecha_asegurado").addEventListener('change', validaFecha);
 }
 
 function validaRut() {
@@ -28,7 +28,7 @@ function validaRut() {
 
 }
 
-function error_rut(elemento,mensaje) {
+function error_rut(elemento, mensaje) {
     document.getElementById("error_rut").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
     elemento.focus();
@@ -54,7 +54,7 @@ function validaPrimerNombre() {
     return true;
 }
 
-function error_p_nombre(elemento,mensaje) {
+function error_p_nombre(elemento, mensaje) {
     document.getElementById("error_p_nombre").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -79,7 +79,7 @@ function validaSegundoNombre() {
     return true;
 }
 
-function error_s_nombre(elemento,mensaje) {
+function error_s_nombre(elemento, mensaje) {
     document.getElementById("error_s_nombre").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -104,7 +104,7 @@ function validaPrimerApellido() {
     return true;
 }
 
-function error_p_apellido(elemento,mensaje) {
+function error_p_apellido(elemento, mensaje) {
     document.getElementById("error_p_apellido").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -129,7 +129,7 @@ function validaSegundoApellido() {
     return true;
 }
 
-function error_s_apellido(elemento,mensaje) {
+function error_s_apellido(elemento, mensaje) {
     document.getElementById("error_s_apellido").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -155,7 +155,7 @@ function validaTelefono() {
 
 }
 
-function error_telefono(elemento,mensaje) {
+function error_telefono(elemento, mensaje) {
     document.getElementById("error_telefono").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -180,7 +180,7 @@ function validaCorreo() {
     return true;
 }
 
-function error_correo(elemento,mensaje) {
+function error_correo(elemento, mensaje) {
     document.getElementById("error_correo").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -202,7 +202,7 @@ function validaFecha() {
     return true;
 }
 
-function error_fecha(elemento,mensaje) {
+function error_fecha(elemento, mensaje) {
     document.getElementById("error_fecha").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -214,9 +214,9 @@ function clearErrorFecha(elemento) {
 
 
 function validar(e) {
-    if (validaRut() && validaTelefono() && validaPrimerNombre() && validaSegundoNombre() 
-    && validaPrimerApellido() && validaSegundoApellido() && validaCorreo() && validaFecha()) {
-        return true 
+    if (validaRut() && validaTelefono() && validaPrimerNombre() && validaSegundoNombre()
+        && validaPrimerApellido() && validaSegundoApellido() && validaCorreo() && validaFecha()) {
+        return true
     } else {
         e.preventDefault();
         return false;

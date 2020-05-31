@@ -3,16 +3,16 @@ window.onload = iniciar();
 function iniciar() {
     document.getElementById("bEnviar").addEventListener('click', validar, false);
     document.getElementById("bEnviar").addEventListener('click', validaPassword2, false);
-    document.getElementById("id_rut_usuario").addEventListener('keyup',validaRut);
-    document.getElementById("p_nombre_usuario").addEventListener('keyup',validaPrimerNombre);
-    document.getElementById("telefono_usuario").addEventListener('keyup',validaTelefono);
-    document.getElementById("s_nombre_usuario").addEventListener('keyup',validaSegundoNombre);
-    document.getElementById("p_apellido_usuario").addEventListener('keyup',validaPrimerApellido);
-    document.getElementById("s_apellido_usuario").addEventListener('keyup',validaSegundoApellido);
-    document.getElementById("email_usuario").addEventListener('keyup',validaCorreo);
-    document.getElementById("rol_usuario").addEventListener('change',validaRol);
-    document.getElementById("password1").addEventListener('keyup',validaPassword1);
-    document.getElementById("password2").addEventListener('keyup',validaPassword2);
+    document.getElementById("id_rut_usuario").addEventListener('keyup', validaRut);
+    document.getElementById("p_nombre_usuario").addEventListener('keyup', validaPrimerNombre);
+    document.getElementById("telefono_usuario").addEventListener('keyup', validaTelefono);
+    document.getElementById("s_nombre_usuario").addEventListener('keyup', validaSegundoNombre);
+    document.getElementById("p_apellido_usuario").addEventListener('keyup', validaPrimerApellido);
+    document.getElementById("s_apellido_usuario").addEventListener('keyup', validaSegundoApellido);
+    document.getElementById("email_usuario").addEventListener('keyup', validaCorreo);
+    document.getElementById("rol_usuario").addEventListener('change', validaRol);
+    document.getElementById("password1").addEventListener('keyup', validaPassword1);
+    document.getElementById("password2").addEventListener('keyup', validaPassword2);
 }
 
 function validaRut() {
@@ -31,7 +31,7 @@ function validaRut() {
 
 }
 
-function error_rut(elemento,mensaje) {
+function error_rut(elemento, mensaje) {
     document.getElementById("error_rut").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -56,7 +56,7 @@ function validaPrimerNombre() {
     return true;
 }
 
-function error_p_nombre(elemento,mensaje) {
+function error_p_nombre(elemento, mensaje) {
     document.getElementById("error_p_nombre").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -81,7 +81,7 @@ function validaSegundoNombre() {
     return true;
 }
 
-function error_s_nombre(elemento,mensaje) {
+function error_s_nombre(elemento, mensaje) {
     document.getElementById("error_s_nombre").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -106,7 +106,7 @@ function validaPrimerApellido() {
     return true;
 }
 
-function error_p_apellido(elemento,mensaje) {
+function error_p_apellido(elemento, mensaje) {
     document.getElementById("error_p_apellido").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -131,7 +131,7 @@ function validaSegundoApellido() {
     return true;
 }
 
-function error_s_apellido(elemento,mensaje) {
+function error_s_apellido(elemento, mensaje) {
     document.getElementById("error_s_apellido").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -157,7 +157,7 @@ function validaTelefono() {
 
 }
 
-function error_telefono(elemento,mensaje) {
+function error_telefono(elemento, mensaje) {
     document.getElementById("error_telefono").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -182,7 +182,7 @@ function validaCorreo() {
     return true;
 }
 
-function error_correo(elemento,mensaje) {
+function error_correo(elemento, mensaje) {
     document.getElementById("error_correo").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -204,7 +204,7 @@ function validaRol() {
     return true;
 }
 
-function error_rol(elemento,mensaje) {
+function error_rol(elemento, mensaje) {
     document.getElementById("error_rol").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
     elemento.focus();
@@ -230,7 +230,7 @@ function validaPassword1() {
     return true;
 }
 
-function error_password1(elemento,mensaje) {
+function error_password1(elemento, mensaje) {
     document.getElementById("error_password1").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -243,7 +243,7 @@ function clearErrorPassword1(elemento) {
 function validaPassword2(e) {
     var elemento = document.getElementById("password2");
     var password = document.getElementById("password1").value;
-    
+
     if (elemento.value != password || elemento.value == "") {
         error_password2(elemento, "Contraseña no coincide");
         e.preventDefault();
@@ -253,7 +253,7 @@ function validaPassword2(e) {
     return true;
 }
 
-function error_password2(elemento,mensaje) {
+function error_password2(elemento, mensaje) {
     document.getElementById("error_password2").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -264,9 +264,9 @@ function clearErrorPassword2(elemento) {
 }
 
 function validar(e) {
-    if (validaRol() && validaRut() && validaTelefono() && validaPrimerNombre()  && validaSegundoNombre() 
-    && validaPrimerApellido() && validaSegundoApellido() && validaCorreo() &&  validaPassword1() && validaPassword2()) {
-        return true 
+    if (validaRol() && validaRut() && validaTelefono() && validaPrimerNombre() && validaSegundoNombre()
+        && validaPrimerApellido() && validaSegundoApellido() && validaCorreo() && validaPassword1() && validaPassword2()) {
+        return true
     } else {
         e.preventDefault();
         return false;

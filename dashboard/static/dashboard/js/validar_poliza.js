@@ -2,9 +2,9 @@ window.onload = iniciar();
 
 function iniciar() {
     document.getElementById("bEnviar").addEventListener('click', validar, false);
-    document.getElementById("fecha_fin").addEventListener('change',validaFin);
-    document.getElementById("poli_rut_asegurado").addEventListener('change',validaRutAsegurado);
-    document.getElementById("poli_patente").addEventListener('change',validaPatente);
+    document.getElementById("fecha_fin").addEventListener('change', validaFin);
+    document.getElementById("poli_rut_asegurado").addEventListener('change', validaRutAsegurado);
+    document.getElementById("poli_patente").addEventListener('change', validaPatente);
 }
 
 function validaFin() {
@@ -19,7 +19,7 @@ function validaFin() {
     return true;
 }
 
-function error_fin(elemento,mensaje) {
+function error_fin(elemento, mensaje) {
     document.getElementById("error_fin").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -41,7 +41,7 @@ function validaRutAsegurado() {
     return true;
 }
 
-function error_rut(elemento,mensaje) {
+function error_rut(elemento, mensaje) {
     document.getElementById("error_rut").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -63,7 +63,7 @@ function validaPatente() {
     return true;
 }
 
-function error_patente(elemento,mensaje) {
+function error_patente(elemento, mensaje) {
     document.getElementById("error_patente").innerHTML = mensaje;
     elemento.className = "form-control is-invalid";
 }
@@ -74,8 +74,8 @@ function clearErrorPatente(elemento) {
 }
 
 function validar(e) {
-    if ( validaFin() && validaRutAsegurado() && validaPatente()) {
-        return true 
+    if (validaFin() && validaRutAsegurado() && validaPatente()) {
+        return true
     } else {
         e.preventDefault();
         return false;

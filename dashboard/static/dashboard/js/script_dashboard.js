@@ -11,7 +11,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 $('#modal_poliza .modal-content').html(data.html_form);
-                $('#fecha_inicio').val( moment().format('DD/MM/yy') );
+                $('#fecha_inicio').val(moment().format('DD/MM/yy'));
             },
             error: function () {
                 alert('Algo salió mal, intenta nuevamente.')

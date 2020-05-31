@@ -406,7 +406,8 @@ def CreateSiniestro(request):
 
 def load_poliza(request):
     rut_asegurado = request.GET.get('rut_ase')
-    polizas = Poliza.objects.filter(Q(asegurado_rut_asegurado=rut_asegurado) & Q(vigente=1))
+    polizas = Poliza.objects.filter(
+        Q(asegurado_rut_asegurado=rut_asegurado) & Q(vigente=1))
     options = '<option value=""  selected="selected">---------</option>'
     for poliza in polizas:
         options += '<option value="%s">%s</option>' % (

@@ -6,12 +6,14 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 from django.http import JsonResponse
 from .forms import ActasForm
-from dashboard.models import Siniestro, EstadoSiniestro, FormularioActa, TipoActa
+from dashboard.models import Siniestro, EstadoSiniestro, FormularioActa, TipoActa, Poliza, Taller
 from django.db import connection
 import pdfkit
 from django.http import HttpResponse
 
 # ACTA RECEPCION
+
+
 def SaveAllActaRecepcion(request, form, template_name):
     data = dict()
     estado = get_object_or_404(EstadoSiniestro, id=1)
@@ -52,12 +54,35 @@ def SiniestrosRecepcionView(request):
 
 
 @login_required(login_url='login')
-def CreateActaRecepcion(request):
+def CreateActaRecepcion(request, id):
+    data = dict()
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT S.TALLER_ID_TALLER, S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) WHERE(S.TALLER_ID_TALLER = T.ID AND S.ID=" + id + ")")
+        dato = cursor.fetchall()
+        dato = list(dato)
+    tipo_acta = get_object_or_404(TipoActa, id=1)
+    siniestro_id = get_object_or_404(Siniestro, id=dato[0][1])
+    taller_id = get_object_or_404(Taller, id=dato[0][0])
+
     if request.method == 'POST':
+        print(dato[0][1])
         form = ActasForm(request.POST)
+        if form.is_valid():
+            acta = form.save(commit=False)
+            acta.usuario_rut_usuario = request.user
+            acta.tipo_acta_id_tipo_acta = tipo_acta
+            acta.siniestro_id = siniestro_id
+            acta.taller_id_taller = taller_id
+            acta.save()
+            data['form_is_valid'] = True
+        else:
+            data['form_is_valid'] = False
     else:
         form = ActasForm()
-    return SaveAllActaRecepcion(request, form, 'taller/acta_recepcion/acta_recepcion_create.html')
+    context = {'form': form, 'siniestro_id': siniestro_id}
+    data['html_form'] = render_to_string(
+        'taller/acta_recepcion/acta_recepcion_create.html', context, request=request)
+    return JsonResponse(data)
 
 # ACTA RETIRO
 
@@ -102,12 +127,35 @@ def SiniestrosRetiroView(request):
 
 
 @login_required(login_url='login')
-def CreateActaRetiro(request):
+def CreateActaRetiro(request, id):
+    data = dict()
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT S.TALLER_ID_TALLER, S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) WHERE(S.TALLER_ID_TALLER = T.ID AND S.ID=" + id + ")")
+        dato = cursor.fetchall()
+        dato = list(dato)
+    tipo_acta = get_object_or_404(TipoActa, id=3)
+    siniestro_id = get_object_or_404(Siniestro, id=dato[0][1])
+    taller_id = get_object_or_404(Taller, id=dato[0][0])
+
     if request.method == 'POST':
+        print(dato[0][1])
         form = ActasForm(request.POST)
+        if form.is_valid():
+            acta = form.save(commit=False)
+            acta.usuario_rut_usuario = request.user
+            acta.tipo_acta_id_tipo_acta = tipo_acta
+            acta.siniestro_id = siniestro_id
+            acta.taller_id_taller = taller_id
+            acta.save()
+            data['form_is_valid'] = True
+        else:
+            data['form_is_valid'] = False
     else:
         form = ActasForm()
-    return SaveAllActaRecepcion(request, form, 'taller/acta_retiro/acta_retiro_create.html')
+    context = {'form': form, 'siniestro_id': siniestro_id}
+    data['html_form'] = render_to_string(
+        'taller/acta_retiro/acta_retiro_create.html', context, request=request)
+    return JsonResponse(data)
 
 # ACTA RECHAZO
 
@@ -122,12 +170,35 @@ def ActaRechazoView(request):
 
 
 @login_required(login_url='login')
-def CreateActaRechazo(request):
+def CreateActaRechazo(request, id):
+    data = dict()
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT S.TALLER_ID_TALLER, S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) WHERE(S.TALLER_ID_TALLER = T.ID AND S.ID=" + id + ")")
+        dato = cursor.fetchall()
+        dato = list(dato)
+    tipo_acta = get_object_or_404(TipoActa, id=2)
+    siniestro_id = get_object_or_404(Siniestro, id=dato[0][1])
+    taller_id = get_object_or_404(Taller, id=dato[0][0])
+
     if request.method == 'POST':
+        print(dato[0][1])
         form = ActasForm(request.POST)
+        if form.is_valid():
+            acta = form.save(commit=False)
+            acta.usuario_rut_usuario = request.user
+            acta.tipo_acta_id_tipo_acta = tipo_acta
+            acta.siniestro_id = siniestro_id
+            acta.taller_id_taller = taller_id
+            acta.save()
+            data['form_is_valid'] = True
+        else:
+            data['form_is_valid'] = False
     else:
         form = ActasForm()
-    return SaveAllActaRetiro(request, form, 'taller/acta_retiro/acta_rechazo_create.html')
+    context = {'form': form, 'siniestro_id': siniestro_id}
+    data['html_form'] = render_to_string(
+        'taller/acta_retiro/acta_rechazo_create.html', context, request=request)
+    return JsonResponse(data)
 
 
 # INFORME DE DAÑOS
@@ -165,26 +236,29 @@ def PresupuestoView(request):
 # @login_required(login_url='login')
 def actaRecepcionViewPdf(request, pk):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.SEGUNDO_NOMBRE,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) WHERE(f.tipo_acta_id_tipo_acta=1 AND S.ID="+pk +")")
+        cursor.execute("SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.SEGUNDO_NOMBRE,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) WHERE(f.tipo_acta_id_tipo_acta=1 AND S.ID="+pk + ")")
         dato = cursor.fetchall()
         dato = list(dato)
         print(dato)
     return render(request, 'taller/acta_recepcion/pdf/acta_pdf.html', {'dato': dato})
 
 # @login_required(login_url='login')
+
+
 def actaRecepcionPdf(request, pk):
     options = {
-        'page-size' : 'Letter',
-        'margin-top' : '0.5in',
-        'margin-right' : '1in',
-        'margin-bottom' : '0.5in',
-        'margin-left' : '1in',
-        'encoding' : "UTF-8",
+        'page-size': 'Letter',
+        'margin-top': '0.5in',
+        'margin-right': '1in',
+        'margin-bottom': '0.5in',
+        'margin-left': '1in',
+        'encoding': "UTF-8",
     }
 
     path_wkthmltopdf = b'C:\wkhtmltopdf\\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
-    pdf = pdfkit.from_url('http://127.0.0.1:8000/actaRecepcionViewPdf/'+ str(pk), False, options=options, configuration=config)
+    pdf = pdfkit.from_url('http://127.0.0.1:8000/actaRecepcionViewPdf/' +
+                          str(pk), False, options=options, configuration=config)
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="ActaRecepcion.pdf" '
     return response

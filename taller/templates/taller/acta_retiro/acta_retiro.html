@@ -34,9 +34,16 @@
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <button type="button" class="dropdown-item show_acta_recepcion" data-url="#">
-                                        Exportar en PDF
-                                    </button>
+                                    <a href="{% url 'actaRetiroViewPdf' pk=actas.siniestro_id %}" target="_blank">
+                                        <button class="dropdown-item">
+                                            Visualizar Acta
+                                        </button>
+                                    </a>
+                                    <a href="{% url 'actaRetiroPdf' pk=actas.siniestro_id %}">
+                                        <button class="dropdown-item">
+                                            Exportar PDF
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </td>

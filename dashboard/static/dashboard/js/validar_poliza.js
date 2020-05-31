@@ -75,6 +75,7 @@ function clearErrorPatente(elemento) {
 
 function validar(e) {
     if (validaFin() && validaRutAsegurado() && validaPatente()) {
+        document.getElementById("poli_patente").disabled = false;
         return true
     } else {
         e.preventDefault();

@@ -26,7 +26,7 @@ class PolizaForm(forms.ModelForm):
             'fecha_inicio': forms.TextInput(attrs={'class': 'required form-control', 'id': 'fecha_inicio', 'readonly': 'False'}),
             'fecha_fin': forms.TextInput(attrs={'class': 'required form-control', 'id': 'fecha_fin', 'placeholder': 'Ingresa fecha de termino'}),
             'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'onchange': "cargarPatentes();", 'id': 'poli_rut_asegurado'}),
-            'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control', 'id': 'poli_patente'})
+            'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control', 'id': 'poli_patente','disabled':'true'})
         }
 
 
@@ -69,6 +69,12 @@ class AseguradoForm(forms.ModelForm):
             'fecha_nacimiento': forms.TextInput(attrs={'class': 'form-control', 'type': 'date', 'id': 'fecha_asegurado'}),
         }
 
+    def clean_rut_asegurado(self):
+        rut_asegurado = self.cleaned_data.get("rut_asegurado")
+        if Asegurado.objects.filter(rut_asegurado =rut_asegurado).exists():
+            raise forms.ValidationError("El RUT ya esta registrado, prueba con otro")
+        return rut_asegurado
+
 
 # FORMULARIO BORRADO LOGICO ASEGURADO
 
@@ -110,7 +116,7 @@ class SiniestroForm(forms.ModelForm):
             'tipo_accidente_id_tipo_acc': forms.Select(attrs={'class': 'required form-control', 'id': 'tipo_accidente'}),
             'taller_id_taller': forms.Select(attrs={'class': 'required form-control', 'id': 'taller'}),
             'grua_patente_grua': forms.Select(attrs={'class': 'form-control'}),
-            'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control', 'id': 'poliza'}),
+            'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control', 'id': 'poliza','disabled':'true'}),
             'asegurado_rut_asegurado': forms.Select(attrs={'class': 'required form-control', 'id': 'asegurado_rut', 'onchange': "cargarPoliza();"}),
         }
 

@@ -75,6 +75,7 @@
             request.done(function (response) {
                 // Agregamos los resultados al select
                 $("#poli_patente").html(response.patentes);
+                document.getElementById("poli_patente").disabled = false;
                 $("#poli_patente").trigger("change");
             });
         }

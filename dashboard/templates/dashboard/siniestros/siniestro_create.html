@@ -95,6 +95,7 @@
             request.done(function (response) {
                 // Agregamos los resultados al select
                 $("#poliza").html(response.polizas);
+                document.getElementById("poliza").disabled = false;
                 $("#poliza").trigger("change");
             });
         }

@@ -22,4 +22,12 @@ urlpatterns = [
         views.actaRecepcionViewPdf, name='actaRecepcionViewPdf'),
     url(r'^actaRecepcionPdf/(?P<pk>[0-9]+)/$',
         views.actaRecepcionPdf, name='actaRecepcionPdf'),
+    url(r'^actaRetiroViewPdf/(?P<pk>[0-9]+)/$',
+        views.actaRetiroViewPdf, name='actaRetiroViewPdf'),
+    url(r'^actaRetiroPdf/(?P<pk>[0-9]+)/$',
+        views.actaRetiroPdf, name='actaRetiroPdf'),
+    url(r'^actaRechazoViewPdf/(?P<pk>[0-9]+)/$',
+        views.actaRechazoViewPdf, name='actaRechazoViewPdf'),
+    url(r'^actaRechazoPdf/(?P<pk>[0-9]+)/$',
+        views.actaRechazoPdf, name='actaRechazoPdf'),
 ]

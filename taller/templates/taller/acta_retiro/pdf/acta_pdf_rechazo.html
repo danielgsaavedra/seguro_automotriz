@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="stylesheet" href="{% static 'taller/css/style_pdf.css' %}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link
@@ -17,111 +18,140 @@
 </head>
 
 <body>
-    <div class="container align-content-center">
-        <h4 class="align-content-center text-center mb-3">Acta Rechazo</h4>
-        <table class="table">
-            <tbody>
-                <tr class="prop">
-                    <td class="bg-success name">Datos Recepción</td>
-                    <td valign="top" class="bg-success name"></td>
-                </tr>
-                <tr class="prop">
-                    <td valign="top" class="name">Acta N° :</td>
-                    <td valign="top" class="value">{{ dato.0.4 }}</td>
-                </tr>
-                <tr class="prop">
-                    <td valign="top" class="name">Ingresada :</td>
-                    <td valign="top" class="value">{{ dato.0.5 }}</td>
-                </tr>
-                <tr class="prop">
-                    <td valign="top" class="name">Transportado:</td>
-                    <td valign="top" class="value">Patente Grúa {{ dato.0.1 }} </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table">
-            <tbody>
-                <tr class="prop">
-                    <td class="bg-success name">Datos Vehiculo </td>
-                    <td valign="top" class="bg-success name"></td>
-                </tr>
-                <tr class="prop">
-                    <td valign="top" class="name">N° Poliza :</td>
-                    <td valign="top" class="value">{{ dato.0.2 }}</td>
-                </tr>
-                <tr class="prop">
-                    <td valign="top" class="name">Patente :</td>
-                    <td valign="top" class="value">{{ dato.0.7 }}</td>
-                </tr>
-                <tr class="prop">
-                    <td valign="top" class="name">Modelo :</td>
-                    <td valign="top" class="value">{{ dato.0.8 }}</td>
-                </tr>
-                <tr class="prop">
-                    <td valign="top" class="name">Año :</td>
-                    <td valign="top" class="value">{{ dato.0.9 }}</td>
-                </tr>
-                <tr class="prop">
-                    <td valign="top" class="name">N° Motor :</td>
-                    <td valign="top" class="value">{{ dato.0.10 }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table">
-            <tbody>
-                <tr class="prop">
-                    <td class="bg-success name">Datos Asegurado </td>
-                    <td valign="top" class="bg-success name"></td>
-                </tr>
-                <tr class="prop">
-                    <td valign="top" class="name">Rut :</td>
-                    <td valign="top" class="value">{{ dato.0.3 }}</td>
-                </tr>
-                <tr class="prop">
-                    <td valign="top" class="name">Nombre :</td>
-                    <td valign="top" class="value">{{ dato.0.11 }} {{ dato.0.12 }}</td>
-                </tr>
-                <tr class="prop">
-                    <td valign="top" class="name">Correo :</td>
-                    <td valign="top" class="value">{{ dato.0.13 }}</td>
-                </tr>
-                <tr class="prop">
-                    <td valign="top" class="name">Telefono :</td>
-                    <td valign="top" class="value">+569 {{ dato.0.14 }}</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table class="table">
-            <tbody>
-                <tr class="prop">
-                    <td class="bg-success name">Observaciones </td>
-                    <td valign="top" class="bg-success name"></td>
-                </tr>
-                <tr class="prop">
-                    <td valign="top" class="name">Descripcion Accidente :</td>
-                    <td valign="top" class="value">{{ dato.0.0 }}</td>
-                </tr>
-                <tr class="prop">
-                    <td valign="top" class="name">Observaciones de ingreso :</td>
-                    <td valign="top" class="value">{{ dato.0.6 }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <hr>
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Documento generado por <strong>{{ dato.0.15 }} {{ dato.0.16 }} </strong></span>
-                    <div class="mt-2"><strong>Fono: +569 {{ dato.0.17 }} </strong></div>
-                    <div class="mt-2"><strong>Correo: {{ dato.0.18 }} </strong></div>
+    <div class="container">
+        <div class="my-3">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table text-center" id="table_vehiculo" width="100%" cellspacing="0">
+                        <thead class="bg-acta-rechazo">
+                            <tr>
+                                <th scope="col">ACTA RECHAZO</th>
+                                <th scope="col">FECHA: {{ dato.0.5 | date:'d/m/Y' }}</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
-        </footer>
 
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" id="table_vehiculo" width="100%" cellspacing="0">
+                        <thead>
+                            <div class="text-center mb-3">
+                                <h5>DATOS RECEPCIÓN</h5>
+                            </div>
+                            <tr>
+                                <th scope="col">Nº Registro</th>
+                                <th scope="col">N° Siniestro</th>
+                                <th scope="col">Taller Recepción</th>
+                                <th scope="col">Patente Grúa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{dato.0.4}}</th>
+                                <td>{{dato.0.20}}</td>
+                                <td>{{dato.0.15}}</td>
+                                {% if dato.0.1 == null %}
+                                <td>SIN GRÚA</td>
+                                {% else %}
+                                <td>{{dato.0.1}}</td>
+                                {% endif %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" id="table_vehiculo" width="100%" cellspacing="0">
+                        <thead>
+                            <div class="text-center mb-3">
+                                <h5>DATOS VEHÍCULO</h5>
+                            </div>
+                            <tr>
+                                <th scope="col">Nº Póliza</th>
+                                <th scope="col">Patente Vehículo</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Modelo</th>
+                                <th scope="col">Año</th>
+                                <th scope="col">Nº Motor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{dato.0.2}}</th>
+                                <td>{{dato.0.7}}</td>
+                                <td>{{dato.0.19}}</td>
+                                <td>{{dato.0.8}}</td>
+                                <td>{{dato.0.9}}</td>
+                                <td>{{dato.0.10}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" id="table_vehiculo" width="100%" cellspacing="0">
+                        <thead>
+                            <div class="text-center mb-3">
+                                <h5>DATOS ASEGURADO</h5>
+                            </div>
+                            <tr>
+                                <th scope="col">RUT</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Correo Electrónico</th>
+                                <th scope="col">Teléfono</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{dato.0.3}}</th>
+                                <td>{{dato.0.11}} {{dato.0.12}}</td>
+                                <td>{{dato.0.13}}</td>
+                                <td>+56 {{dato.0.14}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" id="table_vehiculo" width="100%" cellspacing="0">
+                        <thead>
+                            <div class="text-center mb-3">
+                                <h5>OBSERVACIONES</h5>
+                            </div>
+                            <tr>
+                                <th scope="col">Motivo de Rechazo</th>
+                                <th scope="col">Descripción Accidente</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{dato.0.6}}</td>
+                                <td>{{dato.0.0}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <footer class="sticky-footer mt-5">
+                <div class="text-center my-auto">
+                    <span><strong>{{ dato.0.15 }} - {{ dato.0.16 }} </strong></span>
+                    <br>
+                    <span class="mt-2">Teléfono: +56 {{ dato.0.17 }}</span>
+                    <br>
+                    <span class="mt-2">{{ dato.0.18 }}</span>
+                </div>
+            </footer>
+        </div>
     </div>
-
-
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

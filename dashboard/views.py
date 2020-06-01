@@ -7,7 +7,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario
-from .forms import PolizaForm, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
+from .forms import PolizaForm,PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm,SiniestroFormUpdate,DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -223,6 +223,8 @@ def SaveAllPoliza(request, form, template_name):
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
+            with connection.cursor() as cursor:
+                cursor.callproc('SP_VALIDAR_POLIZA')
             polizas = Poliza.objects.all().exclude(
                 estado=0).filter(usuario_rut_usuario=user).order_by('id')
             context = {'polizas': polizas}
@@ -242,6 +244,8 @@ def SaveAllPoliza(request, form, template_name):
 @login_required(login_url='login')
 def PolizasView(request):
     user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
+    with connection.cursor() as cursor:
+        cursor.callproc('SP_VALIDAR_POLIZA')
     polizas = Poliza.objects.all().exclude(
         estado=0).filter(usuario_rut_usuario=user).order_by('id')
     context = {'polizas': polizas}
@@ -291,9 +295,9 @@ def load_patentes(request):
 def UpdatePoliza(request, id):
     poliza = get_object_or_404(Poliza, id=id)
     if request.method == 'POST':
-        form = PolizaForm(request.POST, instance=poliza)
+        form = PolizaFormUpdate(request.POST, instance=poliza)
     else:
-        form = PolizaForm(instance=poliza)
+        form = PolizaFormUpdate(instance=poliza)
     return SaveAllPoliza(request, form, 'dashboard/polizas/poliza_update.html')
 
 
@@ -373,6 +377,8 @@ def SaveAllSiniestro(request, form, template_name):
 @login_required(login_url='login')
 def SiniestroView(request):
     estado = get_object_or_404(EstadoSiniestro, id=7)
+    with connection.cursor() as cursor:
+        cursor.callproc('SP_VALIDAR_POLIZA')
     user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     siniestros = Siniestro.objects.all().exclude(
         est_siniestro_id_est_siniestro=estado).filter(usuario_rut_usuario=user).order_by('id')
@@ -426,9 +432,9 @@ def load_poliza(request):
 def UpdateSiniestro(request, id):
     siniestro = get_object_or_404(Siniestro, id=id)
     if request.method == 'POST':
-        form = SiniestroForm(request.POST, instance=siniestro)
+        form = SiniestroFormUpdate(request.POST, instance=siniestro)
     else:
-        form = SiniestroForm(instance=siniestro)
+        form = SiniestroFormUpdate(instance=siniestro)
     return SaveAllSiniestro(request, form, 'dashboard/siniestros/siniestro_update.html')
 
 

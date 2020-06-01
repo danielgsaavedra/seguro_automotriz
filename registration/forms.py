@@ -73,8 +73,7 @@ class UsuarioFormUpdate(forms.ModelForm):
             'segundo_apellido',
             'email',
             'telefono',
-            'rol',
-            'is_administrador'
+            'rol'
         ]
         widgets = {
             'rut_usuario': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT ', 'pattern': '^[0-9]{8,9}[-|‐]{1}[0-9kK]{1}$'}),
@@ -85,7 +84,6 @@ class UsuarioFormUpdate(forms.ModelForm):
             'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', 'id': 'email_usuario'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa teléfono', 'pattern': '[0-9]{9,}', 'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)', 'id': 'telefono_usuario'}),
             'rol': forms.Select(attrs={'class': 'form-control', 'id': 'rol_usuario'}),
-            'is_administrador': forms.CheckboxInput(),
         }
 
 

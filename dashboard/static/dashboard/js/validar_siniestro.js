@@ -133,6 +133,9 @@ function clearErrorDescripcion(elemento) {
 
 function validar(e) {
     if (validaRutAsegurado() && validaNumPoliza() && validaTaller() && validaAccidente() && validaDescripcion()) {
+        document.getElementById("asegurado_rut").disabled = false;
+        document.getElementById("poliza").disabled = false;
+        document.getElementById("tipo_accidente").disabled = false;
         return true
     } else {
         e.preventDefault();

@@ -29,6 +29,26 @@ class PolizaForm(forms.ModelForm):
             'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control', 'id': 'poli_patente','disabled':'true'})
         }
 
+class PolizaFormUpdate(forms.ModelForm):
+
+    class Meta:
+        model = Poliza
+        fields = [
+            'id',
+            'vigente',
+            'fecha_inicio',
+            'fecha_fin',
+            'asegurado_rut_asegurado',
+            'vehiculo_patente_vehiculo',
+        ]
+        widgets = {
+            'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
+            'vigente': forms.HiddenInput(attrs={'class': 'required form-control'}),
+            'fecha_inicio': forms.TextInput(attrs={'class': 'required form-control', 'id': 'fecha_inicio', 'readonly': 'False'}),
+            'fecha_fin': forms.TextInput(attrs={'class': 'required form-control', 'id': 'fecha_fin', 'placeholder': 'Ingresa fecha de termino'}),
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'onchange': "cargarPatentes();", 'id': 'poli_rut_asegurado','disabled':'true'}),
+            'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control', 'id': 'poli_patente','disabled':'true'})
+        }
 
 # FORMULARIO BORRADO LOGICO POLIZA
 
@@ -118,6 +138,31 @@ class SiniestroForm(forms.ModelForm):
             'grua_patente_grua': forms.Select(attrs={'class': 'form-control'}),
             'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control', 'id': 'poliza','disabled':'true'}),
             'asegurado_rut_asegurado': forms.Select(attrs={'class': 'required form-control', 'id': 'asegurado_rut', 'onchange': "cargarPoliza();"}),
+        }
+
+class SiniestroFormUpdate(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(SiniestroFormUpdate, self).__init__(*args, **kwargs)
+        self.fields['taller_id_taller'].queryset = Taller.objects.filter(
+            estado=1)
+        self.fields['grua_patente_grua'].queryset = Grua.objects.filter(
+            estado=1)
+
+    class Meta:
+        model = Siniestro
+        fields = ['id', 'descripcion', 'parte_policial', 'foto_licencia', 'tipo_accidente_id_tipo_acc',
+                  'taller_id_taller', 'grua_patente_grua', 'poliza_id_poliza', 'asegurado_rut_asegurado']
+        widgets = {
+            'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
+            'descripcion': forms.Textarea(attrs={'class': 'required form-control', 'placeholder': 'Ingrea una descripción', 'id': 'descripcion'}),
+            'parte_policial': forms.FileInput(attrs={'class': 'form-control'}),
+            'foto_licencia': forms.FileInput(attrs={'class': 'form-control'}),
+            'tipo_accidente_id_tipo_acc': forms.Select(attrs={'class': 'required form-control', 'id': 'tipo_accidente','disabled':'true'}),
+            'taller_id_taller': forms.Select(attrs={'class': 'required form-control', 'id': 'taller'}),
+            'grua_patente_grua': forms.Select(attrs={'class': 'form-control'}),
+            'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control', 'id': 'poliza','disabled':'true'}),
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'required form-control', 'id': 'asegurado_rut', 'onchange': "cargarPoliza();",'disabled':'true'}),
         }
 
 

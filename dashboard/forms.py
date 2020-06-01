@@ -137,7 +137,7 @@ class SiniestroForm(forms.ModelForm):
             'taller_id_taller': forms.Select(attrs={'class': 'required form-control', 'id': 'taller'}),
             'grua_patente_grua': forms.Select(attrs={'class': 'form-control'}),
             'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control', 'id': 'poliza','disabled':'true'}),
-            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'required form-control', 'id': 'asegurado_rut', 'onchange': "cargarPoliza();"}),
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'required form-control', 'id': 'asegurado_rut', 'onchange': "cargarPoliza();",'name':'asegurado_rut_asegurado'}),
         }
 
 class SiniestroFormUpdate(forms.ModelForm):

@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from django.conf.urls import include, url
-from .views import SiniestrosRecepcionView, SiniestrosRetiroView, InformeDañosView, PresupuestoView, ActaRecepcionView
+from .views import SiniestrosRecepcionView, SiniestrosRetiroView, SiniestrosInformeDañosView, PresupuestoView, ActaRecepcionView
 
 urlpatterns = [
     path('siniestro_recepcion/', views.SiniestrosRecepcionView,
@@ -15,7 +15,9 @@ urlpatterns = [
     path('acta_retiro/', views.ActaRetiroView, name='acta_retiro'),
     path('acta_rechazo/<str:id>/create',
          views.CreateActaRechazo, name='acta_rechazo_create'),
-    path('informe_daños/', views.InformeDañosView, name='informe_daños'),
+    path('informe_danos/', views.SiniestrosInformeDañosView, name='informe_daños'),
+      path('informe_danos/<str:id>/create',
+         views.CreateInformeDaños, name='informe_daños_create'),
     path('acta_rechazo/', views.ActaRechazoView, name='acta_rechazo'),
     path('presupuesto/', views.PresupuestoView, name='presupuesto'),
     url(r'^actaRecepcionViewPdf/(?P<pk>[0-9]+)/$',

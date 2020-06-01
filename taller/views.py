@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.utils import timezone
 from django.http import JsonResponse
-from .forms import ActasForm
-from dashboard.models import Siniestro, EstadoSiniestro, FormularioActa, TipoActa, Poliza, Taller
+from .forms import ActasForm, InformeDañosForm
+from dashboard.models import Siniestro, EstadoSiniestro, FormularioActa, TipoActa, Poliza, Taller, Vehiculo
 from django.db import connection
 import pdfkit
 from django.http import HttpResponse
@@ -173,7 +173,7 @@ def CreateActaRetiro(request, id):
 
 def actaRetiroViewPdf(request, pk):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO,M.NOMBRE,S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_MARCA M ON (V.MARCA_ID_MARCA=M.ID) WHERE(f.tipo_acta_id_tipo_acta=1 AND S.ID="+pk + ")")
+        cursor.execute("SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO,M.NOMBRE,S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_MARCA M ON (V.MARCA_ID_MARCA=M.ID) WHERE(f.tipo_acta_id_tipo_acta=3 AND S.ID="+pk + ")")
         dato = cursor.fetchall()
         dato = list(dato)
         print(dato)
@@ -251,7 +251,7 @@ def CreateActaRechazo(request, id):
 
 def actaRechazoViewPdf(request, pk):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO,M.NOMBRE,S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_MARCA M ON (V.MARCA_ID_MARCA=M.ID) WHERE(f.tipo_acta_id_tipo_acta=1 AND S.ID="+pk + ")")
+        cursor.execute("SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO,M.NOMBRE,S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_MARCA M ON (V.MARCA_ID_MARCA=M.ID) WHERE(f.tipo_acta_id_tipo_acta=2 AND S.ID="+pk + ")")
         dato = cursor.fetchall()
         dato = list(dato)
         print(dato)
@@ -276,13 +276,65 @@ def actaRechazoPdf(request, pk):
     return response
 
 # INFORME DE DAÑOS
+def SaveAllInformeDanos(request, form, template_name):
+    data = dict()
+    estado = get_object_or_404(EstadoSiniestro, id=2)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            actas = Siniestro.objects.filter(
+                est_siniestro_id_est_siniestro=estado).order_by('id')
+            context = {'actas': actas}
+            data['actas'] = render_to_string(
+                'taller/informe_daños/informe_daños_2.html', context)
+        else:
+            data['form_is_valid'] = False
+
+    context = {'form': form}
+    data['html_form'] = render_to_string(
+        template_name, context, request=request)
+    return JsonResponse(data)
+
+
 @login_required(login_url='login')
-def InformeDañosView(request):
+def CreateInformeDaños(request, id):
+    data = dict()
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT S.TALLER_ID_TALLER, S.ID, V.PATENTE_VEHICULO FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_VEHICULO V ON (V.ASEGURADO_RUT_ASEGURADO = S.ASEGURADO_RUT_ASEGURADO) WHERE(S.TALLER_ID_TALLER = T.ID AND S.ID=" + id + ")")
+        dato = cursor.fetchall()
+        dato = list(dato)
+    siniestro_id = get_object_or_404(Siniestro, id=dato[0][1])
+    taller_id = get_object_or_404(Taller, id=dato[0][0])
+    patente_vehiculo = get_object_or_404(Vehiculo, patente_vehiculo=dato[0][2])
+
+    if request.method == 'POST':
+        print(dato[0][1])
+        form = InformeDañosForm(request.POST)
+        if form.is_valid():
+            info_dano = form.save(commit=False)
+            info_dano.usuario_rut_usuario = request.user
+            info_dano.siniestro_id = siniestro_id
+            info_dano.taller_id_taller = taller_id
+            info_dano.vehiculo_patente_vehiculo = patente_vehiculo
+            info_dano.save()
+            data['form_is_valid'] = True
+        else:
+            data['form_is_valid'] = False
+    else:
+        form = InformeDañosForm()
+    context = {'form': form, 'siniestro_id': siniestro_id}
+    data['html_form'] = render_to_string(
+        'taller/informe_daños/informe_daños_create.html', context, request=request)
+    return JsonResponse(data)
+
+@login_required(login_url='login')
+def SiniestrosInformeDañosView(request):
     estado = get_object_or_404(EstadoSiniestro, id=2)
     siniestros = Siniestro.objects.filter(
         est_siniestro_id_est_siniestro=estado).order_by('id')
     context = {'siniestros': siniestros}
-    return render(request, 'taller/informe_daños.html', context)
+    return render(request, 'taller/informe_daños/informe_daños.html', context)
 
 
 @login_required(login_url='login')

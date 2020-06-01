@@ -1,5 +1,5 @@
 from django import forms
-from dashboard.models import Siniestro, FormularioActa
+from dashboard.models import Siniestro, FormularioActa, InformeDano
 
 
 class ActasForm(forms.ModelForm):
@@ -12,4 +12,15 @@ class ActasForm(forms.ModelForm):
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
             'observaciones': forms.Textarea(attrs={'class': 'required form-control', 'placeholder': 'Ingresa observaciones', 'id': 'observaciones', 'required': 'True'}),
+        }
+
+class InformeDañosForm(forms.ModelForm):
+    class Meta:
+        model = InformeDano
+        fields = ['id', 'observaciones', 'severidad_dano_id_seve_dano', 'tipo_dano_id_tipo_dano']
+        widgets = {
+            'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
+            'observaciones': forms.Textarea(attrs={'class': 'required form-control', 'placeholder': 'Ingresa observaciones', 'id': 'observaciones', 'required': 'True'}),
+            'severidad_dano_id_seve_dano': forms.Select(attrs={'class': 'required form-control', 'id': 'sev_dano'}),
+            'tipo_dano_id_tipo_dano': forms.Select(attrs={'class': 'required form-control', 'id': 'tipo_dano'})
         }

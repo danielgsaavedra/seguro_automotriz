@@ -136,7 +136,7 @@ class Grua(models.Model):
 
 
 class InformeDano(models.Model):
-    fecha_hora = models.DateField(verbose_name='Fecha')
+    fecha_hora = models.DateField(verbose_name='Fecha', auto_now=True)
     observaciones = models.CharField(
         max_length=1024, verbose_name='Observaciones')
     perdida_total = models.CharField(

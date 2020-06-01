@@ -6,6 +6,7 @@ from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
+from django.core.mail import EmailMessage
 from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario
 from .forms import PolizaForm,PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm,SiniestroFormUpdate,DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
 from django.db.models import Q
@@ -399,12 +400,16 @@ def SiniestroDisabledView(request):
 
 @login_required(login_url='login')
 def CreateSiniestro(request):
+    rut = request.POST.get('asegurado_rut_asegurado','')
     estado = get_object_or_404(EstadoSiniestro, id=1)
     if request.method == 'POST':
+        rut_asegurado = get_object_or_404(Asegurado, rut_asegurado=rut)
+        print(rut_asegurado.correo)
         form = SiniestroForm(request.POST)
         siniestro = form.save(commit=False)
         siniestro.usuario_rut_usuario = request.user
         siniestro.est_siniestro_id_est_siniestro = estado
+        
     else:
         form = SiniestroForm()
     return SaveAllSiniestro(request, form, 'dashboard/siniestros/siniestro_create.html')

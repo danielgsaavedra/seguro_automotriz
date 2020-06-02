@@ -403,7 +403,6 @@ def SiniestroDisabledView(request):
 def CreateSiniestro(request):
     x = datetime.datetime.now()
     rut = request.POST.get('asegurado_rut_asegurado','')
-    # id_sin = request.POST.get('id_siniestro','')
     id_poliza = request.POST.get('poliza_id_poliza','')
     id_taller = request.POST.get('taller_id_taller','')
     estado = get_object_or_404(EstadoSiniestro, id=1)
@@ -416,10 +415,9 @@ def CreateSiniestro(request):
         siniestro = form.save(commit=False)
         siniestro.usuario_rut_usuario = request.user
         siniestro.est_siniestro_id_est_siniestro = estado
-        # print(id_sin)
         correo = EmailMessage(
              'SEGUROS VIRGOLINI: SINIESTRO REGISTRADO',
-                'Estimado/a {} {}.\n\nSe registro siniestro con su póliza N° {} a las {}hrs.\n\nLa reparación de su vehículo estará a cargo de taller: {} .\n\nPara consultar el estado en el que se encuentra su siniestro ingrese a este link(http://127.0.0.1:8000/asegurado-consulta/).'.format(
+                'Estimado/a {} {}.\n\nSe registro siniestro con su póliza N° {} a las {}hrs.\n\nLa reparación de su vehículo estará a cargo de taller: {} .\n\nPara consultar el estado en el que se encuentra su siniestro ingrese a este link(http://127.0.0.1:8000/asegurado-consulta/).\n\nSaludos cordiales.'.format(
                     asegurado.primer_nombre, asegurado.primer_apellido,poliza.id,x.strftime("%X"),taller.nombre),
                 'no-contestar@hotmail.com',
                 [asegurado.correo],

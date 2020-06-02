@@ -129,14 +129,14 @@ class SiniestroForm(forms.ModelForm):
         fields = ['id', 'descripcion', 'parte_policial', 'foto_licencia', 'tipo_accidente_id_tipo_acc',
                   'taller_id_taller', 'grua_patente_grua', 'poliza_id_poliza', 'asegurado_rut_asegurado']
         widgets = {
-            'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
+            'id': forms.HiddenInput(attrs={'class': 'required form-control','name':'id_siniestro'}),
             'descripcion': forms.Textarea(attrs={'class': 'required form-control', 'placeholder': 'Ingrea una descripción', 'id': 'descripcion'}),
             'parte_policial': forms.FileInput(attrs={'class': 'form-control'}),
             'foto_licencia': forms.FileInput(attrs={'class': 'form-control'}),
             'tipo_accidente_id_tipo_acc': forms.Select(attrs={'class': 'required form-control', 'id': 'tipo_accidente'}),
-            'taller_id_taller': forms.Select(attrs={'class': 'required form-control', 'id': 'taller'}),
+            'taller_id_taller': forms.Select(attrs={'class': 'required form-control', 'id': 'taller','name':'taller_id_taller'}),
             'grua_patente_grua': forms.Select(attrs={'class': 'form-control'}),
-            'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control', 'id': 'poliza','disabled':'true'}),
+            'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control', 'id': 'poliza','disabled':'true','name':'poliza_id_poliza'}),
             'asegurado_rut_asegurado': forms.Select(attrs={'class': 'required form-control', 'id': 'asegurado_rut', 'onchange': "cargarPoliza();",'name':'asegurado_rut_asegurado'}),
         }
 

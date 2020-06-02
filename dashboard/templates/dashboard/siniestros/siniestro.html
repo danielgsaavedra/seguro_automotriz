@@ -25,13 +25,13 @@
                 <thead>
                     <tr>
                         <th scope="col">N° Siniestro</th>
-                        <th scope="col">N° Póliza</th>
                         <th scope="col">Fecha Siniestro</th>
-                        <th scope="col">Tipo Accidente</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Taller Asignado</th>
-                        <th scope="col">Patente Grúa</th>
                         <th scope="col">Rut Asegurado</th>
+                        <th scope="col">N° Póliza</th>
+                        <th scope="col">Tipo Accidente</th>
+                        <th scope="col">Patente Grúa</th>
+                        <th scope="col">Taller Asignado</th>
+                        <th scope="col">Estado</th>
                         {% if  request.user.is_staff %}
                         <th scope="col">Opciones</th>
                         {% endif %}
@@ -41,9 +41,16 @@
                     {% for siniestros in siniestros %}
                     <tr>
                         <th scope="row">{{siniestros.id }}</th>
-                        <td>{{siniestros.poliza_id_poliza }}</td>
                         <td>{{siniestros.fecha_hr | date:'d-m-Y' }}</td>
+                        <td>{{siniestros.asegurado_rut_asegurado}}</td>
+                        <td>{{siniestros.poliza_id_poliza }}</td>
                         <td>{{siniestros.tipo_accidente_id_tipo_acc}}</td>
+                        {% if siniestros.grua_patente_grua == null %}
+                        <td>SIN GRÚA</td>
+                        {% else %}
+                        <td>{{siniestros.grua_patente_grua}}</td>
+                        {% endif %}
+                        <td>{{siniestros.taller_id_taller}}</td>
 
                         {% if siniestros.est_siniestro_id_est_siniestro.id == 1 %}
                         <td>
@@ -101,13 +108,6 @@
                         </td>
                         {% endif %}
 
-                        <td>{{siniestros.taller_id_taller}}</td>
-                        {% if siniestros.grua_patente_grua == null %}
-                        <td>Sin Grúa</td>
-                        {% else %}
-                        <td>{{siniestros.grua_patente_grua}}</td>
-                        {% endif %}
-                        <td>{{siniestros.asegurado_rut_asegurado}}</td>
                         {% if  request.user.is_staff %}
                         <td>
                             <div class="dropdown">

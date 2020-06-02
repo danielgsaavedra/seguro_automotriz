@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.utils import timezone
 from django.http import JsonResponse
-from .forms import ActasForm, InformeDañosForm
-from dashboard.models import Siniestro, EstadoSiniestro, FormularioActa, TipoActa, Poliza, Taller, Vehiculo
+from .forms import ActasForm, InformeDañosForm, CambiarEstadoForm
+from dashboard.models import Siniestro, EstadoSiniestro, FormularioActa, TipoActa, Poliza, Taller, Vehiculo, InformeDano
 from django.db import connection
 import pdfkit
 from django.http import HttpResponse
@@ -43,6 +43,7 @@ def ActaRecepcionView(request):
     context = {'actas': actas}
     return render(request, 'taller/acta_recepcion/acta_recepcion.html', context)
 
+
 @login_required(login_url='login')
 def CreateActaRecepcion(request, id):
     data = dict()
@@ -74,6 +75,7 @@ def CreateActaRecepcion(request, id):
         'taller/acta_recepcion/acta_recepcion_create.html', context, request=request)
     return JsonResponse(data)
 
+
 def actaRecepcionViewPdf(request, pk):
     with connection.cursor() as cursor:
         cursor.execute("SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO,M.NOMBRE,S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_MARCA M ON (V.MARCA_ID_MARCA=M.ID) WHERE(f.tipo_acta_id_tipo_acta=1 AND S.ID="+pk + ")")
@@ -81,6 +83,7 @@ def actaRecepcionViewPdf(request, pk):
         dato = list(dato)
         print(dato)
     return render(request, 'taller/acta_recepcion/pdf/acta_pdf.html', {'dato': dato})
+
 
 def actaRecepcionPdf(request, pk):
     options = {
@@ -99,6 +102,7 @@ def actaRecepcionPdf(request, pk):
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="ActaRecepcion.pdf" '
     return response
+
 
 @login_required(login_url='login')
 def SiniestrosRecepcionView(request):
@@ -140,6 +144,7 @@ def ActaRetiroView(request):
     context = {'actas': actas}
     return render(request, 'taller/acta_retiro/acta_retiro.html', context)
 
+
 @login_required(login_url='login')
 def CreateActaRetiro(request, id):
     data = dict()
@@ -171,6 +176,7 @@ def CreateActaRetiro(request, id):
         'taller/acta_retiro/acta_retiro_create.html', context, request=request)
     return JsonResponse(data)
 
+
 def actaRetiroViewPdf(request, pk):
     with connection.cursor() as cursor:
         cursor.execute("SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO,M.NOMBRE,S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_MARCA M ON (V.MARCA_ID_MARCA=M.ID) WHERE(f.tipo_acta_id_tipo_acta=3 AND S.ID="+pk + ")")
@@ -178,6 +184,7 @@ def actaRetiroViewPdf(request, pk):
         dato = list(dato)
         print(dato)
     return render(request, 'taller/acta_retiro/pdf/acta_pdf_retiro.html', {'dato': dato})
+
 
 def actaRetiroPdf(request, pk):
     options = {
@@ -196,6 +203,7 @@ def actaRetiroPdf(request, pk):
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="ActaRetiro.pdf" '
     return response
+
 
 @login_required(login_url='login')
 def SiniestrosRetiroView(request):
@@ -249,6 +257,7 @@ def CreateActaRechazo(request, id):
         'taller/acta_retiro/acta_rechazo_create.html', context, request=request)
     return JsonResponse(data)
 
+
 def actaRechazoViewPdf(request, pk):
     with connection.cursor() as cursor:
         cursor.execute("SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO,M.NOMBRE,S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_MARCA M ON (V.MARCA_ID_MARCA=M.ID) WHERE(f.tipo_acta_id_tipo_acta=2 AND S.ID="+pk + ")")
@@ -256,6 +265,7 @@ def actaRechazoViewPdf(request, pk):
         dato = list(dato)
         print(dato)
     return render(request, 'taller/acta_retiro/pdf/acta_pdf_rechazo.html', {'dato': dato})
+
 
 def actaRechazoPdf(request, pk):
     options = {
@@ -276,6 +286,8 @@ def actaRechazoPdf(request, pk):
     return response
 
 # INFORME DE DAÑOS
+
+
 def SaveAllInformeDanos(request, form, template_name):
     data = dict()
     estado = get_object_or_404(EstadoSiniestro, id=2)
@@ -328,6 +340,7 @@ def CreateInformeDaños(request, id):
         'taller/informe_daños/informe_daños_create.html', context, request=request)
     return JsonResponse(data)
 
+
 @login_required(login_url='login')
 def SiniestrosInformeDañosView(request):
     estado = get_object_or_404(EstadoSiniestro, id=2)
@@ -338,6 +351,13 @@ def SiniestrosInformeDañosView(request):
 
 
 @login_required(login_url='login')
+def InformeDanosView(request):
+    info_danos = InformeDano.objects.all()
+    context = {'info_danos': info_danos}
+    return render(request, 'taller/informe_daños/informe_daños_view.html', context)
+
+# PRESUPUESTO
+@login_required(login_url='login')
 def PresupuestoView(request):
     estado = get_object_or_404(EstadoSiniestro, id=3)
     siniestros = Siniestro.objects.filter(
@@ -345,6 +365,80 @@ def PresupuestoView(request):
     context = {'siniestros': siniestros}
     return render(request, 'taller/presupuesto.html', context)
 
+# SINIESTROS INSPECCIONADOS
+
+
+@login_required(login_url='login')
+def SiniestrosInpeccionadosView(request):
+    estado = get_object_or_404(EstadoSiniestro, id=3)
+    siniestros = Siniestro.objects.filter(
+        est_siniestro_id_est_siniestro=estado).order_by('id')
+    context = {'siniestros': siniestros}
+    return render(request, 'taller/siniestros/siniestros_inspeccionados_view.html', context)
+
+
+@login_required(login_url='login')
+def CambiarEstadoEnReparacion(request, id):
+    data = dict()
+    siniestro = get_object_or_404(Siniestro, id=id)
+    estado = get_object_or_404(EstadoSiniestro, id=3)
+    estado_new = get_object_or_404(EstadoSiniestro, id=4)
+    if request.method == 'POST':
+        form = CambiarEstadoForm(request.POST, instance=siniestro)
+        if form.is_valid():
+            siniestro = form.save(commit=False)
+            siniestro.est_siniestro_id_est_siniestro = estado_new
+            siniestro.save()
+            data['form_is_valid'] = True
+            siniestros = Siniestro.objects.filter(
+                est_siniestro_id_est_siniestro=estado).order_by('id')
+            context = {'siniestros': siniestros}
+            data['siniestros'] = render_to_string(
+                'taller/siniestros/siniestros_inspeccionados_view_2.html', context)
+    else:
+        form = CambiarEstadoForm(instance=siniestro)
+        data['form_is_valid'] = False
+        context = {'siniestro': siniestro, 'form': form}
+        data['html_form'] = render_to_string(
+            'taller/siniestros/cambiar_estado_reparacion.html', context, request=request)
+    return JsonResponse(data)
+
+
+# SINIESTROS ENREPARACION
+@login_required(login_url='login')
+def SiniestrosEnReparacionView(request):
+    estado = get_object_or_404(EstadoSiniestro, id=4)
+    siniestros = Siniestro.objects.filter(
+        est_siniestro_id_est_siniestro=estado).order_by('id')
+    context = {'siniestros': siniestros}
+    return render(request, 'taller/siniestros/siniestros_enreparacion_view.html', context)
+
+
+@login_required(login_url='login')
+def CambiarEstadoReparado(request, id):
+    data = dict()
+    siniestro = get_object_or_404(Siniestro, id=id)
+    estado = get_object_or_404(EstadoSiniestro, id=4)
+    estado_new = get_object_or_404(EstadoSiniestro, id=6)
+    if request.method == 'POST':
+        form = CambiarEstadoForm(request.POST, instance=siniestro)
+        if form.is_valid():
+            siniestro = form.save(commit=False)
+            siniestro.est_siniestro_id_est_siniestro = estado_new
+            siniestro.save()
+            data['form_is_valid'] = True
+            siniestros = Siniestro.objects.filter(
+                est_siniestro_id_est_siniestro=estado).order_by('id')
+            context = {'siniestros': siniestros}
+            data['siniestros'] = render_to_string(
+                'taller/siniestros/siniestros_enreparacion_view_2.html', context)
+    else:
+        form = CambiarEstadoForm(instance=siniestro)
+        data['form_is_valid'] = False
+        context = {'siniestro': siniestro, 'form': form}
+        data['html_form'] = render_to_string(
+            'taller/siniestros/cambiar_estado_reparado.html', context, request=request)
+    return JsonResponse(data)
 
 # @login_required(login_url='login')
 # def VerActaRecepcion(request):

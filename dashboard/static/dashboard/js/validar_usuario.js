@@ -13,6 +13,7 @@ function iniciar() {
     document.getElementById("rol_usuario").addEventListener('change', validaRol);
     document.getElementById("password1").addEventListener('keyup', validaPassword1);
     document.getElementById("password2").addEventListener('keyup', validaPassword2);
+    document.getElementById("id_taller").addEventListener('change', validaTaller);
 }
 
 function seleccionarTaller() {
@@ -20,15 +21,38 @@ function seleccionarTaller() {
     var selected = elemento.options[elemento.selectedIndex].text;
     if (selected == "Personal Taller") {
         document.getElementById("id_taller").disabled = false;
+        var elemento = document.getElementById("id_taller");
+        elemento.setAttribute("required", "true")
     }
     else {
         var elemento = document.getElementById("id_taller");
-        // $('#id_taller').removeAttr("required");
-        // elemento.removeAttribute("required")
         elemento.selectedIndex = 0;
         document.getElementById("id_taller").disabled = true;
     }
 
+}
+
+function validaTaller() {
+    var elemento = document.getElementById("id_taller");
+    if (!elemento.checkValidity()) {
+        if (elemento.validity.valueMissing) {
+            error_taller(elemento, "Debe seleccionar taller")
+        }
+        return false;
+    }
+    clearErrorTaller(elemento);
+    return true;
+
+}
+
+function error_taller(elemento, mensaje) {
+    document.getElementById("error_taller").innerHTML = mensaje;
+    elemento.className = "form-control is-invalid";
+}
+
+function clearErrorTaller(elemento) {
+    document.getElementById("error_taller").innerHTML = "";
+    elemento.className = "form-control is-valid";
 }
 
 
@@ -281,7 +305,7 @@ function clearErrorPassword2(elemento) {
 }
 
 function validar(e) {
-    if (validaRol() && validaRut() && validaTelefono() && validaPrimerNombre() && validaSegundoNombre()
+    if (validaRol() && validaTaller() && validaRut() && validaTelefono() && validaPrimerNombre() && validaSegundoNombre()
         && validaPrimerApellido() && validaSegundoApellido() && validaCorreo() && validaPassword1() && validaPassword2()) {
         document.getElementById("id_taller").disabled = false;
         return true

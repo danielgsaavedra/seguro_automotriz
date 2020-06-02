@@ -204,7 +204,6 @@ class Poliza(models.Model):
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
 
-
     def __str__(self):
         return str(self.id)
 
@@ -342,10 +341,12 @@ class SeveridadDano(models.Model):
 
 
 class Siniestro(models.Model):
-    fecha_hr = models.DateField(verbose_name='Fecha Siniestro',auto_now=True)
+    fecha_hr = models.DateField(verbose_name='Fecha Siniestro', auto_now=True)
     descripcion = models.CharField(max_length=1024, verbose_name='Descripción')
-    parte_policial = models.ImageField(upload_to='Partes Policiales',null=True,blank=True)
-    foto_licencia = models.ImageField(upload_to='Fotos Licencias',null=True,blank=True)
+    parte_policial = models.ImageField(
+        upload_to='Partes Policiales', null=True, blank=True)
+    foto_licencia = models.ImageField(
+        upload_to='Fotos Licencias', null=True, blank=True)
     tipo_accidente_id_tipo_acc = models.ForeignKey(
         'TipoAccidente', models.DO_NOTHING, db_column='tipo_accidente_id_tipo_acc', verbose_name='Tipo Accidente', null=True)
     est_siniestro_id_est_siniestro = models.ForeignKey(
@@ -372,9 +373,10 @@ class Siniestro(models.Model):
 class Taller(models.Model):
     nombre = models.CharField(max_length=30, verbose_name='Nombre Taller')
     razon_social = models.CharField(max_length=50, verbose_name='Razón Social')
-    telefono = models.CharField(verbose_name='Teléfono',max_length=9)
+    telefono = models.CharField(verbose_name='Teléfono', max_length=9)
     correo = models.CharField(max_length=30, verbose_name='Correo')
-    capacidad_taller = models.CharField(verbose_name='Capacidad Taller',max_length=3)
+    capacidad_taller = models.CharField(
+        verbose_name='Capacidad Taller', max_length=3)
     estado = models.CharField(max_length=1, verbose_name='Estado', default=1)
     estado_delete = models.CharField(max_length=1, default=1)
     usuario_rut_usuario = models.ForeignKey(
@@ -506,7 +508,7 @@ class Usuario(AbstractBaseUser):
         verbose_name='Teléfono', null=True, max_length=9)
     rol = models.CharField(max_length=30, choices=opciones, null=True)
     taller_id_taller = models.ForeignKey(
-        'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', null=True)
+        'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_administrador = models.BooleanField(default=False)
     objects = UsuarioManager()
@@ -536,7 +538,7 @@ class Usuario(AbstractBaseUser):
 class Vehiculo(models.Model):
     patente_vehiculo = models.CharField(
         primary_key=True, max_length=8, verbose_name='Patente')
-    anio = models.CharField(verbose_name='Año',max_length=4)
+    anio = models.CharField(verbose_name='Año', max_length=4)
     modelo = models.CharField(max_length=50, verbose_name='Modelo')
     nro_motor = models.CharField(max_length=100, verbose_name='N° Motor')
     tipo_vehiculo_id_tipo_auto = models.ForeignKey(

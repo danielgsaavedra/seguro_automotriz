@@ -48,7 +48,7 @@ class UsuarioRegisterForm(forms.ModelForm):
             'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', 'id': 'email_usuario'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa teléfono', 'pattern': '[0-9]{9,}', 'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)', 'id': 'telefono_usuario'}),
             'rol': forms.Select(attrs={'class': 'form-control', 'id': 'rol_usuario', 'onchange': 'seleccionarTaller()'}),
-            'taller_id_taller': forms.Select(attrs={'class': 'form-control', 'id': 'id_taller', 'disabled': 'true', 'required': 'False'}),
+            'taller_id_taller': forms.Select(attrs={'class': 'form-control', 'id': 'id_taller', 'disabled': 'true'}),
 
         }
 
@@ -69,6 +69,10 @@ class UsuarioRegisterForm(forms.ModelForm):
 
 
 class UsuarioFormUpdate(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(UsuarioFormUpdate, self).__init__(*args, **kwargs)
+        self.fields['taller_id_taller'].queryset = Taller.objects.filter(
+            estado=1)
 
     class Meta:
         model = Usuario
@@ -80,7 +84,8 @@ class UsuarioFormUpdate(forms.ModelForm):
             'segundo_apellido',
             'email',
             'telefono',
-            'rol'
+            'rol',
+            'taller_id_taller'
         ]
         widgets = {
             'rut_usuario': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT ', 'pattern': '^[0-9]{8,9}[-|‐]{1}[0-9kK]{1}$'}),
@@ -90,7 +95,9 @@ class UsuarioFormUpdate(forms.ModelForm):
             'segundo_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo apellido', 'pattern': '[A-Za-z ]{3,}', 'id': 's_apellido_usuario', 'onkeypress': 'return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122)'}),
             'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', 'id': 'email_usuario'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa teléfono', 'pattern': '[0-9]{9,}', 'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)', 'id': 'telefono_usuario'}),
-            'rol': forms.Select(attrs={'class': 'form-control', 'id': 'rol_usuario'}),
+            'rol': forms.Select(attrs={'class': 'form-control', 'id': 'rol_usuario', 'onchange': 'seleccionarTaller()'}),
+            'taller_id_taller': forms.Select(attrs={'class': 'form-control', 'id': 'id_taller', 'disabled': 'true'}),
+
         }
 
 

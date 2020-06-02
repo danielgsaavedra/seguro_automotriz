@@ -8,112 +8,112 @@
         </button>
     </div>
     <div class="modal-body">
-            <div class="form-row">
-                <div class="form-group col-12 col-md-6">
-                    <div class="col-form-label">
-                        <span>ROL</span>
-                    </div>
-                    {{form.rol}}
-                    <div class="valid-feedback"></div>
-                    <div class="invalid-feedback" id="error_rol"></div>
-                </div>
-                <div class="form-group col-12 col-md-6">
-                    <div class="col-form-label">
-                        <span>TALLER</span>
-                    </div>
-                    {{form.taller_id_taller}}
-                    <div class="valid-feedback"></div>
-                    <div class="invalid-feedback" id="error_taller"></div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-12 col-md-6">
-                    <div class="col-form-label">
-                        <span>RUT USUARIO</span>
-                    </div>
-                    {{form.rut_usuario}}
-                    <div class="valid-feedback"></div>
-                    <div class="invalid-feedback" id="error_rut"></div>
-                </div>
-                <div class="form-group col-12 col-md-6">
-                    <div class="col-form-label">
-                        <span>TELÉFONO</span>
-                    </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="">+56</span>
-                        </div>
-                        {{form.telefono}}
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback" id="error_telefono"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-12 col-md-6">
-                    <div class="col-form-label">
-                        <span>PRIMER NOMBRE</span>
-                    </div>
-                    {{form.primer_nombre}}
-                    <div class="valid-feedback"></div>
-                    <div class="invalid-feedback" id="error_p_nombre"></div>
-                </div>
-                <div class="form-group col-12 col-md-6">
-                    <div class="col-form-label">
-                        <span>SEGUNDO NOMBRE</span>
-                    </div>
-                    {{form.segundo_nombre}}
-                    <div class="valid-feedback"></div>
-                    <div class="invalid-feedback" id="error_s_nombre"></div>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-12 col-md-6">
-                    <div class="col-form-label">
-                        <span>PRIMER APELLIDO</span>
-                    </div>
-                    {{form.primer_apellido}}
-                    <div class="valid-feedback"></div>
-                    <div class="invalid-feedback" id="error_p_apellido"></div>
-                </div>
-                <div class="form-group col-12 col-md-6">
-                    <div class="col-form-label">
-                        <span>SEGUNDO APELLIDO</span>
-                    </div>
-                    {{form.segundo_apellido}}
-                    <div class="valid-feedback"></div>
-                    <div class="invalid-feedback" id="error_s_apellido"></div>
-                </div>
-            </div>
-
-            <div class="form-group">
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
-                    <span>CORREO</span>
+                    <span>ROL</span>
                 </div>
-                {{form.email}}
+                {{form.rol}}
                 <div class="valid-feedback"></div>
-                <div class="invalid-feedback" id="error_correo"></div>
+                <div class="invalid-feedback" id="error_rol"></div>
             </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>TALLER</span>
+                </div>
+                {{form.taller_id_taller}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_taller"></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>RUT USUARIO</span>
+                </div>
+                {{form.rut_usuario}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_rut"></div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>TELÉFONO</span>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="">+56</span>
+                    </div>
+                    {{form.telefono}}
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback" id="error_telefono"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>PRIMER NOMBRE</span>
+                </div>
+                {{form.primer_nombre}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_p_nombre"></div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>SEGUNDO NOMBRE</span>
+                </div>
+                {{form.segundo_nombre}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_s_nombre"></div>
+            </div>
+        </div>
 
-            <div class="form-row">
-                <div class="form-group col-12 col-md-6">
-                    <div class="col-form-label">
-                        <span>CONTRASEÑA</span>
-                    </div>
-                    {{form.password1}}
-                    <div class="valid-feedback"></div>
-                    <div class="invalid-feedback" id="error_password1"></div>
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>PRIMER APELLIDO</span>
                 </div>
-                <div class="form-group col-12 col-md-6">
-                    <div class="col-form-label">
-                        <span>CONTRASEÑA DE CONFIRMACIÓN</span>
-                    </div>
-                    {{form.password2}}
-                    <div class="valid-feedback"></div>
-                    <div class="invalid-feedback" id="error_password2"></div>
-                </div>
+                {{form.primer_apellido}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_p_apellido"></div>
             </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>SEGUNDO APELLIDO</span>
+                </div>
+                {{form.segundo_apellido}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_s_apellido"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-form-label">
+                <span>CORREO</span>
+            </div>
+            {{form.email}}
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback" id="error_correo"></div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>CONTRASEÑA</span>
+                </div>
+                {{form.password1}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_password1"></div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>CONTRASEÑA DE CONFIRMACIÓN</span>
+                </div>
+                {{form.password2}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_password2"></div>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-outline-dark" type="button" data-dismiss="modal">Cancelar</button>

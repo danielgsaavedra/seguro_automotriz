@@ -1,7 +1,7 @@
 $(document).ready(function (){
     
     function actualizar(){location.reload();}
-
+  
     var ShowFormActaRecepcion = function () {
         var btn = $(this);
         $.ajax({
@@ -193,5 +193,99 @@ $(document).ready(function (){
 
     $('.show_info_dano').click(ShowFormInformeDanos);
     $('#modal_info_dano').on('submit', '.create_form_info_dano', SaveFormInformeDanos);
+
+
+    var ShowFormSiniestroReparacion = function () {
+        var btn = $(this);
+        $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#modal_siniestros_inspecc').modal('show')
+            },
+            success: function (data) {
+                $('#modal_siniestros_inspecc .modal-content').html(data.html_form)
+            },
+            error: function () {
+                alert('Algo salió mal, intenta nuevamente.')
+            }
+        });
+    };
+
+
+    var SaveFormSiniestroReparacion = function () {
+        var form = $(this);
+        $.ajax({
+            url: form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType: 'json',
+            success: function (data) {
+                if (data.form_is_valid) {
+                    $('#table_siniestros_inspecc tbody').html(data.siniestros);
+                    $('#modal_siniestros_inspecc').modal('hide');
+                    console.log('Success!');
+                    toastr.success('Operación Exitosa!');
+                } else {
+                    $('#modal_siniestros_inspecc .modal-content').html(data.html_form)
+                }
+            },
+            error: function () {
+                toastr.error('Algo salió mal, intenta nuevamente.')
+            }
+        });
+        return false;
+    }
+
+    $('#table_siniestros_inspecc').on('click', '.show_form_reparacion', ShowFormSiniestroReparacion);
+    $('#modal_siniestros_inspecc').on('submit', '.form_cambiar_reparacion', SaveFormSiniestroReparacion);
+
+
+    var ShowFormSiniestroReparado = function () {
+        var btn = $(this);
+        $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#modal_siniestros_reparado').modal('show')
+            },
+            success: function (data) {
+                $('#modal_siniestros_reparado .modal-content').html(data.html_form)
+            },
+            error: function () {
+                alert('Algo salió mal, intenta nuevamente.')
+            }
+        });
+    };
+
+
+    var SaveFormSiniestroReparado = function () {
+        var form = $(this);
+        $.ajax({
+            url: form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType: 'json',
+            success: function (data) {
+                if (data.form_is_valid) {
+                    $('#table_siniestro_reparado tbody').html(data.siniestros);
+                    $('#modal_siniestros_reparado').modal('hide');
+                    console.log('Success!');
+                    toastr.success('Operación Exitosa!');
+                } else {
+                    $('#modal_siniestros_reparado .modal-content').html(data.html_form)
+                }
+            },
+            error: function () {
+                toastr.error('Algo salió mal, intenta nuevamente.')
+            }
+        });
+        return false;
+    }
+
+    $('#table_siniestro_reparado').on('click', '.show_form_reparado', ShowFormSiniestroReparado);
+    $('#modal_siniestros_reparado').on('submit', '.form_cambiar_reparado', SaveFormSiniestroReparado);
 
 });

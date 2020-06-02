@@ -14,13 +14,25 @@ class ActasForm(forms.ModelForm):
             'observaciones': forms.Textarea(attrs={'class': 'required form-control', 'placeholder': 'Ingresa observaciones', 'id': 'observaciones', 'required': 'True'}),
         }
 
+
 class InformeDañosForm(forms.ModelForm):
     class Meta:
         model = InformeDano
-        fields = ['id', 'observaciones', 'severidad_dano_id_seve_dano', 'tipo_dano_id_tipo_dano']
+        fields = ['id', 'observaciones',
+                  'severidad_dano_id_seve_dano', 'tipo_dano_id_tipo_dano']
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
-            'observaciones': forms.Textarea(attrs={'class': 'required form-control', 'placeholder': 'Ingresa observaciones', 'id': 'observaciones', 'required': 'True'}),
+            'observaciones': forms.Textarea(attrs={'class': 'required form-control', 'placeholder': 'Ingresa observaciones', 'id': 'observaciones'}),
             'severidad_dano_id_seve_dano': forms.Select(attrs={'class': 'required form-control', 'id': 'sev_dano'}),
             'tipo_dano_id_tipo_dano': forms.Select(attrs={'class': 'required form-control', 'id': 'tipo_dano'})
+        }
+
+
+class CambiarEstadoForm(forms.ModelForm):
+    class Meta:
+        model = Siniestro
+        fields = ['est_siniestro_id_est_siniestro']
+        widgets = {
+            'est_siniestro_id_est_siniestro': forms.HiddenInput(
+                attrs={'class': 'required form-control', 'id': 'est_siniestro_id_est_siniestro_siniestro'}),
         }

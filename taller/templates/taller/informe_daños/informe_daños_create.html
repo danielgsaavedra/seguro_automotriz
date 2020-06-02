@@ -17,7 +17,7 @@
                 </div>
                 {{ form.tipo_dano_id_tipo_dano }}
                 <div class="valid-feedback"></div>
-                <div class="invalid-feedback" id=""></div>
+                <div class="invalid-feedback" id="error_tipo_dano"></div>
             </div>
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
@@ -25,7 +25,7 @@
                 </div>
                 {{ form.severidad_dano_id_seve_dano }}
                 <div class="valid-feedback"></div>
-                <div class="invalid-feedback" id=""></div>
+                <div class="invalid-feedback" id="error_sev_danos"></div>
             </div>
         </div>
         <div class="form-row">
@@ -46,5 +46,5 @@
 </form>
 
 {% block script %}
-<script src="{% static 'dashboard/js/validar_actas.js' %}"></script>
+<script src="{% static 'dashboard/js/validar_informes.js' %}"></script>
 {% endblock script %}

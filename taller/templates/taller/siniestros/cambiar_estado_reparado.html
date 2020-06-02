@@ -1,0 +1,29 @@
+<form action="" class="form_cambiar_reparado" method="POST"
+    data-url="{% url 'cambiar_estado_reparado' form.instance.id %}">
+    {% csrf_token %}
+
+    <div class="modal-header bg-danger">
+        <h5 class="modal-title text-light">Cambiar Estado Siniestro</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+            <div class="col-12">
+                <h4>¿Seguro que deseas cambiar a <strong>REPARADO</strong> el estado del siniestro N°
+                    <strong>{{form.instance.id}}</strong>?</h4>
+                {{form.est_siniestro_id_est_siniestro}}
+                <br>
+            </div>
+            <div class="col-12">
+                <p class="lead">Id Póliza: <strong>{{siniestro.poliza_id_poliza}}</strong></p>
+                <p class="lead">Fecha Siniestro: <strong>{{siniestro.fecha_hr}}</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-outline-danger">Cambiar</button>
+    </div>
+</form>

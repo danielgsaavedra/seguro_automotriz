@@ -2,22 +2,32 @@
 {% block title %}Informe de Daños{% endblock title %}
 {% block content %}
 
+<div class="d-sm-flex align-items-center justify-content-end mb-4">
+    <a class="text-decoration-none text-light" href="{% url 'informe_daños_view' %}">
+        <button class="float-right d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm ">
+            <i class="fas fa-notes-medical fa-sm text-white-50"></i> Ver Informes de Daños
+        </button>
+    </a>
+</div>
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Siniestros Recepcionados</h6>
     </div>
-
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered table-hover text-center" id="table_info_dano" width="100%" cellspacing="0">
+            <table class="table table-bordered table-hover text-center" id="table_info_dano" width="100%"
+                cellspacing="0">
                 <thead>
                     <tr>
                         <th scope="col">N° Siniestro</th>
-                        <th scope="col">N° Póliza</th>
                         <th scope="col">Fecha Siniestro</th>
-                        <th scope="col">Tipo Accidente</th>
-                        <th scope="col">Estado</th>
                         <th scope="col">Rut Asegurado</th>
+                        <th scope="col">N° Póliza</th>
+                        <th scope="col">Tipo Accidente</th>
+                        <th scope="col">Patente Grúa</th>
+                        <th scope="col">Taller Asignado</th>
+                        <th scope="col">Estado</th>
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
@@ -25,14 +35,20 @@
                     {% for siniestros in siniestros %}
                     <tr>
                         <th scope="row">{{siniestros.id }}</th>
-                        <td>{{siniestros.poliza_id_poliza }}</td>
                         <td>{{siniestros.fecha_hr | date:'d-m-Y' }}</td>
+                        <td>{{siniestros.asegurado_rut_asegurado}}</td>
+                        <td>{{siniestros.poliza_id_poliza }}</td>
                         <td>{{siniestros.tipo_accidente_id_tipo_acc}}</td>
+                        {% if siniestros.grua_patente_grua == null %}
+                        <td>SIN GRÚA</td>
+                        {% else %}
+                        <td>{{siniestros.grua_patente_grua}}</td>
+                        {% endif %}
+                        <td>{{siniestros.taller_id_taller}}</td>
                         <td>
                             <span
                                 class="badge badge-pill badge-light">{{siniestros.est_siniestro_id_est_siniestro}}</span>
                         </td>
-                        <td>{{siniestros.asegurado_rut_asegurado}}</td>
                         <td>
                             <div class="dropdown">
                                 <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
@@ -40,7 +56,8 @@
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <button type="button" class="dropdown-item show_info_dano" data-url="{% url 'informe_daños_create' siniestros.id %}">
+                                    <button type="button" class="dropdown-item show_info_dano"
+                                        data-url="{% url 'informe_daños_create' siniestros.id %}">
                                         Generar Informe</button>
                                 </div>
                             </div>

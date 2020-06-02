@@ -1,15 +1,15 @@
 {% extends "dashboard/base.html" %}
-{% block title %}Siniestros Recepción{% endblock title %}
+{% block title %}Siniestros En Repración{% endblock title %}
 {% block content %}
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Siniestros Asigandos a Taller</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Siniestros En Repración</h6>
     </div>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered table-hover text-center" id="table_siniestro_recepcion" width="100%"
+            <table class="table table-bordered table-hover text-center" id="table_siniestro_reparado" width="100%"
                 cellspacing="0">
                 <thead>
                     <tr>
@@ -40,7 +40,7 @@
                         <td>{{siniestros.taller_id_taller}}</td>
                         <td>
                             <span
-                                class="badge badge-pill badge-info">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                                class="badge badge-pill badge-warning">{{siniestros.est_siniestro_id_est_siniestro}}</span>
                         </td>
                         <td>
                             <div class="dropdown">
@@ -49,16 +49,15 @@
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <button type="button" class="dropdown-item show_acta_recepcion"
-                                        data-url="{% url 'acta_recepcion_create' siniestros.id %}">
-                                        Generar Acta Recepción</button>
+                                    <button type="button" class="show_form_reparado dropdown-item"
+                                        data-url="{% url 'cambiar_estado_reparado' siniestros.id %}">Reparado</button>
                                 </div>
                             </div>
                         </td>
                     </tr>
                     {% empty %}
                     <tr>
-                        <td colspan="8" class="text-center">No hay siniestros</td>
+                        <td colspan="9" class="text-center">No hay siniestros</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -66,7 +65,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modal_acta_recepcion" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="modal_siniestros_reparado" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
 

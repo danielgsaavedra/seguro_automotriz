@@ -1,5 +1,5 @@
 {% load static %}
-<form action="" class="create_form_siniestro needs-validation" method="POST" data-url="{% url 'siniestro_create' %}">
+<form action="" class="create_form_siniestro needs-validation" enctype="multipart/form-data" method="POST" data-url="{% url 'siniestro_create' %}">
     {% csrf_token %}
     <div class="modal-header bg-success">
         <h5 class="modal-title text-light">Registrar Siniestro</h5>

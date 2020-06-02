@@ -1,5 +1,5 @@
 {% load static %}
-<form action="" class="update_form_siniestro needs-validation" method="POST" data-url="{% url 'siniestro_update' form.instance.id %}">
+<form action="" class="update_form_siniestro needs-validation" method="POST" data-url="{% url 'siniestro_update' form.instance.id %}" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div class="modal-header bg-primary">

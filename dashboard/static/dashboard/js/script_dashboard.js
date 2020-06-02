@@ -32,7 +32,7 @@ $(document).ready(function () {
                     $('#table_poliza tbody').html(data.polizas);
                     $('#modal_poliza').modal('hide');
                     console.log('Success!');
-                    toastr.success('Yeah!');
+                    toastr.success('Operación Exitosa');
                 } else {
                     $('#modal_poliza .modal-content').html(data.html_form)
                 }
@@ -74,7 +74,7 @@ $(document).ready(function () {
                     $('#table_asegurado tbody').html(data.asegurados);
                     $('#modal_asegurado').modal('hide');
                     console.log('Asegurado registrado correctamente!');
-                    toastr.success('Operación Exitosa!');
+                    toastr.success('Operación Exitosa');
                 } else {
                     $('#modal_asegurado .modal-content').html(data.html_form)
                 }
@@ -118,7 +118,7 @@ $(document).ready(function () {
                     $('#table_siniestro tbody').html(data.siniestros);
                     $('#modal_siniestro').modal('hide');
                     console.log('Success!');
-                    toastr.success('Operación Exitosa!');
+                    toastr.success('Operación Exitosa');
                 } else {
                     $('#modal_siniestro .modal-content').html(data.html_form)
                 }
@@ -161,7 +161,7 @@ $(document).ready(function () {
                     $('#table_vehiculo tbody').html(data.vehiculos);
                     $('#modal_vehiculo').modal('hide');
                     console.log('Vehículo registrado correctamente!');
-                    toastr.success('Operación Exitosa!');
+                    toastr.success('Operación Exitosa');
                 } else {
                     $('#modal_vehiculo .modal-content').html(data.html_form)
                 }
@@ -204,7 +204,7 @@ $(document).ready(function () {
                     $('#table_taller tbody').html(data.talleres);
                     $('#modal_taller').modal('hide');
                     console.log('Taller registrado correctamente!');
-                    toastr.success('Operación Exitosa!');
+                    toastr.success('Operación Exitosa');
                 } else {
                     $('#modal_taller .modal-content').html(data.html_form)
                 }
@@ -248,7 +248,7 @@ $(document).ready(function () {
                     $('#table_taller_disabled tbody').html(data.talleresDisable);
                     $('#modal_taller_disabled').modal('hide');
                     console.log('Taller Reactivado correctamente!');
-                    toastr.success('Operación Exitosa!');
+                    toastr.success('Operación Exitosa');
                 } else {
                     $('#modal_taller_disabled .modal-content').html(data.html_form)
                 }
@@ -291,7 +291,7 @@ $(document).ready(function () {
                     $('#table_poliza_disabled tbody').html(data.polizasDisable);
                     $('#modal_poliza_disabled').modal('hide');
                     console.log('Póliza Habilitada correctamente!');
-                    toastr.success('Operación Exitosa!');
+                    toastr.success('Operación Exitosa');
                 } else {
                     $('#modal_poliza_disabled .modal-content').html(data.html_form)
                 }
@@ -333,7 +333,7 @@ $(document).ready(function () {
                     $('#table_asegurado_disabled tbody').html(data.aseguradosDisable);
                     $('#modal_asegurado_disabled').modal('hide');
                     console.log('Asegurado reactivado correctamente!');
-                    toastr.success('Operación Exitosa!');
+                    toastr.success('Operación Exitosa');
                 } else {
                     $('#modal_asegurado_disabled .modal-content').html(data.html_form)
                 }
@@ -375,7 +375,7 @@ $(document).ready(function () {
                     $('#table_usuario tbody').html(data.usuarios);
                     $('#modal_usuario').modal('hide');
                     console.log('Asegurado registrado correctamente!');
-                    toastr.success('Operación Exitosa!');
+                    toastr.success('Operación Exitosa');
                 } else {
                     $('#modal_usuario .modal-content').html(data.html_form)
                 }
@@ -417,7 +417,7 @@ $(document).ready(function () {
                     $('#table_usuario_disabled tbody').html(data.usuariosDisable);
                     $('#modal_usuario_disabled').modal('hide');
                     console.log('Usuario reactivado correctamente!');
-                    toastr.success('Operación Exitosa!');
+                    toastr.success('Operación Exitosa');
                 } else {
                     $('#modal_usuario_disabled .modal-content').html(data.html_form)
                 }

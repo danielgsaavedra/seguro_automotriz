@@ -33,7 +33,7 @@ $(document).ready(function (){
                     $('#table_siniestro_recepcion tbody').html(data.siniestros);
                     $('#modal_acta_recepcion').modal('hide');
                     console.log('Success!');
-                    toastr.success('Operación Exitosa!');
+                    toastr.success('Operación Exitosa');
                     setTimeout(actualizar,500);
                     
                 } else {
@@ -82,7 +82,7 @@ $(document).ready(function (){
                     $('#table_siniestro_retiro tbody').html(data.siniestros);
                     $('#modal_acta_retiro').modal('hide');
                     console.log('Success!');
-                    toastr.success('Operación Exitosa!');
+                    toastr.success('Operación Exitosa');
                     setTimeout(actualizar,500);
                 } else {
                     $('#modal_acta_retiro .modal-content').html(data.html_form)
@@ -130,7 +130,7 @@ $(document).ready(function (){
                     $('#table_siniestro_retiro tbody').html(data.siniestros);
                     $('#modal_acta_rechazo').modal('hide');
                     console.log('Success!');
-                    toastr.success('Operación Exitosa!');
+                    toastr.success('Operación Exitosa');
                     setTimeout(actualizar,500);
                 } else {
                     $('#modal_acta_rechazo .modal-content').html(data.html_form)
@@ -178,8 +178,8 @@ $(document).ready(function (){
                     $('#table_info_dano tbody').html(data.siniestros);
                     $('#modal_info_dano').modal('hide');
                     console.log('Success!');
-                    toastr.success('Operación Exitosa!');
-                    setTimeout(actualizar,400);
+                    toastr.success('Operación Exitosa');
+                    setTimeout(actualizar,500);
                 } else {
                     $('#modal_info_dano .modal-content').html(data.html_form)
                 }
@@ -226,7 +226,7 @@ $(document).ready(function (){
                     $('#table_siniestros_inspecc tbody').html(data.siniestros);
                     $('#modal_siniestros_inspecc').modal('hide');
                     console.log('Success!');
-                    toastr.success('Operación Exitosa!');
+                    toastr.success('Operación Exitosa');
                 } else {
                     $('#modal_siniestros_inspecc .modal-content').html(data.html_form)
                 }
@@ -273,7 +273,7 @@ $(document).ready(function (){
                     $('#table_siniestro_reparado tbody').html(data.siniestros);
                     $('#modal_siniestros_reparado').modal('hide');
                     console.log('Success!');
-                    toastr.success('Operación Exitosa!');
+                    toastr.success('Operación Exitosa');
                 } else {
                     $('#modal_siniestros_reparado .modal-content').html(data.html_form)
                 }

@@ -9,7 +9,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario
-from .forms import PolizaForm,PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm,SiniestroFormUpdate,DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
+from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -106,6 +106,7 @@ def AseguradoUpdate(request, id):
 def AseguradoDelete(request, id):
     data = dict()
     asegurado = get_object_or_404(Asegurado, rut_asegurado=id)
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     if request.method == 'POST':
         form = DeshabilitarAseguradoForm(request.POST, instance=asegurado)
         if form.is_valid():
@@ -114,7 +115,9 @@ def AseguradoDelete(request, id):
             asegurado.save()
             data['form_is_valid'] = True
             asegurados = Asegurado.objects.filter(
-                estado=1).order_by('fecha_nacimiento')
+                Q(usuario_rut_usuario=user) &
+                Q(estado=1)
+            ).order_by('fecha_nacimiento')
             context = {'asegurados': asegurados}
             data['asegurados'] = render_to_string(
                 'dashboard/asegurados/asegurado_2.html', context)
@@ -133,6 +136,7 @@ def AseguradoDelete(request, id):
 def ReactivateAsegurado(request, id):
     data = dict()
     aseguradoActivate = get_object_or_404(Asegurado, rut_asegurado=id)
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     if request.method == 'POST':
         form = DeshabilitarAseguradoForm(
             request.POST, instance=aseguradoActivate)
@@ -142,7 +146,9 @@ def ReactivateAsegurado(request, id):
             aseguradoActivate.save()
             data['form_is_valid'] = True
             aseguradosDisable = Asegurado.objects.filter(
-                estado=0).order_by('fecha_nacimiento')
+                Q(usuario_rut_usuario=user) &
+                Q(estado=0)
+            ).order_by('fecha_nacimiento')
             context = {'aseguradosDisable': aseguradosDisable}
             data['aseguradosDisable'] = render_to_string(
                 'dashboard/asegurados/asegurado_disabled_2.html', context)
@@ -309,6 +315,7 @@ def UpdatePoliza(request, id):
 def DeletePoliza(request, id):
     data = dict()
     poliza = get_object_or_404(Poliza, id=id)
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     if request.method == 'POST':
         form = DeshabilitarPolizaForm(request.POST, instance=poliza)
         if form.is_valid():
@@ -316,7 +323,10 @@ def DeletePoliza(request, id):
             poliza.estado = "0"
             poliza.save()
             data['form_is_valid'] = True
-            polizas = Poliza.objects.filter(estado=1).order_by('id')
+            polizas = Poliza.objects.filter(
+                Q(usuario_rut_usuario=user) &
+                Q(estado=1)
+            ).order_by('id')
             context = {'polizas': polizas}
             data['polizas'] = render_to_string(
                 'dashboard/polizas/poliza_2.html', context)
@@ -332,6 +342,7 @@ def DeletePoliza(request, id):
 def ReactivatePoliza(request, id):
     data = dict()
     polizaActivate = get_object_or_404(Poliza, id=id)
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     if request.method == 'POST':
         form = DeshabilitarPolizaForm(request.POST, instance=polizaActivate)
         if form.is_valid():
@@ -339,7 +350,10 @@ def ReactivatePoliza(request, id):
             polizaActivate.estado = "1"
             polizaActivate.save()
             data['form_is_valid'] = True
-            polizasDisable = Poliza.objects.filter(estado=0).order_by('id')
+            polizasDisable = Poliza.objects.filter(
+                Q(usuario_rut_usuario=user) &
+                Q(estado=0)
+            ).order_by('id')
             context = {'polizasDisable': polizasDisable}
             data['polizasDisable'] = render_to_string(
                 'dashboard/polizas/poliza_disabled_2.html', context)
@@ -402,9 +416,9 @@ def SiniestroDisabledView(request):
 @login_required(login_url='login')
 def CreateSiniestro(request):
     x = datetime.datetime.now()
-    rut = request.POST.get('asegurado_rut_asegurado','')
-    id_poliza = request.POST.get('poliza_id_poliza','')
-    id_taller = request.POST.get('taller_id_taller','')
+    rut = request.POST.get('asegurado_rut_asegurado', '')
+    id_poliza = request.POST.get('poliza_id_poliza', '')
+    id_taller = request.POST.get('taller_id_taller', '')
     estado = get_object_or_404(EstadoSiniestro, id=1)
 
     if request.method == 'POST':
@@ -416,12 +430,12 @@ def CreateSiniestro(request):
         siniestro.usuario_rut_usuario = request.user
         siniestro.est_siniestro_id_est_siniestro = estado
         correo = EmailMessage(
-             'SEGUROS VIRGOLINI: SINIESTRO REGISTRADO',
-                'Estimado/a {} {}.\n\nSe registro siniestro con su póliza N° {} a las {}hrs.\n\nLa reparación de su vehículo estará a cargo de taller: {} .\n\nPara consultar el estado en el que se encuentra su siniestro ingrese a este link(http://127.0.0.1:8000/asegurado-consulta/).\n\nSaludos cordiales.'.format(
-                    asegurado.primer_nombre, asegurado.primer_apellido,poliza.id,x.strftime("%X"),taller.nombre),
-                'no-contestar@hotmail.com',
-                [asegurado.correo],
-                reply_to=['lobos.joaquin@hotmail.com']
+            'SEGUROS VIRGOLINI: SINIESTRO REGISTRADO',
+            'Estimado/a {} {}.\n\nSe registro siniestro con su póliza N° {} a las {}hrs.\n\nLa reparación de su vehículo estará a cargo de taller: {} .\n\nPara consultar el estado en el que se encuentra su siniestro ingrese a este link(http://127.0.0.1:8000/asegurado-consulta/).\n\nSaludos cordiales.'.format(
+                asegurado.primer_nombre, asegurado.primer_apellido, poliza.id, x.strftime("%X"), taller.nombre),
+            'no-contestar@hotmail.com',
+            [asegurado.correo],
+            reply_to=['lobos.joaquin@hotmail.com']
         )
         correo.send()
 
@@ -465,6 +479,7 @@ def DeleteSiniestro(request, id):
     data = dict()
     siniestro = get_object_or_404(Siniestro, id=id)
     estado = get_object_or_404(EstadoSiniestro, id=7)
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     if request.method == 'POST':
         form = DeshabilitarSiniestroForm(request.POST, instance=siniestro)
         if form.is_valid():
@@ -473,7 +488,7 @@ def DeleteSiniestro(request, id):
             siniestro.save()
             data['form_is_valid'] = True
             siniestros = Siniestro.objects.all().exclude(
-                est_siniestro_id_est_siniestro=estado).order_by('id')
+                est_siniestro_id_est_siniestro=estado).filter(usuario_rut_usuario=user).order_by('id')
             context = {'siniestros': siniestros}
             data['siniestros'] = render_to_string(
                 'dashboard/siniestros/siniestro_2.html', context)
@@ -562,6 +577,7 @@ def UpdateTaller(request, id):
 def DeleteTaller(request, id):
     data = dict()
     taller = get_object_or_404(Taller, id=id)
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     if request.method == 'POST':
         form = DeshabilitarTallerForm(request.POST, instance=taller)
         if form.is_valid():
@@ -570,7 +586,9 @@ def DeleteTaller(request, id):
             taller.save()
             data['form_is_valid'] = True
             talleres = Taller.objects.filter(
-                estado_delete=1).order_by('id')
+                Q(usuario_rut_usuario=user) &
+                Q(estado_delete=1)
+            ).order_by('id')
             context = {'talleres': talleres}
             data['talleres'] = render_to_string(
                 'dashboard/talleres/taller_2.html', context)
@@ -586,6 +604,7 @@ def DeleteTaller(request, id):
 def ReactivateTaller(request, id):
     data = dict()
     tallerActivate = get_object_or_404(Taller, id=id)
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     if request.method == 'POST':
         form = DeshabilitarTallerForm(request.POST, instance=tallerActivate)
         if form.is_valid():
@@ -594,7 +613,9 @@ def ReactivateTaller(request, id):
             tallerActivate.save()
             data['form_is_valid'] = True
             talleresDisable = Taller.objects.filter(
-                estado_delete=0).order_by('id')
+                Q(usuario_rut_usuario=user) &
+                Q(estado_delete=0)
+            ).order_by('id')
             context = {'talleresDisable': talleresDisable}
             data['talleresDisable'] = render_to_string(
                 'dashboard/talleres/taller_disabled_2.html', context)

@@ -41,8 +41,11 @@ def SaveAllActaRecepcion(request, form, template_name):
 @login_required(login_url='login')
 def ActaRecepcionView(request):
     estado = get_object_or_404(TipoActa, id=1)
+    taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
     actas = FormularioActa.objects.filter(
-        tipo_acta_id_tipo_acta=estado).order_by('id')
+        Q(tipo_acta_id_tipo_acta=estado) &
+        Q(taller_id_taller=taller)
+    ).order_by('id')
     context = {'actas': actas}
     return render(request, 'taller/acta_recepcion/acta_recepcion.html', context)
 
@@ -113,8 +116,8 @@ def SiniestrosRecepcionView(request):
     taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
     siniestros = Siniestro.objects.filter(
         Q(est_siniestro_id_est_siniestro=estado) &
-        Q(taller_id_taller=taller) 
-        )
+        Q(taller_id_taller=taller)
+    ).order_by('id')
     context = {'siniestros': siniestros}
     return render(request, 'taller/acta_recepcion/siniestro_recepcion.html', context)
 
@@ -145,8 +148,11 @@ def SaveAllActaRetiro(request, form, template_name):
 @login_required(login_url='login')
 def ActaRetiroView(request):
     estado = get_object_or_404(TipoActa, id=3)
+    taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
     actas = FormularioActa.objects.filter(
-        tipo_acta_id_tipo_acta=estado).order_by('id')
+        Q(tipo_acta_id_tipo_acta=estado) &
+        Q(taller_id_taller=taller)
+    ).order_by('id')
     context = {'actas': actas}
     return render(request, 'taller/acta_retiro/acta_retiro.html', context)
 
@@ -214,8 +220,11 @@ def actaRetiroPdf(request, pk):
 @login_required(login_url='login')
 def SiniestrosRetiroView(request):
     estado = get_object_or_404(EstadoSiniestro, id=6)
+    taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
     siniestros = Siniestro.objects.filter(
-        est_siniestro_id_est_siniestro=estado).order_by('id')
+        Q(est_siniestro_id_est_siniestro=estado) &
+        Q(taller_id_taller=taller)
+    ).order_by('id')
     context = {'siniestros': siniestros}
     return render(request, 'taller/acta_retiro/siniestro_retiro.html', context)
 
@@ -226,8 +235,11 @@ def SiniestrosRetiroView(request):
 @login_required(login_url='login')
 def ActaRechazoView(request):
     estado = get_object_or_404(TipoActa, id=2)
+    taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
     actas = FormularioActa.objects.filter(
-        tipo_acta_id_tipo_acta=estado).order_by('id')
+        Q(tipo_acta_id_tipo_acta=estado) &
+        Q(taller_id_taller=taller)
+    ).order_by('id')
     context = {'actas': actas}
     return render(request, 'taller/acta_retiro/acta_rechazo.html', context)
 
@@ -350,15 +362,19 @@ def CreateInformeDaños(request, id):
 @login_required(login_url='login')
 def SiniestrosInformeDañosView(request):
     estado = get_object_or_404(EstadoSiniestro, id=2)
+    taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
     siniestros = Siniestro.objects.filter(
-        est_siniestro_id_est_siniestro=estado).order_by('id')
+        Q(est_siniestro_id_est_siniestro=estado) &
+        Q(taller_id_taller=taller)
+    ).order_by('id')
     context = {'siniestros': siniestros}
     return render(request, 'taller/informe_daños/informe_daños.html', context)
 
 
 @login_required(login_url='login')
 def InformeDanosView(request):
-    info_danos = InformeDano.objects.all()
+    taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
+    info_danos = InformeDano.objects.filter(taller_id_taller=taller)
     context = {'info_danos': info_danos}
     return render(request, 'taller/informe_daños/informe_daños_view.html', context)
 
@@ -368,8 +384,11 @@ def InformeDanosView(request):
 @login_required(login_url='login')
 def SiniestrosInpeccionadosView(request):
     estado = get_object_or_404(EstadoSiniestro, id=3)
+    taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
     siniestros = Siniestro.objects.filter(
-        est_siniestro_id_est_siniestro=estado).order_by('id')
+        Q(est_siniestro_id_est_siniestro=estado) &
+        Q(taller_id_taller=taller)
+    ).order_by('id')
     context = {'siniestros': siniestros}
     return render(request, 'taller/siniestros/siniestros_inspeccionados_view.html', context)
 
@@ -380,6 +399,7 @@ def CambiarEstadoEnReparacion(request, id):
     siniestro = get_object_or_404(Siniestro, id=id)
     estado = get_object_or_404(EstadoSiniestro, id=3)
     estado_new = get_object_or_404(EstadoSiniestro, id=4)
+    taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
     if request.method == 'POST':
         form = CambiarEstadoForm(request.POST, instance=siniestro)
         if form.is_valid():
@@ -388,7 +408,9 @@ def CambiarEstadoEnReparacion(request, id):
             siniestro.save()
             data['form_is_valid'] = True
             siniestros = Siniestro.objects.filter(
-                est_siniestro_id_est_siniestro=estado).order_by('id')
+                Q(est_siniestro_id_est_siniestro=estado) &
+                Q(taller_id_taller=taller)
+            ).order_by('id')
             context = {'siniestros': siniestros}
             data['siniestros'] = render_to_string(
                 'taller/siniestros/siniestros_inspeccionados_view_2.html', context)
@@ -405,8 +427,11 @@ def CambiarEstadoEnReparacion(request, id):
 @login_required(login_url='login')
 def SiniestrosEnReparacionView(request):
     estado = get_object_or_404(EstadoSiniestro, id=4)
+    taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
     siniestros = Siniestro.objects.filter(
-        est_siniestro_id_est_siniestro=estado).order_by('id')
+        Q(est_siniestro_id_est_siniestro=estado) &
+        Q(taller_id_taller=taller)
+    ).order_by('id')
     context = {'siniestros': siniestros}
     return render(request, 'taller/siniestros/siniestros_enreparacion_view.html', context)
 
@@ -417,6 +442,7 @@ def CambiarEstadoReparado(request, id):
     siniestro = get_object_or_404(Siniestro, id=id)
     estado = get_object_or_404(EstadoSiniestro, id=4)
     estado_new = get_object_or_404(EstadoSiniestro, id=6)
+    taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
     print(siniestro.asegurado_rut_asegurado.correo)
     if request.method == 'POST':
         form = CambiarEstadoForm(request.POST, instance=siniestro)
@@ -435,7 +461,9 @@ def CambiarEstadoReparado(request, id):
             )
             correo.send()
             siniestros = Siniestro.objects.filter(
-                est_siniestro_id_est_siniestro=estado).order_by('id')
+                Q(est_siniestro_id_est_siniestro=estado) &
+                Q(taller_id_taller=taller)
+            ).order_by('id')
             context = {'siniestros': siniestros}
             data['siniestros'] = render_to_string(
                 'taller/siniestros/siniestros_enreparacion_view_2.html', context)
@@ -456,6 +484,7 @@ def informeDanoViewPdf(request, pk):
         print(dato)
     return render(request, 'taller/informe_daños/pdf/informe_dano_pdf.html', {'dato': dato})
 
+
 def informeDanoPdf(request, pk):
     options = {
         'page-size': 'Letter',
@@ -473,4 +502,3 @@ def informeDanoPdf(request, pk):
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="informeDanoPdf.pdf" '
     return response
-

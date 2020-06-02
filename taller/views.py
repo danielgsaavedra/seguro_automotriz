@@ -1,3 +1,4 @@
+from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import TemplateView
 from django.contrib.admin.views.decorators import staff_member_required
@@ -9,6 +10,7 @@ from .forms import ActasForm, InformeDañosForm, CambiarEstadoForm
 from dashboard.models import Siniestro, EstadoSiniestro, FormularioActa, TipoActa, Poliza, Taller, Vehiculo, InformeDano
 from django.db import connection
 import pdfkit
+import datetime
 from django.http import HttpResponse
 
 # ACTA RECEPCION
@@ -356,15 +358,6 @@ def InformeDanosView(request):
     context = {'info_danos': info_danos}
     return render(request, 'taller/informe_daños/informe_daños_view.html', context)
 
-# PRESUPUESTO
-@login_required(login_url='login')
-def PresupuestoView(request):
-    estado = get_object_or_404(EstadoSiniestro, id=3)
-    siniestros = Siniestro.objects.filter(
-        est_siniestro_id_est_siniestro=estado).order_by('id')
-    context = {'siniestros': siniestros}
-    return render(request, 'taller/presupuesto.html', context)
-
 # SINIESTROS INSPECCIONADOS
 
 
@@ -420,6 +413,7 @@ def CambiarEstadoReparado(request, id):
     siniestro = get_object_or_404(Siniestro, id=id)
     estado = get_object_or_404(EstadoSiniestro, id=4)
     estado_new = get_object_or_404(EstadoSiniestro, id=6)
+    print(siniestro.asegurado_rut_asegurado.correo)
     if request.method == 'POST':
         form = CambiarEstadoForm(request.POST, instance=siniestro)
         if form.is_valid():
@@ -427,6 +421,15 @@ def CambiarEstadoReparado(request, id):
             siniestro.est_siniestro_id_est_siniestro = estado_new
             siniestro.save()
             data['form_is_valid'] = True
+            correo = EmailMessage(
+                'SEGUROS VIRGOLINI: VEHÍCULO REPARADO',
+                'Estimado/a {} {}.\n\nSu vehículo gestionado en el siniestro N°{} se encuentra disponible para retiro.\n\nFavor comunicarse con taller {} al teléfeno +56{} para coordinar retiro.\n\nSaludos cordiales.'.format(
+                    siniestro.asegurado_rut_asegurado.primer_nombre, siniestro.asegurado_rut_asegurado.primer_apellido, siniestro.id, siniestro.taller_id_taller.nombre, siniestro.taller_id_taller.telefono),
+                'no-contestar@hotmail.com',
+                [siniestro.asegurado_rut_asegurado.correo],
+                reply_to=['lobos.joaquin@hotmail.com']
+            )
+            correo.send()
             siniestros = Siniestro.objects.filter(
                 est_siniestro_id_est_siniestro=estado).order_by('id')
             context = {'siniestros': siniestros}
@@ -439,16 +442,3 @@ def CambiarEstadoReparado(request, id):
         data['html_form'] = render_to_string(
             'taller/siniestros/cambiar_estado_reparado.html', context, request=request)
     return JsonResponse(data)
-
-# @login_required(login_url='login')
-# def VerActaRecepcion(request):
-#     datosSiniestros = Siniestro.objects.raw('SELECT * FROM Platform')
-#     datosSiniestros = Siniestro.objects.get(id=id)
-#     actaRecepcion = FormularioActa.objects.filter(id=datosSiniestros).order_by('id')
-#
-#
-#     context = {'actaRecepcion': actaRecepcion, 'datosSiniestros':datosSiniestros }
-#     print(actaRecepcion)
-#     return render(request, 'taller/acta_recepcion/acta_pdf.html', context)
-#
-#

@@ -1,4 +1,7 @@
-$(document).ready(function () {
+$(document).ready(function (){
+    
+    function actualizar(){location.reload();}
+  
     var ShowFormActaRecepcion = function () {
         var btn = $(this);
         $.ajax({
@@ -31,6 +34,8 @@ $(document).ready(function () {
                     $('#modal_acta_recepcion').modal('hide');
                     console.log('Success!');
                     toastr.success('Operación Exitosa!');
+                    setTimeout(actualizar,500);
+                    
                 } else {
                     $('#modal_acta_recepcion .modal-content').html(data.html_form)
                 }
@@ -78,6 +83,7 @@ $(document).ready(function () {
                     $('#modal_acta_retiro').modal('hide');
                     console.log('Success!');
                     toastr.success('Operación Exitosa!');
+                    setTimeout(actualizar,500);
                 } else {
                     $('#modal_acta_retiro .modal-content').html(data.html_form)
                 }
@@ -125,6 +131,7 @@ $(document).ready(function () {
                     $('#modal_acta_rechazo').modal('hide');
                     console.log('Success!');
                     toastr.success('Operación Exitosa!');
+                    setTimeout(actualizar,500);
                 } else {
                     $('#modal_acta_rechazo .modal-content').html(data.html_form)
                 }
@@ -172,6 +179,7 @@ $(document).ready(function () {
                     $('#modal_info_dano').modal('hide');
                     console.log('Success!');
                     toastr.success('Operación Exitosa!');
+                    setTimeout(actualizar,400);
                 } else {
                     $('#modal_info_dano .modal-content').html(data.html_form)
                 }

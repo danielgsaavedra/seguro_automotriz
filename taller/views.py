@@ -7,11 +7,12 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 from django.http import JsonResponse
 from .forms import ActasForm, InformeDañosForm, CambiarEstadoForm
-from dashboard.models import Siniestro, EstadoSiniestro, FormularioActa, TipoActa, Poliza, Taller, Vehiculo, InformeDano
+from dashboard.models import Siniestro, EstadoSiniestro, FormularioActa, TipoActa, Poliza, Taller, Vehiculo, InformeDano, Usuario
 from django.db import connection
 import pdfkit
 import datetime
 from django.http import HttpResponse
+from django.db.models import Q
 
 # ACTA RECEPCION
 
@@ -109,8 +110,11 @@ def actaRecepcionPdf(request, pk):
 @login_required(login_url='login')
 def SiniestrosRecepcionView(request):
     estado = get_object_or_404(EstadoSiniestro, id=1)
+    taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
     siniestros = Siniestro.objects.filter(
-        est_siniestro_id_est_siniestro=estado).order_by('id')
+        Q(est_siniestro_id_est_siniestro=estado) &
+        Q(taller_id_taller=taller) 
+        )
     context = {'siniestros': siniestros}
     return render(request, 'taller/acta_recepcion/siniestro_recepcion.html', context)
 

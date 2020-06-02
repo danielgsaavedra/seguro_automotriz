@@ -15,6 +15,23 @@ function iniciar() {
     document.getElementById("password2").addEventListener('keyup', validaPassword2);
 }
 
+function seleccionarTaller() {
+    var elemento = document.getElementById("rol_usuario");
+    var selected = elemento.options[elemento.selectedIndex].text;
+    if (selected == "Personal Taller") {
+        document.getElementById("id_taller").disabled = false;
+    }
+    else {
+        var elemento = document.getElementById("id_taller");
+        // $('#id_taller').removeAttr("required");
+        // elemento.removeAttribute("required")
+        elemento.selectedIndex = 0;
+        document.getElementById("id_taller").disabled = true;
+    }
+
+}
+
+
 function validaRut() {
     var elemento = document.getElementById("id_rut_usuario");
     if (!elemento.checkValidity()) {
@@ -266,6 +283,7 @@ function clearErrorPassword2(elemento) {
 function validar(e) {
     if (validaRol() && validaRut() && validaTelefono() && validaPrimerNombre() && validaSegundoNombre()
         && validaPrimerApellido() && validaSegundoApellido() && validaCorreo() && validaPassword1() && validaPassword2()) {
+        document.getElementById("id_taller").disabled = false;
         return true
     } else {
         e.preventDefault();

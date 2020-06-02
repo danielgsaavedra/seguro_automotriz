@@ -505,6 +505,8 @@ class Usuario(AbstractBaseUser):
     telefono = models.CharField(
         verbose_name='Teléfono', null=True, max_length=9)
     rol = models.CharField(max_length=30, choices=opciones, null=True)
+    taller_id_taller = models.ForeignKey(
+        'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', null=True)
     is_active = models.BooleanField(default=True)
     is_administrador = models.BooleanField(default=False)
     objects = UsuarioManager()

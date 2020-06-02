@@ -72,7 +72,8 @@
         <div class="row justify-content-center mt-5">
             <div>
                 {% for siniestros in siniestros %}
-                <h2>Su siniestro se encuentra:
+                <h2>N° Siniestro : {{siniestros.id}} </h2>
+                <h2>Se encuentra
                     {% if siniestros.est_siniestro_id_est_siniestro.id == 1 %}
                     <span class="badge badge-pill badge-info">{{siniestros.est_siniestro_id_est_siniestro}}</span>
                     {% endif %}

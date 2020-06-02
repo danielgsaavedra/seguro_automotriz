@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
+import datetime
 from django.views.generic.base import TemplateView
 from django.http import JsonResponse
 from django.template.loader import render_to_string
@@ -400,16 +401,32 @@ def SiniestroDisabledView(request):
 
 @login_required(login_url='login')
 def CreateSiniestro(request):
+    x = datetime.datetime.now()
     rut = request.POST.get('asegurado_rut_asegurado','')
+    # id_sin = request.POST.get('id_siniestro','')
+    id_poliza = request.POST.get('poliza_id_poliza','')
+    id_taller = request.POST.get('taller_id_taller','')
     estado = get_object_or_404(EstadoSiniestro, id=1)
+
     if request.method == 'POST':
-        rut_asegurado = get_object_or_404(Asegurado, rut_asegurado=rut)
-        print(rut_asegurado.correo)
+        asegurado = get_object_or_404(Asegurado, rut_asegurado=rut)
+        poliza = get_object_or_404(Poliza, id=id_poliza)
+        taller = get_object_or_404(Taller, id=id_taller)
         form = SiniestroForm(request.POST)
         siniestro = form.save(commit=False)
         siniestro.usuario_rut_usuario = request.user
         siniestro.est_siniestro_id_est_siniestro = estado
-        
+        # print(id_sin)
+        correo = EmailMessage(
+             'SEGUROS VIRGOLINI: SINIESTRO REGISTRADO',
+                'Estimado/a {} {}.\n\nSe registro siniestro con su póliza N° {} a las {}hrs.\n\nLa reparación de su vehículo estará a cargo de taller: {} .\n\nPara consultar el estado en el que se encuentra su siniestro ingrese a este link(http://127.0.0.1:8000/asegurado-consulta/).'.format(
+                    asegurado.primer_nombre, asegurado.primer_apellido,poliza.id,x.strftime("%X"),taller.nombre),
+                'no-contestar@hotmail.com',
+                [asegurado.correo],
+                reply_to=['lobos.joaquin@hotmail.com']
+        )
+        correo.send()
+
     else:
         form = SiniestroForm()
     return SaveAllSiniestro(request, form, 'dashboard/siniestros/siniestro_create.html')

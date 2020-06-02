@@ -442,3 +442,31 @@ def CambiarEstadoReparado(request, id):
         data['html_form'] = render_to_string(
             'taller/siniestros/cambiar_estado_reparado.html', context, request=request)
     return JsonResponse(data)
+
+
+def informeDanoViewPdf(request, pk):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT I.ID,I.FECHA_HORA,I.SINIESTRO_ID,I.OBSERVACIONES,I.VEHICULO_PATENTE_VEHICULO,I.PERDIDA_TOTAL,S.NOMBRE,T.NOMBRE,T.DESCRIPCION,X.NOMBRE,X.RAZON_SOCIAL,X.TELEFONO,X.CORREO FROM DASHBOARD_INFORMEDANO I JOIN DASHBOARD_SEVERIDADDANO S ON (S.ID=I.SEVERIDAD_DANO_ID_SEVE_DANO) JOIN DASHBOARD_TIPODANO T ON (T.ID=I.TIPO_DANO_ID_TIPO_DANO) JOIN DASHBOARD_TALLER X ON(X.ID=I.TALLER_ID_TALLER) WHERE(I.ID="+pk + ")")
+        dato = cursor.fetchall()
+        dato = list(dato)
+        print(dato)
+    return render(request, 'taller/informe_daños/pdf/informe_dano_pdf.html', {'dato': dato})
+
+def informeDanoPdf(request, pk):
+    options = {
+        'page-size': 'Letter',
+        'margin-top': '0.5in',
+        'margin-right': '1in',
+        'margin-bottom': '0.5in',
+        'margin-left': '1in',
+        'encoding': "UTF-8",
+    }
+
+    path_wkthmltopdf = b'C:\wkhtmltopdf\\bin\wkhtmltopdf.exe'
+    config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
+    pdf = pdfkit.from_url('http://127.0.0.1:8000/informeDanoViewPdf/' +
+                          str(pk), False, options=options, configuration=config)
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="informeDanoPdf.pdf" '
+    return response
+

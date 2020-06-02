@@ -47,12 +47,12 @@
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="#" target="_blank">
+                                    <a href="{% url 'informeDanoViewPdf' pk=info.id %}" target="_blank">
                                         <button class="dropdown-item">
                                             Visualizar Acta
                                         </button>
                                     </a>
-                                    <a href="#">
+                                    <a href="{% url 'informeDanoPdf' pk=info.id %}">
                                         <button class="dropdown-item">
                                             Exportar PDF
                                         </button>

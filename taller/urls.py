@@ -40,4 +40,8 @@ urlpatterns = [
         views.actaRechazoViewPdf, name='actaRechazoViewPdf'),
     url(r'^actaRechazoPdf/(?P<pk>[0-9]+)/$',
         views.actaRechazoPdf, name='actaRechazoPdf'),
+    url(r'^informeDanoViewPdf/(?P<pk>[0-9]+)/$',
+        views.informeDanoViewPdf, name='informeDanoViewPdf'),
+    url(r'^informeDanoPdf/(?P<pk>[0-9]+)/$',
+        views.informeDanoPdf, name='informeDanoPdf'),
 ]

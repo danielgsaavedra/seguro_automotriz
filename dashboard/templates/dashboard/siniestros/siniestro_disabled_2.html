@@ -1,18 +1,16 @@
 {% for siniestrosDisable in siniestrosDisable %}
 <tr>
-    <td scope="row">{{siniestrosDisable.id }}</td>
-    <td>{{siniestrosDisable.poliza_id_poliza }}</td>
+    <th scope="row">{{siniestrosDisable.id }}</th>
     <td>{{siniestrosDisable.fecha_hr | date:'d-m-Y' }}</td>
+    <td>{{siniestrosDisable.asegurado_rut_asegurado}}</td>
+    <td>{{siniestrosDisable.poliza_id_poliza }}</td>
     <td>{{siniestrosDisable.tipo_accidente_id_tipo_acc}}</td>
-
-
-    <td>{{siniestrosDisable.taller_id_taller}}</td>
     {% if siniestrosDisable.grua_patente_grua == null %}
-    <td>Sin Grúa</td>
+    <td>SIN GRÚA</td>
     {% else %}
     <td>{{siniestrosDisable.grua_patente_grua}}</td>
     {% endif %}
-    <td>{{siniestros.asegurado_rut_asegurado}}</td>
+    <td>{{siniestrosDisable.taller_id_taller}}</td>
 </tr>
 {% empty %}
 <tr>

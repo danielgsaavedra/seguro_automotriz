@@ -192,12 +192,10 @@
             </div>
 
             <li class="nav-item">
-            <li class="nav-item">
                 <a class="nav-link" href="{% url 'informe_daños' %}">
                     <i class="fas fa-notes-medical"></i>
                     <span>Informe de Daños</span>
                 </a>
-            </li>
             </li>
 
             <hr class="sidebar-divider">
@@ -212,6 +210,25 @@
                 </a>
             </li>
             <hr class="sidebar-divider">
+
+
+            <div class="sidebar-heading">
+                Módulo Siniestros
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse"
+                    data-target="#collapseInforme" aria-expanded="true" aria-controls="collapseInforme">
+                    <i class="fas fa-car-crash"></i>
+                    <span>Ver Siniestros</span>
+                </a>
+                <div id="collapseInforme" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{% url 'siniestros_inspecc' %}">Inspeccionados</a>
+                        <a class="collapse-item" href="{% url 'siniestros_enreparacion' %}">En Reparación</a>
+                    </div>
+                </div>
+            </li>
             {% endif %}
 
             <div class="text-center d-none d-md-inline">

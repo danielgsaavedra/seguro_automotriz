@@ -1,0 +1,78 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Informes de Daños{% endblock title %}
+{% block content %}
+
+<div class="d-sm-flex align-items-center justify-content-start mb-4">
+    <div class="text-center d-none d-md-inline">
+        <a class="text-decoration-none" href="{% url 'informe_daños' %}">
+            <i class="fas fa-arrow-circle-left"></i> Volver
+        </a>
+    </div>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Informes de Daños</h6>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center" id="table_acta_recepcion" width="100%"
+                cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">ID Informe</th>
+                        <th scope="col">Fecha Creación</th>
+                        <th scope="col">N° Siniestro</th>
+                        <th scope="col">Patente Vehículo</th>
+                        <th scope="col">Severidad de Daño</th>
+                        <th scope="col">Tipo de Daño</th>
+                        <th scope="col">Taller</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for info in info_danos %}
+                    <tr>
+                        <th scope="row">{{ info.id }}</th>
+                        <td>{{ info.fecha_hora | date:'d-m-Y' }}</td>
+                        <td>{{ info.siniestro_id }}</td>
+                        <td>{{ info.vehiculo_patente_vehiculo }}</td>
+                        <td>{{ info.severidad_dano_id_seve_dano }}</td>
+                        <td>{{ info.tipo_dano_id_tipo_dano }}</td>
+                        <td>{{ info.taller_id_taller }}</td>
+                        <td>
+                            <div class="dropdown">
+                                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a href="#" target="_blank">
+                                        <button class="dropdown-item">
+                                            Visualizar Acta
+                                        </button>
+                                    </a>
+                                    <a href="#">
+                                        <button class="dropdown-item">
+                                            Exportar PDF
+                                        </button>
+                                    </a>
+                                </div>
+
+
+
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="8" class="text-center">No hay actas</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,8 +1,7 @@
 from django.urls import path
 from . import views
 from django.conf.urls import include, url
-from .views import SiniestrosRecepcionView, SiniestrosRetiroView, SiniestrosInformeDañosView, PresupuestoView, \
-    ActaRecepcionView
+from .views import SiniestrosRecepcionView, SiniestrosRetiroView, SiniestrosInformeDañosView, ActaRecepcionView
 
 urlpatterns = [
     path('siniestro/recepcion/', views.SiniestrosRecepcionView,
@@ -21,7 +20,6 @@ urlpatterns = [
     path('informe/danos/<str:id>/create',
          views.CreateInformeDaños, name='informe_daños_create'),
     path('informe_danos_view/', views.InformeDanosView, name='informe_daños_view'),
-    path('presupuesto/', views.PresupuestoView, name='presupuesto'),
     path('siniestros/inspeccionados/',
          views.SiniestrosInpeccionadosView, name='siniestros_inspecc'),
     path('siniestros/<str:id>/inspeccionados',

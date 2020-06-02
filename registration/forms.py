@@ -1,8 +1,12 @@
 from django import forms
-from dashboard.models import Usuario
+from dashboard.models import Usuario, Taller
 
 
 class UsuarioRegisterForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(UsuarioRegisterForm, self).__init__(*args, **kwargs)
+        self.fields['taller_id_taller'].queryset = Taller.objects.filter(
+            estado=1)
 
     password1 = forms.CharField(max_length=12, widget=forms.PasswordInput(
         attrs={
@@ -14,7 +18,7 @@ class UsuarioRegisterForm(forms.ModelForm):
         }
     ))
 
-    password2 = forms.CharField(max_length=12,widget= forms.PasswordInput(
+    password2 = forms.CharField(max_length=12, widget=forms.PasswordInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'Ingresa nuevamente contraseña',
@@ -32,7 +36,8 @@ class UsuarioRegisterForm(forms.ModelForm):
             'segundo_apellido',
             'email',
             'telefono',
-            'rol'
+            'rol',
+            'taller_id_taller'
         ]
         widgets = {
             'rut_usuario': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT', 'pattern': '^[0-9]{8,9}[-|‐]{1}[0-9kK]{1}$', 'oninput': 'checkRut(this)'}),
@@ -42,7 +47,9 @@ class UsuarioRegisterForm(forms.ModelForm):
             'segundo_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo apellido', 'pattern': '[A-Za-z ]{3,}', 'id': 's_apellido_usuario', 'onkeypress': 'return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122)'}),
             'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', 'id': 'email_usuario'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa teléfono', 'pattern': '[0-9]{9,}', 'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)', 'id': 'telefono_usuario'}),
-            'rol': forms.Select(attrs={'class': 'form-control', 'id': 'rol_usuario'}),
+            'rol': forms.Select(attrs={'class': 'form-control', 'id': 'rol_usuario', 'onchange': 'seleccionarTaller()'}),
+            'taller_id_taller': forms.Select(attrs={'class': 'form-control', 'id': 'id_taller', 'disabled': 'true', 'required': 'False'}),
+
         }
 
     def clean_password2(self):

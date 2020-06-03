@@ -9,7 +9,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario
-from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm
+from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, AseguradoFormUpdate
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -94,9 +94,9 @@ def AseguradoCreate(request):
 def AseguradoUpdate(request, id):
     asegurado = get_object_or_404(Asegurado, rut_asegurado=id)
     if request.method == 'POST':
-        form = AseguradoForm(request.POST, instance=asegurado)
+        form = AseguradoFormUpdate(request.POST, instance=asegurado)
     else:
-        form = AseguradoForm(instance=asegurado)
+        form = AseguradoFormUpdate(instance=asegurado)
     return SaveAllAsegurado(request, form, 'dashboard/asegurados/asegurado_update.html')
 
 

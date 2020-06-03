@@ -46,7 +46,7 @@ function validaPrimerNombre() {
             error_p_nombre(elemento, "Debe introducir primer nombre");
         }
         if (elemento.validity.patternMismatch) {
-            error_p_nombre(elemento, "Debe contener al menos 3 caracteres");
+            error_p_nombre(elemento, "Debe introducir primer nombre válido");
         }
         return false;
     }
@@ -71,7 +71,7 @@ function validaSegundoNombre() {
             error_s_nombre(elemento, "Debe introducir segundo nombre");
         }
         if (elemento.validity.patternMismatch) {
-            error_s_nombre(elemento, "Debe contener al menos 3 caracteres");
+            error_s_nombre(elemento, "Debe introducir segundo nombre válido");
         }
         return false;
     }
@@ -96,7 +96,7 @@ function validaPrimerApellido() {
             error_p_apellido(elemento, "Debe introducir primer apellido");
         }
         if (elemento.validity.patternMismatch) {
-            error_p_apellido(elemento, "Debe contener al menos 3 caracteres");
+            error_p_apellido(elemento, "Debe introducir primer apellido válido");
         }
         return false;
     }
@@ -121,7 +121,7 @@ function validaSegundoApellido() {
             error_s_apellido(elemento, "Debe introducir segundo apellido");
         }
         if (elemento.validity.patternMismatch) {
-            error_s_apellido(elemento, "Debe contener al menos 3 caracteres");
+            error_s_apellido(elemento, "Debe introducir segundo apellido válido");
         }
         return false;
     }

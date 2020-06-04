@@ -9,7 +9,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario
-from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, AseguradoFormUpdate
+from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, AseguradoFormUpdate, VehiculoFormUpdate
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -215,9 +215,9 @@ def VehiculoCreate(request):
 def VehiculoUpdate(request, id):
     vehiculo = get_object_or_404(Vehiculo, patente_vehiculo=id)
     if request.method == 'POST':
-        form = VehiculoForm(request.POST, instance=vehiculo)
+        form = VehiculoFormUpdate(request.POST, instance=vehiculo)
     else:
-        form = VehiculoForm(instance=vehiculo)
+        form = VehiculoFormUpdate(instance=vehiculo)
     return SaveAllVehiculo(request, form, 'dashboard/vehiculos/vehiculo_update.html')
 
 

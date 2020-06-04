@@ -68,6 +68,7 @@ function validaRut() {
         return false;
     }
     clearErrorRut(elemento);
+    document.getElementById("id_rut_usuario").disabled = false;
     return true;
 
 }

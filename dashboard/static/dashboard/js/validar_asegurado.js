@@ -216,6 +216,7 @@ function clearErrorFecha(elemento) {
 function validar(e) {
     if (validaRut() && validaTelefono() && validaPrimerNombre() && validaSegundoNombre()
         && validaPrimerApellido() && validaSegundoApellido() && validaCorreo() && validaFecha()) {
+        document.getElementById("id_rut_asegurado").disabled = false;
         return true
     } else {
         e.preventDefault();

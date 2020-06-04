@@ -112,7 +112,7 @@ class AseguradoFormUpdate(forms.ModelForm):
             'fecha_nacimiento',
         ]
         widgets = {
-            'rut_asegurado': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT', 'pattern': '^[0-9]{7,9}[-|‐]{1}[0-9kK]{1}$', 'oninput': 'checkRut(this)'}),
+            'rut_asegurado': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT', 'pattern': '^[0-9]{7,9}[-|‐]{1}[0-9kK]{1}$', 'oninput': 'checkRut(this)', 'disabled': 'true'}),
             'primer_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer nombre', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 'p_nombre_asegurado'}),
             'segundo_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo nombre', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 's_nombre_asegurado'}),
             'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer apellido', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 'p_apellido_asegurado'}),
@@ -230,6 +230,35 @@ class VehiculoForm(forms.ModelForm):
         ]
         widgets = {
             'patente_vehiculo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente', 'id': 'patente', 'pattern': '^[a-zA-Z0-9._%+-]{8,}'}),
+            'anio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa año (YYYY)', 'pattern': '[0-9]{4,}', 'id': 'anio', 'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)'}),
+            'modelo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa modelo', 'id': 'modelo', 'pattern': '^[a-zA-Z0-9._%+- ]{4,}'}),
+            'nro_motor': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su número del motor', 'id': 'motor', 'pattern': '^[a-zA-Z0-9._%+- ]{4,}'}),
+            'tipo_vehiculo_id_tipo_auto': forms.Select(attrs={'class': 'form-control', 'id': 'tipo_vehi'}),
+            'marca_id_marca': forms.Select(attrs={'class': 'form-control', 'id': 'marca_vehi'}),
+            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'id': 'rut_asegurado_vehi'}),
+        }
+
+class VehiculoFormUpdate(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(VehiculoFormUpdate, self).__init__(*args, **kwargs)
+        self.fields['asegurado_rut_asegurado'].queryset = Asegurado.objects.filter(
+            estado=1)
+
+    class Meta:
+
+        model = Vehiculo
+        fields = [
+            'patente_vehiculo',
+            'anio',
+            'modelo',
+            'nro_motor',
+            'tipo_vehiculo_id_tipo_auto',
+            'marca_id_marca',
+            'asegurado_rut_asegurado'
+        ]
+        widgets = {
+            'patente_vehiculo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente', 'id': 'patente', 'pattern': '^[a-zA-Z0-9._%+-]{8,}', 'disabled': 'true'}),
             'anio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa año (YYYY)', 'pattern': '[0-9]{4,}', 'id': 'anio', 'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)'}),
             'modelo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa modelo', 'id': 'modelo', 'pattern': '^[a-zA-Z0-9._%+- ]{4,}'}),
             'nro_motor': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su número del motor', 'id': 'motor', 'pattern': '^[a-zA-Z0-9._%+- ]{4,}'}),

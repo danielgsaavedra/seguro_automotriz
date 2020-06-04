@@ -88,7 +88,7 @@ class UsuarioFormUpdate(forms.ModelForm):
             'taller_id_taller'
         ]
         widgets = {
-            'rut_usuario': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT ', 'pattern': '^[0-9]{8,9}[-|‐]{1}[0-9kK]{1}$'}),
+            'rut_usuario': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT ', 'pattern': '^[0-9]{8,9}[-|‐]{1}[0-9kK]{1}$', 'oninput': 'checkRut(this)', 'disabled': 'true'}),
             'primer_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer nombre', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 'p_nombre_usuario'}),
             'segundo_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo nombre', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 's_nombre_usuario'}),
             'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer apellido', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 'p_apellido_usuario'}),

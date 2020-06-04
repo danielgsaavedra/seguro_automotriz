@@ -183,6 +183,7 @@ function clearErrorRut(elemento) {
 
 function validar(e) {
     if (validaPatente() && validaModelo() && validaMotor() && validaAnio() && validaMarca() && validaTipo() && validaRutAsegurado()) {
+        document.getElementById("patente").disabled = false;
         return true
     } else {
         e.preventDefault();

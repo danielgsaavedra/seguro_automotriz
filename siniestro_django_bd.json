@@ -1182,7 +1182,8 @@
 			"nombre": "CLASSIC",
 			"descripcion": "RESPONSABILIDAD CIVIL: UF 500,TIPO DE TALLER: MULTIMARCA. HUELGA Y TERRORISMO, ACTOS MALICIOSOS",
 			"valor": 20500,
-			"cobertura_max": 500000
+			"cobertura_max": 500000,
+			"deducible":20
 		}
 	},
 	{
@@ -1192,7 +1193,8 @@
 			"nombre": "MEDIUM",
 			"descripcion": "RESPONSABILIDAD CIVIL: UF 700,TIPO DE TALLER:MARCA. HUELGA Y TERRORISMO, ACTOS MALICIOSOS,DAÑOS GRANIZO, AUTO DE REEMPLAZO:15 DÍAS",
 			"valor": 29500,
-			"cobertura_max": 1000000
+			"cobertura_max": 1000000,
+			"deducible":10
 		}
 	},
 	{
@@ -1202,7 +1204,8 @@
 			"nombre": "PREMIUM",
 			"descripcion": "RESPONSABILIDAD CIVIL: UF 850,TIPO DE TALLER:MARCA. HUELGA Y TERRORISMO,ACTOS MALICIOSOS,DAÑOS GRANIZO,DAÑOS MATERIALES POR PROPIA CARGA,AUTO DE REEMPLAZO:30 DÍAS",
 			"valor": 41000,
-			"cobertura_max": 2000000
+			"cobertura_max": 2000000,
+			"deducible":5
 		}
 	},
 	{
@@ -1212,7 +1215,8 @@
 			"nombre": "FULL",
 			"descripcion": "RESPONSABILIDAD CIVIL: UF 1000,TIPO DE TALLER:MARCA. HUELGA Y TERRORISMO,ACTOS MALICIOSOS,DAÑOS GRANIZO,DAÑOS MATERIALES POR PROPIA CARGA,ROBO HURTO O USO NO AUTORIZADO,AUTO DE REEMPLAZO:ILIMITADO",
 			"valor": 100000,
-			"cobertura_max": 9999999999
+			"cobertura_max": 9999999999,
+			"deducible":0
 		}
 	},
 	{
@@ -1456,7 +1460,9 @@
 			"telefono": 969871247,
 			"fecha_nacimiento": "1997-08-12",
 			"estado": "1",
-			"usuario_rut_usuario": 1
+			"direccion": "QUINCE PONIENTE  GOMEZ CARREÑO",
+			"usuario_rut_usuario": 1,
+			"comuna_id_comuna":21
 		}
 	},
 	{
@@ -1471,7 +1477,9 @@
 			"telefono": 987225603,
 			"fecha_nacimiento": "1995-07-09",
 			"estado": "1",
-			"usuario_rut_usuario": 1
+			"direccion": "LOS GLADIOLOS LIMACHE",
+			"usuario_rut_usuario": 1,
+			"comuna_id_comuna":21
 		}
 	},
 	{
@@ -1486,7 +1494,9 @@
 			"telefono": 967231011,
 			"fecha_nacimiento": "1967-02-17",
 			"estado": "1",
-			"usuario_rut_usuario": 1
+			"direccion": "VEINTE Y CUATRO NORTE SANTA INES",
+			"usuario_rut_usuario": 1,
+			"comuna_id_comuna":21
 		}
 	},
 	{
@@ -1501,7 +1511,9 @@
 			"telefono": 959085454,
 			"fecha_nacimiento": "1994-11-08",
 			"estado": "1",
-			"usuario_rut_usuario": 1
+			"direccion": "LIBERTAD VIÑA DEL MAR",
+			"usuario_rut_usuario": 1,
+			"comuna_id_comuna":21
 		}
 	},
 	{
@@ -1516,7 +1528,9 @@
 			"telefono": 923456132,
 			"fecha_nacimiento": "1983-10-27",
 			"estado": "1",
-			"usuario_rut_usuario": 1
+			"direccion": "FLORES SILVESTRES LIMACHE",
+			"usuario_rut_usuario": 1,
+			"comuna_id_comuna":21
 		}
 	},
 	{
@@ -1531,7 +1545,9 @@
 			"telefono": 987225677,
 			"fecha_nacimiento": "1977-04-26",
 			"estado": "1",
-			"usuario_rut_usuario": 1
+			"direccion": "ECHAURREN LIMACHE",
+			"usuario_rut_usuario": 1,
+			"comuna_id_comuna":21
 		}
 	},
 	{
@@ -1615,7 +1631,8 @@
 			"fecha_fin": "2021-04-13",
 			"estado": "1",
 			"asegurado_rut_asegurado": "20554886-7",
-			"vehiculo_patente_vehiculo": "JP-DA-22"
+			"vehiculo_patente_vehiculo": "JP-DA-22",
+			"tipo_plan_id_tip_plan":1
 		}
 	},
 	{
@@ -1627,7 +1644,8 @@
 			"fecha_fin": "2021-05-16",
 			"estado": "1",
 			"asegurado_rut_asegurado": "19574568-3",
-			"vehiculo_patente_vehiculo": "GW-RE-32"
+			"vehiculo_patente_vehiculo": "GW-RE-32",
+			"tipo_plan_id_tip_plan":2
 		}
 	},
 	{
@@ -1639,7 +1657,8 @@
 			"fecha_fin": "2019-07-09",
 			"estado": "1",
 			"asegurado_rut_asegurado": "9078573-0",
-			"vehiculo_patente_vehiculo": "GR-PQ-12"
+			"vehiculo_patente_vehiculo": "GR-PQ-12",
+			"tipo_plan_id_tip_plan":3
 		}
 	},
 	{
@@ -1651,7 +1670,8 @@
 			"fecha_fin": "2020-11-20",
 			"estado": "1",
 			"asegurado_rut_asegurado": "19932098-5",
-			"vehiculo_patente_vehiculo": "FU-CK-69"
+			"vehiculo_patente_vehiculo": "FU-CK-69",
+			"tipo_plan_id_tip_plan":4
 		}
 	},
 	{
@@ -1663,7 +1683,8 @@
 			"fecha_fin": "2021-08-09",
 			"estado": "1",
 			"asegurado_rut_asegurado": "13456223-1",
-			"vehiculo_patente_vehiculo": "RR-XZ-WW"
+			"vehiculo_patente_vehiculo": "RR-XZ-WW",
+			"tipo_plan_id_tip_plan":1
 		}
 	},
 	{
@@ -1675,7 +1696,8 @@
 			"fecha_fin": "2019-12-30",
 			"estado": "1",
 			"asegurado_rut_asegurado": "23568113-7",
-			"vehiculo_patente_vehiculo": "YY-F8-CQ"
+			"vehiculo_patente_vehiculo": "YY-F8-CQ",
+			"tipo_plan_id_tip_plan":4
 		}
 	},
 	{
@@ -1689,7 +1711,9 @@
 			"capacidad_taller": 20,
 			"estado": "0",
 			"estado_delete": "1",
-			"usuario_rut_usuario": 9
+			"direccion":"CUATRO ESQUINAS LA SERENA",
+			"usuario_rut_usuario": 9,
+			"comuna_id_comuna":18
 		}
 	},
 	{
@@ -1703,7 +1727,9 @@
 			"capacidad_taller": 17,
 			"estado": "1",
 			"estado_delete": "1",
-			"usuario_rut_usuario": 8
+			"direccion":"NAUTICA REÑACA ALTO",
+			"usuario_rut_usuario": 8,
+			"comuna_id_comuna":23
 		}
 	},
 	{
@@ -1717,7 +1743,9 @@
 			"capacidad_taller": 10,
 			"estado": "1",
 			"estado_delete": "1",
-			"usuario_rut_usuario": 9
+			"direccion":"ATLANTICO VIÑA DEL MAR",
+			"usuario_rut_usuario": 9,
+			"comuna_id_comuna":23
 		}
 	},
 	{
@@ -1758,6 +1786,7 @@
 		"pk": "GG-KK-69",
 		"fields": {
 			"estado": "0",
+			"estado_delete":"1",
 			"servicio_grua_id_servicio": 1,
 			"usuario_rut_usuario": 10
 		}
@@ -1767,6 +1796,7 @@
 		"pk": "JJ-YY-21",
 		"fields": {
 			"estado": "1",
+			"estado_delete":"1",
 			"servicio_grua_id_servicio": 1,
 			"usuario_rut_usuario": 10
 		}
@@ -1776,6 +1806,7 @@
 		"pk": "VH-RT-44",
 		"fields": {
 			"estado": "1",
+			"estado_delete":"1",
 			"servicio_grua_id_servicio": 2,
 			"usuario_rut_usuario": 11
 		}
@@ -1785,6 +1816,7 @@
 		"pk": "DN-97-02",
 		"fields": {
 			"estado": "0",
+			"estado_delete":"1",
 			"servicio_grua_id_servicio": 2,
 			"usuario_rut_usuario": 11
 		}
@@ -1794,6 +1826,7 @@
 		"pk": "SG-VG-12",
 		"fields": {
 			"estado": "0",
+			"estado_delete":"1",
 			"servicio_grua_id_servicio": 3,
 			"usuario_rut_usuario": 12
 		}
@@ -1803,62 +1836,9 @@
 		"pk": "ZZ-ZZ-13",
 		"fields": {
 			"estado": "1",
+			"estado_delete":"1",
 			"servicio_grua_id_servicio": 3,
 			"usuario_rut_usuario": 12
-		}
-	},
-	{
-		"model": "dashboard.planseguro",
-		"pk": 1,
-		"fields": {
-			"deducible": 0,
-			"poliza_id_poliza": 1,
-			"tipo_plan_id_tip_plan": 4
-		}
-	},
-	{
-		"model": "dashboard.planseguro",
-		"pk": 2,
-		"fields": {
-			"deducible": 20,
-			"poliza_id_poliza": 2,
-			"tipo_plan_id_tip_plan": 2
-		}
-	},
-	{
-		"model": "dashboard.planseguro",
-		"pk": 3,
-		"fields": {
-			"deducible": 10,
-			"poliza_id_poliza": 3,
-			"tipo_plan_id_tip_plan": 4
-		}
-	},
-	{
-		"model": "dashboard.planseguro",
-		"pk": 4,
-		"fields": {
-			"deducible": 5,
-			"poliza_id_poliza": 4,
-			"tipo_plan_id_tip_plan": 1
-		}
-	},
-	{
-		"model": "dashboard.planseguro",
-		"pk": 5,
-		"fields": {
-			"deducible": 0,
-			"poliza_id_poliza": 5,
-			"tipo_plan_id_tip_plan": 4
-		}
-	},
-	{
-		"model": "dashboard.planseguro",
-		"pk": 6,
-		"fields": {
-			"deducible": 10,
-			"poliza_id_poliza": 6,
-			"tipo_plan_id_tip_plan": 3
 		}
 	},
 	{
@@ -1867,12 +1847,14 @@
 		"fields": {
 			"fecha_hr": "2020-03-10",
 			"descripcion": "CAYO SOBRE EL CAPO UNA RAMA DE ARBOL ABOLLANDO EL MALETERO",
+			"direccion":"MIRAMAR VIÑA DEL MAR",
 			"asegurado_rut_asegurado": "19932098-5",
 			"est_siniestro_id_est_siniestro": 7,
 			"poliza_id_poliza": 4,
 			"taller_id_taller": 2,
 			"tipo_accidente_id_tipo_acc": 6,
-			"usuario_rut_usuario": 1
+			"usuario_rut_usuario": 1,
+			"comuna_id_comuna":23
 		}
 	},
 	{
@@ -1881,13 +1863,15 @@
 		"fields": {
 			"fecha_hr": "2020-04-15",
 			"descripcion": "IBA PISTEANDO COMO TODO UN CAMPEON, COMO TODO UN SCHUMACHER",
+			"direccion":"GRAN BRETAÑA VALPARAISO",
 			"asegurado_rut_asegurado": "20554886-7",
 			"est_siniestro_id_est_siniestro": 2,
 			"grua_patente_grua": "VH-RT-44",
 			"poliza_id_poliza": 1,
 			"taller_id_taller": 1,
 			"tipo_accidente_id_tipo_acc": 1,
-			"usuario_rut_usuario": 1
+			"usuario_rut_usuario": 1,
+			"comuna_id_comuna":21
 		}
 	},
 	{
@@ -1896,13 +1880,15 @@
 		"fields": {
 			"fecha_hr": "2020-03-01",
 			"descripcion": "PAVIMENTO RESBALADIZO OCASIONO CHOQUE",
+			"direccion":"LOS PERALES VILLA ALEMANA",
 			"asegurado_rut_asegurado": "13456223-1",
 			"est_siniestro_id_est_siniestro": 1,
 			"grua_patente_grua": "JJ-YY-21",
 			"poliza_id_poliza": 5,
 			"taller_id_taller": 3,
 			"tipo_accidente_id_tipo_acc": 1,
-			"usuario_rut_usuario": 1
+			"usuario_rut_usuario": 1,
+			"comuna_id_comuna":22
 		}
 	},
 	{
@@ -1986,266 +1972,6 @@
 			"estado_id_est_presupuesto": 1,
 			"usuario_rut_usuario": 4,
 			"informe_dano_id_info_dano": 1
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 1,
-		"fields": {
-			"calle": "SANTA JULIA",
-			"numero": 1222,
-			"comuna_id_comuna": 12,
-			"usuario_rut_usuario": 1
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 2,
-		"fields": {
-			"calle": "SAN ALFONZO",
-			"numero": 5562,
-			"comuna_id_comuna": 23,
-			"usuario_rut_usuario": 2
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 3,
-		"fields": {
-			"calle": "RIQUELME",
-			"numero": 62,
-			"comuna_id_comuna": 5,
-			"usuario_rut_usuario": 3
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 4,
-		"fields": {
-			"calle": "SERRANO",
-			"numero": 0,
-			"comuna_id_comuna": 7,
-			"usuario_rut_usuario": 4
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 5,
-		"fields": {
-			"calle": "DE TIN MARIN",
-			"numero": 1516,
-			"comuna_id_comuna": 62,
-			"usuario_rut_usuario": 5
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 6,
-		"fields": {
-			"calle": "DE DO PINGUE",
-			"numero": 1234,
-			"comuna_id_comuna": 56,
-			"usuario_rut_usuario": 6
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 8,
-		"fields": {
-			"calle": "MIRAMAR",
-			"numero": 1881,
-			"comuna_id_comuna": 33,
-			"usuario_rut_usuario": 8
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 9,
-		"fields": {
-			"calle": "NARNIA",
-			"numero": 5522,
-			"comuna_id_comuna": 13,
-			"usuario_rut_usuario": 9
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 10,
-		"fields": {
-			"calle": "LAUTARO",
-			"numero": 52,
-			"comuna_id_comuna": 3,
-			"usuario_rut_usuario": 10
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 11,
-		"fields": {
-			"calle": "LIBERTAD",
-			"numero": 1110,
-			"comuna_id_comuna": 22,
-			"usuario_rut_usuario": 11
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 12,
-		"fields": {
-			"calle": "PRAT",
-			"numero": 1230,
-			"comuna_id_comuna": 4,
-			"usuario_rut_usuario": 12
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 13,
-		"fields": {
-			"calle": "ACAPULCO",
-			"numero": 11230,
-			"asegurado_rut_asegurado": "20554886-7",
-			"comuna_id_comuna": 17
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 14,
-		"fields": {
-			"calle": "CHILITO",
-			"numero": 11,
-			"asegurado_rut_asegurado": "19574568-3",
-			"comuna_id_comuna": 5
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 15,
-		"fields": {
-			"calle": "ESPERANZA",
-			"numero": 333,
-			"asegurado_rut_asegurado": "9078573-0",
-			"comuna_id_comuna": 18
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 16,
-		"fields": {
-			"calle": "TRANSITO",
-			"numero": 33,
-			"asegurado_rut_asegurado": "19932098-5",
-			"comuna_id_comuna": 28
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 17,
-		"fields": {
-			"calle": "COLEGIO",
-			"numero": 2728,
-			"asegurado_rut_asegurado": "13456223-1",
-			"comuna_id_comuna": 33
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 18,
-		"fields": {
-			"calle": "PLUTON",
-			"numero": 28,
-			"asegurado_rut_asegurado": "23568113-7",
-			"comuna_id_comuna": 23
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 19,
-		"fields": {
-			"calle": "PARAISO",
-			"numero": 666,
-			"comuna_id_comuna": 5,
-			"servicio_grua_id_servicio": 1
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 20,
-		"fields": {
-			"calle": "VANUS",
-			"numero": 321,
-			"comuna_id_comuna": 44,
-			"servicio_grua_id_servicio": 2
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 21,
-		"fields": {
-			"calle": "MARTE",
-			"numero": 21,
-			"comuna_id_comuna": 57,
-			"servicio_grua_id_servicio": 3
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 22,
-		"fields": {
-			"calle": "BRUSELAS",
-			"numero": 256,
-			"comuna_id_comuna": 15,
-			"siniestro_id": 1
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 23,
-		"fields": {
-			"calle": "DAMASCO",
-			"numero": 1926,
-			"comuna_id_comuna": 45,
-			"siniestro_id": 2
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 24,
-		"fields": {
-			"calle": "REPUBLICA",
-			"numero": 1903,
-			"comuna_id_comuna": 12,
-			"siniestro_id": 3
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 25,
-		"fields": {
-			"calle": "HIJUELAS",
-			"numero": 47,
-			"comuna_id_comuna": 45,
-			"taller_id_taller": 1
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 26,
-		"fields": {
-			"calle": "GLADIOLOS",
-			"numero": 666,
-			"comuna_id_comuna": 39,
-			"taller_id_taller": 2
-		}
-	},
-	{
-		"model": "dashboard.direccion",
-		"pk": 27,
-		"fields": {
-			"calle": "EATSMAN",
-			"numero": 2098,
-			"comuna_id_comuna": 21,
-			"taller_id_taller": 3
 		}
 	}
 ]

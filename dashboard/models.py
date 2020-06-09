@@ -19,8 +19,11 @@ class Asegurado(models.Model):
     telefono = models.CharField(verbose_name='Teléfono', max_length=9)
     fecha_nacimiento = models.DateField(verbose_name='Fecha Nacimiento')
     estado = models.CharField(max_length=1, default=1)
+    direccion = models.CharField(max_length=150, verbose_name='Dirección asegurado')
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    comuna_id_comuna = models.ForeignKey(
+        'Comuna', models.DO_NOTHING, db_column='comuna_id_comuna', verbose_name='Comuna', null=True)
 
     # class Meta:
     #     managed = False
@@ -43,32 +46,6 @@ class Comuna(models.Model):
 
     def __str__(self):
         return self.nombre
-
-
-class Direccion(models.Model):
-    calle = models.CharField(max_length=50, verbose_name='Calle')
-    numero = models.IntegerField(verbose_name='N°')
-    comuna_id_comuna = models.ForeignKey(
-        'Comuna', models.DO_NOTHING, db_column='comuna_id_comuna', verbose_name='Comuna', null=True)
-    usuario_rut_usuario = models.ForeignKey(
-        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', blank=True, null=True, verbose_name='Rut Usuario')
-    asegurado_rut_asegurado = models.ForeignKey(
-        'Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', blank=True, null=True, verbose_name='Asegurado')
-    servicio_grua_id_servicio = models.ForeignKey(
-        'ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio', blank=True, null=True, verbose_name='Servicio GRúa')
-    siniestro_id = models.ForeignKey(
-        'Siniestro', models.DO_NOTHING, db_column='siniestro_id', blank=True, null=True, verbose_name='ID Siniestro')
-    taller_id_taller = models.ForeignKey(
-        'Taller', models.DO_NOTHING, db_column='taller_id_taller', blank=True, null=True, verbose_name='Taller')
-
-    # class Meta:
-    #     managed = False
-    #     db_table = 'direccion'
-    #     verbose_name_plural = 'Direcciones'
-
-    def __str__(self):
-        return self.calle + ' ' + '#' + str(self.numero)
-
 
 class EstadoPresupuesto(models.Model):
     nombre = models.CharField(max_length=30, verbose_name='Nombre')
@@ -120,7 +97,8 @@ class FormularioActa(models.Model):
 class Grua(models.Model):
     patente_grua = models.CharField(
         primary_key=True, max_length=10, verbose_name='Patente Grúa')
-    estado = models.CharField(max_length=1, verbose_name='Estado')
+    estado = models.CharField(max_length=1, verbose_name='Estado',default=1)
+    estado_delete = models.CharField(max_length=1, verbose_name='Estado delete', default=1)
     servicio_grua_id_servicio = models.ForeignKey(
         'ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio', verbose_name='Servicio Grúa', null=True)
     usuario_rut_usuario = models.ForeignKey(
@@ -173,24 +151,6 @@ class Marca(models.Model):
     def __str__(self):
         return str(self.nombre)
 
-
-class PlanSeguro(models.Model):
-    tipo_plan_id_tip_plan = models.ForeignKey(
-        'TipoPlan', models.DO_NOTHING, db_column='tipo_plan_id_tip_plan', verbose_name='Tipo Plan', null=True)
-    poliza_id_poliza = models.ForeignKey(
-        'Poliza', models.DO_NOTHING, db_column='poliza_id_poliza', verbose_name='ID Póliza', null=True)
-    deducible = models.IntegerField(verbose_name='Deducible')
-
-    # class Meta:
-    #     managed = False
-    #     db_table = 'plan_seguro'
-    #     unique_together = (('tipo_plan_id_tip_plan', 'poliza_id_poliza'),)
-    #     verbose_name_plural = 'Plan Seguros'
-
-    # def __str__(self):
-    #     return str(self.tipo_plan_id_tip_plan)
-
-
 class Poliza(models.Model):
     vigente = models.CharField(
         max_length=1, verbose_name='Vigencia', default=1)
@@ -203,6 +163,8 @@ class Poliza(models.Model):
         'Vehiculo', models.DO_NOTHING, db_column='vehiculo_patente_vehiculo', verbose_name='Patente Vehículo', null=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    tipo_plan_id_tip_plan = models.ForeignKey(
+        'TipoPlan', models.DO_NOTHING, db_column='tipo_plan_id_tip_plan', verbose_name='Tipo plan', null=True)
 
     def __str__(self):
         return str(self.id)
@@ -347,6 +309,7 @@ class Siniestro(models.Model):
         upload_to='Partes Policiales', null=True, blank=True)
     foto_licencia = models.ImageField(
         upload_to='Fotos Licencias', null=True, blank=True)
+    direccion = models.CharField(max_length=150, verbose_name='Dirección siniestro')
     tipo_accidente_id_tipo_acc = models.ForeignKey(
         'TipoAccidente', models.DO_NOTHING, db_column='tipo_accidente_id_tipo_acc', verbose_name='Tipo Accidente', null=True)
     est_siniestro_id_est_siniestro = models.ForeignKey(
@@ -361,6 +324,8 @@ class Siniestro(models.Model):
         'Poliza', models.DO_NOTHING, db_column='poliza_id_poliza', verbose_name='ID Póliza', null=True)
     asegurado_rut_asegurado = models.ForeignKey(
         'Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', verbose_name='Rut Asegurado', null=True)
+    comuna_id_comuna = models.ForeignKey(
+        'Comuna', models.DO_NOTHING, db_column='comuna_id_comuna', verbose_name='Comuna', null=True)
     # class Meta:
     #     managed = False
     #     db_table = 'siniestro'
@@ -379,8 +344,11 @@ class Taller(models.Model):
         verbose_name='Capacidad Taller', max_length=3)
     estado = models.CharField(max_length=1, verbose_name='Estado', default=1)
     estado_delete = models.CharField(max_length=1, default=1)
+    direccion = models.CharField(max_length=150, verbose_name='Dirección taller')
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    comuna_id_comuna = models.ForeignKey(
+        'Comuna', models.DO_NOTHING, db_column='comuna_id_comuna', verbose_name='Comuna', null=True)
 
     # class Meta:
     #     managed = False
@@ -433,6 +401,7 @@ class TipoPlan(models.Model):
     descripcion = models.CharField(max_length=500, verbose_name='Descripción')
     valor = models.IntegerField(verbose_name='Valor')
     cobertura_max = models.IntegerField(verbose_name='Cobertura Máxima')
+    deducible = models.IntegerField(verbose_name='Deducible')
 
     # class Meta:
     #     managed = False
@@ -509,6 +478,8 @@ class Usuario(AbstractBaseUser):
     rol = models.CharField(max_length=30, choices=opciones, null=True)
     taller_id_taller = models.ForeignKey(
         'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', blank=True, null=True)
+    servicio_grua_id_servicio_grua = models.ForeignKey(
+        'ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio_grua', verbose_name='Servicio Grua', blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_administrador = models.BooleanField(default=False)
     objects = UsuarioManager()

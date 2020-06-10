@@ -70,6 +70,24 @@
         <div class="form-row">
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
+                    <span>DIRECCIÓN</span>
+                </div>
+                {{form.direccion}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_direccion"></div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>COMUNA</span>
+                </div>
+                {{form.comuna_id_comuna}}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_comuna"></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
                     <span>CORREO</span>
                 </div>
                 {{form.correo}}

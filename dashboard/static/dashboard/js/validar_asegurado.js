@@ -8,6 +8,8 @@ function iniciar() {
     document.getElementById("s_nombre_asegurado").addEventListener('keyup', validaSegundoNombre);
     document.getElementById("p_apellido_asegurado").addEventListener('keyup', validaPrimerApellido);
     document.getElementById("s_apellido_asegurado").addEventListener('keyup', validaSegundoApellido);
+    document.getElementById("direccion_asegurado").addEventListener('keyup', validaDireccion);
+    document.getElementById("comuna_asegurado").addEventListener('change', validaComuna);
     document.getElementById("correo_asegurado").addEventListener('keyup', validaCorreo);
     document.getElementById("fecha_asegurado").addEventListener('change', validaFecha);
 }
@@ -24,6 +26,7 @@ function validaRut() {
         return false;
     }
     clearErrorRut(elemento);
+    document.getElementById("id_rut_asegurado").disabled = false;
     return true;
 
 }
@@ -139,6 +142,53 @@ function clearErrorSApellido(elemento) {
     elemento.className = "form-control is-valid";
 }
 
+function validaDireccion() {
+    var elemento = document.getElementById("direccion_asegurado");
+    if (!elemento.checkValidity()) {
+        if (elemento.validity.valueMissing) {
+            error_direccion(elemento, "Debe introducir dirección");
+        }
+        if (elemento.validity.patternMismatch) {
+            error_direccion(elemento, "Debe contener al menos 4 caracteres y sin simbolos");
+        }
+        return false;
+    }
+    clearErrorDireccion(elemento);
+    return true;
+}
+
+function error_direccion(elemento, mensaje) {
+    document.getElementById("error_direccion").innerHTML = mensaje;
+    elemento.className = "form-control is-invalid";
+}
+
+function clearErrorDireccion(elemento) {
+    document.getElementById("error_direccion").innerHTML = "";
+    elemento.className = "form-control is-valid";
+}
+
+function validaComuna() {
+    var elemento = document.getElementById("comuna_asegurado");
+    if (!elemento.checkValidity()) {
+        if (elemento.validity.valueMissing) {
+            error_comuna(elemento, "Debe seleccionar comuna");
+        }
+        return false;
+    }
+    clearErrorComuna(elemento);
+    return true;
+}
+
+function error_comuna(elemento, mensaje) {
+    document.getElementById("error_comuna").innerHTML = mensaje;
+    elemento.className = "form-control is-invalid";
+}
+
+function clearErrorComuna(elemento) {
+    document.getElementById("error_comuna").innerHTML = "";
+    elemento.className = "form-control is-valid";
+}
+
 function validaTelefono() {
     var elemento = document.getElementById("telefono_asegurado");
     if (!elemento.checkValidity()) {
@@ -215,8 +265,7 @@ function clearErrorFecha(elemento) {
 
 function validar(e) {
     if (validaRut() && validaTelefono() && validaPrimerNombre() && validaSegundoNombre()
-        && validaPrimerApellido() && validaSegundoApellido() && validaCorreo() && validaFecha()) {
-        document.getElementById("id_rut_asegurado").disabled = false;
+        && validaPrimerApellido() && validaSegundoApellido() && validaDireccion() && validaComuna() && validaCorreo() && validaFecha()) {
         return true
     } else {
         e.preventDefault();

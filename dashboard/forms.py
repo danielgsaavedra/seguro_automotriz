@@ -19,6 +19,7 @@ class PolizaForm(forms.ModelForm):
             'fecha_fin',
             'asegurado_rut_asegurado',
             'vehiculo_patente_vehiculo',
+            'tipo_plan_id_tip_plan',
         ]
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
@@ -26,7 +27,8 @@ class PolizaForm(forms.ModelForm):
             'fecha_inicio': forms.TextInput(attrs={'class': 'required form-control', 'id': 'fecha_inicio', 'readonly': 'False'}),
             'fecha_fin': forms.TextInput(attrs={'class': 'required form-control', 'id': 'fecha_fin', 'placeholder': 'Ingresa fecha de termino'}),
             'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'onchange': "cargarPatentes();", 'id': 'poli_rut_asegurado'}),
-            'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control', 'id': 'poli_patente', 'disabled': 'true'})
+            'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control', 'id': 'poli_patente', 'disabled': 'true'}),
+            'tipo_plan_id_tip_plan': forms.Select(attrs={'class': 'form-control', 'id': 'tipo_plan'})
         }
 
 
@@ -41,6 +43,7 @@ class PolizaFormUpdate(forms.ModelForm):
             'fecha_fin',
             'asegurado_rut_asegurado',
             'vehiculo_patente_vehiculo',
+            'tipo_plan_id_tip_plan',
         ]
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
@@ -48,7 +51,8 @@ class PolizaFormUpdate(forms.ModelForm):
             'fecha_inicio': forms.TextInput(attrs={'class': 'required form-control', 'id': 'fecha_inicio', 'readonly': 'False'}),
             'fecha_fin': forms.TextInput(attrs={'class': 'required form-control', 'id': 'fecha_fin', 'placeholder': 'Ingresa fecha de termino'}),
             'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'onchange': "cargarPatentes();", 'id': 'poli_rut_asegurado', 'disabled': 'true'}),
-            'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control', 'id': 'poli_patente', 'disabled': 'true'})
+            'vehiculo_patente_vehiculo': forms.Select(attrs={'class': 'form-control', 'id': 'poli_patente', 'disabled': 'true'}),
+            'tipo_plan_id_tip_plan': forms.Select(attrs={'class': 'form-control', 'id': 'tipo_plan', 'disabled': 'true'})
         }
 
 # FORMULARIO BORRADO LOGICO POLIZA
@@ -78,6 +82,8 @@ class AseguradoForm(forms.ModelForm):
             'correo',
             'telefono',
             'fecha_nacimiento',
+            'direccion',
+            'comuna_id_comuna',
         ]
         widgets = {
             'rut_asegurado': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT', 'pattern': '^[0-9]{7,9}[-|‐]{1}[0-9kK]{1}$', 'oninput': 'checkRut(this)'}),
@@ -88,6 +94,8 @@ class AseguradoForm(forms.ModelForm):
             'correo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', 'id': 'correo_asegurado'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa teléfono', 'pattern': '[0-9]{9,}', 'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)', 'id': 'telefono_asegurado'}),
             'fecha_nacimiento': forms.TextInput(attrs={'class': 'form-control', 'type': 'date', 'id': 'fecha_asegurado'}),
+            'direccion': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa dirección','id': 'direccion_asegurado', 'pattern': '[A-Za-zÀ-ÿ0-9 ]{4,}'}),
+            'comuna_id_comuna': forms.Select(attrs={'class': 'required form-control', 'id': 'comuna_asegurado'}),
         }
 
     def clean_rut_asegurado(self):
@@ -110,6 +118,8 @@ class AseguradoFormUpdate(forms.ModelForm):
             'correo',
             'telefono',
             'fecha_nacimiento',
+            'direccion',
+            'comuna_id_comuna',
         ]
         widgets = {
             'rut_asegurado': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT', 'pattern': '^[0-9]{7,9}[-|‐]{1}[0-9kK]{1}$', 'oninput': 'checkRut(this)', 'disabled': 'true'}),
@@ -120,6 +130,8 @@ class AseguradoFormUpdate(forms.ModelForm):
             'correo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', 'id': 'correo_asegurado'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa teléfono', 'pattern': '[0-9]{9,}', 'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)', 'id': 'telefono_asegurado'}),
             'fecha_nacimiento': forms.TextInput(attrs={'class': 'form-control', 'type': 'date', 'id': 'fecha_asegurado'}),
+            'direccion': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa dirección','id': 'direccion_asegurado', 'pattern': '[A-Za-zÀ-ÿ0-9 ]{4,}'}),
+            'comuna_id_comuna': forms.Select(attrs={'class': 'required form-control', 'id': 'comuna_asegurado'}),
         }
 
 # FORMULARIO BORRADO LOGICO ASEGURADO

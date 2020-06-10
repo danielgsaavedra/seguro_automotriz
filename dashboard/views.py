@@ -9,7 +9,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario
-from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, AseguradoFormUpdate, VehiculoFormUpdate
+from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, AseguradoFormUpdate, VehiculoFormUpdate, SiniestroFotosUpdate
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -636,3 +636,18 @@ def AseguradoConsultaView(request):
 
 class HomeView(TemplateView):
     template_name = 'dashboard/home.html'
+
+
+def UpdateSiniestroFotos(request, id):
+    siniestro = get_object_or_404(Siniestro, id=id)
+    if request.method == 'POST':
+        form = SiniestroFotosUpdate(
+            request.POST, request.FILES,  instance=siniestro)
+        if form.is_valid():
+            form.save()
+            return redirect('asegurado_consulta')
+    else:
+        form = SiniestroFotosUpdate(instance=siniestro)
+    return render(request, 'dashboard/asegurados/asegurado_fotos.html', {
+        'form': form
+    })

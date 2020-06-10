@@ -7,6 +7,8 @@ function iniciar() {
     document.getElementById("tipo_accidente").addEventListener('change', validaAccidente);
     document.getElementById("taller").addEventListener('change', validaTaller);
     document.getElementById("asegurado_rut").addEventListener('change', validaRutAsegurado);
+    document.getElementById("direccion").addEventListener('keyup', validaDireccion);
+    document.getElementById("comuna").addEventListener('change', validaComuna);
     document.getElementById("descripcion").addEventListener('keyup', validaDescripcion, false);
 }
 
@@ -103,6 +105,59 @@ function clearErrorRut(elemento) {
     elemento.className = "form-control is-valid";
 }
 
+function validaDireccion() {
+    var elemento = document.getElementById("direccion");
+    if (!elemento.checkValidity()) {
+        if (elemento.validity.valueMissing) {
+            error_direccion(elemento, "Debe ingresar dirección")
+        }
+        if (elemento.validity.patternMismatch) {
+            error_direccion(elemento, "Debe contener al menos 4 caracteres");
+        }
+        return false;
+    }
+    clearErrorDireccion(elemento);
+    return true;
+
+}
+
+function error_direccion(elemento, mensaje) {
+    document.getElementById("error_direccion").innerHTML = mensaje;
+    elemento.className = "form-control is-invalid";
+}
+
+function clearErrorDireccion(elemento) {
+    document.getElementById("error_direccion").innerHTML = "";
+    elemento.className = "form-control is-valid";
+}
+
+function validaComuna() {
+    var elemento = document.getElementById("comuna");
+    if (!elemento.checkValidity()) {
+        if (elemento.validity.valueMissing) {
+            error_comuna(elemento, "Debe seleccionar una comuna")
+        }
+        return false;
+    }
+    clearErrorComuna(elemento);
+    return true;
+
+}
+
+function error_comuna(elemento, mensaje) {
+    document.getElementById("error_comuna").innerHTML = mensaje;
+    elemento.className = "form-control is-invalid";
+}
+
+function clearErrorComuna(elemento) {
+    document.getElementById("error_comuna").innerHTML = "";
+    elemento.className = "form-control is-valid";
+}
+
+
+
+
+
 function validaDescripcion(e) {
     var elemento = document.getElementById("descripcion");
     if (!elemento.checkValidity()) {
@@ -132,10 +187,13 @@ function clearErrorDescripcion(elemento) {
 }
 
 function validar(e) {
-    if (validaRutAsegurado() && validaNumPoliza() && validaTaller() && validaAccidente() && validaDescripcion()) {
+    if (validaRutAsegurado() && validaNumPoliza() && validaTaller() && validaAccidente() && validaDescripcion() && validaDireccion() &&validaComuna() ) {
         document.getElementById("asegurado_rut").disabled = false;
         document.getElementById("poliza").disabled = false;
         document.getElementById("tipo_accidente").disabled = false;
+        document.getElementById("direccion").disabled = false;
+        document.getElementById("comuna").disabled = false;
+
         return true
     } else {
         e.preventDefault();

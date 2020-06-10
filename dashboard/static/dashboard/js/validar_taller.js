@@ -7,6 +7,8 @@ function iniciar() {
     document.getElementById("telefono_taller").addEventListener('keyup', validaTelefono);
     document.getElementById("correo_taller").addEventListener('keyup', validaCorreo);
     document.getElementById("capacidad").addEventListener('keyup', validaCapacidad);
+    document.getElementById("direccion").addEventListener('keyup', validaDireccion);
+    document.getElementById("comuna").addEventListener('change', validaComuna);
     document.getElementById('capacidad').addEventListener('keydown', function (evento) {
         const teclaPresionada = evento.key;
         const teclaPresionadaEsUnNumero =
@@ -136,6 +138,58 @@ function clearErrorCorreo(elemento) {
     elemento.className = "form-control is-valid";
 }
 
+function validaDireccion() {
+    var elemento = document.getElementById("direccion");
+    if (!elemento.checkValidity()) {
+        if (elemento.validity.valueMissing) {
+            error_direccion(elemento, "Debe ingresar dirección")
+        }
+        if (elemento.validity.patternMismatch) {
+            error_direccion(elemento, "Debe contener al menos 4 caracteres");
+        }
+        return false;
+    }
+    clearErrorDireccion(elemento);
+    return true;
+
+}
+
+function error_direccion(elemento, mensaje) {
+    document.getElementById("error_direccion").innerHTML = mensaje;
+    elemento.className = "form-control is-invalid";
+}
+
+function clearErrorDireccion(elemento) {
+    document.getElementById("error_direccion").innerHTML = "";
+    elemento.className = "form-control is-valid";
+}
+
+function validaComuna() {
+    var elemento = document.getElementById("comuna");
+    if (!elemento.checkValidity()) {
+        if (elemento.validity.valueMissing) {
+            error_comuna(elemento, "Debe seleccionar una comuna")
+        }
+        return false;
+    }
+    clearErrorComuna(elemento);
+    return true;
+
+}
+
+function error_comuna(elemento, mensaje) {
+    document.getElementById("error_comuna").innerHTML = mensaje;
+    elemento.className = "form-control is-invalid";
+}
+
+function clearErrorComuna(elemento) {
+    document.getElementById("error_comuna").innerHTML = "";
+    elemento.className = "form-control is-valid";
+}
+
+
+
+
 function validaCapacidad() {
     var elemento = document.getElementById("capacidad");
     if (!elemento.checkValidity()) {
@@ -161,7 +215,7 @@ function clearErrorCapacidad(elemento) {
 
 
 function validar(e) {
-    if (validaNombre() && validaRazon() && validaTelefono() && validaCapacidad() && validaCorreo()) {
+    if (validaNombre() && validaRazon() && validaTelefono() && validaCapacidad() && validaCorreo() && validaDireccion() && validaComuna() ) {
         return true
     } else {
         e.preventDefault();

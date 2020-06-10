@@ -1,0 +1,116 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'dashboard/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'dashboard/css/style2.css' %}" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <title>Adjuntar Documentos</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row mt-2">
+            <div class="col-6">
+                <div class="text-center d-none d-md-inline">
+                    <a class="text-decoration-none" href="{% url 'asegurado_consulta' %}">
+                        <i class="fas fa-arrow-circle-left"></i> Volver
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="card shadow-sm mt-5">
+                <div class="card-header">
+                    <div class="text-center">
+                        <h3 class="card-title">Adjuntar Documentos</h3>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="mx-5 clearfix">
+                        <form action="" method="POST" class="needs-validation" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group col-12 col-md-6">
+                                    <div class="col-form-label">
+                                        <span>FOTO LICENCIA</span>
+                                    </div>
+                                    {{form.foto_licencia}}
+                                    <div class="valid-feedback"></div>
+                                    <div class="invalid-feedback" id="error_licencia"></div>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <div class="col-form-label">
+                                        <span>PARTE POLICIAL</span>
+                                    </div>
+                                    {{form.parte_policial}}
+                                    <span style="color: #e74a3b; font-size: 80%;">Parte policial opcional</span>
+                                </div>
+                            </div>
+                            <div class="justify-content-center d-flex my-4">
+                                <button type="submit" class="d-none d-sm-inline-block btn btn-primary shadow-sm"
+                                    id="searchSiniestro">
+                                    <i class="fas fa-upload fa-sm text-white-50"></i> Adjuntar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'dashboard/js/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/popper.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/formato_rut.js' %}"></script>
+    <script type="text/javascript">
+        window.onload = iniciar();
+
+        function iniciar() {
+            document.getElementById("searchSiniestro").addEventListener('click', validar, false);
+            document.getElementById("licencia").addEventListener('change', validaLicencia);
+
+
+        }
+
+        function validaLicencia() {
+            var elemento = document.getElementById("licencia");
+            if (!elemento.checkValidity()) {
+                if (elemento.validity.valueMissing) {
+                    error_pol(elemento, "Debe adjuntar foto de licencia de conducir (Solo cara frontal)");
+                }
+                return false;
+            }
+            clear_error_pol(elemento);
+            return true;
+
+        }
+
+        function error_pol(elemento, mensaje) {
+            document.getElementById("error_licencia").innerHTML = mensaje;
+            elemento.className = "form-control is-invalid";
+        }
+
+        function clear_error_pol(elemento) {
+            document.getElementById("error_licencia").innerHTML = "";
+            elemento.className = "form-control is-valid";
+        }
+
+        function validar(e) {
+            if (validaLicencia()) {
+                return true
+            } else {
+                e.preventDefault();
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>

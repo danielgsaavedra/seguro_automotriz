@@ -193,6 +193,15 @@ class SiniestroFormUpdate(forms.ModelForm):
         }
 
 
+class SiniestroFotosUpdate(forms.ModelForm):
+    class Meta:
+        model = Siniestro
+        fields = ['parte_policial', 'foto_licencia']
+        widgets = {
+            'parte_policial': forms.FileInput(attrs={'class': 'form-control', 'id': 'parte_poli'}),
+            'foto_licencia': forms.FileInput(attrs={'class': 'form-control', 'required': 'true', 'id': 'licencia'}),
+        }
+
 # FORMULARIO BORRADO LOGICO SINIESTRO
 
 
@@ -237,6 +246,7 @@ class VehiculoForm(forms.ModelForm):
             'marca_id_marca': forms.Select(attrs={'class': 'form-control', 'id': 'marca_vehi'}),
             'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'id': 'rut_asegurado_vehi'}),
         }
+
 
 class VehiculoFormUpdate(forms.ModelForm):
 
@@ -283,7 +293,7 @@ class TallerForm(forms.ModelForm):
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
             'nombre': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa nombre', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 'nombre_taller'}),
-            'razon_social': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa razón social', 'pattern': '^[a-zA-Z0-9._%+- ]{4,}', 'id': 'razon_social'}),
+            'razon_social': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa razón social', 'pattern': '[A-Za-zÀ-ÿ0-9 ]{4,}', 'id': 'razon_social'}),
             'telefono': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa número de teléfono', 'pattern': '[0-9]{9,}', 'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)', 'id': 'telefono_taller'}),
             'correo': forms.TextInput(attrs={'class': 'required form-control', 'type': 'email', 'placeholder': 'Ingresa correo', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', 'id': 'correo_taller'}),
             'capacidad_taller': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa capacidad máxima', 'id': 'capacidad', 'onkeypress': 'return soloNumeros(event)', 'onKeyUp': 'pierdeFoco(this)'}),

@@ -19,7 +19,8 @@ class Asegurado(models.Model):
     telefono = models.CharField(verbose_name='Teléfono', max_length=9)
     fecha_nacimiento = models.DateField(verbose_name='Fecha Nacimiento')
     estado = models.CharField(max_length=1, default=1)
-    direccion = models.CharField(max_length=150, verbose_name='Dirección asegurado')
+    direccion = models.CharField(
+        max_length=150, verbose_name='Dirección asegurado')
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     comuna_id_comuna = models.ForeignKey(
@@ -46,6 +47,7 @@ class Comuna(models.Model):
 
     def __str__(self):
         return self.nombre
+
 
 class EstadoPresupuesto(models.Model):
     nombre = models.CharField(max_length=30, verbose_name='Nombre')
@@ -97,8 +99,9 @@ class FormularioActa(models.Model):
 class Grua(models.Model):
     patente_grua = models.CharField(
         primary_key=True, max_length=10, verbose_name='Patente Grúa')
-    estado = models.CharField(max_length=1, verbose_name='Estado',default=1)
-    estado_delete = models.CharField(max_length=1, verbose_name='Estado delete', default=1)
+    estado = models.CharField(max_length=1, verbose_name='Estado', default=1)
+    estado_delete = models.CharField(
+        max_length=1, verbose_name='Estado delete', default=1)
     servicio_grua_id_servicio = models.ForeignKey(
         'ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio', verbose_name='Servicio Grúa', null=True)
     usuario_rut_usuario = models.ForeignKey(
@@ -150,6 +153,7 @@ class Marca(models.Model):
 
     def __str__(self):
         return str(self.nombre)
+
 
 class Poliza(models.Model):
     vigente = models.CharField(
@@ -306,10 +310,11 @@ class Siniestro(models.Model):
     fecha_hr = models.DateField(verbose_name='Fecha Siniestro', auto_now=True)
     descripcion = models.CharField(max_length=1024, verbose_name='Descripción')
     parte_policial = models.ImageField(
-        upload_to='Partes Policiales', null=True, blank=True)
+        upload_to='partes_policiales', null=True, blank=True)
     foto_licencia = models.ImageField(
-        upload_to='Fotos Licencias', null=True, blank=True)
-    direccion = models.CharField(max_length=150, verbose_name='Dirección siniestro')
+        upload_to='licencias', null=True, blank=True)
+    direccion = models.CharField(
+        max_length=150, verbose_name='Dirección siniestro')
     tipo_accidente_id_tipo_acc = models.ForeignKey(
         'TipoAccidente', models.DO_NOTHING, db_column='tipo_accidente_id_tipo_acc', verbose_name='Tipo Accidente', null=True)
     est_siniestro_id_est_siniestro = models.ForeignKey(
@@ -344,7 +349,8 @@ class Taller(models.Model):
         verbose_name='Capacidad Taller', max_length=3)
     estado = models.CharField(max_length=1, verbose_name='Estado', default=1)
     estado_delete = models.CharField(max_length=1, default=1)
-    direccion = models.CharField(max_length=150, verbose_name='Dirección taller')
+    direccion = models.CharField(
+        max_length=150, verbose_name='Dirección taller')
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     comuna_id_comuna = models.ForeignKey(

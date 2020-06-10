@@ -70,49 +70,92 @@
         </div>
 
         <div class="row justify-content-center mt-5">
-            <div>
-                {% for siniestros in siniestros %}
-                <h2>N° Siniestro : {{siniestros.id}} </h2>
-                <h2>Se encuentra
-                    {% if siniestros.est_siniestro_id_est_siniestro.id == 1 %}
-                    <span class="badge badge-pill badge-info">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-                    {% endif %}
+            <div class="table-responsive col-6">
+                <table class="table table-bordered table-hover text-center" id="table_asegurado" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">N° Siniestro</th>
+                            <th scope="col">Estado Siniestro</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for siniestros in siniestros %}
+                        <tr>
+                            <th scope="row">{{siniestros.id}}</th>
+                            {% if siniestros.est_siniestro_id_est_siniestro.id == 1 %}
+                            <td>
+                                <span
+                                    class="badge badge-pill badge-info">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                            </td>
+                            {% endif %}
 
-                    {% if siniestros.est_siniestro_id_est_siniestro.id == 2 %}
-                    <span class="badge badge-pill badge-light">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-                    {% endif %}
+                            {% if siniestros.est_siniestro_id_est_siniestro.id == 2 %}
+                            <td>
+                                <span
+                                    class="badge badge-pill badge-light">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                            </td>
+                            {% endif %}
 
-                    {% if siniestros.est_siniestro_id_est_siniestro.id == 3 %}
-                    <span class="badge badge-pill badge-primary">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-                    {% endif %}
+                            {% if siniestros.est_siniestro_id_est_siniestro.id == 3 %}
+                            <td>
+                                <span
+                                    class="badge badge-pill badge-primary">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                            </td>
+                            {% endif %}
 
-                    {% if siniestros.est_siniestro_id_est_siniestro.id == 4 %}
-                    <span class="badge badge-pill badge-warning">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-                    {% endif %}
+                            {% if siniestros.est_siniestro_id_est_siniestro.id == 4 %}
+                            <td>
+                                <span
+                                    class="badge badge-pill badge-warning">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                            </td>
+                            {% endif %}
 
-                    {% if siniestros.est_siniestro_id_est_siniestro.id == 5 %}
-                    <span class="badge badge-pill badge-danger">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-                    {% endif %}
+                            {% if siniestros.est_siniestro_id_est_siniestro.id == 5 %}
+                            <td>
+                                <span
+                                    class="badge badge-pill badge-danger">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                            </td>
+                            {% endif %}
 
-                    {% if siniestros.est_siniestro_id_est_siniestro.id == 6 %}
-                    <span class="badge badge-pill badge-success">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-                    {% endif %}
+                            {% if siniestros.est_siniestro_id_est_siniestro.id == 6 %}
+                            <td>
+                                <span
+                                    class="badge badge-pill badge-success">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                            </td>
+                            {% endif %}
 
-                    {% if siniestros.est_siniestro_id_est_siniestro.id == 7 %}
-                    <span class="badge badge-pill badge-dark">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-                    {% endif %}
+                            {% if siniestros.est_siniestro_id_est_siniestro.id == 7 %}
+                            <td>
+                                <span
+                                    class="badge badge-pill badge-dark">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                            </td>
+                            {% endif %}
 
-                    {% if siniestros.est_siniestro_id_est_siniestro.id == 8 %}
-                    <span class="badge badge-pill badge-secondary">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-                    {% endif %}
-
-                </h2>
-                {% empty %}
-                <h2>No se encontraron siniestros</h2>
-                {% endfor %}
+                            {% if siniestros.est_siniestro_id_est_siniestro.id == 8 %}
+                            <td>
+                                <span
+                                    class="badge badge-pill badge-secondary">{{siniestros.est_siniestro_id_est_siniestro}}</span>
+                            </td>
+                            {% endif %}
+                            <td>
+                                <a href="{% url 'asegurado_adjunta' siniestros.id %}">
+                                    <button class="btn btn-sm btn-outline-dark">
+                                        <i class="fas fa-upload"></i> Adjuntar Documentos
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center">No hay Coincidencias</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
-
     </div>
 
 

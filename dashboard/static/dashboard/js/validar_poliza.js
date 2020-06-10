@@ -5,6 +5,8 @@ function iniciar() {
     document.getElementById("fecha_fin").addEventListener('change', validaFin);
     document.getElementById("poli_rut_asegurado").addEventListener('change', validaRutAsegurado);
     document.getElementById("poli_patente").addEventListener('change', validaPatente);
+    document.getElementById("tipo_plan").addEventListener('change', validaTipoPlan);
+
 }
 
 function validaFin() {
@@ -73,10 +75,33 @@ function clearErrorPatente(elemento) {
     elemento.className = "form-control is-valid";
 }
 
+function validaTipoPlan() {
+    var elemento = document.getElementById("tipo_plan");
+    if (!elemento.checkValidity()) {
+        if (elemento.validity.valueMissing) {
+            error_plan(elemento, "Debe seleccionar tipo plan");
+        }
+        return false;
+    }
+    clearErrorPlan(elemento);
+    return true;
+}
+
+function error_plan(elemento, mensaje) {
+    document.getElementById("error_plan").innerHTML = mensaje;
+    elemento.className = "form-control is-invalid";
+}
+
+function clearErrorPlan(elemento) {
+    document.getElementById("error_plan").innerHTML = "";
+    elemento.className = "form-control is-valid";
+}
+
 function validar(e) {
-    if (validaFin() && validaRutAsegurado() && validaPatente()) {
+    if (validaFin() && validaRutAsegurado() && validaPatente() && validaTipoPlan()) {
         document.getElementById("poli_patente").disabled = false;
         document.getElementById("poli_rut_asegurado").disabled = false;
+        document.getElementById("tipo_plan").disabled = false;
         return true
     } else {
         e.preventDefault();

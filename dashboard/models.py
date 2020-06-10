@@ -414,8 +414,8 @@ class TipoPlan(models.Model):
     #     db_table = 'tipo_plan'
     #     verbose_name_plural = 'Tipo Planes'
 
-    # def __str__(self):
-    #     return str(self.id_tip_plan) + ' ' + ' ' + self.nombre + ' ' + str(self.valor)
+    def __str__(self):
+        return self.nombre
 
 
 class TipoVehiculo(models.Model):

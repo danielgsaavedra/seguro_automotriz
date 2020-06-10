@@ -4,7 +4,7 @@
     {% csrf_token %}
 
     <div class="modal-header bg-primary">
-        <h5 class="modal-title text-light">Modificar Pólizas</h5>
+        <h5 class="modal-title text-light">Revalidar Pólizas</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
@@ -47,10 +47,20 @@
                 <div class="invalid-feedback" id="error_patente"></div>
             </div>
         </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+              <div class="col-form-label">
+                <span>TIPO PLAN</span>
+              </div>
+              {{ form.tipo_plan_id_tip_plan }}
+              <div class="valid-feedback"></div>
+              <div class="invalid-feedback" id="error_plan"></div>
+            </div>
+          </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-outline-primary" id="bEnviar">Modificar</button>
+        <button type="submit" class="btn btn-outline-primary" id="bEnviar">Revalidar</button>
     </div>
 </form>
 <script>

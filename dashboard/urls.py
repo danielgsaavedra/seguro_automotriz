@@ -49,5 +49,9 @@ urlpatterns = [
     path('home/', HomeView.as_view(), name='home'),
     url(r'^load_patentes/$', views.load_patentes, name='load_patentes'),
     url(r'^load_polizas/$', views.load_poliza, name='load_poliza'),
+    url(r'^consultaSiniestroDetalleView/(?P<pk>[0-9]+)/$',
+        views.consultaSiniestroDetalleView, name='consultaSiniestroDetalleView'),
+    url(r'^siniestroDetallePdf/(?P<pk>[0-9]+)/$',
+        views.siniestroDetallePdf, name='siniestroDetallePdf'),
 
 ]

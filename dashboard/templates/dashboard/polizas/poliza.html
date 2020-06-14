@@ -1,17 +1,20 @@
 {% extends "dashboard/base.html" %}
 {% block title %}Módulo Póliza{% endblock title %}
 {% block content %}
-<a class="text-decoration-none text-light" href="{% url 'poliza_disabled' %}">
-    <button type="button" class="float-left d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
-        <i class="fas fa-file-contract fa-sm text-white-50"></i> Pólizas Inactivas
-    </button>
-</a>
+<div class="d-flex justify-content-between mb-4">
+    <div class="mr-1">
+        <a class="text-decoration-none text-light" href="{% url 'poliza_disabled' %}">
+            <button type="button" class="btn btn-sm btn-danger shadow-sm">
+                <i class="fas fa-file-contract fa-sm text-white-50"></i> Pólizas Inactivas
+            </button>
+        </a>
+    </div>
+    <div class="ml-1">
+        <button class="btn btn-sm btn-primary shadow-sm show_poliza" data-url="{% url 'poliza_create' %}">
+            <i class="fas fa-file-contract fa-sm text-white-50"></i> Crear Póliza
+        </button>
+    </div>
 
-<div class="d-sm-flex align-items-center justify-content-end mb-4">
-    <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm show_poliza"
-        data-url="{% url 'poliza_create' %}">
-        <i class="fas fa-file-contract fa-sm text-white-50"></i> Crear Póliza
-    </button>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -35,45 +38,44 @@
                 </thead>
                 <tbody>
                     {% for polizas in polizas %}
-                        <tr>
-                            <th scope="row">{{ polizas.id }}</th>
-                            {% if polizas.vigente == '1' %}
-                                <td>
-                                    <span class="badge badge-pill badge-success">VIGENTE</span>
-                                </td>
-                            {% else %}
-                                <td>
-                                    <span class="badge badge-pill badge-danger">NO VIGENTE</span>
-                                </td>
-                            {% endif %}
-                            <td>{{ polizas.fecha_inicio | date:'d-m-Y' }}</td>
-                            <td>{{ polizas.fecha_fin | date:'d-m-Y' }}</td>
-                            <td>{{ polizas.asegurado_rut_asegurado.rut_asegurado }}</td>
-                            <td>{{ polizas.vehiculo_patente_vehiculo }}</td>
-                            {% if request.user.is_staff %}
-                                <td>
-                                    <div class="dropdown">
-                                        <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown"
-                                           role="button"
-                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            {% if polizas.vigente == '0' %}
-                                            <button class="show_poliza_update dropdown-item"
-                                                    data-url="{% url 'poliza_update' polizas.id %}">
-                                                Revalidar Póliza
-                                            </button>
-                                            {% endif %}
-                                            <button class="show_poliza_delete dropdown-item"
-                                                    data-url="{% url 'poliza_delete' polizas.id %}">
-                                                Desactivar Póliza
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            {% endif %}
-                        </tr>
+                    <tr>
+                        <th scope="row">{{ polizas.id }}</th>
+                        {% if polizas.vigente == '1' %}
+                        <td>
+                            <span class="badge badge-pill badge-success">VIGENTE</span>
+                        </td>
+                        {% else %}
+                        <td>
+                            <span class="badge badge-pill badge-danger">NO VIGENTE</span>
+                        </td>
+                        {% endif %}
+                        <td>{{ polizas.fecha_inicio | date:'d-m-Y' }}</td>
+                        <td>{{ polizas.fecha_fin | date:'d-m-Y' }}</td>
+                        <td>{{ polizas.asegurado_rut_asegurado.rut_asegurado }}</td>
+                        <td>{{ polizas.vehiculo_patente_vehiculo }}</td>
+                        {% if request.user.is_staff %}
+                        <td>
+                            <div class="dropdown">
+                                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    {% if polizas.vigente == '0' %}
+                                    <button class="show_poliza_update dropdown-item"
+                                        data-url="{% url 'poliza_update' polizas.id %}">
+                                        Revalidar Póliza
+                                    </button>
+                                    {% endif %}
+                                    <button class="show_poliza_delete dropdown-item"
+                                        data-url="{% url 'poliza_delete' polizas.id %}">
+                                        Desactivar Póliza
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                        {% endif %}
+                    </tr>
                     {% empty %}
                     <tr>
                         <td colspan="10" class="text-center">No hay pólizas</td>

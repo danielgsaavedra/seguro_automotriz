@@ -1,18 +1,21 @@
 {% extends "dashboard/base.html" %}
 {% block title %}Módulo Siniestro{% endblock title %}
 {% block content %}
-<a class="text-decoration-none text-light" href="{% url 'siniestro_disabled' %}">
-    <button type="button" class="float-left d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
-        <i class="fas fa-file-invoice fa-sm text-white-50"></i> Siniestros Finalizados
-    </button>
-</a>
-
-<div class="d-sm-flex align-items-center justify-content-end mb-4">
-    <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm show_siniestro"
-        data-url="{% url 'siniestro_create' %}">
-        <i class="fas fa-file-invoice fa-sm text-white-50"></i> Registrar Siniestro
-    </button>
+<div class="d-flex justify-content-between mb-4">
+    <div class="mr-1">
+        <a class="text-decoration-none text-light" href="{% url 'siniestro_disabled' %}">
+            <button class="btn btn-sm btn-danger shadow-sm">
+                <i class="fas fa-file-invoice fa-sm text-white-50"></i> Siniestros Finalizados
+            </button>
+        </a>
+    </div>
+    <div class="ml-1">
+        <button class="btn btn-sm btn-primary shadow-sm show_siniestro" data-url="{% url 'siniestro_create' %}">
+            <i class="fas fa-file-invoice fa-sm text-white-50"></i> Registrar Siniestro
+        </button>
+    </div>
 </div>
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Siniestros</h6>
@@ -122,6 +125,7 @@
                                     <button class="show_siniestro_delete dropdown-item"
                                         data-url="{% url 'siniestro_delete' siniestros.id %}">
                                         Eliminar Siniestro</button>
+                                    <a class="dropdown-item" href="{% url 'foto_siniestro' siniestros.id %}">Ver Documentos Adjuntos</a>
                                 </div>
                             </div>
                         </td>

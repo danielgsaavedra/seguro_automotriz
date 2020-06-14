@@ -1,17 +1,19 @@
 {% extends "dashboard/base.html" %}
 {% block title %}Módulo Taller{% endblock title %}
 {% block content %}
-<a class="text-decoration-none text-light" href="{% url 'taller_disabled' %}">
-    <button type="button" class="float-left d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm ">
-        <i class="fas fa-tools fa-sm text-white-50"></i> Talleres Inactivos
-    </button>
-</a>
-<div class="d-sm-flex align-items-center justify-content-end mb-4">
-    <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm show_taller"
-        data-url="{% url 'taller_create' %}">
-        <i class="fas fa-tools fa-sm text-white-50"></i> Registrar Taller
-    </button>
-
+<div class="d-flex justify-content-between mb-4">
+    <div class="mr-1">
+        <a class="text-decoration-none text-light" href="{% url 'taller_disabled' %}">
+            <button class="btn btn-sm btn-danger shadow-sm ">
+                <i class="fas fa-tools fa-sm text-white-50"></i> Talleres Inactivos
+            </button>
+        </a>
+    </div>
+    <div class="mr-1">
+        <button type="button" class="btn btn-sm btn-primary shadow-sm show_taller" data-url="{% url 'taller_create' %}">
+            <i class="fas fa-tools fa-sm text-white-50"></i> Registrar Taller
+        </button>
+    </div>
 </div>
 
 <!--  Tabla para listar taller -->

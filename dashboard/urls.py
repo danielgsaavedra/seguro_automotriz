@@ -7,7 +7,7 @@ urlpatterns = [
 
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
     path('siniestros/', views.SiniestroView, name='siniestros'),
-    path('siniestros/<str:id>/', views.FotoSiniestroView, name='foto_siniestro'),
+    path('siniestros/detalle/<str:id>/', views.FotoSiniestroView, name='foto_siniestro'),
     path('siniestros/create', views.CreateSiniestro, name='siniestro_create'),
     path('siniestros/<str:id>/update',
          views.UpdateSiniestro, name='siniestro_update'),

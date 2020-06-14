@@ -1,9 +1,8 @@
 {% extends "dashboard/base.html" %}
 {% block title %}Módulo Vehículo{% endblock title %}
 {% block content %}
-<div class="d-sm-flex align-items-center justify-content-end mb-4">
-    <button href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm show-vehiculo"
-        data-url="{% url 'vehiculo_create' %}">
+<div class="d-flex justify-content-end mb-4">
+    <button class="btn btn-sm btn-primary shadow-sm show-vehiculo" data-url="{% url 'vehiculo_create' %}">
         <i class="fas fa-car-side fa-sm text-white-50"></i> Registrar Vehículo</button>
 </div>
 <div class="card shadow mb-4">

@@ -1,0 +1,75 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Módulo Siniestro{% endblock title %}
+{% block content %}
+{% load static %}
+<div class="d-flex justify-content-start mb-4">
+    <div class="text-center">
+        <a class="text-decoration-none" href="{% url 'siniestros' %}">
+            <i class="fas fa-arrow-circle-left"></i> Volver
+        </a>
+    </div>
+</div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Documentos de Siniestro</h6>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center" id="table_siniestro_detail" width="100%"
+                cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">N° Siniestro</th>
+                        <th scope="col">Fecha Siniestro</th>
+                        <th scope="col">Rut Asegurado</th>
+                        <th scope="col">N° Póliza</th>
+                        <th scope="col">Foto Licencia</th>
+                        <th scope="col">Parte Policial</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for siniestros in siniestros %}
+                    <tr>
+                        <th scope="row" class="align-middle">{{siniestros.id }}</th>
+                        <td class="align-middle">{{siniestros.fecha_hr | date:'d-m-Y' }}</td>
+                        <td class="align-middle">{{siniestros.asegurado_rut_asegurado}}</td>
+                        <td class="align-middle">{{siniestros.poliza_id_poliza }}</td>
+                        {% if siniestros.foto_licencia %}
+                        <td>
+                            <a href="{{siniestros.foto_licencia.url}}" target="_blank">
+                                <img src="{{siniestros.foto_licencia.url}}" alt="Foto Licencia" style="width: 100px; height: 75px;">
+                            </a>
+                        </td>
+                        {% else %}
+                        <td>
+                            <img src="{% static 'dashboard/img/noimage.png' %}" alt="No Foto Licencia"
+                                style="width: 100px; height: 75px;">
+                        </td>
+                        {% endif %}
+
+                        {% if siniestros.parte_policial %}
+                        <td>
+                            <a href="{{siniestros.parte_policial.url}}" target="blank">
+                                <img src="{{siniestros.parte_policial.url}}" alt="Parte Policial" style="width: 100px; height: 75px;">
+                            </a>
+                        </td>
+                        {% else %}
+                        <td>
+                            <img src="{% static 'dashboard/img/noimage.png' %}" alt="No Parte Policial"
+                                style="width: 100px; height: 75px;">
+
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="10" class="text-center">No hay siniestros</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

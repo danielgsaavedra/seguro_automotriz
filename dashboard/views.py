@@ -654,6 +654,12 @@ def UpdateSiniestroFotos(request, id):
         'form': form
     })
 
+@login_required(login_url='login')
+def FotoSiniestroView(request, id):
+    siniestro = get_object_or_404(Siniestro, id=id)
+    siniestros = Siniestro.objects.filter(id=siniestro.id).order_by('id')
+    context = {'siniestros': siniestros}
+    return render(request, 'dashboard/siniestro_detail.html', context)
 
 def consultaSiniestroDetalleView(request, pk):
     with connection.cursor() as cursor:

@@ -1,17 +1,19 @@
 {% extends "dashboard/base.html" %}
 {% block title %}Módulo Asegurado{% endblock title %}
 {% block content %}
-<a class="text-decoration-none text-light" href="{% url 'asegurados_disabled' %}">
-    <button class="float-left d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm ">
-        <i class="fas fa-user-shield fa-sm text-white-50"></i> Asegurados Inactivos
-    </button>
-</a>
-
-<div class="d-sm-flex align-items-center justify-content-end mb-4">
-    <button class="show-asegurado d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm "
-        data-url="{% url 'asegurado_create' %}">
-        <i class="fas fa-user-shield fa-sm text-white-50"></i> Registrar Asegurado
-    </button>
+<div class="d-flex justify-content-between mb-4">
+    <div class="mr-1">
+        <a class="text-decoration-none text-light" href="{% url 'asegurados_disabled' %}">
+            <button class="btn btn-sm btn-danger shadow-sm">
+                <i class="fas fa-user-shield fa-sm text-white-50"></i> Asegurados Inactivos
+            </button>
+        </a>
+    </div>
+    <div class="ml-1">
+        <button class="show-asegurado btn btn-sm btn-primary shadow-sm" data-url="{% url 'asegurado_create' %}">
+            <i class="fas fa-user-shield fa-sm text-white-50"></i> Registrar Asegurado
+        </button>
+    </div>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -39,7 +41,8 @@
                     {% for asegurados in asegurados %}
                     <tr>
                         <th scope="row">{{ asegurados.rut_asegurado }}</th>
-                        <td>{{asegurados.primer_nombre}} {{asegurados.primer_apellido}} {{asegurados.segundo_apeliido}}</td>
+                        <td>{{asegurados.primer_nombre}} {{asegurados.primer_apellido}} {{asegurados.segundo_apeliido}}
+                        </td>
                         <td>{{asegurados.direccion}}</td>
                         <td>{{asegurados.comuna_id_comuna}}</td>
                         <td>{{asegurados.correo}}</td>

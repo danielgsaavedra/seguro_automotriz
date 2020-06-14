@@ -14,6 +14,8 @@ from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
+import pdfkit
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -658,3 +660,30 @@ def FotoSiniestroView(request, id):
     siniestros = Siniestro.objects.filter(id=siniestro.id).order_by('id')
     context = {'siniestros': siniestros}
     return render(request, 'dashboard/siniestro_detail.html', context)
+
+def consultaSiniestroDetalleView(request, pk):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT S.ID,A.RUT_ASEGURADO,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,S.POLIZA_ID_POLIZA,S.FECHA_HR,S.DESCRIPCION,X.NOMBRE,S.EST_SINIESTRO_ID_EST_SINIESTRO,S.DIRECCION,V.NOMBRE,S.GRUA_PATENTE_GRUA,T.NOMBRE,T.TELEFONO,T.CORREO,T.DIRECCION,C.NOMBRE FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_COMUNA C ON (T.COMUNA_ID_COMUNA=C.ID) JOIN DASHBOARD_TIPOACCIDENTE X ON(S.TIPO_ACCIDENTE_ID_TIPO_ACC=X.ID) JOIN DASHBOARD_ASEGURADO A ON(S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO)  JOIN DASHBOARD_COMUNA V ON (S.COMUNA_ID_COMUNA=V.ID) WHERE (S.ID="+pk + ")")
+        dato = cursor.fetchall()
+        dato = list(dato)
+        print(dato)
+    return render(request, 'dashboard/asegurados/asegurado_consulta_detalle.html', {'dato': dato})
+
+
+def siniestroDetallePdf(request, pk):
+    options = {
+        'page-size': 'Letter',
+        'margin-top': '0.5in',
+        'margin-right': '1in',
+        'margin-bottom': '0.5in',
+        'margin-left': '1in',
+        'encoding': "UTF-8",
+    }
+
+    path_wkthmltopdf = b'C:\wkhtmltopdf\\bin\wkhtmltopdf.exe'
+    config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
+    pdf = pdfkit.from_url('http://127.0.0.1:8000/consultaSiniestroDetalleView/' +
+                          str(pk), False, options=options, configuration=config)
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="DetalleSiniestro.pdf" '
+    return response

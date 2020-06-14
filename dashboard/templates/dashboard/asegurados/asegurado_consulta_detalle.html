@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="{% static 'taller/css/style_pdf.css' %}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+</head>
+
+<body>
+<div class="container">
+    <div class="my-3">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table text-center" id="table_detalle" width="100%" cellspacing="0">
+                    <thead class="bg-acta-recepcion">
+                    <tr>
+                        <th scope="col">Detalle Siniestro</th>
+                        <th scope="col">FECHA: {{ dato.0.5 | date:'d/m/Y' }}</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center" id="table_vehiculo" width="100%" cellspacing="0">
+                    <thead>
+                    <div class="text-center mb-3">
+                        <h5>DATOS ASEGURADO</h5>
+                    </div>
+                    <tr>
+                        <th scope="col">Rut</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">N° Poliza</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">{{ dato.0.1 }}</th>
+                        <td>{{ dato.0.2 }} {{ dato.0.3 }}</td>
+                        <td>{{ dato.0.4 }}</td>
+                        {#                                {% if dato.0.1 == null %}#}
+                        {#                                <td>SIN GRÚA</td>#}
+                        {#                                {% else %}#}
+                        {#                                <td>{{dato.0.1}}</td>#}
+                        {#                                {% endif %}#}
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center" id="table_vehiculo" width="100%" cellspacing="0">
+                    <thead>
+                    <div class="text-center mb-3">
+                        <h5>DATOS SINIESTRO</h5>
+                    </div>
+                    <tr>
+                        <th scope="col">Nº Siniestro</th>
+                        <th scope="col">Tipo siniestro</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Direccción</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">{{ dato.0.0 }}</th>
+                        <td>{{ dato.0.7 }}</td>
+                        <td>{{ dato.0.6 }}</td>
+
+                        {% if dato.0.8 == 1 %}
+                            <td>
+                                <span
+                                        class="badge badge-pill badge-info">EN CURSO</span>
+                            </td>
+                        {% endif %}
+                        {% if dato.0.8 == 2 %}
+                            <td>
+                                <span
+                                        class="badge badge-pill badge-light">RECEPCIONADO</span>
+                            </td>
+                        {% endif %}
+                        {% if dato.0.8 == 3 %}
+                            <td>
+                                <span
+                                        class="badge badge-pill badge-primary">INSPECCIONADO</span>
+                            </td>
+                        {% endif %}
+                        {% if dato.0.8 == 4 %}
+                            <td>
+                                <span
+                                        class="badge badge-pill badge-warning">EN REPARACIÓN</span>
+                            </td>
+                        {% endif %}
+                        {% if dato.0.8 == 5 %}
+                            <td>
+                                <span
+                                        class="badge badge-pill badge-danger">RECHAZADO</span>
+                            </td>
+                        {% endif %}
+                        {% if dato.0.8 == 6 %}
+                            <td>
+                                <span
+                                        class="badge badge-pill badge-success">REPARADO</span>
+                            </td>
+                        {% endif %}
+                        {% if dato.0.8 == 7 %}
+                            <td>
+                                <span
+                                        class="badge badge-pill badge-dark">FINALIZADO</span>
+                            </td>
+                        {% endif %}
+                        {% if dato.0.8 == 8 %}
+                            <td>
+                                <span
+                                        class="badge badge-pill badge-secondary">PENDIENTE</span>
+                            </td>
+                        {% endif %}
+
+                        <td>{{ dato.0.9 }}-{{ dato.0.10 }}</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center" id="table_vehiculo" width="100%" cellspacing="0">
+                    <thead>
+                    <div class="text-center mb-3">
+                        <h5>DATOS TRANSPORTE Y TALLER</h5>
+                    </div>
+                    <tr>
+                        <th scope="col">Grúa patente</th>
+                        <th scope="col">Nombre Taller</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Correo Electrónico</th>
+                        <th scope="col">Dirección</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        {% if dato.0.11 == null %}
+                            <th scope="row">SIN GRÚA</th>
+                        {% else %}
+                            <th scope="row">{{ dato.0.11 }}</th>
+                        {% endif %}
+                        <td>{{ dato.0.12 }}</td>
+                        <td>+56 {{ dato.0.13 }}</td>
+                        <td>{{ dato.0.14 }}</td>
+                        <td>{{ dato.0.15 }}-{{ dato.0.16 }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>

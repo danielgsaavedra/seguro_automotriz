@@ -71,18 +71,10 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse"
-                    data-target="#collapseAsegurado" aria-expanded="true" aria-controls="collapseAsegurado">
+                <a class="nav-link collapsed" href="{% url 'asegurados' %}">
                     <i class="fas fa-user-shield"></i>
                     <span>Asegurados</span>
                 </a>
-                <div id="collapseAsegurado" class="collapse" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{% url 'asegurados' %}">Asegurados</a>
-                        <a class="collapse-item" href="{% url 'vehiculos' %}">Vehículos</a>
-                    </div>
-                </div>
             </li>
 
             <hr class="sidebar-divider">

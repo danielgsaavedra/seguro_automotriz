@@ -56,12 +56,16 @@
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <button class="dropdown-item show-vehiculo" data-url="{% url 'vehiculo_create' asegurados.rut_asegurado %}">
+                                        Agregar Vehículo</button>
+                                    <a class=" dropdown-item" href="{% url 'vehiculos' asegurados.rut_asegurado %}">
+                                            Ver Vehículos</a>
                                     <button class="show_asegurado_update dropdown-item"
                                         data-url="{% url 'asegurado_update' asegurados.rut_asegurado %}">
                                         Editar Asegurado</button>
                                     <button class="show_asegurado_delete dropdown-item"
                                         data-url="{% url 'asegurado_delete' asegurados.rut_asegurado %}">
-                                        Desactivar Asegurado</button>
+                                        Desactivar Asegurado</button>                   
                                 </div>
                             </div>
                         </td>
@@ -84,6 +88,15 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modal_vehiculo" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}

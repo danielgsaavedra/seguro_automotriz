@@ -1,9 +1,12 @@
 {% extends "dashboard/base.html" %}
 {% block title %}Módulo Vehículo{% endblock title %}
 {% block content %}
-<div class="d-flex justify-content-end mb-4">
-    <button class="btn btn-sm btn-primary shadow-sm show-vehiculo" data-url="{% url 'vehiculo_create' %}">
-        <i class="fas fa-car-side fa-sm text-white-50"></i> Registrar Vehículo</button>
+<div class="d-flex justify-content-start mb-4">
+    <div class="text-center">
+        <a class="text-decoration-none" href="{% url 'asegurados' %}">
+            <i class="fas fa-arrow-circle-left"></i> Volver
+        </a>
+    </div>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -44,7 +47,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <button class="show_vehiculo_update dropdown-item"
-                                        data-url="{% url 'vehiculo_update' vehiculos.patente_vehiculo %}">
+                                        data-url="{% url 'vehiculo_update' vehiculos.patente_vehiculo   %}">
                                         Editar Vehículo</button>
                                 </div>
                             </div>

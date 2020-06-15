@@ -190,26 +190,45 @@ def SaveAllVehiculo(request, form, template_name):
 # Read
 
 @login_required(login_url='login')
-def VehiculosView(request):
+def VehiculosView(request,id):
     user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     vehiculos = Vehiculo.objects.all().filter(
-        usuario_rut_usuario=user).order_by('anio')
+        Q(usuario_rut_usuario=user) &
+        Q(asegurado_rut_asegurado=id)
+        ).order_by('anio')
     context = {'vehiculos': vehiculos}
     return render(request, 'dashboard/vehiculos/vehiculo.html', context)
-
 
 # Create
 
 @login_required(login_url='login')
-def VehiculoCreate(request):
+def VehiculoCreate(request,id):
+    data = dict()
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
+    asegurado = get_object_or_404(Asegurado,rut_asegurado=id)
+    print(asegurado.rut_asegurado)
     if request.method == 'POST':
         form = VehiculoForm(request.POST)
-        vehiculo = form.save(commit=False)
-        vehiculo.usuario_rut_usuario = request.user
+        if form.is_valid():
+            vehiculo = form.save(commit=False)
+            vehiculo.usuario_rut_usuario = request.user
+            vehiculo.asegurado_rut_asegurado = asegurado
+            vehiculo.save()
+            data['form_is_valid'] = True
+            vehiculos = Vehiculo.objects.all().filter(
+                usuario_rut_usuario=user).order_by('anio')
+            context = {'vehiculos': vehiculos}
+            data['vehiculos'] = render_to_string(
+                'dashboard/vehiculos/vehiculo_2.html', context)
+        else:
+            data['form_is_valid'] = False
     else:
         form = VehiculoForm()
-    return SaveAllVehiculo(request, form, 'dashboard/vehiculos/vehiculo_create.html')
-
+        
+    context = {'form': form,'asegurado': asegurado}
+    data['html_form'] = render_to_string(
+        'dashboard/vehiculos/vehiculo_create.html', context, request=request)
+    return JsonResponse(data)
 
 # Update
 

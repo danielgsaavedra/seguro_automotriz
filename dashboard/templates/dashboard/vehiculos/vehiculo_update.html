@@ -1,6 +1,6 @@
 {% load static %}
 <form action="" class="vehiculo_form_update needs-validation" method="POST"
-    data-url="{% url 'vehiculo_update' form.instance.patente_vehiculo%}">
+    data-url="{% url 'vehiculo_update' form.instance.patente_vehiculo %}">
     {% csrf_token %}
 
     <div class="modal-header bg-primary">
@@ -68,16 +68,11 @@
                 <div class="invalid-feedback" id="error_tipo"></div>
             </div>
         </div>
-        <div class="form-row">
-            <div class="form-group col-12">
-                <div class="col-form-label">
-                    <span>RUT ASEGURADO</span>
-                </div>
-                {{form.asegurado_rut_asegurado}}
-                <div class="valid-feedback"></div>
-                <div class="invalid-feedback" id="error_rut"></div>
-            </div>
-        </div>
+        {{form.asegurado_rut_asegurado}}
+        <!-- NO SACAR LOS DIV DE ERROR O DARA ERROR XD -->
+        <div class="valid-feedback"></div>
+        <div class="invalid-feedback" id="error_rut"></div>
+        
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>

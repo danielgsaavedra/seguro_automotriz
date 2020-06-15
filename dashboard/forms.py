@@ -248,11 +248,6 @@ class DeshabilitarSiniestroForm(forms.ModelForm):
 
 class VehiculoForm(forms.ModelForm):
 
-    def __init__(self, *args, **kwargs):
-        super(VehiculoForm, self).__init__(*args, **kwargs)
-        self.fields['asegurado_rut_asegurado'].queryset = Asegurado.objects.filter(
-            estado=1)
-
     class Meta:
 
         model = Vehiculo
@@ -263,7 +258,6 @@ class VehiculoForm(forms.ModelForm):
             'nro_motor',
             'tipo_vehiculo_id_tipo_auto',
             'marca_id_marca',
-            'asegurado_rut_asegurado'
         ]
         widgets = {
             'patente_vehiculo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa patente', 'id': 'patente', 'pattern': '^[a-zA-Z0-9._%+-]{8,}'}),
@@ -272,16 +266,10 @@ class VehiculoForm(forms.ModelForm):
             'nro_motor': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su número del motor', 'id': 'motor', 'pattern': '^[a-zA-Z0-9._%+- ]{4,}'}),
             'tipo_vehiculo_id_tipo_auto': forms.Select(attrs={'class': 'form-control', 'id': 'tipo_vehi'}),
             'marca_id_marca': forms.Select(attrs={'class': 'form-control', 'id': 'marca_vehi'}),
-            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'id': 'rut_asegurado_vehi'}),
         }
 
 
 class VehiculoFormUpdate(forms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        super(VehiculoFormUpdate, self).__init__(*args, **kwargs)
-        self.fields['asegurado_rut_asegurado'].queryset = Asegurado.objects.filter(
-            estado=1)
 
     class Meta:
 
@@ -302,7 +290,7 @@ class VehiculoFormUpdate(forms.ModelForm):
             'nro_motor': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa su número del motor', 'id': 'motor', 'pattern': '^[a-zA-Z0-9._%+- ]{4,}'}),
             'tipo_vehiculo_id_tipo_auto': forms.Select(attrs={'class': 'form-control', 'id': 'tipo_vehi'}),
             'marca_id_marca': forms.Select(attrs={'class': 'form-control', 'id': 'marca_vehi'}),
-            'asegurado_rut_asegurado': forms.Select(attrs={'class': 'form-control', 'id': 'rut_asegurado_vehi'}),
+            'asegurado_rut_asegurado': forms.HiddenInput(attrs={'class': 'form-control', 'id': 'rut_asegurado_vehi'}),
         }
 
 

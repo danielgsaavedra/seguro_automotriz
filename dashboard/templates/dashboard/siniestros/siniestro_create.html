@@ -1,5 +1,6 @@
 {% load static %}
-<form action="" class="create_form_siniestro needs-validation" enctype="multipart/form-data" method="POST" data-url="{% url 'siniestro_create' %}">
+<form action="" class="create_form_siniestro needs-validation" enctype="multipart/form-data" method="POST"
+    data-url="{% url 'siniestro_create' %}">
     {% csrf_token %}
     <div class="modal-header bg-success">
         <h5 class="modal-title text-light">Registrar Siniestro</h5>
@@ -15,7 +16,7 @@
                 </div>
                 {{ form.asegurado_rut_asegurado }}
                 <div class="valid-feedback"></div>
-                <div class="invalid-feedback" id="error_rut_asegurado"></div>       
+                <div class="invalid-feedback" id="error_rut_asegurado"></div>
             </div>
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
@@ -95,7 +96,7 @@
             var request = $.ajax({
                 type: 'GET',
                 url: "{%  url 'load_poliza' %}",
-                data: {"rut_ase": rut_ase},
+                data: { "rut_ase": rut_ase },
             });
             request.done(function (response) {
                 // Agregamos los resultados al select

@@ -190,22 +190,23 @@ def SaveAllVehiculo(request, form, template_name):
 # Read
 
 @login_required(login_url='login')
-def VehiculosView(request,id):
+def VehiculosView(request, id):
     user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     vehiculos = Vehiculo.objects.all().filter(
         Q(usuario_rut_usuario=user) &
         Q(asegurado_rut_asegurado=id)
-        ).order_by('anio')
+    ).order_by('anio')
     context = {'vehiculos': vehiculos}
     return render(request, 'dashboard/vehiculos/vehiculo.html', context)
 
 # Create
 
+
 @login_required(login_url='login')
-def VehiculoCreate(request,id):
+def VehiculoCreate(request, id):
     data = dict()
     user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
-    asegurado = get_object_or_404(Asegurado,rut_asegurado=id)
+    asegurado = get_object_or_404(Asegurado, rut_asegurado=id)
     print(asegurado.rut_asegurado)
     if request.method == 'POST':
         form = VehiculoForm(request.POST)
@@ -224,13 +225,14 @@ def VehiculoCreate(request,id):
             data['form_is_valid'] = False
     else:
         form = VehiculoForm()
-        
-    context = {'form': form,'asegurado': asegurado}
+
+    context = {'form': form, 'asegurado': asegurado}
     data['html_form'] = render_to_string(
         'dashboard/vehiculos/vehiculo_create.html', context, request=request)
     return JsonResponse(data)
 
 # Update
+
 
 @staff_member_required(login_url='login')
 def VehiculoUpdate(request, id):
@@ -673,12 +675,14 @@ def UpdateSiniestroFotos(request, id):
         'form': form
     })
 
+
 @login_required(login_url='login')
 def FotoSiniestroView(request, id):
     siniestro = get_object_or_404(Siniestro, id=id)
     siniestros = Siniestro.objects.filter(id=siniestro.id).order_by('id')
     context = {'siniestros': siniestros}
     return render(request, 'dashboard/siniestro_detail.html', context)
+
 
 def consultaSiniestroDetalleView(request, pk):
     with connection.cursor() as cursor:

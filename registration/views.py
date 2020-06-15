@@ -7,9 +7,11 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy, reverse
 from dashboard.models import Usuario
-from .forms import UsuarioRegisterForm,UsuarioFormUpdate,DeshabilitarUsuarioForm
+from .forms import UsuarioRegisterForm, UsuarioFormUpdate, DeshabilitarUsuarioForm
 
-#CRUD USUARIOS
+# CRUD USUARIOS
+
+
 def SaveAllUsuario(request, form, template_name):
     data = dict()
     if request.method == 'POST':
@@ -18,7 +20,7 @@ def SaveAllUsuario(request, form, template_name):
             data['form_is_valid'] = True
             usuarios = Usuario.objects.filter(
                 is_active=True).order_by('rol')
-            context = {'usuarios': usuarios,'form':form}
+            context = {'usuarios': usuarios, 'form': form}
             data['usuarios'] = render_to_string(
                 'registration/usuarios/usuario_2.html', context)
         else:
@@ -29,23 +31,23 @@ def SaveAllUsuario(request, form, template_name):
         template_name, context, request=request)
     return JsonResponse(data)
 
-#READ
+# READ
 @staff_member_required(login_url='login')
 def UsuariosView(request):
     usuarios = Usuario.objects.filter(is_active=True).order_by('rol')
     context = {'usuarios': usuarios}
     return render(request, 'registration/usuarios/usuario.html', context)
 
-#CREATE
+# CREATE
 @staff_member_required(login_url='login')
 def UsuarioCreate(request):
     if request.method == 'POST':
-        form = UsuarioRegisterForm(request.POST)      
+        form = UsuarioRegisterForm(request.POST)
     else:
         form = UsuarioRegisterForm()
     return SaveAllUsuario(request, form, 'registration/usuarios/usuario_create.html')
 
-#UPDATE
+# UPDATE
 @staff_member_required(login_url='login')
 def UsuarioUpdate(request, id):
     usuario = get_object_or_404(Usuario, id=id)
@@ -54,6 +56,7 @@ def UsuarioUpdate(request, id):
     else:
         form = UsuarioFormUpdate(instance=usuario)
     return SaveAllUsuario(request, form, 'registration/usuarios/usuario_update.html')
+
 
 @staff_member_required(login_url='login')
 def UsuarioDelete(request, id):
@@ -78,6 +81,7 @@ def UsuarioDelete(request, id):
             'registration/usuarios/usuario_delete.html', context, request=request)
     return JsonResponse(data)
 
+
 class LoginPageView(TemplateView):
     template_name = "registration/login.html"
 
@@ -86,7 +90,7 @@ class RegisterPageView(TemplateView):
     template_name = "registration/registro.html"
 
 
-#Listar Usuarios Inactivos
+# Listar Usuarios Inactivos
 @staff_member_required(login_url='login')
 def UsuariosDisableView(request):
     usuariosDisable = Usuario.objects.filter(is_active=False).order_by('rol')
@@ -105,7 +109,8 @@ def ReactivateUsuario(request, id):
             usuarioActivate.is_active = True
             usuarioActivate.save()
             data['form_is_valid'] = True
-            usuariosDisable = Usuario.objects.filter(is_active=False).order_by('rol')
+            usuariosDisable = Usuario.objects.filter(
+                is_active=False).order_by('rol')
             context = {'usuariosDisable': usuariosDisable}
             data['usuariosDisable'] = render_to_string(
                 'registration/usuarios/usuario_disabled_2.html', context)
@@ -116,4 +121,3 @@ def ReactivateUsuario(request, id):
         data['html_form'] = render_to_string(
             'registration/usuarios/usuario_reactivate.html', context, request=request)
     return JsonResponse(data)
-

@@ -1,5 +1,6 @@
 {% load static %}
-<form action="" class="vehiculo_form needs-validation" method="POST" data-url="{% url 'vehiculo_create' asegurado.rut_asegurado %}">
+<form action="" class="vehiculo_form needs-validation" method="POST"
+    data-url="{% url 'vehiculo_create' asegurado.rut_asegurado %}">
     {% csrf_token %}
     <div class="modal-header bg-success">
         <h5 class="modal-title text-light">Registrar Vehículos</h5>

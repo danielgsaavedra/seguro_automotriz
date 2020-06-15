@@ -1,5 +1,6 @@
 {% load static %}
-<form action="" class="update_form_siniestro needs-validation" method="POST" data-url="{% url 'siniestro_update' form.instance.id %}" enctype="multipart/form-data">
+<form action="" class="update_form_siniestro needs-validation" method="POST"
+    data-url="{% url 'siniestro_update' form.instance.id %}" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div class="modal-header bg-primary">
@@ -16,7 +17,7 @@
                 </div>
                 {{ form.asegurado_rut_asegurado }}
                 <div class="valid-feedback"></div>
-                <div class="invalid-feedback" id="error_rut_asegurado"></div>       
+                <div class="invalid-feedback" id="error_rut_asegurado"></div>
             </div>
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">

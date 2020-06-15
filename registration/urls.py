@@ -9,6 +9,7 @@ urlpatterns = [
     path('usuarios/<str:id>/update/', views.UsuarioUpdate, name='usuario_update'),
     path('usuarios/<str:id>/delete/', views.UsuarioDelete, name='usuario_delete'),
     path('usuarios/disabled', views.UsuariosDisableView, name='usuarios_disabled'),
-    path('usuarios/<str:id>/reactivate/', views.ReactivateUsuario, name='usuario_reactivate'),
+    path('usuarios/<str:id>/reactivate/',
+         views.ReactivateUsuario, name='usuario_reactivate'),
 
 ]

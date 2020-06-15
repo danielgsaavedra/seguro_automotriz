@@ -94,7 +94,7 @@ class AseguradoForm(forms.ModelForm):
             'correo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', 'id': 'correo_asegurado'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa teléfono', 'pattern': '[0-9]{9,}', 'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)', 'id': 'telefono_asegurado'}),
             'fecha_nacimiento': forms.TextInput(attrs={'class': 'form-control', 'type': 'date', 'id': 'fecha_asegurado'}),
-            'direccion': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa dirección','id': 'direccion_asegurado', 'pattern': '[A-Za-zÀ-ÿ0-9 ]{4,}'}),
+            'direccion': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa dirección', 'id': 'direccion_asegurado', 'pattern': '[A-Za-zÀ-ÿ0-9 ]{4,}'}),
             'comuna_id_comuna': forms.Select(attrs={'class': 'required form-control', 'id': 'comuna_asegurado'}),
         }
 
@@ -130,7 +130,7 @@ class AseguradoFormUpdate(forms.ModelForm):
             'correo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', 'id': 'correo_asegurado'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa teléfono', 'pattern': '[0-9]{9,}', 'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)', 'id': 'telefono_asegurado'}),
             'fecha_nacimiento': forms.TextInput(attrs={'class': 'form-control', 'type': 'date', 'id': 'fecha_asegurado'}),
-            'direccion': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa dirección','id': 'direccion_asegurado', 'pattern': '[A-Za-zÀ-ÿ0-9 ]{4,}'}),
+            'direccion': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa dirección', 'id': 'direccion_asegurado', 'pattern': '[A-Za-zÀ-ÿ0-9 ]{4,}'}),
             'comuna_id_comuna': forms.Select(attrs={'class': 'required form-control', 'id': 'comuna_asegurado'}),
         }
 
@@ -215,7 +215,7 @@ class SiniestroFormUpdate(forms.ModelForm):
             'poliza_id_poliza': forms.Select(attrs={'class': 'required form-control', 'id': 'poliza', 'disabled': 'true'}),
             'asegurado_rut_asegurado': forms.Select(attrs={'class': 'required form-control', 'id': 'asegurado_rut', 'onchange': "cargarPoliza();", 'disabled': 'true'}),
             'direccion': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa dirección',
-                                                'pattern': '^[a-zA-Z0-9._%+- ]{4,}', 'id': 'direccion', 'disabled': 'true' }),
+                                                'pattern': '^[a-zA-Z0-9._%+- ]{4,}', 'id': 'direccion', 'disabled': 'true'}),
             'comuna_id_comuna': forms.Select(
                 attrs={'class': 'required form-control', 'id': 'comuna', 'name': 'comuna_id_comuna', 'disabled': 'true'})
         }

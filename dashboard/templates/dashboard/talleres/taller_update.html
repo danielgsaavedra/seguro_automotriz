@@ -1,6 +1,6 @@
 {% load static %}
 <form action="" class="update_form_taller needs-validation" method="POST"
-      data-url="{% url 'taller_update' form.instance.id %}">
+    data-url="{% url 'taller_update' form.instance.id %}">
     {% csrf_token %}
 
     <div class="modal-header bg-primary">
@@ -92,5 +92,5 @@
     </div>
 </form>
 {% block script %}
-    <script src="{% static 'dashboard/js/validar_taller.js' %}"></script>
+<script src="{% static 'dashboard/js/validar_taller.js' %}"></script>
 {% endblock script %}

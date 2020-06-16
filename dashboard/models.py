@@ -120,8 +120,7 @@ class InformeDano(models.Model):
     fecha_hora = models.DateField(verbose_name='Fecha', auto_now=True)
     observaciones = models.CharField(
         max_length=1024, verbose_name='Observaciones')
-    perdida_total = models.CharField(
-        max_length=1, blank=True, null=True, verbose_name='Perdida Total')
+    perdida_total = models.BooleanField(null=True,blank=True)
     tipo_dano_id_tipo_dano = models.ForeignKey(
         'TipoDano', models.DO_NOTHING, db_column='tipo_dano_id_tipo_dano', verbose_name='Tipo Daño', null=True)
     severidad_dano_id_seve_dano = models.ForeignKey(

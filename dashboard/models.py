@@ -296,6 +296,7 @@ class ServicioGrua(models.Model):
 
 class SeveridadDano(models.Model):
     nombre = models.CharField(max_length=50, verbose_name='Nombre ')
+    valor = models.IntegerField(verbose_name='Valor')
 
     # class Meta:
     #     managed = False
@@ -392,6 +393,8 @@ class TipoActa(models.Model):
 class TipoDano(models.Model):
     nombre = models.CharField(max_length=50, verbose_name='Nombre')
     descripcion = models.CharField(max_length=500, verbose_name='Descripción')
+    valor = models.IntegerField(verbose_name='Valor')
+    mano_obra = models.IntegerField(verbose_name='Mano de obra')
 
     # class Meta:
     #     managed = False

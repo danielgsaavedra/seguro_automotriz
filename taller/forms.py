@@ -18,11 +18,12 @@ class ActasForm(forms.ModelForm):
 class InformeDañosForm(forms.ModelForm):
     class Meta:
         model = InformeDano
-        fields = ['id', 'observaciones',
+        fields = ['id', 'observaciones', 'perdida_total',
                   'severidad_dano_id_seve_dano', 'tipo_dano_id_tipo_dano']
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
             'observaciones': forms.Textarea(attrs={'class': 'required form-control', 'placeholder': 'Ingresa observaciones', 'id': 'observaciones'}),
+            'perdida_total': forms.CheckboxInput(attrs={'class': 'form-control'}),
             'severidad_dano_id_seve_dano': forms.Select(attrs={'class': 'required form-control', 'id': 'sev_dano'}),
             'tipo_dano_id_tipo_dano': forms.Select(attrs={'class': 'required form-control', 'id': 'tipo_dano'})
         }

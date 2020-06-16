@@ -77,7 +77,7 @@ $(document).ready(function () {
                     $('#modal_asegurado').modal('hide');
                     console.log('Asegurado registrado correctamente!');
                     toastr.success('Operación Exitosa');
-                    setTimeout(actualizar,500);
+                    setTimeout(actualizar,300);
                 } else {
                     $('#modal_asegurado .modal-content').html(data.html_form)
                 }

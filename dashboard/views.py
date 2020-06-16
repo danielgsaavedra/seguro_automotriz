@@ -158,26 +158,6 @@ def ReactivateAsegurado(request, id):
 
 # Crud Vehículos
 
-
-def SaveAllVehiculo(request, form, template_name):
-    data = dict()
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            data['form_is_valid'] = True
-            vehiculos = Vehiculo.objects.all()
-            context = {'vehiculos': vehiculos}
-            data['vehiculos'] = render_to_string(
-                'dashboard/vehiculos/vehiculo_2.html', context)
-        else:
-            data['form_is_valid'] = False
-
-    context = {'form': form}
-    data['html_form'] = render_to_string(
-        template_name, context, request=request)
-    return JsonResponse(data)
-
-
 # Read
 
 @login_required(login_url='login')
@@ -222,12 +202,31 @@ def VehiculoCreate(request, id):
 
 @staff_member_required(login_url='login')
 def VehiculoUpdate(request, id):
+    data = dict()
+    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     vehiculo = get_object_or_404(Vehiculo, patente_vehiculo=id)
     if request.method == 'POST':
         form = VehiculoFormUpdate(request.POST, instance=vehiculo)
+        if form.is_valid():
+            data['form_is_valid'] = True
+            vehiculos = Vehiculo.objects.all().filter(
+                Q(usuario_rut_usuario=user) &
+                Q(asegurado_rut_asegurado=vehiculo.asegurado_rut_asegurado)
+            ).order_by('anio')
+            context = {'vehiculos': vehiculos}
+            data['vehiculos'] = render_to_string(
+                'dashboard/vehiculos/vehiculo_2.html', context)
+
+        else:
+            data['form_is_valid'] = False
+
     else:
         form = VehiculoFormUpdate(instance=vehiculo)
-    return SaveAllVehiculo(request, form, 'dashboard/vehiculos/vehiculo_update.html')
+
+    context = {'form': form, 'vehiculo': vehiculo}
+    data['html_form'] = render_to_string(
+        'dashboard/vehiculos/vehiculo_update.html', context, request=request)
+    return JsonResponse(data)
 
 
 # Crud Pólizas

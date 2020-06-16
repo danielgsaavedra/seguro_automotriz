@@ -1011,21 +1011,40 @@
 		"model": "dashboard.severidaddano",
 		"pk": 1,
 		"fields": {
-			"nombre": "BAJO"
+			"nombre": "BAJO",
+			"valor": "100"
 		}
 	},
 	{
 		"model": "dashboard.severidaddano",
 		"pk": 2,
 		"fields": {
-			"nombre": "MEDIO"
+			"nombre": "MODERADO",
+			"valor": "200"
 		}
 	},
 	{
 		"model": "dashboard.severidaddano",
 		"pk": 3,
 		"fields": {
-			"nombre": "ALTO"
+			"nombre": "MEDIO",
+			"valor": "300"
+		}
+	},
+	{
+		"model": "dashboard.severidaddano",
+		"pk": 4,
+		"fields": {
+			"nombre": "ALTO",
+			"valor": "400"
+		}
+	},
+	{
+		"model": "dashboard.severidaddano",
+		"pk": 5,
+		"fields": {
+			"nombre": "CRÍTICO",
+			"valor": "500"
 		}
 	},
 	{
@@ -1033,7 +1052,9 @@
 		"pk": 1,
 		"fields": {
 			"nombre": "ACCESORIOS FALTANTES",
-			"descripcion": "SI FALTA CUALQUIER ACCESORIOS COMO ESPEJOS RETROVISORES, LUCES, FOCOS, TAPICERIA"
+			"descripcion": "FALTAN ACCESORIOS COMO ESPEJOS RETROVISORES, TAPICERIA",
+			"valor": "20000",
+			"mano_obra": "10000"
 		}
 	},
 	{
@@ -1041,47 +1062,109 @@
 		"pk": 2,
 		"fields": {
 			"nombre": "DESCUADRE DE CARROCERIA",
-			"descripcion": "SI HAY DESCUADRE DE LA CARROCERIA DEL VEHICULO"
+			"descripcion": "SI HAY DESCUADRE DE LA CARROCERIA DEL VEHICULO",
+			"valor": "50000",
+			"mano_obra": "25000"
 		}
 	},
 	{
 		"model": "dashboard.tipodano",
 		"pk": 3,
 		"fields": {
-			"nombre": "ABOLLADURAS",
-			"descripcion": "EXISTEN ABOLLADURAS EN ALGUNA PARTE DEL VEHICULO"
+			"nombre": "ABOLLADURAS DELANTERA",
+			"descripcion": "ABOLLADURAS EN LA PARTE DELANTERA DEL VEHICULO",
+			"valor": "35000",
+			"mano_obra": "20000"
 		}
 	},
 	{
 		"model": "dashboard.tipodano",
 		"pk": 4,
 		"fields": {
-			"nombre": "RUEDAS DAÑADAS",
-			"descripcion": "ALGUNA RUEDA FALTANTE, DAÑADA, SIN AIRE"
+			"nombre": "ABOLLADURAS LATERALES",
+			"descripcion": "ABOLLADURAS EN LOS LATERALES DEL VEHICULO",
+			"valor": "40000",
+			"mano_obra": "20000"
 		}
 	},
 	{
 		"model": "dashboard.tipodano",
 		"pk": 5,
 		"fields": {
-			"nombre": "VIDRIOS DAÑADOS",
-			"descripcion": "VIDRIOS DE VENTANAS DAÑADOS O QUEBRADOS, VIDRIOS DELANTEROS Y\/O TRASEROS DAÑADOS O QUEBRADOS"
+			"nombre": "ABOLLADURAS TRASERA",
+			"descripcion": "ABOLLADURAS EN LA PARTE TRASERA DEL VEHICULO",
+			"valor": "30000",
+			"mano_obra": "20000"
 		}
 	},
 	{
 		"model": "dashboard.tipodano",
 		"pk": 6,
 		"fields": {
-			"nombre": "PINTURA",
-			"descripcion": "SI LA PINTURA ESTA RAYADA, EN MAL ESTADO, O NO ESTA PINTADO"
+			"nombre": "DAÑOS EN LLANTAS",
+			"descripcion": "DAÑOS GENERALES EN LAS LLANTAS DEL VEHICULO",
+			"valor": "25000",
+			"mano_obra": "15000"
 		}
 	},
 	{
 		"model": "dashboard.tipodano",
 		"pk": 7,
 		"fields": {
-			"nombre": "OTROS",
-			"descripcion": "CUALQUIER OTRO DAÑO"
+			"nombre": "DAÑOS EN VIDRIOS DE VENTANAS",
+			"descripcion": "VIDRIOS DE VENTANAS DAÑADOS O QUEBRADOS",
+			"valor": "15000",
+			"mano_obra": "10000"
+		}
+	},
+	{
+		"model": "dashboard.tipodano",
+		"pk": 8,
+		"fields": {
+			"nombre": "DAÑOS EN PARABRISAS",
+			"descripcion": "PARABRISA DAÑADOS O QUEBRADOS DETLANTEROS Y TRASEROS",
+			"valor": "30000",
+			"mano_obra": "20000"
+		}
+	},
+	{
+		"model": "dashboard.tipodano",
+		"pk": 9,
+		"fields": {
+			"nombre": "DAÑOS EN PINTURA",
+			"descripcion": "PINTURA DAÑADA, RAYADA O EN MAL ESTADO",
+			"valor": "40000",
+			"mano_obra": "30000"
+		}
+	},
+	{
+		"model": "dashboard.tipodano",
+		"pk": 10,
+		"fields": {
+			"nombre": "DAÑOS EN MOTOR",
+			"descripcion": "CUALQUIER DAÑO CAUSADO EN EL MOTOR DEL VEHICULO",
+			"valor": "55000",
+			"mano_obra": "35000"
+		}
+	},
+	{
+		"model": "dashboard.tipodano",
+		"pk": 11,
+		"fields": {
+			"nombre": "DAÑOS EN FRENOS",
+			"descripcion": "DAÑOS EN LOS DISCOS DE FRENOS",
+			"valor": "30000",
+			"mano_obra": "20000"
+		}
+	},
+	{
+		"model": "dashboard.tipodano",
+		"pk": 12,
+		"fields": {
+			"nombre": "DAÑOS EN LUCES / FOCOS",
+			"descripcion": "DAÑOS EN LOS FOCOS TANTO DELANTEROS COMO TRASEROS",
+			"valor": "25000",
+			"mano_obra": "15000"
 		}
 	},
 	{

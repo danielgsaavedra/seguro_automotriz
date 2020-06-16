@@ -14,6 +14,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{% static 'dashboard/css/normalize.css' %}" />
     <link rel="stylesheet" href="{% static 'dashboard/css/style2.css' %}" />
+    <link rel="stylesheet" href="{% static 'dashboard/css/switch.css' %}" />
     <link rel="stylesheet" href="{% static 'dashboard/css/bootstrap/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'dashboard/css/bootstrap/bootstrap-datepicker.min.css' %}" />
     <link rel="stylesheet" href="{% static 'dashboard/css/bootstrap/bootstrap-datepicker.standalone.min.css' %}" />
@@ -186,7 +187,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'informe_daños' %}">
                     <i class="fas fa-notes-medical"></i>
-                    <span>Informe de Daños</span>
+                    <span>Generar Informe de Daños</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'informe_daños_view' %}">
+                    <i class="fas fa-book-dead"></i>
+                    <span>Ver Informes de Daños</span>
                 </a>
             </li>
 

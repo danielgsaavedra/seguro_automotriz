@@ -502,3 +502,11 @@ def informeDanoPdf(request, pk):
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="informeDanoPdf.pdf" '
     return response
+
+
+
+def crearPresupuesto(request, pk):
+    with connection.cursor() as cursor:
+        cursor.callproc('CREAR_PRESUPUESTO', [pk])
+    return render(request, 'taller/informe_daños/informe_daños_view.html')
+

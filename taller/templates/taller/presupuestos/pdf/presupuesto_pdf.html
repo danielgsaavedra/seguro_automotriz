@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="{% static 'taller/css/style_pdf.css' %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="my-3">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table text-center" id="table_presupuesto" width="100%" cellspacing="0">
+                        <h2 align="center">Detalle Presupuesto</h2>
+                        <br>
+                        <thead class="bg-acta-recepcion">
+                            <tr>
+                                <th scope="col">N°: {{ dato.0.0 }}</th>
+                                <th scope="col">FECHA: {{ dato.0.1 | date:'d/m/Y' }}</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" id="table_vehiculo" width="100%" cellspacing="0">
+                        <thead>
+                            <div class="text-center mb-3">
+                                <h5>DATOS</h5>
+                            </div>
+                            <tr>
+                                <th scope="col">Nº Siniestro</th>
+                                <th scope="col">Nº Informe</th>
+                                <th scope="col">Patente Vehículo</th>
+                                <th scope="col">Observaciones</th>
+                                <th scope="col">Estado presupuesto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">{{ dato.0.5 }}</th>
+                            <td>{{ dato.0.4 }}</td>
+                            <td>{{ dato.0.6 }}</td>
+                            <td>{{ dato.0.7 }}</td>
+                            {% if dato.0.3 == 3 %}
+                                <td>
+                                    <span class="badge badge-pill badge-info">PENDIENTE</span>
+                                </td>
+                            {% endif %}
+                            {% if dato.0.3 == 2 %}
+                                <td>
+                                    <span class="badge badge-pill badge-danger">RECHAZADO</span>
+                                </td>
+                            {% endif %}
+                            {% if dato.0.3  == 1 %}
+                                <td>
+                                    <span class="badge badge-pill badge-success">APROBADO</span>
+                                </td>
+                            {% endif %}
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" id="table_vehiculo" width="100%" cellspacing="0">
+                        <thead>
+                            <div class="text-center mb-3">
+                                <h5>COSTOS</h5>
+                            </div>
+                            <tr>
+                                <th scope="col">Tipo daño</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Severidad Daño</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Mano de obra</th>
+                                <th scope="col">Total</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+
+                            <td>{{ dato.0.9 }}</td>
+                            <td>{{ dato.0.10 }}</td>
+                            {% if dato.0.13 == "BAJO" %}
+                                <td>
+                                    <span class="badge badge-pill badge-success">BAJO</span>
+                                </td>
+                            {% endif %}
+                            {% if dato.0.13 == "MODERADO" %}
+                                <td>
+                                    <span class="badge badge-pill badge-primary">MODERADO</span>
+                                </td>
+                            {% endif %}
+                            {% if dato.0.13  == "MEDIO" %}
+                                <td>
+                                    <span class="badge badge-pill badge-info">MEDIO</span>
+                                </td>
+                            {% endif %}
+                            {% if dato.0.13  == "ALTO" %}
+                                <td>
+                                    <span class="badge badge-pill badge-warning">ALTO</span>
+                                </td>
+                            {% endif %}
+                            {% if dato.0.13  == "CRÍTICO" %}
+                                <td>
+                                    <span class="badge badge-pill badge-danger">CRÍTICO</span>
+                                </td>
+                            {% endif %}
+                            <td><strong>$</strong>{{ dato.0.11 }}</td>
+                            <td><strong>$</strong>{{ dato.0.12 }}</td>
+                            <td><strong>$</strong>{{ dato.0.2 }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <footer class="sticky-footer mt-5">
+                <div class="text-center my-auto">
+                    <span><strong>Presupuesto generado por: {{ dato.0.8 }} </strong></span>
+                    <br>
+                </div>
+            </footer>
+
+
+        </div>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>

@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 from django.http import JsonResponse
 from .forms import ActasForm, InformeDañosForm, CambiarEstadoForm
-from dashboard.models import Siniestro, EstadoSiniestro, FormularioActa, TipoActa, Poliza, Taller, Vehiculo, InformeDano, Usuario
+from dashboard.models import Siniestro, EstadoSiniestro, FormularioActa, TipoActa, Poliza, Taller, Vehiculo, InformeDano, Usuario, Presupuesto
 from django.db import connection
 import pdfkit
 import datetime
@@ -507,6 +507,44 @@ def informeDanoPdf(request, pk):
 
 def crearPresupuesto(request, pk):
     with connection.cursor() as cursor:
-        cursor.callproc('CREAR_PRESUPUESTO', [pk])
+        cursor.callproc('SP_CREAR_PRESUPUESTO', [pk])
     return render(request, 'taller/informe_daños/informe_daños_view.html')
+
+
+@login_required(login_url='login')
+def PresupuestoView(request):
+    taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
+    presupuestos = Presupuesto.objects.filter(
+        Q(taller_id_taller=taller)
+    ).order_by('id')
+    context = {'presupuestos': presupuestos}
+    return render(request, 'taller/presupuestos/presupuestos_view.html', context)
+
+
+def PresupuestoViewPdf(request, pk):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT P.ID,P.FECHA_HORA,P.VALOR_TOTAL,P.ESTADO_ID_EST_PRESUPUESTO,I.ID,I.SINIESTRO_ID,I.VEHICULO_PATENTE_VEHICULO,I.OBSERVACIONES,T.NOMBRE,D.NOMBRE,D.DESCRIPCION,D.VALOR,D.MANO_OBRA,S.NOMBRE,S.VALOR FROM DASHBOARD_PRESUPUESTO P JOIN DASHBOARD_INFORMEDANO I ON (I.ID=P.INFORME_DANO_ID_INFO_DANO) JOIN DASHBOARD_TALLER T ON (T.ID=I.TALLER_ID_TALLER) JOIN DASHBOARD_TIPODANO D ON (D.ID=I.TIPO_DANO_ID_TIPO_DANO) JOIN DASHBOARD_SEVERIDADDANO S ON (S.ID=I.SEVERIDAD_DANO_ID_SEVE_DANO) WHERE (P.ID="+pk + ")")
+        dato = cursor.fetchall()
+        dato = list(dato)
+        print(dato)
+    return render(request, 'taller/presupuestos/pdf/presupuesto_pdf.html', {'dato': dato})
+
+
+def PresupuestoPdf(request, pk):
+    options = {
+        'page-size': 'Letter',
+        'margin-top': '0.5in',
+        'margin-right': '1in',
+        'margin-bottom': '0.5in',
+        'margin-left': '1in',
+        'encoding': "UTF-8",
+    }
+
+    path_wkthmltopdf = b'C:\wkhtmltopdf\\bin\wkhtmltopdf.exe'
+    config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
+    pdf = pdfkit.from_url('http://127.0.0.1:8000/PresupuestoViewPdf/' +
+                          str(pk), False, options=options, configuration=config)
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="Presupuesto.pdf" '
+    return response
 

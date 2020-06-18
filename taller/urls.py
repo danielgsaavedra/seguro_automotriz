@@ -46,4 +46,11 @@ urlpatterns = [
         views.informeDanoPdf, name='informeDanoPdf'),
     url(r'^crearPresupuesto/(?P<pk>[0-9]+)/$',
         views.crearPresupuesto, name='crearPresupuesto'),
+    path('presupuestos/view/',
+         views.PresupuestoView, name='PresupuestoView'),
+    url(r'^PresupuestoViewPdf/(?P<pk>[0-9]+)/$',
+        views.PresupuestoViewPdf, name='PresupuestoViewPdf'),
+    url(r'^PresupuestoPdf/(?P<pk>[0-9]+)/$',
+        views.PresupuestoPdf, name='PresupuestoPdf'),
+
 ]

@@ -182,6 +182,8 @@ class Presupuesto(models.Model):
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', blank=True, null=True, verbose_name='Rut Usuario')
     informe_dano_id_info_dano = models.ForeignKey(
         'InformeDano', models.DO_NOTHING, db_column='informe_dano_id_info_dano', verbose_name='ID Inf. Daño', null=True)
+    taller_id_taller = models.ForeignKey(
+        'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', null=True)
 
     # class Meta:
     #     managed = False

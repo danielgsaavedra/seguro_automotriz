@@ -97,6 +97,7 @@
                                     <th scope="col">Costo Tipo Daño</th>
                                     <th scope="col">Mano de Obra</th>
                                     <th scope="col">Severidad de Daño</th>
+                                    <th scope="col">Multiplicador Severidad</th>
                                     <th scope="col">Total</th>
                                 </tr>
                             </thead>
@@ -106,6 +107,7 @@
                                     <td>${{ info.tipo_dano_id_tipo_dano.valor }}</td>
                                     <td>${{ info.tipo_dano_id_tipo_dano.mano_obra }}</td>
                                     <td>{{ info.severidad_dano_id_seve_dano }}</td>
+                                    <td>{{ info.severidad_dano_id_seve_dano.valor }}</td>
                                     <td><strong>${{info.total }}</strong></td>
                                 </tr>
                             </tbody>
@@ -113,8 +115,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button onclick="crear_presupuesto('{{info.id}}')" class="btn btn-success"">Crear</button></a>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button onclick="crear_presupuesto('{{info.id}}')" class="btn btn-outline-success"">Crear</button></a>
                 </div>
                 {% endfor %}
             </div>
@@ -125,7 +127,7 @@
 
     function crear_presupuesto(id) {
         $.ajax({
-            url: '/crearPresupuesto/' + id + '/',
+            url: `/crearPresupuesto/${id}/`,
             type: 'get',
             success: function () {
                 $('#modal_presupuesto').modal('hide');

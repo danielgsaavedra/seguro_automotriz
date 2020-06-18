@@ -288,4 +288,24 @@ $(document).ready(function (){
     $('#table_siniestro_reparado').on('click', '.show_form_reparado', ShowFormSiniestroReparado);
     $('#modal_siniestros_reparado').on('submit', '.form_cambiar_reparado', SaveFormSiniestroReparado);
 
+    var ShowModalPresupuesto = function () {
+        var btn = $(this);
+        $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#modal_presupuesto').modal('show')
+            },
+            success: function (data) {
+                $('#modal_presupuesto .modal-content').html(data.html_form)
+            },
+            error: function () {
+                alert('Algo salió mal, intenta nuevamente.')
+            }
+        });
+    };
+
+    $('.show_presupuesto').click(ShowModalPresupuesto);
+
 });

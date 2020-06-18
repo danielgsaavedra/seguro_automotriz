@@ -80,12 +80,8 @@
                 <div class="modal-body">
                     {% for info in info_danos %}
                     <div class="d-flex justify-content-between">
-                        <div class="">
-                            <h5>Número siniestro: {{ info.siniestro_id }}</h5>
-                        </div>
-                        <div class="">
-                            <h5>Fecha: {% now "SHORT_DATE_FORMAT" %}</h5>
-                        </div>
+                        <h5>Número siniestro: {{ info.siniestro_id }}</h5>
+                        <h5>Fecha: {% now "SHORT_DATE_FORMAT" %}</h5>
                     </div>
                     <hr>
                     <div class="table-responsive">
@@ -113,18 +109,18 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                        <button onclick="crear_presupuesto('{{info.id}}')" class="btn btn-outline-success">Crear</button>
+                    </div>
+                    {% endfor %}
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
-                    <button onclick="crear_presupuesto('{{info.id}}')" class="btn btn-outline-success"">Crear</button></a>
-                </div>
-                {% endfor %}
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript">
 
+<script type="text/javascript">
     function crear_presupuesto(id) {
         $.ajax({
             url: `/crearPresupuesto/${id}/`,
@@ -138,6 +134,5 @@
             }
         });
     };
-
 </script>
 {% endblock %}

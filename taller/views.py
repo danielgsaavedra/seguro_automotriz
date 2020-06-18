@@ -507,6 +507,8 @@ def informeDanoPdf(request, pk):
 
 def crearPresupuesto(request, pk):
     with connection.cursor() as cursor:
-        cursor.callproc('CREAR_PRESUPUESTO', [pk])
+        cursor.callproc('SP_CREAR_PRESUPUESTO', [pk])
     return render(request, 'taller/informe_daños/informe_daños_view.html')
 
+
+# def Presupuesto_Create(resquest,id):

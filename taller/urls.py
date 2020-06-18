@@ -44,4 +44,6 @@ urlpatterns = [
         views.informeDanoViewPdf, name='informeDanoViewPdf'),
     url(r'^informeDanoPdf/(?P<pk>[0-9]+)/$',
         views.informeDanoPdf, name='informeDanoPdf'),
+    url(r'^crearPresupuesto/(?P<pk>[0-9]+)/$',
+        views.crearPresupuesto, name='crearPresupuesto'),
 ]

@@ -1012,7 +1012,7 @@
 		"pk": 1,
 		"fields": {
 			"nombre": "BAJO",
-			"valor": "100"
+			"valor": "2"
 		}
 	},
 	{
@@ -1020,7 +1020,7 @@
 		"pk": 2,
 		"fields": {
 			"nombre": "MODERADO",
-			"valor": "200"
+			"valor": "3"
 		}
 	},
 	{
@@ -1028,7 +1028,7 @@
 		"pk": 3,
 		"fields": {
 			"nombre": "MEDIO",
-			"valor": "300"
+			"valor": "4"
 		}
 	},
 	{
@@ -1036,7 +1036,7 @@
 		"pk": 4,
 		"fields": {
 			"nombre": "ALTO",
-			"valor": "400"
+			"valor": "5"
 		}
 	},
 	{
@@ -1044,7 +1044,7 @@
 		"pk": 5,
 		"fields": {
 			"nombre": "CRÍTICO",
-			"valor": "500"
+			"valor": "6"
 		}
 	},
 	{

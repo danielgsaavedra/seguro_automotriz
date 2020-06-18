@@ -50,7 +50,7 @@
                                             Exportar PDF
                                         </button>
                                     </a>
-                                    <button class="dropdown-item" data-toggle="modal" data-target="#modal_presupuesto">
+                                    <button class="dropdown-item show_presupuesto" data-url="{% url 'informe_daños_detail' info.id %}">
                                         Crear presupuesto
                                     </button>
                                 </div>
@@ -71,68 +71,11 @@
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-success">
-                    <h5 class="modal-title text-light" id="exampleModalLabel">Crear Presupuesto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    {% for info in info_danos %}
-                    <div class="d-flex justify-content-between">
-                        <h5>Número siniestro: {{ info.siniestro_id }}</h5>
-                        <h5>Fecha: {% now "SHORT_DATE_FORMAT" %}</h5>
-                    </div>
-                    <hr>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover text-center" id="table_acta_recepcion"
-                            width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Tipo de Daño</th>
-                                    <th scope="col">Costo Tipo Daño</th>
-                                    <th scope="col">Mano de Obra</th>
-                                    <th scope="col">Severidad de Daño</th>
-                                    <th scope="col">Multiplicador Severidad</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{ info.tipo_dano_id_tipo_dano }}</td>
-                                    <td>${{ info.tipo_dano_id_tipo_dano.valor }}</td>
-                                    <td>${{ info.tipo_dano_id_tipo_dano.mano_obra }}</td>
-                                    <td>{{ info.severidad_dano_id_seve_dano }}</td>
-                                    <td>{{ info.severidad_dano_id_seve_dano.valor }}</td>
-                                    <td><strong>${{info.total }}</strong></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
-                        <button onclick="crear_presupuesto('{{info.id}}')" class="btn btn-outline-success">Crear</button>
-                    </div>
-                    {% endfor %}
-                </div>
+                
             </div>
         </div>
     </div>
+
 </div>
 
-<script type="text/javascript">
-    function crear_presupuesto(id) {
-        $.ajax({
-            url: `/crearPresupuesto/${id}/`,
-            type: 'get',
-            success: function () {
-                $('#modal_presupuesto').modal('hide');
-                toastr.success('Operación Exitosa');
-            },
-            error: function () {
-                toastr.error('Algo salió mal, intenta nuevamente.')
-            }
-        });
-    };
-</script>
 {% endblock %}

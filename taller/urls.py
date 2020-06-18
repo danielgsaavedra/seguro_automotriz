@@ -20,6 +20,7 @@ urlpatterns = [
     path('informe/danos/<str:id>/create',
          views.CreateInformeDaños, name='informe_daños_create'),
     path('informe_danos_view/', views.InformeDanosView, name='informe_daños_view'),
+    path('informe_danos_detail/<str:id>/', views.InformeDanosDetail, name='informe_daños_detail'),
     path('siniestros/inspeccionados/',
          views.SiniestrosInpeccionadosView, name='siniestros_inspecc'),
     path('siniestros/<str:id>/inspeccionados',

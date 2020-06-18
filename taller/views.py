@@ -378,8 +378,16 @@ def InformeDanosView(request):
     context = {'info_danos': info_danos}
     return render(request, 'taller/informe_daños/informe_daños_view.html', context)
 
-# SINIESTROS INSPECCIONADOS
+@login_required(login_url='login')
+def InformeDanosDetail(request,id):
+    data = dict()
+    info = get_object_or_404(InformeDano, id=id)
+    context = {'info': info}
+    data['html_form'] = render_to_string(
+        'taller/informe_daños/informe_daños_detail.html', context, request=request)
+    return JsonResponse(data)
 
+# SINIESTROS INSPECCIONADOS
 
 @login_required(login_url='login')
 def SiniestrosInpeccionadosView(request):
@@ -514,9 +522,7 @@ def crearPresupuesto(request, pk):
 @login_required(login_url='login')
 def PresupuestoView(request):
     taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
-    presupuestos = Presupuesto.objects.filter(
-        Q(taller_id_taller=taller)
-    ).order_by('id')
+    presupuestos = Presupuesto.objects.filter(taller_id_taller=taller).order_by('id')
     context = {'presupuestos': presupuestos}
     return render(request, 'taller/presupuestos/presupuestos_view.html', context)
 

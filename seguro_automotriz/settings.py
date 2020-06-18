@@ -140,3 +140,5 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'jl.lobos.joaquin@gmail.com'
 EMAIL_HOST_PASSWORD = 'lobos.5769'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+USE_THOUSAND_SEPARATOR = True

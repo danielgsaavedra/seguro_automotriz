@@ -133,6 +133,10 @@ class InformeDano(models.Model):
         'Siniestro', models.DO_NOTHING, db_column='siniestro_id', verbose_name='ID Siniestro', null=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    
+    def total(self):
+        total = (self.tipo_dano_id_tipo_dano.valor + self.tipo_dano_id_tipo_dano.mano_obra) * self.severidad_dano_id_seve_dano.valor
+        return total
 
     # class Meta:
     #     managed = False

@@ -133,7 +133,7 @@ class InformeDano(models.Model):
         'Siniestro', models.DO_NOTHING, db_column='siniestro_id', verbose_name='ID Siniestro', null=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
-    
+
     def total(self):
         total = (self.tipo_dano_id_tipo_dano.valor + self.tipo_dano_id_tipo_dano.mano_obra) * self.severidad_dano_id_seve_dano.valor
         return total
@@ -199,10 +199,11 @@ class Presupuesto(models.Model):
 
 
 class RegAsegurado(models.Model):
-    nombre_registrador = models.CharField(max_length=30)
-    nombre_asegurado = models.CharField(max_length=30)
-    nro_poliza = models.IntegerField()
+    nombre_asegurado = models.CharField(max_length=100)
     fecha_hora = models.DateField()
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    accion = models.CharField(max_length=50)
 
     # class Meta:
     #     managed = False
@@ -220,30 +221,61 @@ class RegError(models.Model):
     #     db_table = 'reg_error'
 
 
-class RegGrua(models.Model):
-    nombre_registrador = models.CharField(max_length=30)
-    patente_grua = models.CharField(max_length=7)
+class RegActas(models.Model):
+    tipo_acta_id_tipo_acta = models.ForeignKey(
+        'TipoActa', models.DO_NOTHING, db_column='tipo_acta_id_tipo_acta', verbose_name='Tipo Acta', null=True)
     fecha_hora = models.DateField()
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    accion = models.CharField(max_length=50)
+
+
+class RegGrua(models.Model):
+    patente_grua = models.CharField(max_length=10)
+    fecha_hora = models.DateField()
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    accion = models.CharField(max_length=50)
 
     # class Meta:
     #     managed = False
     #     db_table = 'reg_grua'
 
 
+class RegInformeDano(models.Model):
+    id_informe = models.IntegerField()
+    fecha_hora = models.DateField()
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    accion = models.CharField(max_length=50)
+
+
 class RegPoliza(models.Model):
-    nombre_registrador = models.CharField(max_length=30)
     nro_poliza = models.IntegerField()
     fecha_hora = models.DateField()
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    accion = models.CharField(max_length=50)
 
     # class Meta:
     #     managed = False
     #     db_table = 'reg_poliza'
 
 
-class RegSiniestro(models.Model):
-    nombre_registrador = models.CharField(max_length=30)
-    id_siniestro = models.IntegerField()
+class RegPresupuesto(models.Model):
+    nro_presupuesto = models.IntegerField()
     fecha_hora = models.DateField()
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    accion = models.CharField(max_length=50)
+
+
+class RegSiniestro(models.Model):
+    fecha_hora = models.DateField()
+    id_siniestro = models.IntegerField()
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    accion = models.CharField(max_length=50)
 
     # class Meta:
     #     managed = False
@@ -251,23 +283,43 @@ class RegSiniestro(models.Model):
 
 
 class RegTaller(models.Model):
-    nombre_registrador = models.CharField(max_length=30)
     nombre_taller = models.CharField(max_length=30)
     fecha_hora = models.DateField()
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    accion = models.CharField(max_length=50)
 
     # class Meta:
     #     managed = False
     #     db_table = 'reg_taller'
 
 
-class RegUsuario(models.Model):
-    nombre_registrador = models.CharField(max_length=30)
-    nombre_registrado = models.CharField(max_length=30)
+class RegTipoPlan(models.Model):
+    nombre = models.CharField(max_length=30)
     fecha_hora = models.DateField()
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    accion = models.CharField(max_length=50)
+
+
+class RegUsuario(models.Model):
+    nombre_registrado = models.CharField(max_length=100)
+    fecha_hora = models.DateField()
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    accion = models.CharField(max_length=50)
 
     # class Meta:
     #     managed = False
     #     db_table = 'reg_usuario'
+
+
+class RegVehiculo(models.Model):
+    patente_vehiculo = models.CharField(max_length=30)
+    fecha_hora = models.DateField()
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    accion = models.CharField(max_length=50)
 
 
 class Region(models.Model):
@@ -416,6 +468,8 @@ class TipoPlan(models.Model):
     valor = models.IntegerField(verbose_name='Valor')
     cobertura_max = models.IntegerField(verbose_name='Cobertura Máxima')
     deducible = models.IntegerField(verbose_name='Deducible')
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
 
     # class Meta:
     #     managed = False
@@ -496,6 +550,8 @@ class Usuario(AbstractBaseUser):
         'ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio_grua', verbose_name='Servicio Grua', blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_administrador = models.BooleanField(default=False)
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     objects = UsuarioManager()
 
     USERNAME_FIELD = 'rut_usuario'

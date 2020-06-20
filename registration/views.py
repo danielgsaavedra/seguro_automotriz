@@ -43,6 +43,9 @@ def UsuariosView(request):
 def UsuarioCreate(request):
     if request.method == 'POST':
         form = UsuarioRegisterForm(request.POST)
+        usuario = form.save(commit=False)
+        usuario.usuario_rut_usuario = request.user
+
     else:
         form = UsuarioRegisterForm()
     return SaveAllUsuario(request, form, 'registration/usuarios/usuario_create.html')

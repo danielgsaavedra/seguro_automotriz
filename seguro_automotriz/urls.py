@@ -20,8 +20,9 @@ from django.contrib.auth.views import LoginView
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', include('dashboard.urls')),
-    path('', include('taller.urls')),
+    path('aseguradora/', include('dashboard.urls')),
+    path('taller/', include('taller.urls')),
+    path('liquidador/', include('liquidador.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('registration.urls')),

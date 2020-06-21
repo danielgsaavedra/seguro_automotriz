@@ -1,0 +1,63 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Presupuestos{% endblock title %}
+{% block content %}
+<div class="d-flex justify-content-start mb-4">
+    <div class="text-center">
+        <a class="text-decoration-none" href="{% url 'presupuestos_liquidador' %}">
+            <i class="fas fa-arrow-circle-left"></i> Volver
+        </a>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Presupuestos</h6>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center" id="table_presupuesto" width="100%"
+                cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">N°</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Valor Total</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for presupuestos in presupuestos %}
+                    <tr>
+                        <th scope="row">{{ presupuestos.id }}</th>
+                        <td>{{ presupuestos.fecha_hora | date:'d-m-Y' }}</td>
+                        <td><strong>$</strong>{{ presupuestos.valor_total }}</td>
+                        {% if presupuestos.estado_id_est_presupuesto.id == 3 %}
+                            <td>
+                                <span class="badge badge-pill badge-info">{{ presupuestos.estado_id_est_presupuesto }}</span>
+                            </td>
+                        {% endif %}
+                        {% if presupuestos.estado_id_est_presupuesto.id == 2 %}
+                            <td>
+                                <span class="badge badge-pill badge-danger">{{ presupuestos.estado_id_est_presupuesto }}</span>
+                            </td>
+                        {% endif %}
+                        {% if presupuestos.estado_id_est_presupuesto.id == 1 %}
+                            <td>
+                                <span class="badge badge-pill badge-success">{{ presupuestos.estado_id_est_presupuesto }}</span>
+                            </td>
+                        {% endif %}
+                       
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="9" class="text-center">No hay siniestros</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

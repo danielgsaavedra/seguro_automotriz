@@ -45,7 +45,7 @@
 <script type="text/javascript">
     function crear_presupuesto(id) {
         $.ajax({
-            url: `/crearPresupuesto/${id}/`,
+            url: `/taller/crearPresupuesto/${id}/`,
             type: 'get',
             success: function () {
                 $('#modal_presupuesto').modal('hide');

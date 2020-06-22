@@ -48,10 +48,10 @@
 
 <body id="page-top">
     {% if  request.user.rol == '4' %}
-    <div class="card shadow mb-2">
+    <div class="card shadow mt-5">
         <div class="card-body">
             <div class="text-center">
-                <h2>Es usuario de Personal de Grúa , por favor inicie sesión dedes app de escritorio.</h2>
+                <h2>Es usuario Personal de Grúa ,favor iniciar sesión desde app de escritorio.</h2>
                 <a class="btn btn-outline-danger" href="{% url 'logout' %}">Salir</a>
             </div>
         </div>

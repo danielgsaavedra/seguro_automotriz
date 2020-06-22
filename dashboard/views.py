@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
-from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario
+from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, RegActas, RegAsegurado, RegGrua, RegInformeDano, RegSiniestro, RegPoliza, RegPresupuesto, RegTaller, RegTipoPlan, RegUsuario, RegVehiculo
 from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, AseguradoFormUpdate, VehiculoFormUpdate, SiniestroFotosUpdate
 from django.db.models import Q
 from django.db.models import Count
@@ -208,7 +208,8 @@ def VehiculoUpdate(request, id):
         form = VehiculoFormUpdate(request.POST, instance=vehiculo)
         if form.is_valid():
             data['form_is_valid'] = True
-            vehiculos = Vehiculo.objects.all().filter(asegurado_rut_asegurado=vehiculo.asegurado_rut_asegurado).order_by('anio')
+            vehiculos = Vehiculo.objects.all().filter(
+                asegurado_rut_asegurado=vehiculo.asegurado_rut_asegurado).order_by('anio')
             context = {'vehiculos': vehiculos}
             data['vehiculos'] = render_to_string(
                 'dashboard/vehiculos/vehiculo_2.html', context)
@@ -614,8 +615,18 @@ def AseguradoConsultaView(request):
     return render(request, 'dashboard/asegurados/asegurado_consulta.html', {'siniestros': siniestros})
 
 
-class HomeView(TemplateView):
-    template_name = 'dashboard/home.html'
+def HomeView(request):
+    reg_asegurados = RegAsegurado.objects.all()
+    reg_vehiculos = RegVehiculo.objects.all()
+    reg_polizas = RegPoliza.objects.all()
+    reg_siniestros = RegSiniestro.objects.all()
+    reg_talleres = RegTaller.objects.all()
+    reg_usuarios = RegUsuario.objects.all()
+
+    context = {'reg_asegurados': reg_asegurados, 'reg_vehiculos': reg_vehiculos, 'reg_polizas': reg_polizas,
+               'reg_siniestros': reg_siniestros, 'reg_talleres': reg_talleres, 'reg_usuarios': reg_usuarios}
+
+    return render(request, 'dashboard/home.html',context)
 
 
 def UpdateSiniestroFotos(request, id):

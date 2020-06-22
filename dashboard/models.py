@@ -228,6 +228,8 @@ class RegActas(models.Model):
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     accion = models.CharField(max_length=50)
+    taller_id_taller = models.ForeignKey(
+        'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', blank=True, null=True)
 
 
 class RegGrua(models.Model):
@@ -248,6 +250,8 @@ class RegInformeDano(models.Model):
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     accion = models.CharField(max_length=50)
+    taller_id_taller = models.ForeignKey(
+        'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', blank=True, null=True)
 
 
 class RegPoliza(models.Model):
@@ -268,6 +272,8 @@ class RegPresupuesto(models.Model):
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     accion = models.CharField(max_length=50)
+    taller_id_taller = models.ForeignKey(
+        'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', blank=True, null=True)
 
 
 class RegSiniestro(models.Model):
@@ -276,6 +282,8 @@ class RegSiniestro(models.Model):
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     accion = models.CharField(max_length=50)
+    taller_id_taller = models.ForeignKey(
+        'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', blank=True, null=True)
 
     # class Meta:
     #     managed = False

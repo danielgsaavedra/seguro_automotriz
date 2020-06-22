@@ -17,131 +17,107 @@
 
 </head>
 
-<body>
-    <div class="container">
-        <div class="my-3">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table text-center" id="table_presupuesto" width="100%" cellspacing="0">
-                        <h2 align="center">Detalle Presupuesto</h2>
-                        <br>
-                        <thead class="bg-acta-recepcion">
-                            <tr>
-                                <th scope="col">N°: {{ dato.0.0 }}</th>
-                                <th scope="col">FECHA: {{ dato.0.1 | date:'d/m/Y' }}</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
+<body class="container">
+    <div class="mx-5 mt-3">
+        <table class="table">
+            <tr class="row">
+                <td class="col-6">
+                    <h5>
+                        <img src="{% static 'dashboard/img/seguro-icon.png' %}" alt=""
+                            style="width: 50px; height: 50px;">DETALLER PRESUPUESTO
+                    </h5>
+                </td>
+                <td class="col-6 d-flex justify-content-end">
+                    <span>{{ dato.0.1 | date:'d/m/Y' }}</span>
+                </td>
+            </tr>
+        </table>
+        <hr>
 
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered text-center" id="table_vehiculo" width="100%" cellspacing="0">
-                        <thead>
-                            <div class="text-center mb-3">
-                                <h5>DATOS</h5>
-                            </div>
-                            <tr>
-                                <th scope="col">Nº Siniestro</th>
-                                <th scope="col">Nº Informe</th>
-                                <th scope="col">Patente Vehículo</th>
-                                <th scope="col">Observaciones</th>
-                                <th scope="col">Estado presupuesto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+        <h5>DATOS ASEGURADO</h5>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h6>Número Siniestro: {{dato.0.5}}</h6>
+                <h6>Número Informe: {{dato.0.4}}</h6>
+                <h6>Patente Vehículo: {{dato.0.6}}</h6>
+                {% if dato.0.3 == 3 %}
+                <h6>Estado Presupuesto: Pendiente</h6>
+                {% endif %}
+                {% if dato.0.3 == 2 %}
+                <h6>Estado Presupuesto: Rechazado</h6>
+                {% endif %}
+                {% if dato.0.3  == 1 %}
+                <h6>Estado Presupuesto: Aprobado</h6>
+                {% endif %}
+                <h6>Observaciones: {{dato.0.7}}</h6>
+            </div>
+        </div>
+        <hr>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center" id="table_vehiculo" width="100%" cellspacing="0">
+                    <thead>
+                        <div class="text-center mb-3">
+                            <h5>COSTOS</h5>
+                        </div>
                         <tr>
-                            <th scope="row">{{ dato.0.5 }}</th>
-                            <td>{{ dato.0.4 }}</td>
-                            <td>{{ dato.0.6 }}</td>
-                            <td>{{ dato.0.7 }}</td>
-                            {% if dato.0.3 == 3 %}
-                                <td>
-                                    <span class="badge badge-pill badge-info">PENDIENTE</span>
-                                </td>
-                            {% endif %}
-                            {% if dato.0.3 == 2 %}
-                                <td>
-                                    <span class="badge badge-pill badge-danger">RECHAZADO</span>
-                                </td>
-                            {% endif %}
-                            {% if dato.0.3  == 1 %}
-                                <td>
-                                    <span class="badge badge-pill badge-success">APROBADO</span>
-                                </td>
-                            {% endif %}
+                            <th scope="col">Tipo daño</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Severidad Daño</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Mano de obra</th>
+                            <th scope="col">Total</th>
+
                         </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered text-center" id="table_vehiculo" width="100%" cellspacing="0">
-                        <thead>
-                            <div class="text-center mb-3">
-                                <h5>COSTOS</h5>
-                            </div>
-                            <tr>
-                                <th scope="col">Tipo daño</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Severidad Daño</th>
-                                <th scope="col">Valor</th>
-                                <th scope="col">Mano de obra</th>
-                                <th scope="col">Total</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
+                    </thead>
+                    <tbody>
                         <tr>
 
                             <td>{{ dato.0.9 }}</td>
                             <td>{{ dato.0.10 }}</td>
                             {% if dato.0.13 == "BAJO" %}
-                                <td>
-                                    <span class="badge badge-pill badge-success">BAJO</span>
-                                </td>
+                            <td>
+                                <span class="badge badge-pill badge-success">BAJO</span>
+                            </td>
                             {% endif %}
                             {% if dato.0.13 == "MODERADO" %}
-                                <td>
-                                    <span class="badge badge-pill badge-primary">MODERADO</span>
-                                </td>
+                            <td>
+                                <span class="badge badge-pill badge-primary">MODERADO</span>
+                            </td>
                             {% endif %}
                             {% if dato.0.13  == "MEDIO" %}
-                                <td>
-                                    <span class="badge badge-pill badge-info">MEDIO</span>
-                                </td>
+                            <td>
+                                <span class="badge badge-pill badge-info">MEDIO</span>
+                            </td>
                             {% endif %}
                             {% if dato.0.13  == "ALTO" %}
-                                <td>
-                                    <span class="badge badge-pill badge-warning">ALTO</span>
-                                </td>
+                            <td>
+                                <span class="badge badge-pill badge-warning">ALTO</span>
+                            </td>
                             {% endif %}
                             {% if dato.0.13  == "CRÍTICO" %}
-                                <td>
-                                    <span class="badge badge-pill badge-danger">CRÍTICO</span>
-                                </td>
+                            <td>
+                                <span class="badge badge-pill badge-danger">CRÍTICO</span>
+                            </td>
                             {% endif %}
                             <td><strong>$</strong>{{ dato.0.11 }}</td>
                             <td><strong>$</strong>{{ dato.0.12 }}</td>
                             <td><strong>$</strong>{{ dato.0.2 }}</td>
                         </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
-            <footer class="sticky-footer mt-5">
-                <div class="text-center my-auto">
-                    <span><strong>Presupuesto generado por: {{ dato.0.8 }} </strong></span>
-                    <br>
-                </div>
-            </footer>
+        </div>
 
+    </div>
+    <footer class="sticky-footer mt-5">
+        <div class="text-center">
+            <span>Presupuesto realizado por: <strong>{{ dato.0.8 }} </strong></span>
 
         </div>
-    </div>
+    </footer>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

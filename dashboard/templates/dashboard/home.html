@@ -11,7 +11,244 @@
             <a class="text-decoration-none" href="javascript:void(0)">{{request.user.email}}</a>
             <hr>
             <span>Última conexión: {{request.user.last_login}}</span>
+        </div>   
+    </div>
+</div>
+
+{% if  request.user.rol == '1' %}
+<div class="row justify-content-around">
+    <div class="card shadow mb-4 col-5">
+        <div class="card-body">
+            <div class="text-center">
+                <h4>Registros Asegurados</h4>
+            </div>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center" id="table_reg_asegurado" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">N° Registro</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Nombre Asegurado</th>
+                            <th scope="col">Nombre Usuario</th>
+                            <th scope="col">Proceso</th>   
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reg_asegurados in reg_asegurados %}
+                        <tr>
+                            <th scope="row">{{reg_asegurados.id }}</th>
+                            <td>{{reg_asegurados.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_asegurados.nombre_asegurado}}</td>
+                            <td>{{reg_asegurados.usuario_rut_usuario.primer_nombre}} {{reg_asegurados.usuario_rut_usuario.segundo_nombre}} {{reg_asegurados.usuario_rut_usuario.primer_apellido}} {{reg_asegurados.usuario_rut_usuario.segundo_apellido}}</td>
+                            <td>{{reg_asegurados.accion }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center">No hay Registros de Asegurados</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4 col-5">
+        <div class="card-body">
+            <div class="text-center">
+                <h4>Registros Vehículos</h4>
+            </div>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center" id="table_reg_vehiculo" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">N° Registro</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Patente</th>
+                            <th scope="col">Nombre Usuario</th>
+                            <th scope="col">Proceso</th>   
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reg_vehiculos in reg_vehiculos %}
+                        <tr>
+                            <th scope="row">{{reg_vehiculos.id }}</th>
+                            <td>{{reg_vehiculos.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_vehiculos.patente_vehiculo}}</td>
+                            <td>{{reg_vehiculos.usuario_rut_usuario.primer_nombre}} {{reg_vehiculos.usuario_rut_usuario.segundo_nombre}} {{reg_vehiculos.usuario_rut_usuario.primer_apellido}} {{reg_vehiculos.usuario_rut_usuario.segundo_apellido}}</td>
+                            <td>{{reg_vehiculos.accion }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center">No hay Registros de Vehículos</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
+
+<div class="row justify-content-around">
+    <div class="card shadow mb-4 col-5">
+        <div class="card-body">
+            <div class="text-center">
+                <h4>Registros Pólizas</h4>
+            </div>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center" id="table_reg_poliza" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">N° Registro</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Número Póliza</th>
+                            <th scope="col">Nombre Usuario</th>
+                            <th scope="col">Proceso</th>   
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reg_polizas in reg_polizas %}
+                        <tr>
+                            <th scope="row">{{reg_polizas.id }}</th>
+                            <td>{{reg_polizas.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_polizas.nro_poliza}}</td>   
+                            <td>{{reg_polizas.usuario_rut_usuario.primer_nombre}} {{reg_polizas.usuario_rut_usuario.segundo_nombre}} {{reg_polizas.usuario_rut_usuario.primer_apellido}} {{reg_polizas.usuario_rut_usuario.segundo_apellido}}</td>
+                            <td>{{reg_polizas.accion }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center">No hay Registros de Pólizas</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4 col-5">
+        <div class="card-body">
+            <div class="text-center">
+                <h4>Registros Siniestros</h4>
+            </div>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center" id="table_reg_siniestro" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">N° Registro</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Número Siniestro</th>
+                            <th scope="col">Nombre Usuario</th>
+                            <th scope="col">Proceso</th>   
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reg_siniestros in reg_siniestros %}
+                        <tr>
+                            <th scope="row">{{reg_siniestros.id }}</th>
+                            <td>{{reg_siniestros.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_siniestros.id_siniestro}}</td>
+                            <td>{{reg_siniestros.usuario_rut_usuario.primer_nombre}} {{reg_siniestros.usuario_rut_usuario.segundo_nombre}} {{reg_siniestros.usuario_rut_usuario.primer_apellido}} {{reg_siniestros.usuario_rut_usuario.segundo_apellido}}</td>
+                            <td>{{reg_siniestros.accion }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center">No hay Registros de Siniestros</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-around">
+    <div class="card shadow mb-4 col-5">
+        <div class="card-body">
+            <div class="text-center">
+                <h4>Registros Talleres</h4>
+            </div>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center" id="table_reg_taller" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">N° Registro</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Nombre Taller</th>
+                            <th scope="col">Nombre Usuario</th>
+                            <th scope="col">Proceso</th>   
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reg_talleres in reg_talleres %}
+                        <tr>
+                            <th scope="row">{{reg_talleres.id }}</th>
+                            <td>{{reg_talleres.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_talleres.nombre_taller}}</td>   
+                            <td>{{reg_talleres.usuario_rut_usuario.primer_nombre}} {{reg_talleres.usuario_rut_usuario.segundo_nombre}} {{reg_talleres.usuario_rut_usuario.primer_apellido}} {{reg_talleres.usuario_rut_usuario.segundo_apellido}}</td>
+                            <td>{{reg_talleres.accion }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center">No hay Registros de Talleres</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4 col-5">
+        <div class="card-body">
+            <div class="text-center">
+                <h4>Registros Usuarios</h4>
+            </div>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center" id="table_reg_usuario" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">N° Registro</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Nombre Usuario</th>
+                            <th scope="col">Nombre Registrador</th>
+                            <th scope="col">Proceso</th>   
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reg_usuarios in reg_usuarios %}
+                        <tr>
+                            <th scope="row">{{reg_usuarios.id }}</th>
+                            <td>{{reg_usuarios.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_usuarios.nombre_registrado}}</td>
+                            <td>{{reg_usuarios.usuario_rut_usuario.primer_nombre}} {{reg_usuarios.usuario_rut_usuario.segundo_nombre}} {{reg_usuarios.usuario_rut_usuario.primer_apellido}} {{reg_usuarios.usuario_rut_usuario.segundo_apellido}}</td>
+                            <td>{{reg_usuarios.accion }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center">No hay Registros de Usuarios</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
 {% endblock %}

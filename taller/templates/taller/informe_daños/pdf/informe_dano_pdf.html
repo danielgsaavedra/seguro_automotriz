@@ -14,109 +14,65 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
 
 </head>
 
-<body>
-    <div class="container">
-        <div class="my-3">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table text-center" id="table_informe_dano" width="100%" cellspacing="0">
-                        <thead class="bg-acta-recepcion">
-                            <tr>
-                                <th scope="col">INFORME DE DAÑOS</th>
-                                <th scope="col">FECHA: {{ dato.0.1 | date:'d/m/Y' }}</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
+<body class="container">
+    <div class="mx-5 mt-3">
+        <table class="table">
+            <tr class="row">
+                <td class="col-6">
+                    <h5>
+                        <img src="{% static 'dashboard/img/seguro-icon.png' %}" alt=""
+                            style="width: 50px; height: 50px;">INFORME DE DAÑOS
+                    </h5>
+                </td>
+                <td class="col-6 d-flex justify-content-end">
+                    <span>{{ dato.0.1 | date:'d/m/Y' }}</span>
+                </td>
+            </tr>
+        </table>
+        <hr>
+
+        <h5>DATOS DE INFORME</h5>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h6>Número Informe: {{dato.0.0}}</h6>
+                <h6>Número Siniestro: {{dato.0.2}}</h6>
+                <h6>Patente Vehículo: {{dato.0.4}}</h6>
             </div>
-
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered text-center" id="table_vehiculo" width="100%" cellspacing="0">
-                        <thead>
-                            <div class="text-center mb-3">
-                                <h5>DATOS INFORME</h5>
-                            </div>
-                            <tr>
-                                <th scope="col">Nº Informe</th>
-                                <th scope="col">N° Siniestro</th>
-                                <th scope="col">Patente Vehiculo</th>
-                                {#                                <th scope="col">Patente Grúa</th>#}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">{{ dato.0.0 }}</th>
-                                <td>{{ dato.0.2 }}</td>
-                                <td>{{ dato.0.4 }}</td>
-                                {#                                {% if dato.0.1 == null %}#}
-                                {#                                <td>SIN GRÚA</td>#}
-                                {#                                {% else %}#}
-                                {#                                <td>{{dato.0.1}}</td>#}
-                                {#                                {% endif %}#}
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered text-center" id="table_vehiculo" width="100%" cellspacing="0">
-                        <thead>
-                            <div class="text-center mb-3">
-                                <h5>INFORMACIÓN DE DAÑOS</h5>
-                            </div>
-                            <tr>
-                                <th scope="col">Observaciones</th>
-                                <th scope="col">Severidad de daños</th>
-                                <th scope="col">Tipo Daño</th>
-                                <th scope="col">Descripción de daños</th>
-                                <th scope="col">Perdida total</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">{{ dato.0.3 }}</th>
-                                {% if dato.0.6 == "BAJO" %}
-                                <td class="table-success">BAJO</td>
-                                {% endif %}
-                                {% if dato.0.6 == "MEDIO" %}
-                                <td class="table-warning">MEDIO</td>
-                                {% endif %}
-                                {% if dato.0.6 == "ALTO" %}
-                                <td class="table-danger">ALTO</td>
-                                {% endif %}
-                                <td>{{ dato.0.7 }}</td>
-                                <td>{{ dato.0.8 }}</td>
-                                {% if dato.0.5 == null %}
-                                <td class="table-success">NO</td>
-                                {% else %}
-                                <td class="table-danger">SI</td>
-                                {% endif %}
-
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <footer class="sticky-footer mt-5">
-                <div class="text-center my-auto">
-                    <span><strong>{{ dato.0.9 }} - {{ dato.0.10 }} </strong></span>
-                    <br>
-                    <span class="mt-2">Teléfono: +56 {{ dato.0.11 }}</span>
-                    <br>
-                    <span class="mt-2">{{ dato.0.12 }}</span>
-                </div>
-            </footer>
-
-
         </div>
+        <hr>
+
+        <h5>DESCRIPCIÓN DE DAÑOS</h5>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h6>Tipo Daños: {{dato.0.7}}</h6>
+                <h6>Descripción Daños: {{dato.0.8}}</h6>
+                <h6>Severidad Daños {{dato.0.6}}</h6>
+                {% if dato.0.5 == 0 %}
+                <h6>Perdida Total: <i class="fas fa-times"></i></h6>
+                {% else %}
+                <h6>Perdida Total: <i class="fas fa-check"></i></h6>
+                {% endif %}
+                <h6>Observaciones: {{dato.0.3}}</h6>
+            </div>
+        </div>
+        <hr>
     </div>
+    <footer class="sticky-footer mt-5">
+        <div class="text-center">
+            <span><strong>{{ dato.0.9 }} - {{ dato.0.10 }} </strong></span>
+            <br>
+            <span class="mt-2">Teléfono: +56 {{ dato.0.11 }}</span>
+            <br>
+            <span class="mt-2">{{ dato.0.12 }}</span>
+        </div>
+    </footer>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

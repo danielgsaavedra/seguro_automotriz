@@ -95,9 +95,9 @@ def actaRecepcionPdf(request, pk):
     options = {
         'page-size': 'Letter',
         'margin-top': '0.5in',
-        'margin-right': '1in',
+        'margin-right': '0.7in',
         'margin-bottom': '0.5in',
-        'margin-left': '1in',
+        'margin-left': '0.7in',
         'encoding': "UTF-8",
     }
 
@@ -202,9 +202,9 @@ def actaRetiroPdf(request, pk):
     options = {
         'page-size': 'Letter',
         'margin-top': '0.5in',
-        'margin-right': '1in',
+        'margin-right': '0.7in',
         'margin-bottom': '0.5in',
-        'margin-left': '1in',
+        'margin-left': '0.7in',
         'encoding': "UTF-8",
     }
 
@@ -289,9 +289,9 @@ def actaRechazoPdf(request, pk):
     options = {
         'page-size': 'Letter',
         'margin-top': '0.5in',
-        'margin-right': '1in',
+        'margin-right': '0.7in',
         'margin-bottom': '0.5in',
-        'margin-left': '1in',
+        'margin-left': '0.7in',
         'encoding': "UTF-8",
     }
 
@@ -497,9 +497,9 @@ def informeDanoPdf(request, pk):
     options = {
         'page-size': 'Letter',
         'margin-top': '0.5in',
-        'margin-right': '1in',
+        'margin-right': '0.7in',
         'margin-bottom': '0.5in',
-        'margin-left': '1in',
+        'margin-left': '0.7in',
         'encoding': "UTF-8",
     }
 
@@ -540,9 +540,9 @@ def PresupuestoPdf(request, pk):
     options = {
         'page-size': 'Letter',
         'margin-top': '0.5in',
-        'margin-right': '1in',
+        'margin-right': '0.7in',
         'margin-bottom': '0.5in',
-        'margin-left': '1in',
+        'margin-left': '0.7in',
         'encoding': "UTF-8",
     }
 

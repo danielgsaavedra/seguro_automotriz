@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
-from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, RegActas, RegAsegurado, RegGrua, RegInformeDano, RegSiniestro, RegPoliza, RegPresupuesto, RegTaller, RegTipoPlan, RegUsuario, RegVehiculo
+from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, FormularioActa, Presupuesto, TipoActa, RegActas, RegAsegurado, RegGrua, RegInformeDano, RegSiniestro, RegPoliza, RegPresupuesto, RegTaller, RegTipoPlan, RegUsuario, RegVehiculo
 from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, AseguradoFormUpdate, VehiculoFormUpdate, SiniestroFotosUpdate
 from django.db.models import Q
 from django.db.models import Count
@@ -616,17 +616,42 @@ def AseguradoConsultaView(request):
 
 
 def HomeView(request):
+    acta_recepcion = get_object_or_404(TipoActa, id=1)
+    acta_retiro = get_object_or_404(TipoActa, id=3)
+    acta_rechazo = get_object_or_404(TipoActa, id=2)
     reg_asegurados = RegAsegurado.objects.all()
     reg_vehiculos = RegVehiculo.objects.all()
     reg_polizas = RegPoliza.objects.all()
     reg_siniestros = RegSiniestro.objects.all()
     reg_talleres = RegTaller.objects.all()
     reg_usuarios = RegUsuario.objects.all()
+    reg_actas_recepcion = RegActas.objects.filter(
+        Q(tipo_acta_id_tipo_acta=acta_recepcion) &
+        Q(taller_id_taller=request.user.taller_id_taller)
+    )
+    reg_actas_retiro = RegActas.objects.filter(
+        Q(tipo_acta_id_tipo_acta=acta_retiro) &
+        Q(taller_id_taller=request.user.taller_id_taller)
+    )
+    reg_actas_rechazo = RegActas.objects.filter(
+        Q(tipo_acta_id_tipo_acta=acta_rechazo) &
+        Q(taller_id_taller=request.user.taller_id_taller)
+    )
+    reg_informes = RegInformeDano.objects.filter(
+        taller_id_taller=request.user.taller_id_taller)
+    reg_presupuestos = RegPresupuesto.objects.filter(
+        taller_id_taller=request.user.taller_id_taller)
+    reg_siniestros_taller = RegSiniestro.objects.filter(
+        taller_id_taller=request.user.taller_id_taller)
+    reg_gruas = RegGrua.objects.all()
 
     context = {'reg_asegurados': reg_asegurados, 'reg_vehiculos': reg_vehiculos, 'reg_polizas': reg_polizas,
-               'reg_siniestros': reg_siniestros, 'reg_talleres': reg_talleres, 'reg_usuarios': reg_usuarios}
+               'reg_siniestros': reg_siniestros, 'reg_talleres': reg_talleres, 'reg_usuarios': reg_usuarios,
+               'reg_actas_recepcion': reg_actas_recepcion, 'reg_actas_retiro': reg_actas_retiro, 'reg_actas_rechazo': reg_actas_rechazo,
+               'reg_informes': reg_informes, 'reg_presupuestos': reg_presupuestos, 'reg_siniestros_taller': reg_siniestros_taller,
+               'reg_gruas':reg_gruas}
 
-    return render(request, 'dashboard/home.html',context)
+    return render(request, 'dashboard/home.html', context)
 
 
 def UpdateSiniestroFotos(request, id):

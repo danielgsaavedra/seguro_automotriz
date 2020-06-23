@@ -25,8 +25,8 @@
     </div>
 </div>
 
-<div class="row justify-content-center">
-    <div class="card shadow mb-4 col-5 mr-5">
+<div class="row justify-content-around mx-1">
+    <div class="card shadow mb-4 col-12 col-md-12 col-lg-5 ">
         <div class="card-body">
             <div class="text-center">
                 <h4>Asegurados</h4>
@@ -48,7 +48,7 @@
                         {% for reg_asegurados in reg_asegurados %}
                         <tr>
                             <th scope="row">{{reg_asegurados.id }}</th>
-                            <td>{{reg_asegurados.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_asegurados.fecha_hora | date:'Y-m-d  h:m:s a'}}</td>
                             <td>{{reg_asegurados.nombre_asegurado}}</td>
                             <td>{{reg_asegurados.usuario_rut_usuario.primer_nombre}}
                                 {{reg_asegurados.usuario_rut_usuario.segundo_nombre}}
@@ -67,7 +67,7 @@
         </div>
     </div>
 
-    <div class="card shadow mb-4 col-5">
+    <div class="card shadow mb-4 col-12 col-md-12 col-lg-5">
         <div class="card-body">
             <div class="text-center">
                 <h4>Vehículos</h4>
@@ -89,7 +89,7 @@
                         {% for reg_vehiculos in reg_vehiculos %}
                         <tr>
                             <th scope="row">{{reg_vehiculos.id }}</th>
-                            <td>{{reg_vehiculos.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_vehiculos.fecha_hora | date:'Y-m-d h:m:s a' }}</td>
                             <td>{{reg_vehiculos.patente_vehiculo}}</td>
                             <td>{{reg_vehiculos.usuario_rut_usuario.primer_nombre}}
                                 {{reg_vehiculos.usuario_rut_usuario.segundo_nombre}}
@@ -109,8 +109,8 @@
     </div>
 </div>
 
-<div class="row justify-content-center">
-    <div class="card shadow mb-4 col-5 mr-5">
+<div class="row justify-content-around mx-1">
+    <div class="card shadow mb-4 col-12 col-md-12 col-lg-5">
         <div class="card-body">
             <div class="text-center">
                 <h4>Pólizas</h4>
@@ -132,7 +132,7 @@
                         {% for reg_polizas in reg_polizas %}
                         <tr>
                             <th scope="row">{{reg_polizas.id }}</th>
-                            <td>{{reg_polizas.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_polizas.fecha_hora | date:'Y-m-d h:m:s a'}}</td>
                             <td>{{reg_polizas.nro_poliza}}</td>
                             <td>{{reg_polizas.usuario_rut_usuario.primer_nombre}}
                                 {{reg_polizas.usuario_rut_usuario.segundo_nombre}}
@@ -151,7 +151,7 @@
         </div>
     </div>
 
-    <div class="card shadow mb-4 col-5">
+    <div class="card shadow mb-4 col-12 col-md-12 col-lg-5">
         <div class="card-body">
             <div class="text-center">
                 <h4>Siniestros</h4>
@@ -173,7 +173,7 @@
                         {% for reg_siniestros in reg_siniestros %}
                         <tr>
                             <th scope="row">{{reg_siniestros.id }}</th>
-                            <td>{{reg_siniestros.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_siniestros.fecha_hora | date:'Y-m-d h:m:s a' }}</td>
                             <td>{{reg_siniestros.id_siniestro}}</td>
                             <td>{{reg_siniestros.usuario_rut_usuario.primer_nombre}}
                                 {{reg_siniestros.usuario_rut_usuario.segundo_nombre}}
@@ -193,8 +193,8 @@
     </div>
 </div>
 
-<div class="row justify-content-center">
-    <div class="card shadow mb-4 col-5 mr-5">
+<div class="row justify-content-around mx-1">
+    <div class="card shadow mb-4 col-12 col-md-12 col-lg-5">
         <div class="card-body">
             <div class="text-center">
                 <h4>Talleres</h4>
@@ -216,7 +216,7 @@
                         {% for reg_talleres in reg_talleres %}
                         <tr>
                             <th scope="row">{{reg_talleres.id }}</th>
-                            <td>{{reg_talleres.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_talleres.fecha_hora | date:'Y-m-d h:m:s a' }}</td>
                             <td>{{reg_talleres.nombre_taller}}</td>
                             <td>{{reg_talleres.usuario_rut_usuario.primer_nombre}}
                                 {{reg_talleres.usuario_rut_usuario.segundo_nombre}}
@@ -235,7 +235,7 @@
         </div>
     </div>
 
-    <div class="card shadow mb-4 col-5">
+    <div class="card shadow mb-4 col-12 col-md-12 col-lg-5">
         <div class="card-body">
             <div class="text-center">
                 <h4>Usuarios</h4>
@@ -249,6 +249,7 @@
                             <th scope="col">N° Registro</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Nombre Usuario</th>
+                            <th scope="col">Rol Usuario</th>
                             <th scope="col">Nombre Registrador</th>
                             <th scope="col">Proceso</th>
                         </tr>
@@ -257,8 +258,31 @@
                         {% for reg_usuarios in reg_usuarios %}
                         <tr>
                             <th scope="row">{{reg_usuarios.id }}</th>
-                            <td>{{reg_usuarios.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_usuarios.fecha_hora | date:'Y-m-d h:m:s a' }}</td>
                             <td>{{reg_usuarios.nombre_registrado}}</td>
+                            {% if reg_usuarios.rol_registrado == 1 %}
+                            <td>
+                                <span class="badge badge-pill badge-info">MESA DE AYUDA</span>
+                            </td>
+                            {% endif %}
+
+                            {% if reg_usuarios.rol_registrado == 2 %}
+                            <td>
+                                <span class="badge badge-pill badge-success">LIQUIDADOR </span>
+                            </td>
+                            {% endif %}
+
+                            {% if reg_usuarios.rol_registrado == 3 %}
+                            <td>
+                                <span class="badge badge-pill badge-danger">PERSONAL TALLER </span>
+                            </td>
+                            {% endif %}
+
+                            {% if reg_usuarios.rol_registrado == 4 %}
+                            <td>
+                                <span class="badge badge-pill badge-warning">PERSONAL GRÚA </span>
+                            </td>
+                            {% endif %}
                             <td>{{reg_usuarios.usuario_rut_usuario.primer_nombre}}
                                 {{reg_usuarios.usuario_rut_usuario.segundo_nombre}}
                                 {{reg_usuarios.usuario_rut_usuario.primer_apellido}}
@@ -277,8 +301,8 @@
     </div>
 </div>
 
-<div class="row justify-content-center">
-    <div class="card shadow mb-4 col-11">
+<div class="row justify-content-around mx-1">
+    <div class="card shadow mb-4 col-12 col-md-12 col-lg-5">
         <div class="card-body">
             <div class="text-center">
                 <h4>Grúas</h4>
@@ -300,7 +324,7 @@
                         {% for reg_gruas in reg_gruas %}
                         <tr>
                             <th scope="row">{{reg_gruas.id }}</th>
-                            <td>{{reg_gruas.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_gruas.fecha_hora | date:'Y-m-d h:m:s a' }}</td>
                             <td>{{reg_gruas.patente_grua}}</td>
                             <td>{{reg_gruas.usuario_rut_usuario.primer_nombre}}
                                 {{reg_gruas.usuario_rut_usuario.segundo_nombre}}
@@ -311,6 +335,47 @@
                         {% empty %}
                         <tr>
                             <td colspan="10" class="text-center">No hay Registros de Grúas</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4 col-12 col-md-12 col-lg-5">
+        <div class="card-body">
+            <div class="text-center">
+                <h4>Servicio de Grúas</h4>
+            </div>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center" id="table_reg_servicio" width="100%"
+                    cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">N° Registro</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Nombre Registrador</th>
+                            <th scope="col">Proceso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reg_servicio_gruas in reg_servicio_gruas %}
+                        <tr>
+                            <th scope="row">{{reg_servicio_gruas.id }}</th>
+                            <td>{{reg_servicio_gruas.fecha_hora | date:'Y-m-d h:m:s a' }}</td>
+                            <td>{{reg_servicio_gruas.nombre_servicio}}</td>
+                            <td>{{reg_servicio_gruas.usuario_rut_usuario.primer_nombre}}
+                                {{reg_servicio_gruas.usuario_rut_usuario.segundo_nombre}}
+                                {{reg_servicio_gruas.usuario_rut_usuario.primer_apellido}}
+                                {{reg_servicio_gruas.usuario_rut_usuario.segundo_apellido}}</td>
+                            <td>{{reg_servicio_gruas.accion }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center">No hay Registros de Servicio de Grúas</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -346,8 +411,8 @@
     </div>
 </div>
 
-<div class="row justify-content-center">
-    <div class="card shadow mb-4 col-5 mr-5">
+<div class="row justify-content-around mx-1">
+    <div class="card shadow mb-4 col-12 col-md-12 col-lg-5">
         <div class="card-body">
             <div class="text-center">
                 <h4>Actas de Recepción</h4>
@@ -369,8 +434,8 @@
                         {% for reg_actas_recepcion in reg_actas_recepcion %}
                         <tr>
                             <th scope="row">{{reg_actas_recepcion.id }}</th>
-                            <td>{{reg_actas_recepcion.fecha_hora | date:'d-m-Y' }}</td>
-                            <td>{{reg_actas_recepcion.nombre_asegurado}}</td>
+                            <td>{{reg_actas_recepcion.fecha_hora | date:'Y-m-d h:m:s a' }}</td>
+                            <td>{{reg_actas_recepcion.id_acta}}</td>
                             <td>{{reg_actas_recepcion.usuario_rut_usuario.primer_nombre}}
                                 {{reg_actas_recepcion.usuario_rut_usuario.segundo_nombre}}
                                 {{reg_actas_recepcion.usuario_rut_usuario.primer_apellido}}
@@ -388,7 +453,7 @@
         </div>
     </div>
 
-    <div class="card shadow mb-4 col-5">
+    <div class="card shadow mb-4 col-12 col-md-12 col-lg-5">
         <div class="card-body">
             <div class="text-center">
                 <h4>Actas de Retiro</h4>
@@ -410,8 +475,8 @@
                         {% for reg_actas_retiro in reg_actas_retiro %}
                         <tr>
                             <th scope="row">{{reg_actas_retiro.id }}</th>
-                            <td>{{reg_actas_retiro.fecha_hora | date:'d-m-Y' }}</td>
-                            <td>{{reg_actas_retiro.patente_vehiculo}}</td>
+                            <td>{{reg_actas_retiro.fecha_hora | date:'Y-m-d h:m:s a' }}</td>
+                            <td>{{reg_actas_retiro.id_acta}}</td>
                             <td>{{reg_actas_retiro.usuario_rut_usuario.primer_nombre}}
                                 {{reg_actas_retiro.usuario_rut_usuario.segundo_nombre}}
                                 {{reg_actas_retiro.usuario_rut_usuario.primer_apellido}}
@@ -430,8 +495,8 @@
     </div>
 </div>
 
-<div class="row justify-content-center">
-    <div class="card shadow mb-4 col-5 mr-5">
+<div class="row justify-content-around mx-1">
+    <div class="card shadow mb-4 col-12 col-md-12 col-lg-5">
         <div class="card-body">
             <div class="text-center">
                 <h4>Actas de Rechazo</h4>
@@ -453,8 +518,8 @@
                         {% for reg_actas_rechazo in reg_actas_rechazo %}
                         <tr>
                             <th scope="row">{{reg_actas_rechazo.id }}</th>
-                            <td>{{reg_actas_rechazo.fecha_hora | date:'d-m-Y' }}</td>
-                            <td>{{reg_actas_rechazo.nombre_asegurado}}</td>
+                            <td>{{reg_actas_rechazo.fecha_hora | date:'Y-m-d h:m:s a' }}</td>
+                            <td>{{reg_actas_rechazo.id_acta}}</td>
                             <td>{{reg_actas_rechazo.usuario_rut_usuario.primer_nombre}}
                                 {{reg_actas_rechazo.usuario_rut_usuario.segundo_nombre}}
                                 {{reg_actas_rechazo.usuario_rut_usuario.primer_apellido}}
@@ -472,7 +537,7 @@
         </div>
     </div>
 
-    <div class="card shadow mb-4 col-5">
+    <div class="card shadow mb-4 col-12 col-md-12 col-lg-5">
         <div class="card-body">
             <div class="text-center">
                 <h4>Informes de Daño</h4>
@@ -494,7 +559,7 @@
                         {% for reg_informes in reg_informes %}
                         <tr>
                             <th scope="row">{{reg_informes.id }}</th>
-                            <td>{{reg_informes.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_informes.fecha_hora | date:'Y-m-d h:m:s a' }}</td>
                             <td>{{reg_informes.id_informe}}</td>
                             <td>{{reg_informes.usuario_rut_usuario.primer_nombre}}
                                 {{reg_informes.usuario_rut_usuario.segundo_nombre}}
@@ -514,8 +579,8 @@
     </div>
 </div>
 
-<div class="row justify-content-center">
-    <div class="card shadow mb-4 col-5 mr-5">
+<div class="row justify-content-around mx-1">
+    <div class="card shadow mb-4 col-12 col-md-12 col-lg-5">
         <div class="card-body">
             <div class="text-center">
                 <h4>Presupuestos</h4>
@@ -537,7 +602,7 @@
                         {% for reg_presupuestos in reg_presupuestos %}
                         <tr>
                             <th scope="row">{{reg_presupuestos.id }}</th>
-                            <td>{{reg_presupuestos.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_presupuestos.fecha_hora | date:'Y-m-d h:m:s a' }}</td>
                             <td>{{reg_presupuestos.nro_presupuesto}}</td>
                             <td>{{reg_presupuestos.usuario_rut_usuario.primer_nombre}}
                                 {{reg_presupuestos.usuario_rut_usuario.segundo_nombre}}
@@ -556,7 +621,7 @@
         </div>
     </div>
 
-    <div class="card shadow mb-4 col-5">
+    <div class="card shadow mb-4 col-12 col-md-12 col-lg-5">
         <div class="card-body">
             <div class="text-center">
                 <h4>Siniestros</h4>
@@ -578,7 +643,7 @@
                         {% for reg_siniestros_taller in reg_siniestros_taller %}
                         <tr>
                             <th scope="row">{{reg_siniestros_taller.id }}</th>
-                            <td>{{reg_siniestros_taller.fecha_hora | date:'d-m-Y' }}</td>
+                            <td>{{reg_siniestros_taller.fecha_hora | date:'Y-m-d h:m:s a' }}</td>
                             <td>{{reg_siniestros_taller.id_siniestro}}</td>
                             <td>{{reg_siniestros_taller.usuario_rut_usuario.primer_nombre}}
                                 {{reg_siniestros_taller.usuario_rut_usuario.segundo_nombre}}

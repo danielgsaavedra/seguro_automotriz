@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
-from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, FormularioActa, Presupuesto, TipoActa, RegActas, RegAsegurado, RegGrua, RegInformeDano, RegSiniestro, RegPoliza, RegPresupuesto, RegTaller, RegTipoPlan, RegUsuario, RegVehiculo
+from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, FormularioActa, Presupuesto, TipoActa, RegActas, RegAsegurado, RegGrua, RegInformeDano, RegSiniestro, RegPoliza, RegPresupuesto, RegTaller, RegTipoPlan, RegUsuario, RegVehiculo, RegServicioGrua
 from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, AseguradoFormUpdate, VehiculoFormUpdate, SiniestroFotosUpdate
 from django.db.models import Q
 from django.db.models import Count
@@ -644,12 +644,13 @@ def HomeView(request):
     reg_siniestros_taller = RegSiniestro.objects.filter(
         taller_id_taller=request.user.taller_id_taller)
     reg_gruas = RegGrua.objects.all()
+    reg_servicio_gruas = RegServicioGrua.objects.all()
 
     context = {'reg_asegurados': reg_asegurados, 'reg_vehiculos': reg_vehiculos, 'reg_polizas': reg_polizas,
                'reg_siniestros': reg_siniestros, 'reg_talleres': reg_talleres, 'reg_usuarios': reg_usuarios,
                'reg_actas_recepcion': reg_actas_recepcion, 'reg_actas_retiro': reg_actas_retiro, 'reg_actas_rechazo': reg_actas_rechazo,
                'reg_informes': reg_informes, 'reg_presupuestos': reg_presupuestos, 'reg_siniestros_taller': reg_siniestros_taller,
-               'reg_gruas':reg_gruas}
+               'reg_gruas': reg_gruas,'reg_servicio_gruas':reg_servicio_gruas}
 
     return render(request, 'dashboard/home.html', context)
 

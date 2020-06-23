@@ -120,7 +120,7 @@ class InformeDano(models.Model):
     fecha_hora = models.DateField(verbose_name='Fecha', auto_now=True)
     observaciones = models.CharField(
         max_length=1024, verbose_name='Observaciones')
-    perdida_total = models.BooleanField(null=True,blank=True)
+    perdida_total = models.BooleanField(null=True, blank=True)
     tipo_dano_id_tipo_dano = models.ForeignKey(
         'TipoDano', models.DO_NOTHING, db_column='tipo_dano_id_tipo_dano', verbose_name='Tipo Daño', null=True)
     severidad_dano_id_seve_dano = models.ForeignKey(
@@ -135,7 +135,8 @@ class InformeDano(models.Model):
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
 
     def total(self):
-        total = (self.tipo_dano_id_tipo_dano.valor + self.tipo_dano_id_tipo_dano.mano_obra) * self.severidad_dano_id_seve_dano.valor
+        total = (self.tipo_dano_id_tipo_dano.valor +
+                 self.tipo_dano_id_tipo_dano.mano_obra) * self.severidad_dano_id_seve_dano.valor
         return total
 
     # class Meta:
@@ -200,7 +201,7 @@ class Presupuesto(models.Model):
 
 class RegAsegurado(models.Model):
     nombre_asegurado = models.CharField(max_length=100)
-    fecha_hora = models.DateField()
+    fecha_hora = models.DateTimeField(auto_now=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     accion = models.CharField(max_length=50)
@@ -222,9 +223,10 @@ class RegError(models.Model):
 
 
 class RegActas(models.Model):
+    id_acta = models.IntegerField()
     tipo_acta_id_tipo_acta = models.ForeignKey(
         'TipoActa', models.DO_NOTHING, db_column='tipo_acta_id_tipo_acta', verbose_name='Tipo Acta', null=True)
-    fecha_hora = models.DateField()
+    fecha_hora = models.DateTimeField(auto_now=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     accion = models.CharField(max_length=50)
@@ -234,7 +236,7 @@ class RegActas(models.Model):
 
 class RegGrua(models.Model):
     patente_grua = models.CharField(max_length=10)
-    fecha_hora = models.DateField()
+    fecha_hora = models.DateTimeField(auto_now=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     accion = models.CharField(max_length=50)
@@ -246,7 +248,7 @@ class RegGrua(models.Model):
 
 class RegInformeDano(models.Model):
     id_informe = models.IntegerField()
-    fecha_hora = models.DateField()
+    fecha_hora = models.DateTimeField(auto_now=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     accion = models.CharField(max_length=50)
@@ -256,7 +258,7 @@ class RegInformeDano(models.Model):
 
 class RegPoliza(models.Model):
     nro_poliza = models.IntegerField()
-    fecha_hora = models.DateField()
+    fecha_hora = models.DateTimeField(auto_now=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     accion = models.CharField(max_length=50)
@@ -268,7 +270,7 @@ class RegPoliza(models.Model):
 
 class RegPresupuesto(models.Model):
     nro_presupuesto = models.IntegerField()
-    fecha_hora = models.DateField()
+    fecha_hora = models.DateTimeField(auto_now=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     accion = models.CharField(max_length=50)
@@ -276,8 +278,16 @@ class RegPresupuesto(models.Model):
         'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', blank=True, null=True)
 
 
+class RegServicioGrua(models.Model):
+    nombre_servicio = models.CharField(max_length=60)
+    fecha_hora = models.DateTimeField(auto_now=True)
+    usuario_rut_usuario = models.ForeignKey(
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    accion = models.CharField(max_length=50)
+
+
 class RegSiniestro(models.Model):
-    fecha_hora = models.DateField()
+    fecha_hora = models.DateTimeField(auto_now=True)
     id_siniestro = models.IntegerField()
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
@@ -291,8 +301,8 @@ class RegSiniestro(models.Model):
 
 
 class RegTaller(models.Model):
-    nombre_taller = models.CharField(max_length=30)
-    fecha_hora = models.DateField()
+    nombre_taller = models.CharField(max_length=60)
+    fecha_hora = models.DateTimeField(auto_now=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     accion = models.CharField(max_length=50)
@@ -304,7 +314,7 @@ class RegTaller(models.Model):
 
 class RegTipoPlan(models.Model):
     nombre = models.CharField(max_length=30)
-    fecha_hora = models.DateField()
+    fecha_hora = models.DateTimeField(auto_now=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     accion = models.CharField(max_length=50)
@@ -312,10 +322,11 @@ class RegTipoPlan(models.Model):
 
 class RegUsuario(models.Model):
     nombre_registrado = models.CharField(max_length=100)
-    fecha_hora = models.DateField()
+    fecha_hora = models.DateTimeField(auto_now=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     accion = models.CharField(max_length=50)
+    rol_registrado = models.IntegerField()
 
     # class Meta:
     #     managed = False
@@ -324,7 +335,7 @@ class RegUsuario(models.Model):
 
 class RegVehiculo(models.Model):
     patente_vehiculo = models.CharField(max_length=30)
-    fecha_hora = models.DateField()
+    fecha_hora = models.DateTimeField(auto_now=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     accion = models.CharField(max_length=50)

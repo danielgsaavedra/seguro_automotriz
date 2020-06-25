@@ -8,14 +8,19 @@ from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
-from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, FormularioActa, Presupuesto, TipoActa, RegActas, RegAsegurado, RegGrua, RegInformeDano, RegSiniestro, RegPoliza, RegPresupuesto, RegTaller, RegTipoPlan, RegUsuario, RegVehiculo, RegServicioGrua
-from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, AseguradoFormUpdate, VehiculoFormUpdate, SiniestroFotosUpdate
+from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, FormularioActa, \
+    Presupuesto, TipoActa, RegActas, RegAsegurado, RegGrua, RegInformeDano, RegSiniestro, RegPoliza, RegPresupuesto, \
+    RegTaller, RegTipoPlan, RegUsuario, RegVehiculo, RegServicioGrua
+from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, \
+    SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, \
+    AseguradoFormUpdate, VehiculoFormUpdate, SiniestroFotosUpdate
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
 import pdfkit
 from django.http import HttpResponse
+
 
 # Create your views here.
 
@@ -167,6 +172,7 @@ def VehiculosView(request, id):
     context = {'vehiculos': vehiculos}
     return render(request, 'dashboard/vehiculos/vehiculo.html', context)
 
+
 # Create
 
 
@@ -196,6 +202,7 @@ def VehiculoCreate(request, id):
     data['html_form'] = render_to_string(
         'dashboard/vehiculos/vehiculo_create.html', context, request=request)
     return JsonResponse(data)
+
 
 # Update
 
@@ -645,12 +652,17 @@ def HomeView(request):
         taller_id_taller=request.user.taller_id_taller)
     reg_gruas = RegGrua.objects.all()
     reg_servicio_gruas = RegServicioGrua.objects.all()
+    reg_tipo_plan = RegTipoPlan.objects.all()
+    reg_presupuestos_liquidador = RegPresupuesto.objects.all()
 
     context = {'reg_asegurados': reg_asegurados, 'reg_vehiculos': reg_vehiculos, 'reg_polizas': reg_polizas,
                'reg_siniestros': reg_siniestros, 'reg_talleres': reg_talleres, 'reg_usuarios': reg_usuarios,
-               'reg_actas_recepcion': reg_actas_recepcion, 'reg_actas_retiro': reg_actas_retiro, 'reg_actas_rechazo': reg_actas_rechazo,
-               'reg_informes': reg_informes, 'reg_presupuestos': reg_presupuestos, 'reg_siniestros_taller': reg_siniestros_taller,
-               'reg_gruas': reg_gruas,'reg_servicio_gruas':reg_servicio_gruas}
+               'reg_actas_recepcion': reg_actas_recepcion, 'reg_actas_retiro': reg_actas_retiro,
+               'reg_actas_rechazo': reg_actas_rechazo,
+               'reg_informes': reg_informes, 'reg_presupuestos': reg_presupuestos,
+               'reg_siniestros_taller': reg_siniestros_taller,
+               'reg_gruas': reg_gruas, 'reg_servicio_gruas': reg_servicio_gruas, 'reg_tipo_plan': reg_tipo_plan,
+               'reg_presupuestos_liquidador': reg_presupuestos_liquidador}
 
     return render(request, 'dashboard/home.html', context)
 
@@ -659,7 +671,7 @@ def UpdateSiniestroFotos(request, id):
     siniestro = get_object_or_404(Siniestro, id=id)
     if request.method == 'POST':
         form = SiniestroFotosUpdate(
-            request.POST, request.FILES,  instance=siniestro)
+            request.POST, request.FILES, instance=siniestro)
         if form.is_valid():
             form.save()
             return redirect('asegurado_consulta')
@@ -680,7 +692,8 @@ def FotoSiniestroView(request, id):
 
 def consultaSiniestroDetalleView(request, pk):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT S.ID,A.RUT_ASEGURADO,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,S.POLIZA_ID_POLIZA,S.FECHA_HR,S.DESCRIPCION,X.NOMBRE,S.EST_SINIESTRO_ID_EST_SINIESTRO,S.DIRECCION,V.NOMBRE,S.GRUA_PATENTE_GRUA,T.NOMBRE,T.TELEFONO,T.CORREO,T.DIRECCION,C.NOMBRE FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_COMUNA C ON (T.COMUNA_ID_COMUNA=C.ID) JOIN DASHBOARD_TIPOACCIDENTE X ON(S.TIPO_ACCIDENTE_ID_TIPO_ACC=X.ID) JOIN DASHBOARD_ASEGURADO A ON(S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO)  JOIN DASHBOARD_COMUNA V ON (S.COMUNA_ID_COMUNA=V.ID) WHERE (S.ID="+pk + ")")
+        cursor.execute(
+            "SELECT S.ID,A.RUT_ASEGURADO,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,S.POLIZA_ID_POLIZA,S.FECHA_HR,S.DESCRIPCION,X.NOMBRE,S.EST_SINIESTRO_ID_EST_SINIESTRO,S.DIRECCION,V.NOMBRE,S.GRUA_PATENTE_GRUA,T.NOMBRE,T.TELEFONO,T.CORREO,T.DIRECCION,C.NOMBRE FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_COMUNA C ON (T.COMUNA_ID_COMUNA=C.ID) JOIN DASHBOARD_TIPOACCIDENTE X ON(S.TIPO_ACCIDENTE_ID_TIPO_ACC=X.ID) JOIN DASHBOARD_ASEGURADO A ON(S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO)  JOIN DASHBOARD_COMUNA V ON (S.COMUNA_ID_COMUNA=V.ID) WHERE (S.ID=" + pk + ")")
         dato = cursor.fetchall()
         dato = list(dato)
         print(dato)

@@ -103,7 +103,7 @@ def actaRecepcionPdf(request, pk):
 
     path_wkthmltopdf = b'C:\wkhtmltopdf\\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
-    pdf = pdfkit.from_url('http://127.0.0.1:8000/actaRecepcionViewPdf/' +
+    pdf = pdfkit.from_url('http://127.0.0.1:8000/taller/actaRecepcionViewPdf/' +
                           str(pk), False, options=options, configuration=config)
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="ActaRecepcion.pdf" '
@@ -210,7 +210,7 @@ def actaRetiroPdf(request, pk):
 
     path_wkthmltopdf = b'C:\wkhtmltopdf\\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
-    pdf = pdfkit.from_url('http://127.0.0.1:8000/actaRetiroViewPdf/' +
+    pdf = pdfkit.from_url('http://127.0.0.1:8000/taller/actaRetiroViewPdf/' +
                           str(pk), False, options=options, configuration=config)
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="ActaRetiro.pdf" '
@@ -297,7 +297,7 @@ def actaRechazoPdf(request, pk):
 
     path_wkthmltopdf = b'C:\wkhtmltopdf\\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
-    pdf = pdfkit.from_url('http://127.0.0.1:8000/actaRechazoViewPdf/' +
+    pdf = pdfkit.from_url('http://127.0.0.1:8000/taller/actaRechazoViewPdf/' +
                           str(pk), False, options=options, configuration=config)
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="ActaRechazo.pdf" '
@@ -505,7 +505,7 @@ def informeDanoPdf(request, pk):
 
     path_wkthmltopdf = b'C:\wkhtmltopdf\\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
-    pdf = pdfkit.from_url('http://127.0.0.1:8000/informeDanoViewPdf/' +
+    pdf = pdfkit.from_url('http://127.0.0.1:8000/talle/rinformeDanoViewPdf/' +
                           str(pk), False, options=options, configuration=config)
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="informeDanoPdf.pdf" '
@@ -548,7 +548,7 @@ def PresupuestoPdf(request, pk):
 
     path_wkthmltopdf = b'C:\wkhtmltopdf\\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
-    pdf = pdfkit.from_url('http://127.0.0.1:8000/PresupuestoViewPdf/' +
+    pdf = pdfkit.from_url('http://127.0.0.1:8000/taller/PresupuestoViewPdf/' +
                           str(pk), False, options=options, configuration=config)
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="Presupuesto.pdf" '

@@ -9,7 +9,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from dashboard.models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, \
-    EstadoPresupuesto, Presupuesto, TipoActa, FormularioActa, InformeDano
+    EstadoPresupuesto, Presupuesto, TipoActa, FormularioActa, InformeDano,TipoPlan
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -75,3 +75,9 @@ def ReportesView(request):
     context = {'presupuestos': presupuestos, 'actas_recepcion': actas_recepcion, 'actas_retiro': actas_retiro,
                'actas_rechazo': actas_rechazo,'informes_dano':informes_dano}
     return render(request, 'liquidador/reportes/reportes.html', context)
+
+@login_required(login_url='login')
+def TipoPlanView(request):
+    tipos_plan = TipoPlan.objects.all()
+    context = {'tipos_plan': tipos_plan}
+    return render(request, 'liquidador/tipoPlan/tipos_plan.html', context)

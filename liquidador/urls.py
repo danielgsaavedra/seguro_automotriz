@@ -8,4 +8,5 @@ urlpatterns = [
     path('presupuestos/aprobados', views.PresupuestoAprobadoView, name='presupuestos_aprobados'),
     path('presupuestos/rechazados', views.PresupuestoRechazadoView, name='presupuestos_rechazados'),
     path('reportes/', views.ReportesView, name='reportes'),
+    path('tiplos_plan/', views.TipoPlanView, name='tiplos_plan'),
 ]

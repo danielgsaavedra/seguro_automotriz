@@ -8,7 +8,8 @@ from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
-from dashboard.models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario , EstadoPresupuesto,Presupuesto
+from dashboard.models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, \
+    EstadoPresupuesto, Presupuesto, TipoActa, FormularioActa, InformeDano
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -27,11 +28,13 @@ def SiniestroView(request):
     context = {'siniestros': siniestros}
     return render(request, 'liquidador/siniestros/siniestro.html', context)
 
+
 def SiniestroDisabledView(request):
     siniestrosDisable = Siniestro.objects.filter(
         est_siniestro_id_est_siniestro=7).order_by('id')
     context = {'siniestrosDisable': siniestrosDisable}
     return render(request, 'liquidador/siniestros/siniestro_disabled.html', context)
+
 
 @login_required(login_url='login')
 def PresupuestoView(request):
@@ -40,6 +43,7 @@ def PresupuestoView(request):
     context = {'presupuestos': presupuestos}
     return render(request, 'liquidador/presupuestos/presupuestos_view.html', context)
 
+
 @login_required(login_url='login')
 def PresupuestoAprobadoView(request):
     estado = get_object_or_404(EstadoPresupuesto, id=1)
@@ -47,9 +51,27 @@ def PresupuestoAprobadoView(request):
     context = {'presupuestos': presupuestos}
     return render(request, 'liquidador/presupuestos/presupuestos_aprobados.html', context)
 
+
 @login_required(login_url='login')
 def PresupuestoRechazadoView(request):
     estado = get_object_or_404(EstadoPresupuesto, id=2)
     presupuestos = Presupuesto.objects.filter(estado_id_est_presupuesto=estado).order_by('id')
     context = {'presupuestos': presupuestos}
     return render(request, 'liquidador/presupuestos/presupuestos_rechazados.html', context)
+
+
+@login_required(login_url='login')
+def ReportesView(request):
+    recepcion = get_object_or_404(TipoActa, id=1)
+    retiro = get_object_or_404(TipoActa, id=3)
+    rechazo = get_object_or_404(TipoActa, id=2)
+
+    actas_recepcion = FormularioActa.objects.filter(tipo_acta_id_tipo_acta=recepcion)
+    actas_retiro = FormularioActa.objects.filter(tipo_acta_id_tipo_acta=retiro)
+    actas_rechazo = FormularioActa.objects.filter(tipo_acta_id_tipo_acta=rechazo)
+    informes_dano = InformeDano.objects.all()
+    presupuestos = Presupuesto.objects.all()
+
+    context = {'presupuestos': presupuestos, 'actas_recepcion': actas_recepcion, 'actas_retiro': actas_retiro,
+               'actas_rechazo': actas_rechazo,'informes_dano':informes_dano}
+    return render(request, 'liquidador/reportes/reportes.html', context)

@@ -62,71 +62,84 @@
 
         <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
-                <div class="sidebar-brand-icon">
-                    <img src="{% static 'dashboard/img/seguro-icon.png' %}" width="50" height="50"
-                         class="d-inline-block align-top" alt="">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center " href="{% url 'home' %}">
+                <div>
+                    <div class="sidebar-brand-icon">
+                        <img src="{% static 'dashboard/img/seguro-icon.png' %}" width="50" height="50"
+                             class="d-inline-block align-top" alt="">
+                    </div>
                 </div>
-                <div class="sidebar-brand-text mx-3">Seguros Virgolini</div>
+                <div class="sidebar-brand-text mx-3" style="font-size: 18px">Seguros Virgolini</div>
             </a>
 
             {% if  request.user.rol == '1' %}
-                <hr class="sidebar-divider my-0">
+                <hr class="sidebar-divider my-0 mt-4">
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'dashboard' %}">
-                        <i class="fas fa-chart-pie"></i>
-                        <span>Dashboard</span></a>
+                        <div class="justify-content-around">
+                            <i class="fas fa-chart-pie mr-2 ml-2" style="font-size: 20px"></i>
+                            <span style="font-size: 15px">Dashboard</span>
+                        </div>
+                    </a>
                 </li>
                 <hr class="sidebar-divider">
 
-                <div class="sidebar-heading">
+                <div class="sidebar-heading" style="font-size: 12px">
                     Módulo Asegurados
                 </div>
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="{% url 'asegurados' %}">
-                        <i class="fas fa-user-shield"></i>
-                        <span>Asegurados</span>
+                        <div class="justify-content-around">
+                            <i class="fas fa-user-shield mr-2 ml-2" style="font-size: 20px"></i>
+                            <span style="font-size: 15px">Asegurados</span>
+                        </div>
                     </a>
                 </li>
 
                 <hr class="sidebar-divider">
 
-                <div class="sidebar-heading">
+                <div class="sidebar-heading" style="font-size: 12px">
                     Módulo Pólizas
                 </div>
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="{% url 'polizas' %}">
-                        <i class="fas fa-file-contract"></i>
-                        <span>Pólizas</span>
+                        <div class="justify-content-around">
+                            <i class="fas fa-file-contract mr-2 ml-2" style="font-size: 20px"></i>
+                            <span style="font-size: 15px">Pólizas</span>
+                        </div>
                     </a>
                 </li>
 
                 <hr class="sidebar-divider">
 
-                <div class="sidebar-heading">
+                <div class="sidebar-heading" style="font-size: 12px">
                     Módulo Siniestros
                 </div>
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="{% url 'siniestros' %}">
-                        <i class="fas fa-car-crash"></i>
-                        <span>Siniestros</span>
+                        <div class="justify-content-around">
+                            <i class="fas fa-car-crash mr-2 ml-2" style="font-size: 20px"></i>
+                            <span style="font-size: 15px">Siniestros</span>
+                        </div>
                     </a>
                 </li>
 
                 <hr class="sidebar-divider">
 
-                <div class="sidebar-heading">
+                <div class="sidebar-heading" style="font-size: 12px">
                     Módulo Taller
                 </div>
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="{% url 'taller' %}">
-                        <i class="fas fa-tools"></i>
-                        <span>Taller</span>
+                        <div class="justify-content-around">
+                            <i class="fas fa-tools mr-2 ml-2" style="font-size: 20px"></i>
+                            <span style="font-size: 15px">Taller</span>
+                        </div>
                     </a>
 
                 </li>
@@ -134,14 +147,16 @@
             {% endif %}
 
             {% if  request.user.is_staff %}
-                <div class="sidebar-heading">
+                <div class="sidebar-heading" style="font-size: 12px">
                     Módulo Usuarios
                 </div>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'usuarios' %}">
-                        <i class="fas fa-users"></i>
-                        <span>Usuarios</span>
+                        <div class="justify-content-around">
+                            <i class="fas fa-users mr-2 ml-2" style="font-size: 20px"></i>
+                            <span style="font-size: 15px">Usuarios</span>
+                        </div>
                     </a>
                 </li>
                 <hr class="sidebar-divider">
@@ -149,24 +164,29 @@
 
             <!-- Taller -->
             {% if  request.user.rol == '3' %}
-                <hr class="sidebar-divider my-0">
+                <hr class="sidebar-divider my-0 mt-4">
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'dashboard' %}">
-                        <i class="fas fa-chart-pie"></i>
-                        <span>Dashboard</span></a>
+                        <div class="justify-content-around">
+                            <i class="fas fa-chart-pie mr-2 ml-2" style="font-size: 20px"></i>
+                            <span style="font-size: 15px">Dashboard</span>
+                        </div>
+                    </a>
                 </li>
                 <hr class="sidebar-divider">
 
-                <div class="sidebar-heading">
+                <div class="sidebar-heading" style="font-size: 12px">
                     Módulo Actas
                 </div>
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse"
                        data-target="#collapseActas" aria-expanded="true" aria-controls="collapseActas">
-                        <i class="far fa-file-alt"></i>
-                        <span>Generar Actas</span>
+
+                        <i class="far fa-file-alt mr-2 ml-2" style="font-size: 20px"></i>
+                        <span style="font-size: 15px">Generar Actas</span>
+
                     </a>
                     <div id="collapseActas" class="collapse" aria-labelledby="headingTwo"
                          data-parent="#accordionSidebar">
@@ -179,8 +199,10 @@
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse"
                        data-target="#collapseActasList" aria-expanded="true" aria-controls="collapseActasList">
-                        <i class="fas fa-archive"></i>
-                        <span>Ver Actas</span>
+
+                        <i class="fas fa-archive mr-2 ml-2" style="font-size: 20px"></i>
+                        <span style="font-size: 15px">Ver Actas</span>
+
                     </a>
                     <div id="collapseActasList" class="collapse" aria-labelledby="headingTwo"
                          data-parent="#accordionSidebar">
@@ -194,34 +216,38 @@
 
                 <hr class="sidebar-divider">
 
-                <div class="sidebar-heading">
-                    Módulo Informes
+                <div class="sidebar-heading" style="font-size: 12px">
+                    Módulo Informe De Daños
                 </div>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'informe_daños' %}">
-                        <i class="fas fa-notes-medical"></i>
-                        <span>Generar Informe de Daños</span>
+                        <div class="justify-content-around">
+                            <i class="fas fa-notes-medical mr-2 ml-2" style="font-size: 20px"></i>
+                            <span style="font-size: 15px">Generar Informes</span>
+                        </div>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'informe_daños_view' %}">
-                        <i class="fas fa-book-dead"></i>
-                        <span>Ver Informes de Daños</span>
+                        <div class="justify-content-around">
+                            <i class="fas fa-book-dead mr-2 ml-2" style="font-size: 20px"></i>
+                            <span style="font-size: 15px">Ver Informes</span>
+                        </div>
                     </a>
                 </li>
 
                 <hr class="sidebar-divider">
 
-                <div class="sidebar-heading">
+                <div class="sidebar-heading" style="font-size: 12px">
                     Módulo Siniestros
                 </div>
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="javascript:void(0)" data-toggle="collapse"
                        data-target="#collapseInforme" aria-expanded="true" aria-controls="collapseInforme">
-                        <i class="fas fa-car-crash"></i>
-                        <span>Ver Siniestros</span>
+                        <i class="fas fa-car-crash mr-2 ml-2" style="font-size: 20px"></i>
+                        <span style="font-size: 15px">Ver Siniestros</span>
                     </a>
                     <div id="collapseInforme" class="collapse" aria-labelledby="headingTwo"
                          data-parent="#accordionSidebar">
@@ -234,85 +260,101 @@
 
                 <hr class="sidebar-divider">
 
-                <div class="sidebar-heading">
+                <div class="sidebar-heading" style="font-size: 12px">
                     Módulo Presupuestos
                 </div>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'PresupuestoView' %}">
-                        <i class="fas fa-money-check-alt"></i>
-                        <span>Ver Presupuestos</span>
+                        <div class="justify-content-around">
+                            <i class="fas fa-money-check-alt mr-2 ml-2" style="font-size: 20px"></i>
+                            <span style="font-size: 15px">Ver Presupuestos</span>
+                        </div>
                     </a>
                 </li>
+                <hr class="sidebar-divider">
 
 
             {% endif %}
 
             <!-- Liquidador -->
             {% if  request.user.rol == '2' %}
-                <hr class="sidebar-divider my-0">
 
+                <hr class="sidebar-divider my-0 mt-4">
                 <li class="nav-item">
+
                     <a class="nav-link" href="{% url 'dashboard' %}">
-                        <i class="fas fa-chart-pie"></i>
-                        <span>Dashboard</span></a>
+                        <div class="justify-content-around ">
+                            <i class="fas fa-chart-pie mr-2 ml-2" style="font-size: 20px"></i>
+                            <span style="font-size: 15px">Dashboard</span>
+                        </div>
+                    </a>
+
                 </li>
 
                 <hr class="sidebar-divider">
 
-                <div class="sidebar-heading">
+                <div class="sidebar-heading" style="font-size: 12px">
                     Módulo Reportes
                 </div>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'reportes' %}">
-                        <i class="fas fa-file-pdf"></i>
-                        <span>Generar Reportes</span>
+                        <div class="justify-content-around">
+                            <i class="fas fa-file-pdf mr-2 ml-2" style="font-size: 20px"></i>
+                            <span style="font-size: 15px">Generar Reportes</span>
+                        </div>
                     </a>
                 </li>
 
                 <hr class="sidebar-divider">
 
-                <div class="sidebar-heading">
+                <div class="sidebar-heading" style="font-size: 12px">
                     Módulo Tipos de Plan
                 </div>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'tiplos_plan' %}">
-                        <i class="fas fa-money-bill-alt"></i>
-                        <span>Tipos de Planes</span>
+                        <div class="justify-content-around">
+                            <i class="fas fa-money-bill-alt mr-2 ml-2" style="font-size: 20px"></i>
+                            <span style="font-size: 15px">Tipos de Planes</span>
+                        </div>
                     </a>
                 </li>
 
                 <hr class="sidebar-divider">
 
-                <div class="sidebar-heading">
+                <div class="sidebar-heading" style="font-size: 12px">
                     Módulo Presupuestos
                 </div>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'presupuestos_liquidador' %}">
-                        <i class="fas fa-money-check-alt"></i>
-                        <span>Ver Presupuestos</span>
+                        <div class="justify-content-around "></div>
+                        <i class="fas fa-money-check-alt mr-2 ml-2" style="font-size: 20px"></i>
+                        <span style="font-size: 15px">Ver Presupuestos</span>
                     </a>
                 </li>
 
                 <hr class="sidebar-divider">
 
-                <div class="sidebar-heading">
+                <div class="sidebar-heading" style="font-size: 12px">
                     Módulo Siniestros
                 </div>
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="{% url 'siniestros_liquidador' %}">
-                        <i class="fas fa-car-crash"></i>
-                        <span>Siniestros</span>
+                        <div class="justify-content-around"></div>
+                        <i class="fas fa-car-crash mr-2 ml-2" style="font-size: 20px"></i>
+                        <span style="font-size: 15px">Siniestros</span>
                     </a>
                 </li>
 
+                <hr class="sidebar-divider">
+
             {% endif %}
 
-            <div class="text-center d-none d-md-inline">
+            <div class="text-center d-none d-md-inline mt-4">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 

@@ -356,7 +356,7 @@ class Region(models.Model):
 class ServicioGrua(models.Model):
     nombre = models.CharField(max_length=400, verbose_name='Nombre')
     razon_social = models.CharField(max_length=50, verbose_name='Razón Social')
-    telefono = models.BigIntegerField(verbose_name='Teléfono')
+    telefono = models.CharField(verbose_name='Teléfono', max_length=9)
     correo = models.CharField(max_length=50, verbose_name='Correo')
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)

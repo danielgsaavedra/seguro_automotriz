@@ -56,5 +56,7 @@ urlpatterns = [
         views.consultaSiniestroDetalleView, name='consultaSiniestroDetalleView'),
     url(r'^siniestroDetallePdf/(?P<pk>[0-9]+)/$',
         views.siniestroDetallePdf, name='siniestroDetallePdf'),
+    path('servicio_grua/', views.ServicioGruaView, name='servicio_grua'),
+    path('servicio_grua/inactivos/', views.ServicioGruaInactivos, name='servicio_grua_disabled'),
 
 ]

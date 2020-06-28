@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from dashboard.models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, \
     EstadoPresupuesto, Presupuesto, TipoActa, FormularioActa, InformeDano, TipoPlan
-from .forms import TipoPlanForm,DeshabilitarTipoPlanForm
+from .forms import TipoPlanForm, DeshabilitarTipoPlanForm
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -158,3 +158,7 @@ def TipoPlanDelete(request, id):
         data['html_form'] = render_to_string(
             'liquidador/tipoPlan/tipo_plan_delete.html', context, request=request)
     return JsonResponse(data)
+
+# todo Implementar reactivacion de tipos de plan
+# todo Falta desarrollar aprobar y rechazar presupuesto
+# todo Se debe crear consulta SQL para pdf polizas

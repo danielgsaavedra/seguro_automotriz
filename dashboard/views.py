@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, FormularioActa, \
     Presupuesto, TipoActa, RegActas, RegAsegurado, RegGrua, RegInformeDano, RegSiniestro, RegPoliza, RegPresupuesto, \
-    RegTaller, RegTipoPlan, RegUsuario, RegVehiculo, RegServicioGrua
+    RegTaller, RegTipoPlan, RegUsuario, RegVehiculo, RegServicioGrua, ServicioGrua
 from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, \
     SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, \
     AseguradoFormUpdate, VehiculoFormUpdate, SiniestroFotosUpdate
@@ -717,3 +717,17 @@ def siniestroDetallePdf(request, pk):
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="DetalleSiniestro.pdf" '
     return response
+
+
+# todo Crear Modulo y CRUD de Servicios Grua
+@login_required(login_url='login')
+def ServicioGruaView(request):
+    servicios_gruas = ServicioGrua.objects.all().exclude(estado=False).order_by('id')
+    context = {'servicios_gruas': servicios_gruas}
+    return render(request, 'dashboard/servicioGrua/servicio_grua.html', context)
+
+@login_required(login_url='login')
+def ServicioGruaInactivos(request):
+    servicios_gruas_disabled = ServicioGrua.objects.filter(estado=False)
+    context = {'servicios_gruas_disabled': servicios_gruas_disabled}
+    return render(request, 'dashboard/servicioGrua/servicio_grua_disabled.html', context)

@@ -145,6 +145,21 @@
                 </li>
                 <hr class="sidebar-divider">
 
+                <div class="sidebar-heading" style="font-size: 12px">
+                    Módulo Servicio Grúas
+                </div>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="{% url 'servicio_grua' %}">
+                        <div class="justify-content-around">
+                            <i class="fas fa-route mr-2 ml-2" style="font-size: 20px"></i>
+                            <span style="font-size: 15px">Servicio Grúas</span>
+                        </div>
+                    </a>
+
+                </li>
+                <hr class="sidebar-divider">
+
                 {% if  request.user.is_staff %}
                     <div class="sidebar-heading" style="font-size: 12px">
                         Módulo Usuarios

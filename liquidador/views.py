@@ -9,8 +9,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from dashboard.models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, \
-    EstadoPresupuesto, Presupuesto, TipoActa, FormularioActa, InformeDano,TipoPlan
-from .forms import TipoPlanForm
+    EstadoPresupuesto, Presupuesto, TipoActa, FormularioActa, InformeDano, TipoPlan
+from .forms import TipoPlanForm,DeshabilitarTipoPlanForm
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -74,14 +74,16 @@ def ReportesView(request):
     presupuestos = Presupuesto.objects.all()
 
     context = {'presupuestos': presupuestos, 'actas_recepcion': actas_recepcion, 'actas_retiro': actas_retiro,
-               'actas_rechazo': actas_rechazo,'informes_dano':informes_dano}
+               'actas_rechazo': actas_rechazo, 'informes_dano': informes_dano}
     return render(request, 'liquidador/reportes/reportes.html', context)
+
 
 @login_required(login_url='login')
 def TipoPlanView(request):
     tipos_plan = TipoPlan.objects.all()
     context = {'tipos_plan': tipos_plan}
     return render(request, 'liquidador/tipoPlan/tipos_plan.html', context)
+
 
 @login_required(login_url='login')
 def TipoPlanInactivos(request):
@@ -120,6 +122,7 @@ def TipoPlanCreate(request):
         form = TipoPlanForm()
     return SaveAllTipoPlan(request, form, 'liquidador/tipoPlan/tipo_plan_create.html')
 
+
 @staff_member_required(login_url='login')
 def TipoPlanUpdate(request, id):
     tipo_plan = get_object_or_404(TipoPlan, id=id)
@@ -131,3 +134,27 @@ def TipoPlanUpdate(request, id):
         form = TipoPlanForm(instance=tipo_plan)
     return SaveAllTipoPlan(request, form, 'liquidador/tipoPlan/tipo_plan_update.html')
 
+
+@staff_member_required(login_url='login')
+def TipoPlanDelete(request, id):
+    data = dict()
+    tipo_plan = get_object_or_404(TipoPlan, id=id)
+    if request.method == 'POST':
+        form = DeshabilitarTipoPlanForm(request.POST, instance=tipo_plan)
+        if form.is_valid():
+            plan = form.save(commit=False)
+            plan.estado = False
+            plan.usuario_rut_usuario = request.user
+            plan.save()
+            data['form_is_valid'] = True
+            tipos_plan = TipoPlan.objects.all().exclude(estado=False).order_by('id')
+            context = {'tipos_plan': tipos_plan}
+            data['tipos_plan'] = render_to_string(
+                'liquidador/tipoPlan/tipos_plan_2.html', context)
+    else:
+        form = DeshabilitarTipoPlanForm(instance=tipo_plan)
+        data['form_is_valid'] = False
+        context = {'tipo_plan': tipo_plan, 'form': form}
+        data['html_form'] = render_to_string(
+            'liquidador/tipoPlan/tipo_plan_delete.html', context, request=request)
+    return JsonResponse(data)

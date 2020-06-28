@@ -32,3 +32,11 @@ class TipoPlanForm(forms.ModelForm):
                        'id': 'descripcion'}),
 
         }
+
+class DeshabilitarTipoPlanForm(forms.ModelForm):
+    class Meta:
+        model = TipoPlan
+        fields = ['estado']
+        widgets = {
+            'estado': forms.HiddenInput(attrs={'class': 'required form-control', 'id': 'estado_tipo'}),
+        }

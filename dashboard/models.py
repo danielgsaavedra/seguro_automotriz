@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+
 # Create your models here.
 
 
@@ -103,7 +104,8 @@ class Grua(models.Model):
     estado_delete = models.CharField(
         max_length=1, verbose_name='Estado delete', default=1)
     servicio_grua_id_servicio = models.ForeignKey(
-        'ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio', verbose_name='Servicio Grúa', null=True)
+        'ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio', verbose_name='Servicio Grúa',
+        null=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
 
@@ -124,9 +126,11 @@ class InformeDano(models.Model):
     tipo_dano_id_tipo_dano = models.ForeignKey(
         'TipoDano', models.DO_NOTHING, db_column='tipo_dano_id_tipo_dano', verbose_name='Tipo Daño', null=True)
     severidad_dano_id_seve_dano = models.ForeignKey(
-        'SeveridadDano', models.DO_NOTHING, db_column='severidad_dano_id_seve_dano', verbose_name='Severidad Daño', null=True)
+        'SeveridadDano', models.DO_NOTHING, db_column='severidad_dano_id_seve_dano', verbose_name='Severidad Daño',
+        null=True)
     vehiculo_patente_vehiculo = models.ForeignKey(
-        'Vehiculo', models.DO_NOTHING, db_column='vehiculo_patente_vehiculo', verbose_name='Patente Vehículo', null=True)
+        'Vehiculo', models.DO_NOTHING, db_column='vehiculo_patente_vehiculo', verbose_name='Patente Vehículo',
+        null=True)
     taller_id_taller = models.ForeignKey(
         'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', null=True)
     siniestro_id = models.ForeignKey(
@@ -168,7 +172,8 @@ class Poliza(models.Model):
     asegurado_rut_asegurado = models.ForeignKey(
         'Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', verbose_name='Rut Asegurado', null=True)
     vehiculo_patente_vehiculo = models.ForeignKey(
-        'Vehiculo', models.DO_NOTHING, db_column='vehiculo_patente_vehiculo', verbose_name='Patente Vehículo', null=True)
+        'Vehiculo', models.DO_NOTHING, db_column='vehiculo_patente_vehiculo', verbose_name='Patente Vehículo',
+        null=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     tipo_plan_id_tip_plan = models.ForeignKey(
@@ -182,9 +187,11 @@ class Presupuesto(models.Model):
     fecha_hora = models.DateField(verbose_name='Fecha')
     valor_total = models.IntegerField(verbose_name='Valor Total')
     estado_id_est_presupuesto = models.ForeignKey(
-        'EstadoPresupuesto', models.DO_NOTHING, db_column='estado_id_est_presupuesto', verbose_name='ID Est. Presupuesto', null=True)
+        'EstadoPresupuesto', models.DO_NOTHING, db_column='estado_id_est_presupuesto',
+        verbose_name='ID Est. Presupuesto', null=True)
     usuario_rut_usuario = models.ForeignKey(
-        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', blank=True, null=True, verbose_name='Rut Usuario')
+        'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', blank=True, null=True,
+        verbose_name='Rut Usuario')
     informe_dano_id_info_dano = models.ForeignKey(
         'InformeDano', models.DO_NOTHING, db_column='informe_dano_id_info_dano', verbose_name='ID Inf. Daño', null=True)
     taller_id_taller = models.ForeignKey(
@@ -358,9 +365,13 @@ class ServicioGrua(models.Model):
     razon_social = models.CharField(max_length=50, verbose_name='Razón Social')
     telefono = models.CharField(verbose_name='Teléfono', max_length=9)
     correo = models.CharField(max_length=50, verbose_name='Correo')
+    direccion = models.CharField(
+        max_length=150, verbose_name='Dirección siniestro', null=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     estado = models.BooleanField(default=True)
+    comuna_id_comuna = models.ForeignKey(
+        'Comuna', models.DO_NOTHING, db_column='comuna_id_comuna', verbose_name='Comuna', null=True)
 
     # class Meta:
     #     managed = False
@@ -394,9 +405,11 @@ class Siniestro(models.Model):
     direccion = models.CharField(
         max_length=150, verbose_name='Dirección siniestro')
     tipo_accidente_id_tipo_acc = models.ForeignKey(
-        'TipoAccidente', models.DO_NOTHING, db_column='tipo_accidente_id_tipo_acc', verbose_name='Tipo Accidente', null=True)
+        'TipoAccidente', models.DO_NOTHING, db_column='tipo_accidente_id_tipo_acc', verbose_name='Tipo Accidente',
+        null=True)
     est_siniestro_id_est_siniestro = models.ForeignKey(
-        'EstadoSiniestro', models.DO_NOTHING, db_column='est_siniestro_id_est_siniestro', verbose_name='Estado Siniestro', default=1, null=True)
+        'EstadoSiniestro', models.DO_NOTHING, db_column='est_siniestro_id_est_siniestro',
+        verbose_name='Estado Siniestro', default=1, null=True)
     taller_id_taller = models.ForeignKey(
         'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', null=True)
     grua_patente_grua = models.ForeignKey(
@@ -409,6 +422,7 @@ class Siniestro(models.Model):
         'Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', verbose_name='Rut Asegurado', null=True)
     comuna_id_comuna = models.ForeignKey(
         'Comuna', models.DO_NOTHING, db_column='comuna_id_comuna', verbose_name='Comuna', null=True)
+
     # class Meta:
     #     managed = False
     #     db_table = 'siniestro'
@@ -542,7 +556,6 @@ class UsuarioManager(BaseUserManager):
 
 
 class Usuario(AbstractBaseUser):
-
     opciones = [
         ("1", 'Mesa de Ayuda'),
         ("2", 'Liquidador'),
@@ -568,7 +581,8 @@ class Usuario(AbstractBaseUser):
     taller_id_taller = models.ForeignKey(
         'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', blank=True, null=True)
     servicio_grua_id_servicio_grua = models.ForeignKey(
-        'ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio_grua', verbose_name='Servicio Grua', blank=True, null=True)
+        'ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio_grua', verbose_name='Servicio Grua',
+        blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_administrador = models.BooleanField(default=False)
     usuario_rut_usuario = models.ForeignKey(
@@ -604,13 +618,15 @@ class Vehiculo(models.Model):
     modelo = models.CharField(max_length=50, verbose_name='Modelo')
     nro_motor = models.CharField(max_length=100, verbose_name='N° Motor')
     tipo_vehiculo_id_tipo_auto = models.ForeignKey(
-        'TipoVehiculo', models.DO_NOTHING, db_column='tipo_vehiculo_id_tipo_auto', verbose_name='Tipo Vehículo', null=True)
+        'TipoVehiculo', models.DO_NOTHING, db_column='tipo_vehiculo_id_tipo_auto', verbose_name='Tipo Vehículo',
+        null=True)
     marca_id_marca = models.ForeignKey(
         'Marca', models.DO_NOTHING, db_column='marca_id_marca', verbose_name='ID Marca', null=True)
     asegurado_rut_asegurado = models.ForeignKey(
         'Asegurado', models.DO_NOTHING, db_column='asegurado_rut_asegurado', verbose_name='Rut Asegurado', null=True)
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+
     # class Meta:
     #     managed = False
     #     db_table = 'vehiculo'

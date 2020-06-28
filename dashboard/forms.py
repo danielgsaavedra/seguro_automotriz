@@ -1,5 +1,5 @@
 from django import forms
-from .models import Poliza, Asegurado, Vehiculo, Siniestro, Taller, Grua, TipoPlan
+from .models import Poliza, Asegurado, Vehiculo, Siniestro, Taller, Grua, TipoPlan, ServicioGrua
 
 
 # FORMULARIO POLIZA
@@ -404,4 +404,37 @@ class DeshabilitarTallerForm(forms.ModelForm):
         fields = ['estado_delete']
         widgets = {
             'estado_delete': forms.HiddenInput(attrs={'class': 'required form-control', 'id': 'estado_delete_taller'}),
+        }
+
+
+class ServicioGruaForm(forms.ModelForm):
+    class Meta:
+        model = ServicioGrua
+        fields = [
+            'id',
+            'nombre',
+            'razon_social',
+            'telefono',
+            'correo',
+            'direccion',
+            'comuna_id_comuna'
+        ]
+        widgets = {
+            'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
+            'nombre': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa nombre',
+                                             'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 'nombre_servicio'}),
+            'razon_social': forms.TextInput(
+                attrs={'class': 'required form-control', 'placeholder': 'Ingresa razón social',
+                       'pattern': '[A-Za-zÀ-ÿ0-9 ]{4,}', 'id': 'razon_social_servicio'}),
+            'telefono': forms.TextInput(
+                attrs={'class': 'required form-control', 'placeholder': 'Ingresa número de teléfono',
+                       'pattern': '[0-9]{9,}', 'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)',
+                       'id': 'telefono_servicio'}),
+            'correo': forms.TextInput(
+                attrs={'class': 'required form-control', 'type': 'email', 'placeholder': 'Ingresa correo',
+                       'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', 'id': 'correo_servicio'}),
+            'direccion': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Ingresa dirección',
+                                                'pattern': '^[a-zA-Z0-9._%+- ]{4,}', 'id': 'direccion'}),
+            'comuna_id_comuna': forms.Select(
+                attrs={'class': 'required form-control', 'id': 'comuna', 'name': 'comuna_id_comuna'})
         }

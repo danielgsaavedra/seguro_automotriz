@@ -80,7 +80,7 @@ def ReportesView(request):
 
 @login_required(login_url='login')
 def TipoPlanView(request):
-    tipos_plan = TipoPlan.objects.all()
+    tipos_plan = TipoPlan.objects.all().exclude(estado=False).order_by('id')
     context = {'tipos_plan': tipos_plan}
     return render(request, 'liquidador/tipoPlan/tipos_plan.html', context)
 

@@ -360,6 +360,7 @@ class ServicioGrua(models.Model):
     correo = models.CharField(max_length=50, verbose_name='Correo')
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    estado = models.BooleanField(default=True)
 
     # class Meta:
     #     managed = False
@@ -489,6 +490,7 @@ class TipoPlan(models.Model):
     deducible = models.IntegerField(verbose_name='Deducible')
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
+    estado = models.BooleanField(default=True)
 
     # class Meta:
     #     managed = False

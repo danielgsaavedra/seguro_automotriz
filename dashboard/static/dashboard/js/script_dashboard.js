@@ -1,6 +1,8 @@
 $(document).ready(function () {
 
-    function actualizar(){location.reload();}
+    function actualizar() {
+        location.reload();
+    }
 
     var ShowFormPoliza = function () {
         var btn = $(this);
@@ -77,7 +79,7 @@ $(document).ready(function () {
                     $('#modal_asegurado').modal('hide');
                     console.log('Asegurado registrado correctamente!');
                     toastr.success('Operación Exitosa');
-                    setTimeout(actualizar,300);
+                    setTimeout(actualizar, 300);
                 } else {
                     $('#modal_asegurado .modal-content').html(data.html_form)
                 }
@@ -432,6 +434,48 @@ $(document).ready(function () {
         return false;
     }
 
+    var ShowServicioForm = function () {
+        var btn = $(this);
+        $.ajax({
+            url: btn.attr("data-url"),
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#modal_servicio_grua').modal('show')
+            },
+            success: function (data) {
+                $('#modal_servicio_grua .modal-content').html(data.html_form)
+            },
+            error: function () {
+                alert('Algo salió mal, intenta nuevamente.')
+            }
+        });
+    };
+
+    var SaveServicioForm = function () {
+        var form = $(this);
+        $.ajax({
+            url: form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType: 'json',
+            success: function (data) {
+                if (data.form_is_valid) {
+                    $('#table_servicio_grua tbody').html(data.servicios_gruas);
+                    $('#modal_servicio_grua').modal('hide');
+                    console.log('Asegurado registrado correctamente!');
+                    toastr.success('Operación Exitosa');
+                } else {
+                    $('#modal_servicio_grua .modal-content').html(data.html_form)
+                }
+            },
+            error: function () {
+                toastr.error('Algo salió mal, intenta nuevamente.')
+            }
+        });
+        return false;
+    }
+
 
     //Crear Poliza
     $('.show_poliza').click(ShowFormPoliza);
@@ -517,6 +561,10 @@ $(document).ready(function () {
     //Reactivar Usuario
     $('#table_usuario_disabled').on('click', '.show_usuario_reactivate', ShowUsuarioDisableForm);
     $('#modal_usuario_disabled').on('submit', '.reactivate_form_usuario', SaveUsuarioDisableForm);
+
+    //Crear Servicio Grúa
+    $('.show_servicio_grua').click(ShowServicioForm);
+    $('#modal_servicio_grua').on('submit', '.create_form_servicio', SaveServicioForm);
 
 
 });

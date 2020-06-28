@@ -58,5 +58,6 @@ urlpatterns = [
         views.siniestroDetallePdf, name='siniestroDetallePdf'),
     path('servicio_grua/', views.ServicioGruaView, name='servicio_grua'),
     path('servicio_grua/inactivos/', views.ServicioGruaInactivos, name='servicio_grua_disabled'),
+    path('servicio_grua/create/', views.ServicioGruaCreate, name='servicio_grua_create'),
 
 ]

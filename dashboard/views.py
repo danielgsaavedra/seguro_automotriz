@@ -13,7 +13,7 @@ from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSinies
     RegTaller, RegTipoPlan, RegUsuario, RegVehiculo, RegServicioGrua, ServicioGrua
 from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, \
     SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, \
-    AseguradoFormUpdate, VehiculoFormUpdate, SiniestroFotosUpdate
+    AseguradoFormUpdate, VehiculoFormUpdate, SiniestroFotosUpdate, ServicioGruaForm
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -726,8 +726,40 @@ def ServicioGruaView(request):
     context = {'servicios_gruas': servicios_gruas}
     return render(request, 'dashboard/servicioGrua/servicio_grua.html', context)
 
+
 @login_required(login_url='login')
 def ServicioGruaInactivos(request):
     servicios_gruas_disabled = ServicioGrua.objects.filter(estado=False)
     context = {'servicios_gruas_disabled': servicios_gruas_disabled}
     return render(request, 'dashboard/servicioGrua/servicio_grua_disabled.html', context)
+
+
+def SaveAllServicios(request, form, template_name):
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            servicios_gruas = ServicioGrua.objects.all().exclude(estado=False).order_by('id')
+            context = {'servicios_gruas': servicios_gruas}
+            data['servicios_gruas'] = render_to_string(
+                'dashboard/servicioGrua/servicio_grua_2.html', context)
+        else:
+            data['form_is_valid'] = False
+
+    context = {'form': form}
+    data['html_form'] = render_to_string(
+        template_name, context, request=request)
+    return JsonResponse(data)
+
+
+# Read
+@login_required(login_url='login')
+def ServicioGruaCreate(request):
+    if request.method == 'POST':
+        form = ServicioGruaForm(request.POST)
+        servicio_grua = form.save(commit=False)
+        servicio_grua.usuario_rut_usuario = request.user
+    else:
+        form = ServicioGruaForm()
+    return SaveAllServicios(request, form, 'dashboard/servicioGrua/servicio_grua_create.html')

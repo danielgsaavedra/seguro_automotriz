@@ -120,3 +120,14 @@ def TipoPlanCreate(request):
         form = TipoPlanForm()
     return SaveAllTipoPlan(request, form, 'liquidador/tipoPlan/tipo_plan_create.html')
 
+@staff_member_required(login_url='login')
+def TipoPlanUpdate(request, id):
+    tipo_plan = get_object_or_404(TipoPlan, id=id)
+    if request.method == 'POST':
+        form = TipoPlanForm(request.POST, instance=tipo_plan)
+        tipo_plan = form.save(commit=False)
+        tipo_plan.usuario_rut_usuario = request.user
+    else:
+        form = TipoPlanForm(instance=tipo_plan)
+    return SaveAllTipoPlan(request, form, 'liquidador/tipoPlan/tipo_plan_update.html')
+

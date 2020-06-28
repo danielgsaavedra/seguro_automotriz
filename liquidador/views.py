@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from dashboard.models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, \
     EstadoPresupuesto, Presupuesto, TipoActa, FormularioActa, InformeDano,TipoPlan
+from .forms import TipoPlanForm
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -81,3 +82,41 @@ def TipoPlanView(request):
     tipos_plan = TipoPlan.objects.all()
     context = {'tipos_plan': tipos_plan}
     return render(request, 'liquidador/tipoPlan/tipos_plan.html', context)
+
+@login_required(login_url='login')
+def TipoPlanInactivos(request):
+    tipos_plan_disabled = TipoPlan.objects.filter(estado=False)
+    context = {'tipos_plan_disabled': tipos_plan_disabled}
+    return render(request, 'liquidador/tipoPlan/tipos_plan_disabled.html', context)
+
+
+def SaveAllTipoPlan(request, form, template_name):
+    data = dict()
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            tipos_plan = TipoPlan.objects.all().exclude(estado=False).order_by('id')
+            context = {'tipos_plan': tipos_plan}
+            data['tipos_plan'] = render_to_string(
+                'liquidador/tipoPlan/tipos_plan_2.html', context)
+        else:
+            data['form_is_valid'] = False
+
+    context = {'form': form}
+    data['html_form'] = render_to_string(
+        template_name, context, request=request)
+    return JsonResponse(data)
+
+
+# Read
+@login_required(login_url='login')
+def TipoPlanCreate(request):
+    if request.method == 'POST':
+        form = TipoPlanForm(request.POST)
+        tipo_plan = form.save(commit=False)
+        tipo_plan.usuario_rut_usuario = request.user
+    else:
+        form = TipoPlanForm()
+    return SaveAllTipoPlan(request, form, 'liquidador/tipoPlan/tipo_plan_create.html')
+

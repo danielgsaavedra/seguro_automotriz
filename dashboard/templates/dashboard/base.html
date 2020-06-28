@@ -144,23 +144,25 @@
 
                 </li>
                 <hr class="sidebar-divider">
+
+                {% if  request.user.is_staff %}
+                    <div class="sidebar-heading" style="font-size: 12px">
+                        Módulo Usuarios
+                    </div>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'usuarios' %}">
+                            <div class="justify-content-around">
+                                <i class="fas fa-users mr-2 ml-2" style="font-size: 20px"></i>
+                                <span style="font-size: 15px">Usuarios</span>
+                            </div>
+                        </a>
+                    </li>
+                    <hr class="sidebar-divider">
+                {% endif %}
+
             {% endif %}
 
-            {% if  request.user.is_staff %}
-                <div class="sidebar-heading" style="font-size: 12px">
-                    Módulo Usuarios
-                </div>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'usuarios' %}">
-                        <div class="justify-content-around">
-                            <i class="fas fa-users mr-2 ml-2" style="font-size: 20px"></i>
-                            <span style="font-size: 15px">Usuarios</span>
-                        </div>
-                    </a>
-                </li>
-                <hr class="sidebar-divider">
-            {% endif %}
 
             <!-- Taller -->
             {% if  request.user.rol == '3' %}
@@ -314,7 +316,7 @@
                 </div>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'tiplos_plan' %}">
+                    <a class="nav-link" href="{% url 'tipos_plan' %}">
                         <div class="justify-content-around">
                             <i class="fas fa-money-bill-alt mr-2 ml-2" style="font-size: 20px"></i>
                             <span style="font-size: 15px">Tipos de Planes</span>
@@ -468,6 +470,7 @@
 <script src="{% static 'dashboard/js/sb-admin-2.min.js' %}"></script>
 <script src="{% static 'dashboard/js/script_dashboard.js' %}"></script>
 <script src="{% static 'taller/js/script_taller.js' %}"></script>
+<script src="{% static 'liquidador/js/script_liquidador.js' %}"></script>
 <script src="{% static 'dashboard/js/toastr/toastr.min.js' %}"></script>
 <script src="{% static 'dashboard/js/jquery-easing/jquery.easing.min.js' %}"></script>
 

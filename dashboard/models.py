@@ -103,6 +103,10 @@ class Grua(models.Model):
     estado = models.CharField(max_length=1, verbose_name='Estado', default=1)
     estado_delete = models.CharField(
         max_length=1, verbose_name='Estado delete', default=1)
+    marca = models.CharField(max_length=20,verbose_name='Marca Grúa')
+    modelo = models.CharField(max_length=20, verbose_name='Modelo')
+    tipo = models.CharField(max_length=20, verbose_name='Tipo')
+    anio = models.CharField(verbose_name='Año', max_length=4)
     servicio_grua_id_servicio = models.ForeignKey(
         'ServicioGrua', models.DO_NOTHING, db_column='servicio_grua_id_servicio', verbose_name='Servicio Grúa',
         null=True)
@@ -404,6 +408,7 @@ class Siniestro(models.Model):
         upload_to='licencias', null=True, blank=True)
     direccion = models.CharField(
         max_length=150, verbose_name='Dirección siniestro')
+    garantia = models.BooleanField(default=False)
     tipo_accidente_id_tipo_acc = models.ForeignKey(
         'TipoAccidente', models.DO_NOTHING, db_column='tipo_accidente_id_tipo_acc', verbose_name='Tipo Accidente',
         null=True)

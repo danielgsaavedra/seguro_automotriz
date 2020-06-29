@@ -1,11 +1,13 @@
 from django import forms
-from dashboard.models import Usuario, Taller
+from dashboard.models import Usuario, Taller, ServicioGrua
 
 
 class UsuarioRegisterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UsuarioRegisterForm, self).__init__(*args, **kwargs)
         self.fields['taller_id_taller'].queryset = Taller.objects.filter(
+            estado=1)
+        self.fields['servicio_grua_id_servicio_grua'].queryset = ServicioGrua.objects.filter(
             estado=1)
 
     password1 = forms.CharField(max_length=12, widget=forms.PasswordInput(
@@ -37,18 +39,37 @@ class UsuarioRegisterForm(forms.ModelForm):
             'email',
             'telefono',
             'rol',
-            'taller_id_taller'
+            'taller_id_taller',
+            'servicio_grua_id_servicio_grua'
         ]
         widgets = {
-            'rut_usuario': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT', 'pattern': '^[0-9]{8,9}[-|‐]{1}[0-9kK]{1}$', 'oninput': 'checkRut(this)'}),
-            'primer_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer nombre', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 'p_nombre_usuario'}),
-            'segundo_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo nombre', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 's_nombre_usuario'}),
-            'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer apellido', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 'p_apellido_usuario'}),
-            'segundo_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo apellido', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 's_apellido_usuario'}),
-            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', 'id': 'email_usuario'}),
-            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa teléfono', 'pattern': '[0-9]{9,}', 'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)', 'id': 'telefono_usuario'}),
-            'rol': forms.Select(attrs={'class': 'form-control', 'id': 'rol_usuario', 'onchange': 'seleccionarTaller()'}),
+            'rut_usuario': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT',
+                                                  'pattern': '^[0-9]{8,9}[-|‐]{1}[0-9kK]{1}$',
+                                                  'oninput': 'checkRut(this)'}),
+            'primer_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer nombre',
+                                                    'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}',
+                                                    'id': 'p_nombre_usuario'}),
+            'segundo_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo nombre',
+                                                     'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}',
+                                                     'id': 's_nombre_usuario'}),
+            'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer apellido',
+                                                      'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}',
+                                                      'id': 'p_apellido_usuario'}),
+            'segundo_apellido': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo apellido',
+                       'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 's_apellido_usuario'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa correo', 'type': 'email',
+                                            'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+                                            'id': 'email_usuario'}),
+            'telefono': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'Ingresa teléfono', 'pattern': '[0-9]{9,}',
+                       'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)',
+                       'id': 'telefono_usuario'}),
+            'rol': forms.Select(
+                attrs={'class': 'form-control', 'id': 'rol_usuario', 'onchange': 'seleccionarTaller()'}),
             'taller_id_taller': forms.Select(attrs={'class': 'form-control', 'id': 'id_taller', 'disabled': 'true'}),
+            'servicio_grua_id_servicio_grua': forms.Select(
+                attrs={'class': 'form-control', 'id': 'id_servicio', 'disabled': 'true'}),
 
         }
 
@@ -73,6 +94,8 @@ class UsuarioFormUpdate(forms.ModelForm):
         super(UsuarioFormUpdate, self).__init__(*args, **kwargs)
         self.fields['taller_id_taller'].queryset = Taller.objects.filter(
             estado=1)
+        self.fields['servicio_grua_id_servicio_grua'].queryset = ServicioGrua.objects.filter(
+            estado=1)
 
     class Meta:
         model = Usuario
@@ -85,24 +108,42 @@ class UsuarioFormUpdate(forms.ModelForm):
             'email',
             'telefono',
             'rol',
-            'taller_id_taller'
+            'taller_id_taller',
+            'servicio_grua_id_servicio_grua'
         ]
         widgets = {
-            'rut_usuario': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT ', 'pattern': '^[0-9]{8,9}[-|‐]{1}[0-9kK]{1}$', 'oninput': 'checkRut(this)', 'disabled': 'true'}),
-            'primer_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer nombre', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 'p_nombre_usuario'}),
-            'segundo_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo nombre', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 's_nombre_usuario'}),
-            'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer apellido', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 'p_apellido_usuario'}),
-            'segundo_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo apellido', 'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 's_apellido_usuario'}),
-            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa correo', 'type': 'email', 'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', 'id': 'email_usuario'}),
-            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa teléfono', 'pattern': '[0-9]{9,}', 'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)', 'id': 'telefono_usuario'}),
-            'rol': forms.Select(attrs={'class': 'form-control', 'id': 'rol_usuario', 'onchange': 'seleccionarTaller()'}),
+            'rut_usuario': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa RUT ',
+                                                  'pattern': '^[0-9]{8,9}[-|‐]{1}[0-9kK]{1}$',
+                                                  'oninput': 'checkRut(this)', 'disabled': 'true'}),
+            'primer_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer nombre',
+                                                    'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}',
+                                                    'id': 'p_nombre_usuario'}),
+            'segundo_nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo nombre',
+                                                     'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}',
+                                                     'id': 's_nombre_usuario'}),
+            'primer_apellido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa primer apellido',
+                                                      'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}',
+                                                      'id': 'p_apellido_usuario'}),
+            'segundo_apellido': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'Ingresa segundo apellido',
+                       'pattern': '[A-Za-zÀ-ÿ\u00f1\u00d1 ]{3,}', 'id': 's_apellido_usuario'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa correo', 'type': 'email',
+                                            'pattern': '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+                                            'id': 'email_usuario'}),
+            'telefono': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'Ingresa teléfono', 'pattern': '[0-9]{9,}',
+                       'onkeypress': 'return (event.charCode >= 48 && event.charCode <= 57)',
+                       'id': 'telefono_usuario'}),
+            'rol': forms.Select(
+                attrs={'class': 'form-control', 'id': 'rol_usuario', 'onchange': 'seleccionarTaller()'}),
             'taller_id_taller': forms.Select(attrs={'class': 'form-control', 'id': 'id_taller', 'disabled': 'true'}),
+            'servicio_grua_id_servicio_grua': forms.Select(
+                attrs={'class': 'form-control', 'id': 'id_servicio', 'disabled': 'true'}),
 
         }
 
 
 class DeshabilitarUsuarioForm(forms.ModelForm):
-
     class Meta:
         model = Usuario
         fields = ['is_active']

@@ -763,3 +763,14 @@ def ServicioGruaCreate(request):
     else:
         form = ServicioGruaForm()
     return SaveAllServicios(request, form, 'dashboard/servicioGrua/servicio_grua_create.html')
+
+@staff_member_required(login_url='login')
+def ServicioGruaUpdate(request, id):
+    servicio_grua = get_object_or_404(ServicioGrua, id=id)
+    if request.method == 'POST':
+        form = ServicioGruaForm(request.POST, instance=servicio_grua)
+        servicio = form.save(commit=False)
+        servicio.usuario_rut_usuario = request.user
+    else:
+        form = ServicioGruaForm(instance=servicio_grua)
+    return SaveAllServicios(request, form, 'dashboard/servicioGrua/servicio_grua_update.html')

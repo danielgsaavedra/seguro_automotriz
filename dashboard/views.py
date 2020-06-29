@@ -13,7 +13,7 @@ from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSinies
     RegTaller, RegTipoPlan, RegUsuario, RegVehiculo, RegServicioGrua, ServicioGrua
 from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, \
     SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, \
-    AseguradoFormUpdate, VehiculoFormUpdate, SiniestroFotosUpdate, ServicioGruaForm
+    AseguradoFormUpdate, VehiculoFormUpdate, SiniestroFotosUpdate, ServicioGruaForm, DeshabilitarServicioForm
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -764,6 +764,7 @@ def ServicioGruaCreate(request):
         form = ServicioGruaForm()
     return SaveAllServicios(request, form, 'dashboard/servicioGrua/servicio_grua_create.html')
 
+
 @staff_member_required(login_url='login')
 def ServicioGruaUpdate(request, id):
     servicio_grua = get_object_or_404(ServicioGrua, id=id)
@@ -774,3 +775,28 @@ def ServicioGruaUpdate(request, id):
     else:
         form = ServicioGruaForm(instance=servicio_grua)
     return SaveAllServicios(request, form, 'dashboard/servicioGrua/servicio_grua_update.html')
+
+
+@staff_member_required(login_url='login')
+def ServicioGruaDelete(request, id):
+    data = dict()
+    servicio_grua = get_object_or_404(ServicioGrua, id=id)
+    if request.method == 'POST':
+        form = DeshabilitarServicioForm(request.POST, instance=servicio_grua)
+        if form.is_valid():
+            servicio = form.save(commit=False)
+            servicio.usuario_rut_usuario = request.user
+            servicio.estado = False
+            servicio.save()
+            data['form_is_valid'] = True
+            servicios_gruas = ServicioGrua.objects.all().exclude(estado=False).order_by('id')
+            context = {'servicios_gruas': servicios_gruas}
+            data['servicios_gruas'] = render_to_string(
+                'dashboard/servicioGrua/servicio_grua_2.html', context)
+    else:
+        form = DeshabilitarServicioForm(instance=servicio_grua)
+        data['form_is_valid'] = False
+        context = {'servicio_grua': servicio_grua, 'form': form}
+        data['html_form'] = render_to_string(
+            'dashboard/servicioGrua/servicio_grua_delete.html', context, request=request)
+    return JsonResponse(data)

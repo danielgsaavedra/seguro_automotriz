@@ -438,3 +438,12 @@ class ServicioGruaForm(forms.ModelForm):
             'comuna_id_comuna': forms.Select(
                 attrs={'class': 'required form-control', 'id': 'comuna', 'name': 'comuna_id_comuna'})
         }
+
+
+class DeshabilitarServicioForm(forms.ModelForm):
+    class Meta:
+        model = ServicioGrua
+        fields = ['estado']
+        widgets = {
+            'estado': forms.HiddenInput(attrs={'class': 'required form-control', 'id': 'estado_servicio'}),
+        }

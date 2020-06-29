@@ -1,0 +1,32 @@
+{% for servicios_grua in servicios_gruas %}
+    <tr>
+        <th scope="row">{{ servicios_grua.id }}</th>
+        <td>{{ servicios_grua.nombre }}</td>
+        <td>{{ servicios_grua.razon_social }}</td>
+        <td>{{ servicios_grua.telefono }}</td>
+        <td>{{ servicios_grua.correo }}</td>
+            <td>
+                <div class="dropdown">
+                    <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown"
+                       role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <button class="show_servicio_update dropdown-item"
+                                data-url="{% url 'servicio_grua_update' servicios_grua.id %}">
+                            Modificar
+                        </button>
+                        <button class="show_tipo_delete dropdown-item"
+                                data-url="">
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            </td>
+    </tr>
+{% empty %}
+    <tr>
+        <td colspan="10" class="text-center">No hay Servicios de Grúas</td>
+    </tr>
+{% endfor %}

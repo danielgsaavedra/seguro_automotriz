@@ -1,0 +1,83 @@
+{% load static %}
+<form action="" class="update_form_servicio needs-validation" method="POST" data-url="{% url 'servicio_grua_update' form.instance.id %}">
+    {% csrf_token %}
+    <div class="modal-header bg-primary">
+        <h5 class="modal-title text-light">Modificar Servicio de Grúa</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>NOMBRE</span>
+                </div>
+                {{ form.nombre }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_nombre"></div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>RAZÓN SOCIAL</span>
+                </div>
+                {{ form.razon_social }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_razon"></div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>Dirección</span>
+                </div>
+                {{ form.direccion }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_direccion"></div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>Comuna</span>
+                </div>
+                {{ form.comuna_id_comuna }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_comuna"></div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>TELÉFONO</span>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="">+56</span>
+                    </div>
+                    {{ form.telefono }}
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback" id="error_telefono"></div>
+                </div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>CORREO</span>
+                </div>
+                {{ form.correo }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_correo"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-outline-primary" id="bEnviar">Modificar</button>
+    </div>
+</form>
+{% block script %}
+<script src="{% static 'dashboard/js/validar_servicio_grua.js' %}"></script>
+{% endblock script %}

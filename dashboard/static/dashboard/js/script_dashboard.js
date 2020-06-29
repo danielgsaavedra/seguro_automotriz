@@ -570,5 +570,9 @@ $(document).ready(function () {
     $('#table_servicio_grua').on('click', '.show_servicio_update', ShowServicioForm);
     $('#modal_servicio_grua').on('submit', '.update_form_servicio', SaveServicioForm);
 
+    //Eliminar Servicio Grúa
+    $('#table_servicio_grua').on('click', '.show_servicio_delete', ShowServicioForm);
+    $('#modal_servicio_grua').on('submit', '.delete_form_servicio', SaveServicioForm);
+
 
 });

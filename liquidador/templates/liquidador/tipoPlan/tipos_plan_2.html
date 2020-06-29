@@ -1,0 +1,32 @@
+{% for tipos in tipos_plan %}
+    <tr>
+        <th scope="row">{{ tipos.id }}</th>
+        <td>{{ tipos.nombre }}</td>
+        <td>$ {{ tipos.valor }}</td>
+        <td>$ {{ tipos.cobertura_max }}</td>
+        <td>{{ tipos.deducible }}</td>
+        <td>
+            <div class="dropdown">
+                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown"
+                   role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <button class="show_tipo_update dropdown-item"
+                            data-url="{% url 'tipos_plan_update' tipos.id %}">
+                        Modificar Tipo de Plan
+                    </button>
+                    <button class="show_tipo_delete dropdown-item"
+                            data-url="{% url 'tipos_plan_delete' tipos.id %}">
+                        Eliminar Tipo de Plan
+                    </button>
+                </div>
+            </div>
+        </td>
+    </tr>
+{% empty %}
+    <tr>
+        <td colspan="10" class="text-center">No hay Tipos de Plan</td>
+    </tr>
+{% endfor %}

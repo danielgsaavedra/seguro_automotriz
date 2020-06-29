@@ -1,0 +1,81 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Módulo Servicios Grúas{% endblock title %}
+{% block content %}
+
+    <div class="d-flex justify-content-start mb-4">
+        <div class="text-center">
+            <a class="text-decoration-none" href="{% url 'servicio_grua' %}">
+                <i class="fas fa-arrow-circle-left"></i> Volver
+            </a>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Servicios de Grúas</h6>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center" id="table_servicio_grua" width="100%"
+                       cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th scope="col">N° Servicio Grúa</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Razon Social</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Correo</th>
+                        {% if request.user.is_staff %}
+                            <th scope="col">Opciones</th>
+                        {% endif %}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for servicios_grua in servicios_gruas_disabled %}
+                        <tr>
+                            <th scope="row">{{ servicios_grua.id }}</th>
+                            <td>{{ servicios_grua.nombre }}</td>
+                            <td>{{ servicios_grua.razon_social }}</td>
+                            <td>{{ servicios_grua.telefono }}</td>
+                            <td>{{ servicios_grua.correo }}</td>
+                            {% if request.user.is_staff %}
+                                <td>
+                                    <div class="dropdown">
+                                        <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown"
+                                           role="button"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <button class="dropdown-item"
+                                                    data-url="">
+                                                Reactivar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center">No hay Servicios de Grúas</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal_servicio_grua" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

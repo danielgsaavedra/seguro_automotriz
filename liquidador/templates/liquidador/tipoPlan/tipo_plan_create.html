@@ -1,0 +1,66 @@
+{% load static %}
+<form action="" class="create_form_tipo_plan needs-validation" method="POST"
+      data-url="{% url 'tipos_plan_create' %}">
+    {% csrf_token %}
+    <div class="modal-header bg-success">
+        <h5 class="modal-title text-light">Registrar Tipo de Plan</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>NOMBRE </span>
+                </div>
+                {{ form.nombre }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_nombre"></div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>VALOR</span>
+                </div>
+                {{ form.valor }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_valor"></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>DEDUCIBLE</span>
+                </div>
+                {{ form.deducible }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_deducible"></div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>COBERTURA MAX</span>
+                </div>
+                {{ form.cobertura_max }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_cobertura"></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="col-form-label">
+                    <span>DESCRIPCIÓN</span>
+                </div>
+                {{ form.descripcion }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_descripcion"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-outline-success" id="bEnviar">Registrar</button>
+    </div>
+</form>
+{% block script %}
+    <script src="{% static 'dashboard/js/validar_tipo_plan.js' %}"></script>
+{% endblock script %}

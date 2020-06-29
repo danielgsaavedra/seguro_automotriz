@@ -14,6 +14,7 @@ function iniciar() {
     document.getElementById("password1").addEventListener('keyup', validaPassword1);
     document.getElementById("password2").addEventListener('keyup', validaPassword2);
     document.getElementById("id_taller").addEventListener('change', validaTaller);
+    document.getElementById("id_servicio").addEventListener('change', validaServicio);
 }
 
 function seleccionarTaller() {
@@ -23,14 +24,23 @@ function seleccionarTaller() {
         document.getElementById("id_taller").disabled = false;
         var elemento = document.getElementById("id_taller");
         elemento.setAttribute("required", "true")
-    }
-    else {
+    } else {
         var elemento = document.getElementById("id_taller");
         elemento.selectedIndex = 0;
         document.getElementById("id_taller").disabled = true;
     }
 
+    if (selected == "Personal Grua") {
+        document.getElementById("id_servicio").disabled = false;
+        var elemento = document.getElementById("id_servicio");
+        elemento.setAttribute("required", "true")
+    } else {
+        var elemento = document.getElementById("id_servicio");
+        elemento.selectedIndex = 0;
+        document.getElementById("id_servicio").disabled = true;
+    }
 }
+
 
 function validaTaller() {
     var elemento = document.getElementById("id_taller");
@@ -52,6 +62,31 @@ function error_taller(elemento, mensaje) {
 
 function clearErrorTaller(elemento) {
     document.getElementById("error_taller").innerHTML = "";
+    elemento.className = "form-control is-valid";
+}
+
+
+
+function validaServicio() {
+    var elemento = document.getElementById("id_servicio");
+    if (!elemento.checkValidity()) {
+        if (elemento.validity.valueMissing) {
+            error_servicio(elemento, "Debe seleccionar servicio grúa")
+        }
+        return false;
+    }
+    clearErrorServicio(elemento);
+    return true;
+
+}
+
+function error_servicio(elemento, mensaje) {
+    document.getElementById("error_servicio").innerHTML = mensaje;
+    elemento.className = "form-control is-invalid";
+}
+
+function clearErrorServicio(elemento) {
+    document.getElementById("error_servicio").innerHTML = "";
     elemento.className = "form-control is-valid";
 }
 
@@ -306,9 +341,10 @@ function clearErrorPassword2(elemento) {
 }
 
 function validar(e) {
-    if (validaRol() && validaTaller() && validaRut() && validaTelefono() && validaPrimerNombre() && validaSegundoNombre()
-        && validaPrimerApellido() && validaSegundoApellido() && validaCorreo() && validaPassword1() && validaPassword2()) {
+    if (validaRol() && validaTaller() && validaServicio() && validaCorreo() && validaRut() && validaTelefono() && validaPrimerNombre() && validaSegundoNombre()
+        && validaPrimerApellido() && validaSegundoApellido() && validaPassword1() && validaPassword2()) {
         document.getElementById("id_taller").disabled = false;
+        document.getElementById("id_servicio").disabled = false;
         return true
     } else {
         e.preventDefault();

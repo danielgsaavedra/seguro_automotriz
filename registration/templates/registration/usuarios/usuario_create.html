@@ -13,7 +13,7 @@
                 <div class="col-form-label">
                     <span>ROL</span>
                 </div>
-                {{form.rol}}
+                {{ form.rol }}
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback" id="error_rol"></div>
             </div>
@@ -21,17 +21,37 @@
                 <div class="col-form-label">
                     <span>TALLER</span>
                 </div>
-                {{form.taller_id_taller}}
+                {{ form.taller_id_taller }}
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback" id="error_taller"></div>
             </div>
         </div>
+
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>SERVICIO GRÚA</span>
+                </div>
+                {{ form.servicio_grua_id_servicio_grua }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_servicio"></div>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <div class="col-form-label">
+                    <span>CORREO</span>
+                </div>
+                {{ form.email }}
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback" id="error_correo"></div>
+            </div>
+        </div>
+
         <div class="form-row">
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>RUT USUARIO</span>
                 </div>
-                {{form.rut_usuario}}
+                {{ form.rut_usuario }}
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback" id="error_rut"></div>
             </div>
@@ -43,18 +63,19 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="">+56</span>
                     </div>
-                    {{form.telefono}}
+                    {{ form.telefono }}
                     <div class="valid-feedback"></div>
                     <div class="invalid-feedback" id="error_telefono"></div>
                 </div>
             </div>
         </div>
+
         <div class="form-row">
             <div class="form-group col-12 col-md-6">
                 <div class="col-form-label">
                     <span>PRIMER NOMBRE</span>
                 </div>
-                {{form.primer_nombre}}
+                {{ form.primer_nombre }}
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback" id="error_p_nombre"></div>
             </div>
@@ -62,7 +83,7 @@
                 <div class="col-form-label">
                     <span>SEGUNDO NOMBRE</span>
                 </div>
-                {{form.segundo_nombre}}
+                {{ form.segundo_nombre }}
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback" id="error_s_nombre"></div>
             </div>
@@ -73,7 +94,7 @@
                 <div class="col-form-label">
                     <span>PRIMER APELLIDO</span>
                 </div>
-                {{form.primer_apellido}}
+                {{ form.primer_apellido }}
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback" id="error_p_apellido"></div>
             </div>
@@ -81,19 +102,10 @@
                 <div class="col-form-label">
                     <span>SEGUNDO APELLIDO</span>
                 </div>
-                {{form.segundo_apellido}}
+                {{ form.segundo_apellido }}
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback" id="error_s_apellido"></div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-form-label">
-                <span>CORREO</span>
-            </div>
-            {{form.email}}
-            <div class="valid-feedback"></div>
-            <div class="invalid-feedback" id="error_correo"></div>
         </div>
 
         <div class="form-row">
@@ -101,7 +113,7 @@
                 <div class="col-form-label">
                     <span>CONTRASEÑA</span>
                 </div>
-                {{form.password1}}
+                {{ form.password1 }}
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback" id="error_password1"></div>
             </div>
@@ -109,7 +121,7 @@
                 <div class="col-form-label">
                     <span>CONTRASEÑA DE CONFIRMACIÓN</span>
                 </div>
-                {{form.password2}}
+                {{ form.password2 }}
                 <div class="valid-feedback"></div>
                 <div class="invalid-feedback" id="error_password2"></div>
             </div>
@@ -121,6 +133,6 @@
     </div>
 </form>
 {% block script %}
-<script src="{% static 'dashboard/js/validar_usuario.js' %}"></script>
-<script src="{% static 'dashboard/js/formato_rut.js' %}"></script>
+    <script src="{% static 'dashboard/js/validar_usuario.js' %}"></script>
+    <script src="{% static 'dashboard/js/formato_rut.js' %}"></script>
 {% endblock script %}

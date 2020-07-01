@@ -61,5 +61,5 @@ urlpatterns = [
     path('servicio_grua/create/', views.ServicioGruaCreate, name='servicio_grua_create'),
     path('servicio_grua/<str:id>/update/', views.ServicioGruaUpdate, name='servicio_grua_update'),
     path('servicio_grua/<str:id>/delete/', views.ServicioGruaDelete, name='servicio_grua_delete'),
-
+    path('servicio_grua/<str:id>/reactive/', views.ServicioGruaReactive, name='servicio_grua_reactive'),
 ]

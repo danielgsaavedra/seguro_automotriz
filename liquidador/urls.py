@@ -13,4 +13,5 @@ urlpatterns = [
     path('tipos_plan/create/', views.TipoPlanCreate, name='tipos_plan_create'),
     path('tipos_plan/<str:id>/update/', views.TipoPlanUpdate, name='tipos_plan_update'),
     path('tipos_plan/<str:id>/delete/', views.TipoPlanDelete, name='tipos_plan_delete'),
+    path('tipos_plan/<str:id>/reactive/', views.TipoPlanReactive, name='tipos_plan_reactive'),
 ]

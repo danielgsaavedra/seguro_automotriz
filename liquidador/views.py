@@ -159,6 +159,29 @@ def TipoPlanDelete(request, id):
             'liquidador/tipoPlan/tipo_plan_delete.html', context, request=request)
     return JsonResponse(data)
 
-# todo Implementar reactivacion de tipos de plan
+@staff_member_required(login_url='login')
+def TipoPlanReactive(request, id):
+    data = dict()
+    tipo_plan = get_object_or_404(TipoPlan, id=id)
+    if request.method == 'POST':
+        form = DeshabilitarTipoPlanForm(request.POST, instance=tipo_plan)
+        if form.is_valid():
+            plan = form.save(commit=False)
+            plan.estado = True
+            plan.usuario_rut_usuario = request.user
+            plan.save()
+            data['form_is_valid'] = True
+            tipos_plan_disabled = TipoPlan.objects.all().exclude(estado=True).order_by('id')
+            context = {'tipos_plan_disabled': tipos_plan_disabled}
+            data['tipos_plan'] = render_to_string(
+                'liquidador/tipoPlan/tipos_plan_disabled_2.html', context)
+    else:
+        form = DeshabilitarTipoPlanForm(instance=tipo_plan)
+        data['form_is_valid'] = False
+        context = {'tipo_plan': tipo_plan, 'form': form}
+        data['html_form'] = render_to_string(
+            'liquidador/tipoPlan/tipo_plan_reactive.html', context, request=request)
+    return JsonResponse(data)
+
 # todo Falta desarrollar aprobar y rechazar presupuesto
 # todo Se debe crear consulta SQL para pdf polizas

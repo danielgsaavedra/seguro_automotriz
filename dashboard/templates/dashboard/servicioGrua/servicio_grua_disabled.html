@@ -37,7 +37,7 @@
                             <th scope="row">{{ servicios_grua.id }}</th>
                             <td>{{ servicios_grua.nombre }}</td>
                             <td>{{ servicios_grua.razon_social }}</td>
-                            <td>{{ servicios_grua.telefono }}</td>
+                            <td>+56{{ servicios_grua.telefono }}</td>
                             <td>{{ servicios_grua.correo }}</td>
                             {% if request.user.is_staff %}
                                 <td>
@@ -48,8 +48,8 @@
                                             <i class="fas fa-ellipsis-v"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            <button class="dropdown-item"
-                                                    data-url="">
+                                            <button class="dropdown-item show_servicio_reactive"
+                                                    data-url="{% url 'servicio_grua_reactive' servicios_grua.id %}">
                                                 Reactivar
                                             </button>
                                         </div>

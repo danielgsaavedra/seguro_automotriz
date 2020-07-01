@@ -1,0 +1,27 @@
+<form action="" class="reactive_form_servicio" method="POST" data-url="{% url 'servicio_grua_reactive' form.instance.id %}">
+    {% csrf_token %}
+
+    <div class="modal-header bg-success">
+        <h5 class="modal-title text-light">Reactivar Servicio Grúa</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+            <div class="col-12">
+                <h4>¿Seguro que deseas reactivar el Servicio de Grúa n° <strong>{{form.instance.id}}</strong>?</h4>
+                {{form.estado}}
+                <br>
+            </div>
+            <div class="col-12">
+                <p class="lead">Id Servicio Grúa: <strong>{{servicio_grua.id}}</strong></p>
+                <p class="lead">Nombre Servicio: <strong>{{servicio_grua.nombre}}</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-outline-success">Reactivar</button>
+    </div>
+</form>

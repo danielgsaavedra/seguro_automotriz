@@ -26,7 +26,9 @@
                         <th scope="col">Valor</th>
                         <th scope="col">Cobertura Máxima</th>
                         <th scope="col">Deducible</th>
-                        <th scope="col">Opciones</th>
+                        {% if request.user.is_staff %}
+                            <th scope="col">Opciones</th>
+                        {% endif %}
                     </tr>
                     </thead>
                     <tbody>
@@ -37,20 +39,22 @@
                             <td>$ {{ tipos_plan.valor }}</td>
                             <td>$ {{ tipos_plan.cobertura_max }}</td>
                             <td>{{ tipos_plan.deducible }}</td>
-                            <td>
-                                <div class="dropdown">
-                                    <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <button class="show_siniestro_update dropdown-item"
-                                                data-url="">
-                                            Reactivar Tipo de Plan
-                                        </button>
+                            {% if request.user.is_staff %}
+                                <td>
+                                    <div class="dropdown">
+                                        <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <button class="show_tipo_reactive dropdown-item"
+                                                    data-url="{% url 'tipos_plan_reactive' tipos_plan.id %}">
+                                                Reactivar Tipo de Plan
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
+                                </td>
+                            {% endif %}
                         </tr>
                     {% empty %}
                         <tr>

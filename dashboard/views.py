@@ -136,7 +136,6 @@ def AseguradoDelete(request, id):
 def ReactivateAsegurado(request, id):
     data = dict()
     aseguradoActivate = get_object_or_404(Asegurado, rut_asegurado=id)
-    user = get_object_or_404(Usuario, rut_usuario=request.user.rut_usuario)
     if request.method == 'POST':
         form = DeshabilitarAseguradoForm(
             request.POST, instance=aseguradoActivate)
@@ -145,10 +144,7 @@ def ReactivateAsegurado(request, id):
             aseguradoActivate.estado = "1"
             aseguradoActivate.save()
             data['form_is_valid'] = True
-            aseguradosDisable = Asegurado.objects.filter(
-                Q(usuario_rut_usuario=user) &
-                Q(estado=0)
-            ).order_by('fecha_nacimiento')
+            aseguradosDisable = Asegurado.objects.filter(estado=0).order_by('fecha_nacimiento')
             context = {'aseguradosDisable': aseguradosDisable}
             data['aseguradosDisable'] = render_to_string(
                 'dashboard/asegurados/asegurado_disabled_2.html', context)
@@ -789,8 +785,8 @@ def ServicioGruaDelete(request, id):
             servicio.estado = False
             servicio.save()
             data['form_is_valid'] = True
-            servicios_gruas = ServicioGrua.objects.all().exclude(estado=False).order_by('id')
-            context = {'servicios_gruas': servicios_gruas}
+            servicios_gruas_delete = ServicioGrua.objects.all().exclude(estado=False).order_by('id')
+            context = {'servicios_gruas_delete': servicios_gruas_delete}
             data['servicios_gruas'] = render_to_string(
                 'dashboard/servicioGrua/servicio_grua_2.html', context)
     else:
@@ -799,4 +795,28 @@ def ServicioGruaDelete(request, id):
         context = {'servicio_grua': servicio_grua, 'form': form}
         data['html_form'] = render_to_string(
             'dashboard/servicioGrua/servicio_grua_delete.html', context, request=request)
+    return JsonResponse(data)
+
+@staff_member_required(login_url='login')
+def ServicioGruaReactive(request, id):
+    data = dict()
+    servicio_grua = get_object_or_404(ServicioGrua, id=id)
+    if request.method == 'POST':
+        form = DeshabilitarServicioForm(request.POST, instance=servicio_grua)
+        if form.is_valid():
+            servicio = form.save(commit=False)
+            servicio.usuario_rut_usuario = request.user
+            servicio.estado = True
+            servicio.save()
+            data['form_is_valid'] = True
+            servicios_gruas_disabled = ServicioGrua.objects.all().exclude(estado=True).order_by('id')
+            context = {'servicios_gruas_disabled': servicios_gruas_disabled}
+            data['servicios_gruas'] = render_to_string(
+                'dashboard/servicioGrua/servicio_grua_disabled_2.html', context)
+    else:
+        form = DeshabilitarServicioForm(instance=servicio_grua)
+        data['form_is_valid'] = False
+        context = {'servicio_grua': servicio_grua, 'form': form}
+        data['html_form'] = render_to_string(
+            'dashboard/servicioGrua/servicio_grua_reactive.html', context, request=request)
     return JsonResponse(data)

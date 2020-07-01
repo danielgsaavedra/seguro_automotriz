@@ -1,0 +1,36 @@
+{% for tipos_plan in tipos_plan_disabled %}
+    <tr>
+        <th scope="row">{{ tipos_plan.id }}</th>
+        <td>{{ tipos_plan.nombre }}</td>
+        <td>$ {{ tipos_plan.valor }}</td>
+        <td>$ {{ tipos_plan.cobertura_max }}</td>
+        <td>{{ tipos_plan.deducible }}</td>
+        <td>
+            <div class="dropdown">
+                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <button class="show_tipo_reactive dropdown-item"
+                            data-url="{% url 'tipos_plan_reactive' tipos_plan.id %}">
+                        Reactivar Tipo de Plan
+                    </button>
+                </div>
+            </div>
+        </td>
+    </tr>
+{% empty %}
+    <tr>
+        <td colspan="10" class="text-center">No hay Tipos de Plan</td>
+    </tr>
+{% endfor %}
+
+<!-- Modal -->
+<div class="modal fade" id="modal_tipo_plan" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>

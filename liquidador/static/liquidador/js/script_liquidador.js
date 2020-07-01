@@ -56,6 +56,8 @@ $(document).ready(function () {
     //Delete logic Tipo Plan
     $('#table_tipo_plan').on('click', '.show_tipo_delete', ShowFormTipoPlan);
     $('#modal_tipo_plan').on('submit', '.delete_form_tipo_plan', SaveFormTipoPlan);
-
+    //Aprobar Tipo Plan
+    $('#table_tipo_plan').on('click', '.show_tipo_reactive', ShowFormTipoPlan);
+    $('#modal_tipo_plan').on('submit', '.reactive_form_tipo_plan', SaveFormTipoPlan);
 
 });

@@ -78,7 +78,7 @@ $(document).ready(function () {
                 if (data.form_is_valid) {
                     $('#modal_presupuesto_liquidador').modal('hide');
                     console.log('Success!');
-                    setTimeout(volveratras,1000);
+                    setTimeout(volveratras, 1000);
                     toastr.success('Operación Exitosa');
 
                 } else {
@@ -92,8 +92,9 @@ $(document).ready(function () {
         return false;
     }
 
-    var volveratras = function() {
-        history.back();
+
+    var volveratras = function () {
+        window.location.href = "http://127.0.0.1:8000/liquidador/presupuestos/"
     }
 
     //Create Tipo Plan
@@ -116,7 +117,6 @@ $(document).ready(function () {
     //Rechazar Presupuesto
     $('.show_rechazar_presupuesto').click(ShowFormPresupuestoAproRech);
     $('#modal_presupuesto_liquidador').on('submit', '.rechazar_form_presupuesto', SaveFormPresupuestoAproRech);
-
 
 
 });

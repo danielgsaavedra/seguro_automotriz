@@ -40,6 +40,8 @@ def SaveAllActaRecepcion(request, form, template_name):
 
 @login_required(login_url='login')
 def ActaRecepcionView(request):
+    with connection.cursor() as cursor:
+        cursor.callproc('SP_ESTADO_GRUAS')
     estado = get_object_or_404(TipoActa, id=1)
     taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
     actas = FormularioActa.objects.filter(
@@ -52,6 +54,8 @@ def ActaRecepcionView(request):
 
 @login_required(login_url='login')
 def CreateActaRecepcion(request, id):
+    with connection.cursor() as cursor:
+        cursor.callproc('SP_ESTADO_GRUAS')
     data = dict()
     with connection.cursor() as cursor:
         cursor.execute("SELECT S.TALLER_ID_TALLER, S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) WHERE(S.TALLER_ID_TALLER = T.ID AND S.ID=" + id + ")")

@@ -1,33 +1,33 @@
 {% extends "dashboard/base.html" %}
 {% block title %}Presupuestos{% endblock title %}
 {% block content %}
-<div class="d-flex justify-content-between mb-4">
-    <div class="mr-1">
-        <a class="text-decoration-none text-light" href="{% url 'presupuestos_rechazados' %}">
-            <button class="btn btn-sm btn-danger shadow-sm">
-                <i class="fas fa-money-check-alt fa-sm text-white-50"></i> Presupuestos Rechazados
-            </button>
-        </a>
-    </div>
-    <div class="ml-1">
-        <a class="text-decoration-none text-light" href="{% url 'presupuestos_aprobados' %}">
-            <button class="btn btn-sm btn-success shadow-sm">
-                <i class="fas fa-money-check-alt fa-sm text-white-50"></i> Presupuestos Aprobados
-            </button>
-        </a>
-    </div>
-</div>
-
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Presupuestos</h6>
+    <div class="d-flex justify-content-between mb-4">
+        <div class="mr-1">
+            <a class="text-decoration-none text-light" href="{% url 'presupuestos_rechazados' %}">
+                <button class="btn btn-sm btn-danger shadow-sm">
+                    <i class="fas fa-money-check-alt fa-sm text-white-50"></i> Presupuestos Rechazados
+                </button>
+            </a>
+        </div>
+        <div class="ml-1">
+            <a class="text-decoration-none text-light" href="{% url 'presupuestos_aprobados' %}">
+                <button class="btn btn-sm btn-success shadow-sm">
+                    <i class="fas fa-money-check-alt fa-sm text-white-50"></i> Presupuestos Aprobados
+                </button>
+            </a>
+        </div>
     </div>
 
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover text-center" id="table_presupuesto" width="100%"
-                cellspacing="0">
-                <thead>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Presupuestos</h6>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center" id="table_presupuesto" width="100%"
+                       cellspacing="0">
+                    <thead>
                     <tr>
                         <th scope="col">N°</th>
                         <th scope="col">Fecha</th>
@@ -35,63 +35,63 @@
                         <th scope="col">Estado</th>
                         <th scope="col">Opciones</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     {% for presupuestos in presupuestos %}
-                    <tr>
-                        <th scope="row">{{ presupuestos.id }}</th>
-                        <td>{{ presupuestos.fecha_hora | date:'d-m-Y' }}</td>
-                        <td><strong>$</strong>{{ presupuestos.valor_total }}</td>
-                        {% if presupuestos.estado_id_est_presupuesto.id == 3 %}
-                        <td>
+                        <tr>
+                            <th scope="row">{{ presupuestos.id }}</th>
+                            <td>{{ presupuestos.fecha_hora | date:'d-m-Y' }}</td>
+                            <td><strong>$</strong>{{ presupuestos.valor_total }}</td>
+                            {% if presupuestos.estado_id_est_presupuesto.id == 3 %}
+                                <td>
                             <span
-                                class="badge badge-pill badge-info">{{ presupuestos.estado_id_est_presupuesto }}</span>
-                        </td>
-                        {% endif %}
-                        {% if presupuestos.estado_id_est_presupuesto.id == 2 %}
-                        <td>
+                                    class="badge badge-pill badge-info">{{ presupuestos.estado_id_est_presupuesto }}</span>
+                                </td>
+                            {% endif %}
+                            {% if presupuestos.estado_id_est_presupuesto.id == 2 %}
+                                <td>
                             <span
-                                class="badge badge-pill badge-danger">{{ presupuestos.estado_id_est_presupuesto }}</span>
-                        </td>
-                        {% endif %}
-                        {% if presupuestos.estado_id_est_presupuesto.id == 1 %}
-                        <td>
+                                    class="badge badge-pill badge-danger">{{ presupuestos.estado_id_est_presupuesto }}</span>
+                                </td>
+                            {% endif %}
+                            {% if presupuestos.estado_id_est_presupuesto.id == 1 %}
+                                <td>
                             <span
-                                class="badge badge-pill badge-success">{{ presupuestos.estado_id_est_presupuesto }}</span>
-                        </td>
-                        {% endif %}
-                        <td>
-                            <div class="dropdown">
-                                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="" class="dropdown-item">
-                                        Aprobar
+                                    class="badge badge-pill badge-success">{{ presupuestos.estado_id_est_presupuesto }}</span>
+                                </td>
+                            {% endif %}
+                            <td>
+                                <div class="dropdown">
+                                    <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
                                     </a>
-                                    <a href="" class="dropdown-item">
-                                        Rechazar
-                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a href="{% url 'presupuesto_apro_recha' presupuestos.id %}"
+                                           class="dropdown-item">
+                                            Aprobar/Rechazar
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                     {% empty %}
-                    <tr>
-                        <td colspan="9" class="text-center">No hay presupuestos</td>
-                    </tr>
+                        <tr>
+                            <td colspan="9" class="text-center">No hay presupuestos</td>
+                        </tr>
                     {% endfor %}
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    <div class="modal fade" id="modal_siniestros_inspecc" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+        <div class="modal fade" id="modal_presupuesto_liquidador" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
 
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+
 {% endblock %}

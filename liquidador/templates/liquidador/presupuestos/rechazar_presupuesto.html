@@ -1,0 +1,24 @@
+<form action="" class="rechazar_form_presupuesto" method="POST"
+      data-url="{% url 'rechazar_presupuesto' form.instance.id %}">
+    {% csrf_token %}
+
+    <div class="modal-header bg-danger">
+        <h5 class="modal-title text-light">Rechazar Presupuesto</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+            <div class="col-12 text-center">
+                <h4>¿Seguro que deseas rechazar el Presupuesto n° <strong>{{ form.instance.id }}</strong>?</h4>
+                {{ form.estado_id_est_presupuesto }}
+                <br>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-outline-danger" id="btn_aprobar">Rechazar</button>
+    </div>
+</form>

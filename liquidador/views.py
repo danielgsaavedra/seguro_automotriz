@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from dashboard.models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, \
     EstadoPresupuesto, Presupuesto, TipoActa, FormularioActa, InformeDano, TipoPlan
-from .forms import TipoPlanForm, DeshabilitarTipoPlanForm
+from .forms import TipoPlanForm, DeshabilitarTipoPlanForm,AproRechPresupuestoForm
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -60,6 +60,55 @@ def PresupuestoRechazadoView(request):
     context = {'presupuestos': presupuestos}
     return render(request, 'liquidador/presupuestos/presupuestos_rechazados.html', context)
 
+@login_required(login_url='login')
+def PresupuestoAproRechView(request,id):
+    presupuesto = get_object_or_404(Presupuesto, id=id)
+    context = {'presupuesto': presupuesto}
+    return render(request, 'liquidador/presupuestos/presupuestos_apro_recha_view.html', context)
+
+@staff_member_required(login_url='login')
+def AprobarPresupuesto(request, id):
+    data = dict()
+    presupuesto = get_object_or_404(Presupuesto, id=id)
+    estado = get_object_or_404(EstadoPresupuesto, id=1)
+    if request.method == 'POST':
+        form = AproRechPresupuestoForm(request.POST, instance=presupuesto)
+        if form.is_valid():
+            pre = form.save(commit=False)
+            pre.estado_id_est_presupuesto = estado
+            pre.usuario_rut_usuario = request.user
+            pre.save()
+            data['form_is_valid'] = True
+
+    else:
+        form = AproRechPresupuestoForm(instance=presupuesto)
+        data['form_is_valid'] = False
+        context = {'presupuesto': presupuesto, 'form': form}
+        data['html_form'] = render_to_string(
+            'liquidador/presupuestos/aprobar_presupuesto.html', context, request=request)
+    return JsonResponse(data)
+
+@staff_member_required(login_url='login')
+def RechazarPresupuesto(request, id):
+    data = dict()
+    presupuesto = get_object_or_404(Presupuesto, id=id)
+    estado = get_object_or_404(EstadoPresupuesto, id=2)
+    if request.method == 'POST':
+        form = AproRechPresupuestoForm(request.POST, instance=presupuesto)
+        if form.is_valid():
+            pre = form.save(commit=False)
+            pre.estado_id_est_presupuesto = estado
+            pre.usuario_rut_usuario = request.user
+            pre.save()
+            data['form_is_valid'] = True
+
+    else:
+        form = AproRechPresupuestoForm(instance=presupuesto)
+        data['form_is_valid'] = False
+        context = {'presupuesto': presupuesto, 'form': form}
+        data['html_form'] = render_to_string(
+            'liquidador/presupuestos/rechazar_presupuesto.html', context, request=request)
+    return JsonResponse(data)
 
 @login_required(login_url='login')
 def ReportesView(request):

@@ -1,0 +1,179 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Presupuestos{% endblock title %}
+{% block content %}
+    <div class="d-flex justify-content-start mb-4">
+        <div class="text-center">
+            <a class="text-decoration-none" href="{% url 'presupuestos_liquidador' %}">
+                <i class="fas fa-arrow-circle-left"></i> Volver
+            </a>
+        </div>
+    </div>
+    <div class="row justify-content-center ">
+        <div class="card shadow mb-4 col-9">
+            <div class="text-center mt-4">
+                <h3 style="text-decoration-line: underline">Presupuesto N°{{ presupuesto.id }}</h3>
+            </div>
+
+            <div class="row justify-content-center mt-4">
+                <div class="col-5">
+                    <div class="text-center">
+                        <h5 class="mb-4">Información Asegurado</h5>
+                    </div>
+                    <div class="text-body">
+                        <ul>
+                            <li>
+                                Nombre
+                                : {{ presupuesto.informe_dano_id_info_dano.siniestro_id.asegurado_rut_asegurado.primer_nombre }} {{ presupuesto.informe_dano_id_info_dano.siniestro_id.asegurado_rut_asegurado.segundo_nombre }} {{ presupuesto.informe_dano_id_info_dano.siniestro_id.asegurado_rut_asegurado.primer_apellido }} {{ presupuesto.informe_dano_id_info_dano.siniestro_id.asegurado_rut_asegurado.segundo_apeliido }}
+                            </li>
+                            <li>
+                                Dirección
+                                : {{ presupuesto.informe_dano_id_info_dano.siniestro_id.asegurado_rut_asegurado.direccion }}
+                            </li>
+                            <li>
+                                Comuna
+                                : {{ presupuesto.informe_dano_id_info_dano.siniestro_id.asegurado_rut_asegurado.comuna_id_comuna.nombre }}
+                            </li>
+                            <li>
+                                Región
+                                : {{ presupuesto.informe_dano_id_info_dano.siniestro_id.asegurado_rut_asegurado.comuna_id_comuna.region_nro_region.nombre }}
+                            </li>
+                            <li>
+                                Patente
+                                Vehículo: {{ presupuesto.informe_dano_id_info_dano.vehiculo_patente_vehiculo.patente_vehiculo }}
+                            </li>
+                            <li>
+                                Modelo
+                                Vehículo: {{ presupuesto.informe_dano_id_info_dano.vehiculo_patente_vehiculo.modelo }}, {{ presupuesto.informe_dano_id_info_dano.vehiculo_patente_vehiculo.marca_id_marca.nombre }}
+                                , {{ presupuesto.informe_dano_id_info_dano.vehiculo_patente_vehiculo.anio }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-5">
+                    <div class="text-center">
+                        <h5 class="mb-4">Información Siniestro</h5>
+                    </div>
+                    <div class="text-body">
+                        <ul>
+                            <li>
+                                Número Siniestro : {{ presupuesto.informe_dano_id_info_dano.siniestro_id.id }}
+                            </li>
+                            <li>
+                                Tipo Accidente
+                                : {{ presupuesto.informe_dano_id_info_dano.siniestro_id.tipo_accidente_id_tipo_acc.nombre }}
+                            </li>
+                            <li>
+                                Dirección
+                                : {{ presupuesto.informe_dano_id_info_dano.siniestro_id.direccion }}
+                            </li>
+                            <li>
+                                Comuna
+                                : {{ presupuesto.informe_dano_id_info_dano.siniestro_id.comuna_id_comuna.nombre }}
+                            </li>
+                            <li>
+                                Región
+                                : {{ presupuesto.informe_dano_id_info_dano.siniestro_id.comuna_id_comuna.region_nro_region.nombre }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row justify-content-center mt-4">
+                <div class="col-5">
+                    <div class="text-center">
+                        <h5 class="mb-4">Tipo de Plan</h5>
+                    </div>
+                    <div class="text-body">
+                        <ul>
+                            <li>
+                                Número Póliza
+                                : {{ presupuesto.informe_dano_id_info_dano.siniestro_id.poliza_id_poliza.id }}
+                            </li>
+                            <li>
+                                Fecha Término
+                                : {{ presupuesto.informe_dano_id_info_dano.siniestro_id.poliza_id_poliza.fecha_fin }}
+                            </li>
+                            <li>
+                                Tipo de
+                                Plan: {{ presupuesto.informe_dano_id_info_dano.siniestro_id.poliza_id_poliza.tipo_plan_id_tip_plan.nombre }}
+                            </li>
+                            <li>
+                                Cobertura Máxima:
+                                ${{ presupuesto.informe_dano_id_info_dano.siniestro_id.poliza_id_poliza.tipo_plan_id_tip_plan.cobertura_max }}
+                            </li>
+                            <li>
+                                Deducible: {{ presupuesto.informe_dano_id_info_dano.siniestro_id.poliza_id_poliza.tipo_plan_id_tip_plan.deducible }}%
+                            </li>
+                            <li>
+                                Descripción: {{ presupuesto.informe_dano_id_info_dano.siniestro_id.poliza_id_poliza.tipo_plan_id_tip_plan.descripcion }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-5">
+                    <div class="text-center">
+                        <h5 class="mb-4">Informe de Daño</h5>
+                    </div>
+                    <div class="text-body">
+                        <ul>
+                            <li>
+                                Descripción : {{ presupuesto.informe_dano_id_info_dano.observaciones }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover text-center" id="table_apro_recha_presupuesto"
+                           width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th scope="col">Tipo de Daño</th>
+                            <th scope="col">Costo Tipo Daño</th>
+                            <th scope="col">Mano de Obra</th>
+                            <th scope="col">Severidad de Daño</th>
+                            <th scope="col">Multiplicador Severidad</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ presupuesto.informe_dano_id_info_dano.tipo_dano_id_tipo_dano.nombre }}</td>
+                            <td>${{ presupuesto.informe_dano_id_info_dano.tipo_dano_id_tipo_dano.valor }}</td>
+                            <td>${{ presupuesto.informe_dano_id_info_dano.tipo_dano_id_tipo_dano.mano_obra }}</td>
+                            <td>{{ presupuesto.informe_dano_id_info_dano.severidad_dano_id_seve_dano.nombre }}</td>
+                            <td>{{ presupuesto.informe_dano_id_info_dano.severidad_dano_id_seve_dano.valor }}</td>
+                            <td><strong>${{ presupuesto.valor_total }}</strong></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="justify-content-end d-flex mt-3">
+                    <button class="btn btn-md btn-success shadow-sm show_aprobar_presupuesto mr-4"
+                            data-url="{% url 'aprobar_presupuesto' presupuesto.id %}">
+                        <i class="fas fa-money-check-alt fa-sm text-white-50"></i> Aprobar
+                    </button>
+                    <button class="btn btn-md btn-danger shadow-sm show_rechazar_presupuesto"
+                            data-url="{% url 'rechazar_presupuesto' presupuesto.id %}">
+                        <i class="fas fa-money-check-alt fa-sm text-white-50"></i> Rechazar
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal_presupuesto_liquidador" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

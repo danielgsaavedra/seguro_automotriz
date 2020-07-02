@@ -1,5 +1,5 @@
 from django import forms
-from dashboard.models import TipoPlan
+from dashboard.models import TipoPlan,Presupuesto
 
 
 class TipoPlanForm(forms.ModelForm):
@@ -39,4 +39,13 @@ class DeshabilitarTipoPlanForm(forms.ModelForm):
         fields = ['estado']
         widgets = {
             'estado': forms.HiddenInput(attrs={'class': 'required form-control', 'id': 'estado_tipo'}),
+        }
+
+class AproRechPresupuestoForm(forms.ModelForm):
+    class Meta:
+        model = Presupuesto
+        fields = ['estado_id_est_presupuesto']
+        widgets = {
+            'estado_id_est_presupuesto': forms.HiddenInput(
+                attrs={'class': 'required form-control', 'id': 'estado_id_est_presupuesto'}),
         }

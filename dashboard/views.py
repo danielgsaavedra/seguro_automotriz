@@ -389,6 +389,8 @@ def SaveAllSiniestro(request, form, template_name):
 # Read
 @login_required(login_url='login')
 def SiniestroView(request):
+    with connection.cursor() as cursor:
+        cursor.callproc('SP_ESTADO_GRUAS')
     estado = get_object_or_404(EstadoSiniestro, id=7)
     with connection.cursor() as cursor:
         cursor.callproc('SP_VALIDAR_POLIZA')
@@ -411,6 +413,8 @@ def SiniestroDisabledView(request):
 
 @login_required(login_url='login')
 def CreateSiniestro(request):
+    with connection.cursor() as cursor:
+        cursor.callproc('SP_ESTADO_GRUAS')
     x = datetime.datetime.now()
     rut = request.POST.get('asegurado_rut_asegurado', '')
     id_poliza = request.POST.get('poliza_id_poliza', '')

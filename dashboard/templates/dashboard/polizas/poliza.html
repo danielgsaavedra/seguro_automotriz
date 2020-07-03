@@ -3,11 +3,16 @@
 {% block content %}
 <div class="d-flex justify-content-between mb-4">
     <div class="mr-1">
-        <a class="text-decoration-none text-light" href="{% url 'poliza_disabled' %}">
+        <a class="text-decoration-none text-light mr-3" href="{% url 'poliza_disabled' %}">
             <button type="button" class="btn btn-sm btn-danger shadow-sm">
                 <i class="fas fa-file-contract fa-sm text-white-50"></i> Pólizas Inactivas
             </button>
         </a>
+        <a class="text-decoration-none text-light" href="{% url 'tipos_plan_polizas' %}">
+                <button class="btn btn-sm btn-success shadow-sm">
+                    <i class="fas fa-file-contract  fa-sm text-white-50"></i> Ver Tipos de Plan
+                </button>
+            </a>
     </div>
     <div class="ml-1">
         <button class="btn btn-sm btn-primary shadow-sm show_poliza" data-url="{% url 'poliza_create' %}">

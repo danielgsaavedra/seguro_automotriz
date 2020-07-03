@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, FormularioActa, \
     Presupuesto, TipoActa, RegActas, RegAsegurado, RegGrua, RegInformeDano, RegSiniestro, RegPoliza, RegPresupuesto, \
-    RegTaller, RegTipoPlan, RegUsuario, RegVehiculo, RegServicioGrua, ServicioGrua
+    RegTaller, RegTipoPlan, RegUsuario, RegVehiculo, RegServicioGrua, ServicioGrua, Grua, TipoPlan
 from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, \
     SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, \
     AseguradoFormUpdate, VehiculoFormUpdate, SiniestroFotosUpdate, ServicioGruaForm, DeshabilitarServicioForm
@@ -719,7 +719,6 @@ def siniestroDetallePdf(request, pk):
     return response
 
 
-# todo Crear Modulo y CRUD de Servicios Grua
 @login_required(login_url='login')
 def ServicioGruaView(request):
     servicios_gruas = ServicioGrua.objects.all().exclude(estado=False).order_by('id')
@@ -801,6 +800,7 @@ def ServicioGruaDelete(request, id):
             'dashboard/servicioGrua/servicio_grua_delete.html', context, request=request)
     return JsonResponse(data)
 
+
 @staff_member_required(login_url='login')
 def ServicioGruaReactive(request, id):
     data = dict()
@@ -824,3 +824,17 @@ def ServicioGruaReactive(request, id):
         data['html_form'] = render_to_string(
             'dashboard/servicioGrua/servicio_grua_reactive.html', context, request=request)
     return JsonResponse(data)
+
+
+@login_required(login_url='login')
+def GruaView(request):
+    gruas = Grua.objects.all().exclude(estado_delete=False).order_by('anio')
+    context = {'gruas': gruas}
+    return render(request, 'dashboard/servicioGrua/grua.html', context)
+
+
+@login_required(login_url='login')
+def TipoPlanView(request):
+    tipos_plan = TipoPlan.objects.all().exclude(estado=False).order_by('id')
+    context = {'tipos_plan': tipos_plan}
+    return render(request, 'dashboard/polizas/tipos_plan.html', context)

@@ -26,6 +26,7 @@
                         <th scope="col">Valor</th>
                         <th scope="col">Cobertura Máxima</th>
                         <th scope="col">Deducible</th>
+                        <th scope="col">Garantía</th>
                         {% if request.user.is_staff %}
                             <th scope="col">Opciones</th>
                         {% endif %}
@@ -38,11 +39,21 @@
                             <td>{{ tipos_plan.nombre }}</td>
                             <td>$ {{ tipos_plan.valor }}</td>
                             <td>$ {{ tipos_plan.cobertura_max }}</td>
-                            <td>{{ tipos_plan.deducible }}</td>
+                            <td>{{ tipos_plan.deducible }}UF</td>
+                            {% if tipos_plan.garantia %}
+                                <td>
+                                    <span class="badge badge-pill badge-success">APLICA</span>
+                                </td>
+                            {% else %}
+                                <td>
+                                    <span class="badge badge-pill badge-danger">NO APLICA</span>
+                                </td>
+                            {% endif %}
                             {% if request.user.is_staff %}
                                 <td>
                                     <div class="dropdown">
-                                        <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                                        <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown"
+                                           role="button"
                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </a>

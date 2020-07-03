@@ -29,6 +29,8 @@ urlpatterns = [
          name='siniestros_enreparacion'),
     path('siniestros/<str:id>/enreparacion',
          views.CambiarEstadoReparado, name='cambiar_estado_reparado'),
+    path('siniestros/rechazados/', views.SiniestrosRechazadoView,
+         name='siniestros_rechazados'),
     url(r'^actaRecepcionViewPdf/(?P<pk>[0-9]+)/$',
         views.actaRecepcionViewPdf, name='actaRecepcionViewPdf'),
     url(r'^actaRecepcionPdf/(?P<pk>[0-9]+)/$',

@@ -1,14 +1,15 @@
 {% extends "dashboard/base.html" %}
-{% block title %}Informe de Daños{% endblock title %}
+{% block title %}Siniestros Rechazados{% endblock title %}
 {% block content %}
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Siniestros Recepcionados</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Siniestros Rechazados</h6>
         </div>
+
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered table-hover text-center" id="table_info_dano" width="100%"
+                <table class="table table-bordered table-hover text-center" id="table_siniestros_inspecc" width="100%"
                        cellspacing="0">
                     <thead>
                     <tr>
@@ -21,7 +22,6 @@
                         <th scope="col">Taller Asignado</th>
                         <th scope="col">Garantía</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Opciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,21 +55,7 @@
                             {% endif %}
                             <td>
                             <span
-                                    class="badge badge-pill badge-light">{{ siniestros.est_siniestro_id_est_siniestro }}</span>
-                            </td>
-                            <td>
-                                <div class="dropdown">
-                                    <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <button type="button" class="dropdown-item show_info_dano"
-                                                data-url="{% url 'informe_daños_create' siniestros.id %}">
-                                            Generar Informe
-                                        </button>
-                                    </div>
-                                </div>
+                                    class="badge badge-pill badge-danger">{{ siniestros.est_siniestro_id_est_siniestro }}</span>
                             </td>
                         </tr>
                     {% empty %}
@@ -81,8 +67,7 @@
                 </table>
             </div>
         </div>
-
-        <div class="modal fade" id="modal_info_dano" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_siniestros_inspecc" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
 
@@ -90,5 +75,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

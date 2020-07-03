@@ -3,9 +3,14 @@
 {% block content %}
     <div class="d-flex justify-content-between mb-4">
         <div class="mr-1">
-            <a class="text-decoration-none text-light" href="{% url 'servicio_grua_disabled' %}">
+            <a class="text-decoration-none text-light mr-3" href="{% url 'servicio_grua_disabled' %}">
                 <button class="btn btn-sm btn-danger shadow-sm">
                     <i class="fas fa-route fa-sm text-white-50"></i> Servicios de Grúas Inactivos
+                </button>
+            </a>
+            <a class="text-decoration-none text-light" href="{% url 'gruas' %}">
+                <button class="btn btn-sm btn-success shadow-sm">
+                    <i class="fas fa-route fa-sm text-white-50"></i> Ver Grúas
                 </button>
             </a>
         </div>

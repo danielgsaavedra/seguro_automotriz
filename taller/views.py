@@ -7,12 +7,14 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 from django.http import JsonResponse
 from .forms import ActasForm, InformeDañosForm, CambiarEstadoForm
-from dashboard.models import Siniestro, EstadoSiniestro, FormularioActa, TipoActa, Poliza, Taller, Vehiculo, InformeDano, Usuario, Presupuesto
+from dashboard.models import Siniestro, EstadoSiniestro, FormularioActa, TipoActa, Poliza, Taller, Vehiculo, \
+    InformeDano, Usuario, Presupuesto
 from django.db import connection
 import pdfkit
 import datetime
 from django.http import HttpResponse
 from django.db.models import Q
+
 
 # ACTA RECEPCION
 
@@ -58,7 +60,8 @@ def CreateActaRecepcion(request, id):
         cursor.callproc('SP_ESTADO_GRUAS')
     data = dict()
     with connection.cursor() as cursor:
-        cursor.execute("SELECT S.TALLER_ID_TALLER, S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) WHERE(S.TALLER_ID_TALLER = T.ID AND S.ID=" + id + ")")
+        cursor.execute(
+            "SELECT S.TALLER_ID_TALLER, S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) WHERE(S.TALLER_ID_TALLER = T.ID AND S.ID=" + id + ")")
         dato = cursor.fetchall()
         dato = list(dato)
     tipo_acta = get_object_or_404(TipoActa, id=1)
@@ -88,7 +91,8 @@ def CreateActaRecepcion(request, id):
 
 def actaRecepcionViewPdf(request, pk):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO,M.NOMBRE,S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_MARCA M ON (V.MARCA_ID_MARCA=M.ID) WHERE(f.tipo_acta_id_tipo_acta=1 AND S.ID="+pk + ")")
+        cursor.execute(
+            "SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO,M.NOMBRE,S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_MARCA M ON (V.MARCA_ID_MARCA=M.ID) WHERE(f.tipo_acta_id_tipo_acta=1 AND S.ID=" + pk + ")")
         dato = cursor.fetchall()
         dato = list(dato)
         print(dato)
@@ -124,6 +128,7 @@ def SiniestrosRecepcionView(request):
     ).order_by('id')
     context = {'siniestros': siniestros}
     return render(request, 'taller/acta_recepcion/siniestro_recepcion.html', context)
+
 
 # ACTA RETIRO
 
@@ -165,7 +170,8 @@ def ActaRetiroView(request):
 def CreateActaRetiro(request, id):
     data = dict()
     with connection.cursor() as cursor:
-        cursor.execute("SELECT S.TALLER_ID_TALLER, S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) WHERE(S.TALLER_ID_TALLER = T.ID AND S.ID=" + id + ")")
+        cursor.execute(
+            "SELECT S.TALLER_ID_TALLER, S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) WHERE(S.TALLER_ID_TALLER = T.ID AND S.ID=" + id + ")")
         dato = cursor.fetchall()
         dato = list(dato)
     tipo_acta = get_object_or_404(TipoActa, id=3)
@@ -195,7 +201,8 @@ def CreateActaRetiro(request, id):
 
 def actaRetiroViewPdf(request, pk):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO,M.NOMBRE,S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_MARCA M ON (V.MARCA_ID_MARCA=M.ID) WHERE(f.tipo_acta_id_tipo_acta=3 AND S.ID="+pk + ")")
+        cursor.execute(
+            "SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO,M.NOMBRE,S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_MARCA M ON (V.MARCA_ID_MARCA=M.ID) WHERE(f.tipo_acta_id_tipo_acta=3 AND S.ID=" + pk + ")")
         dato = cursor.fetchall()
         dato = list(dato)
         print(dato)
@@ -252,7 +259,8 @@ def ActaRechazoView(request):
 def CreateActaRechazo(request, id):
     data = dict()
     with connection.cursor() as cursor:
-        cursor.execute("SELECT S.TALLER_ID_TALLER, S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) WHERE(S.TALLER_ID_TALLER = T.ID AND S.ID=" + id + ")")
+        cursor.execute(
+            "SELECT S.TALLER_ID_TALLER, S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) WHERE(S.TALLER_ID_TALLER = T.ID AND S.ID=" + id + ")")
         dato = cursor.fetchall()
         dato = list(dato)
     tipo_acta = get_object_or_404(TipoActa, id=2)
@@ -282,7 +290,8 @@ def CreateActaRechazo(request, id):
 
 def actaRechazoViewPdf(request, pk):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO,M.NOMBRE,S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_MARCA M ON (V.MARCA_ID_MARCA=M.ID) WHERE(f.tipo_acta_id_tipo_acta=2 AND S.ID="+pk + ")")
+        cursor.execute(
+            "SELECT S.DESCRIPCION,S.GRUA_PATENTE_GRUA,S.POLIZA_ID_POLIZA,S.ASEGURADO_RUT_ASEGURADO,F.ID,F.FECHA_HORA,F.OBSERVACIONES,V.PATENTE_VEHICULO,V.MODELO,V.ANIO,V.NRO_MOTOR,A.PRIMER_NOMBRE,A.PRIMER_APELLIDO,A.CORREO,A.TELEFONO,T.NOMBRE,T.RAZON_SOCIAL,T.TELEFONO,T.CORREO,M.NOMBRE,S.ID FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_FORMULARIOACTA F ON (S.ID=F.SINIESTRO_ID) JOIN DASHBOARD_VEHICULO V ON (S.ASEGURADO_RUT_ASEGURADO=V.ASEGURADO_RUT_ASEGURADO) JOIN DASHBOARD_ASEGURADO A ON (S.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO) JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_MARCA M ON (V.MARCA_ID_MARCA=M.ID) WHERE(f.tipo_acta_id_tipo_acta=2 AND S.ID=" + pk + ")")
         dato = cursor.fetchall()
         dato = list(dato)
         print(dato)
@@ -306,6 +315,7 @@ def actaRechazoPdf(request, pk):
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="ActaRechazo.pdf" '
     return response
+
 
 # INFORME DE DAÑOS
 
@@ -335,7 +345,8 @@ def SaveAllInformeDanos(request, form, template_name):
 def CreateInformeDaños(request, id):
     data = dict()
     with connection.cursor() as cursor:
-        cursor.execute("SELECT S.TALLER_ID_TALLER, S.ID, V.PATENTE_VEHICULO FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_VEHICULO V ON (V.ASEGURADO_RUT_ASEGURADO = S.ASEGURADO_RUT_ASEGURADO) WHERE(S.TALLER_ID_TALLER = T.ID AND S.ID=" + id + ")")
+        cursor.execute(
+            "SELECT S.TALLER_ID_TALLER, S.ID, V.PATENTE_VEHICULO FROM DASHBOARD_SINIESTRO S JOIN DASHBOARD_TALLER T ON (S.TALLER_ID_TALLER=T.ID) JOIN DASHBOARD_VEHICULO V ON (V.ASEGURADO_RUT_ASEGURADO = S.ASEGURADO_RUT_ASEGURADO) WHERE(S.TALLER_ID_TALLER = T.ID AND S.ID=" + id + ")")
         dato = cursor.fetchall()
         dato = list(dato)
     siniestro_id = get_object_or_404(Siniestro, id=dato[0][1])
@@ -382,14 +393,16 @@ def InformeDanosView(request):
     context = {'info_danos': info_danos}
     return render(request, 'taller/informe_daños/informe_daños_view.html', context)
 
+
 @login_required(login_url='login')
-def InformeDanosDetail(request,id):
+def InformeDanosDetail(request, id):
     data = dict()
     info = get_object_or_404(InformeDano, id=id)
     context = {'info': info}
     data['html_form'] = render_to_string(
         'taller/informe_daños/informe_daños_detail.html', context, request=request)
     return JsonResponse(data)
+
 
 # SINIESTROS INSPECCIONADOS
 
@@ -466,7 +479,8 @@ def CambiarEstadoReparado(request, id):
             correo = EmailMessage(
                 'SEGUROS VIRGOLINI: VEHÍCULO REPARADO',
                 'Estimado/a {} {}.\n\nSu vehículo gestionado en el siniestro N°{} se encuentra disponible para retiro.\n\nFavor comunicarse con taller {} al teléfeno +56{} para coordinar retiro.\n\nSaludos cordiales.'.format(
-                    siniestro.asegurado_rut_asegurado.primer_nombre, siniestro.asegurado_rut_asegurado.primer_apellido, siniestro.id, siniestro.taller_id_taller.nombre, siniestro.taller_id_taller.telefono),
+                    siniestro.asegurado_rut_asegurado.primer_nombre, siniestro.asegurado_rut_asegurado.primer_apellido,
+                    siniestro.id, siniestro.taller_id_taller.nombre, siniestro.taller_id_taller.telefono),
                 'no-contestar@hotmail.com',
                 [siniestro.asegurado_rut_asegurado.correo],
                 reply_to=['lobos.joaquin@hotmail.com']
@@ -488,9 +502,22 @@ def CambiarEstadoReparado(request, id):
     return JsonResponse(data)
 
 
+@login_required(login_url='login')
+def SiniestrosRechazadoView(request):
+    estado = get_object_or_404(EstadoSiniestro, id=5)
+    taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
+    siniestros = Siniestro.objects.filter(
+        Q(est_siniestro_id_est_siniestro=estado) &
+        Q(taller_id_taller=taller)
+    ).order_by('id')
+    context = {'siniestros': siniestros}
+    return render(request, 'taller/siniestros/siniestros_rechazado_view.html', context)
+
+
 def informeDanoViewPdf(request, pk):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT I.ID,I.FECHA_HORA,I.SINIESTRO_ID,I.OBSERVACIONES,I.VEHICULO_PATENTE_VEHICULO,I.PERDIDA_TOTAL,S.NOMBRE,T.NOMBRE,T.DESCRIPCION,X.NOMBRE,X.RAZON_SOCIAL,X.TELEFONO,X.CORREO FROM DASHBOARD_INFORMEDANO I JOIN DASHBOARD_SEVERIDADDANO S ON (S.ID=I.SEVERIDAD_DANO_ID_SEVE_DANO) JOIN DASHBOARD_TIPODANO T ON (T.ID=I.TIPO_DANO_ID_TIPO_DANO) JOIN DASHBOARD_TALLER X ON(X.ID=I.TALLER_ID_TALLER) WHERE(I.ID="+pk + ")")
+        cursor.execute(
+            "SELECT I.ID,I.FECHA_HORA,I.SINIESTRO_ID,I.OBSERVACIONES,I.VEHICULO_PATENTE_VEHICULO,I.PERDIDA_TOTAL,S.NOMBRE,T.NOMBRE,T.DESCRIPCION,X.NOMBRE,X.RAZON_SOCIAL,X.TELEFONO,X.CORREO FROM DASHBOARD_INFORMEDANO I JOIN DASHBOARD_SEVERIDADDANO S ON (S.ID=I.SEVERIDAD_DANO_ID_SEVE_DANO) JOIN DASHBOARD_TIPODANO T ON (T.ID=I.TIPO_DANO_ID_TIPO_DANO) JOIN DASHBOARD_TALLER X ON(X.ID=I.TALLER_ID_TALLER) WHERE(I.ID=" + pk + ")")
         dato = cursor.fetchall()
         dato = list(dato)
         print(dato)
@@ -516,7 +543,6 @@ def informeDanoPdf(request, pk):
     return response
 
 
-
 def crearPresupuesto(request, pk):
     with connection.cursor() as cursor:
         cursor.callproc('SP_CREAR_PRESUPUESTO', [pk])
@@ -533,7 +559,8 @@ def PresupuestoView(request):
 
 def PresupuestoViewPdf(request, pk):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT P.ID,P.FECHA_HORA,P.VALOR_TOTAL,P.ESTADO_ID_EST_PRESUPUESTO,I.ID,I.SINIESTRO_ID,I.VEHICULO_PATENTE_VEHICULO,I.OBSERVACIONES,T.NOMBRE,D.NOMBRE,D.DESCRIPCION,D.VALOR,D.MANO_OBRA,S.NOMBRE,S.VALOR FROM DASHBOARD_PRESUPUESTO P JOIN DASHBOARD_INFORMEDANO I ON (I.ID=P.INFORME_DANO_ID_INFO_DANO) JOIN DASHBOARD_TALLER T ON (T.ID=I.TALLER_ID_TALLER) JOIN DASHBOARD_TIPODANO D ON (D.ID=I.TIPO_DANO_ID_TIPO_DANO) JOIN DASHBOARD_SEVERIDADDANO S ON (S.ID=I.SEVERIDAD_DANO_ID_SEVE_DANO) WHERE (P.ID="+pk + ")")
+        cursor.execute(
+            "SELECT P.ID,P.FECHA_HORA,P.VALOR_TOTAL,P.ESTADO_ID_EST_PRESUPUESTO,I.ID,I.SINIESTRO_ID,I.VEHICULO_PATENTE_VEHICULO,I.OBSERVACIONES,T.NOMBRE,D.NOMBRE,D.DESCRIPCION,D.VALOR,D.MANO_OBRA,S.NOMBRE,S.VALOR FROM DASHBOARD_PRESUPUESTO P JOIN DASHBOARD_INFORMEDANO I ON (I.ID=P.INFORME_DANO_ID_INFO_DANO) JOIN DASHBOARD_TALLER T ON (T.ID=I.TALLER_ID_TALLER) JOIN DASHBOARD_TIPODANO D ON (D.ID=I.TIPO_DANO_ID_TIPO_DANO) JOIN DASHBOARD_SEVERIDADDANO S ON (S.ID=I.SEVERIDAD_DANO_ID_SEVE_DANO) WHERE (P.ID=" + pk + ")")
         dato = cursor.fetchall()
         dato = list(dato)
         print(dato)
@@ -557,5 +584,3 @@ def PresupuestoPdf(request, pk):
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="Presupuesto.pdf" '
     return response
-
-

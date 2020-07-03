@@ -32,6 +32,7 @@
                         <th scope="col">Valor</th>
                         <th scope="col">Cobertura Máxima</th>
                         <th scope="col">Deducible</th>
+                        <th scope="col">Garantía</th>
                         {% if request.user.is_staff %}
                             <th scope="col">Opciones</th>
                         {% endif %}
@@ -44,7 +45,16 @@
                             <td>{{ tipos.nombre }}</td>
                             <td>$ {{ tipos.valor }}</td>
                             <td>$ {{ tipos.cobertura_max }}</td>
-                            <td>{{ tipos.deducible }}</td>
+                            <td>{{ tipos.deducible }}UF</td>
+                            {% if tipos.garantia %}
+                                <td>
+                                    <span class="badge badge-pill badge-success">APLICA</span>
+                                </td>
+                            {% else %}
+                                <td>
+                                    <span class="badge badge-pill badge-danger">NO APLICA</span>
+                                </td>
+                            {% endif %}
                             {% if request.user.is_staff %}
                                 <td>
                                     <div class="dropdown">

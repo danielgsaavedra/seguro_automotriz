@@ -4,7 +4,16 @@
         <td>{{ tipos_plan.nombre }}</td>
         <td>$ {{ tipos_plan.valor }}</td>
         <td>$ {{ tipos_plan.cobertura_max }}</td>
-        <td>{{ tipos_plan.deducible }}</td>
+        <td>{{ tipos_plan.deducible }}UF</td>
+        {% if tipos_plan.garantia %}
+            <td>
+                <span class="badge badge-pill badge-success">APLICA</span>
+            </td>
+        {% else %}
+            <td>
+                <span class="badge badge-pill badge-danger">NO APLICA</span>
+            </td>
+        {% endif %}
         <td>
             <div class="dropdown">
                 <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"

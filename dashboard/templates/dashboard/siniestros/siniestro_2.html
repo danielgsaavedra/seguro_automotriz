@@ -1,87 +1,106 @@
 {% for siniestros in siniestros %}
-<tr>
-    <th scope="row">{{siniestros.id }}</th>
-    <td>{{siniestros.fecha_hr | date:'d-m-Y' }}</td>
-    <td>{{siniestros.asegurado_rut_asegurado}}</td>
-    <td>{{siniestros.poliza_id_poliza }}</td>
-    <td>{{siniestros.tipo_accidente_id_tipo_acc}}</td>
-    {% if siniestros.grua_patente_grua == null %}
-    <td>SIN GRÚA</td>
-    {% else %}
-    <td>{{siniestros.grua_patente_grua}}</td>
-    {% endif %}
-    <td>{{siniestros.taller_id_taller}}</td>
+    <tr>
+        <th scope="row">{{ siniestros.id }}</th>
+        <td>{{ siniestros.fecha_hr | date:'d-m-Y' }}</td>
+        <td>{{ siniestros.asegurado_rut_asegurado }}</td>
+        <td>{{ siniestros.poliza_id_poliza }}</td>
+        <td>{{ siniestros.tipo_accidente_id_tipo_acc }}</td>
+        {% if siniestros.grua_patente_grua == null %}
+            <td>SIN GRÚA</td>
+        {% else %}
+            <td>{{ siniestros.grua_patente_grua }}</td>
+        {% endif %}
+        <td>{{ siniestros.taller_id_taller }}</td>
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id == 1 %}
-    <td>
-        <span class="badge badge-pill badge-info">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
+        {% if siniestros.poliza_id_poliza.tipo_plan_id_tip_plan.garantia %}
+            {% if siniestros.garantia %}
+                <td>
+                    <span class="badge badge-pill badge-success">ACTIVA</span>
+                </td>
+            {% else %}
+                <td>
+                    <span class="badge badge-pill badge-danger">INACTIVA</span>
+                </td>
+            {% endif %}
+        {% else %}
+            <td>
+                <span class="badge badge-pill badge-warning">NO APLICA</span>
+            </td>
+        {% endif %}
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id == 2 %}
-    <td>
-        <span class="badge badge-pill badge-light">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
+        {% if siniestros.est_siniestro_id_est_siniestro.id == 1 %}
+            <td>
+                <span class="badge badge-pill badge-info">{{ siniestros.est_siniestro_id_est_siniestro }}</span>
+            </td>
+        {% endif %}
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id == 3 %}
-    <td>
-        <span class="badge badge-pill badge-primary">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
+        {% if siniestros.est_siniestro_id_est_siniestro.id == 2 %}
+            <td>
+                <span class="badge badge-pill badge-light">{{ siniestros.est_siniestro_id_est_siniestro }}</span>
+            </td>
+        {% endif %}
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id == 4 %}
-    <td>
-        <span class="badge badge-pill badge-warning">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
+        {% if siniestros.est_siniestro_id_est_siniestro.id == 3 %}
+            <td>
+                <span class="badge badge-pill badge-primary">{{ siniestros.est_siniestro_id_est_siniestro }}</span>
+            </td>
+        {% endif %}
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id == 5 %}
-    <td>
-        <span class="badge badge-pill badge-danger">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
+        {% if siniestros.est_siniestro_id_est_siniestro.id == 4 %}
+            <td>
+                <span class="badge badge-pill badge-warning">{{ siniestros.est_siniestro_id_est_siniestro }}</span>
+            </td>
+        {% endif %}
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id == 6 %}
-    <td>
-        <span class="badge badge-pill badge-success">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
+        {% if siniestros.est_siniestro_id_est_siniestro.id == 5 %}
+            <td>
+                <span class="badge badge-pill badge-danger">{{ siniestros.est_siniestro_id_est_siniestro }}</span>
+            </td>
+        {% endif %}
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id == 7 %}
-    <td>
-        <span class="badge badge-pill badge-dark">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
+        {% if siniestros.est_siniestro_id_est_siniestro.id == 6 %}
+            <td>
+                <span class="badge badge-pill badge-success">{{ siniestros.est_siniestro_id_est_siniestro }}</span>
+            </td>
+        {% endif %}
 
-    {% if siniestros.est_siniestro_id_est_siniestro.id == 8 %}
-    <td>
-        <span class="badge badge-pill badge-secondary">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    {% endif %}
+        {% if siniestros.est_siniestro_id_est_siniestro.id == 7 %}
+            <td>
+                <span class="badge badge-pill badge-dark">{{ siniestros.est_siniestro_id_est_siniestro }}</span>
+            </td>
+        {% endif %}
+
+        {% if siniestros.est_siniestro_id_est_siniestro.id == 8 %}
+            <td>
+                <span class="badge badge-pill badge-secondary">{{ siniestros.est_siniestro_id_est_siniestro }}</span>
+            </td>
+        {% endif %}
 
 
-    <td>
-        <div class="dropdown">
-            <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <button class="show_siniestro_update dropdown-item"
-                    data-url="{% url 'siniestro_update' siniestros.id %}">
-                    Modificar Siniestro</button>
-                <button class="show_siniestro_delete dropdown-item"
-                    data-url="{% url 'siniestro_delete' siniestros.id %}">
-                    Eliminar Siniestro</button>
-                <a class="dropdown-item" href="{% url 'foto_siniestro' siniestros.id %}">Ver Documentos Adjuntos</a>
+        <td>
+            <div class="dropdown">
+                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <button class="show_siniestro_update dropdown-item"
+                            data-url="{% url 'siniestro_update' siniestros.id %}">
+                        Modificar Siniestro
+                    </button>
+                    <button class="show_siniestro_delete dropdown-item"
+                            data-url="{% url 'siniestro_delete' siniestros.id %}">
+                        Eliminar Siniestro
+                    </button>
+                    <a class="dropdown-item" href="{% url 'foto_siniestro' siniestros.id %}">Ver Documentos Adjuntos</a>
+                </div>
             </div>
-        </div>
-    </td>
+        </td>
 
-</tr>
+    </tr>
 {% empty %}
-<tr>
-    <td colspan="10" class="text-center">No hay siniestros</td>
-</tr>
+    <tr>
+        <td colspan="10" class="text-center">No hay siniestros</td>
+    </tr>
 {% endfor %}

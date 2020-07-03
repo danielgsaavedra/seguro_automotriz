@@ -1,34 +1,51 @@
 {% for siniestros in siniestros %}
-<tr>
-    <th scope="row">{{siniestros.id }}</th>
-    <td>{{siniestros.fecha_hr | date:'d-m-Y' }}</td>
-    <td>{{siniestros.asegurado_rut_asegurado}}</td>
-    <td>{{siniestros.poliza_id_poliza }}</td>
-    <td>{{siniestros.tipo_accidente_id_tipo_acc}}</td>
-    {% if siniestros.grua_patente_grua == null %}
-    <td>SIN GRÚA</td>
-    {% else %}
-    <td>{{siniestros.grua_patente_grua}}</td>
-    {% endif %}
-    <td>{{siniestros.taller_id_taller}}</td>
-    <td>
-        <span class="badge badge-pill badge-warning">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-    </td>
-    <td>
-        <div class="dropdown">
-            <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-ellipsis-v"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <button type="button" class="show_form_reparado dropdown-item"
-                    data-url="{% url 'cambiar_estado_reparado' siniestros.id %}">Reparado</button>
+    <tr>
+        <th scope="row">{{ siniestros.id }}</th>
+        <td>{{ siniestros.fecha_hr | date:'d-m-Y' }}</td>
+        <td>{{ siniestros.asegurado_rut_asegurado }}</td>
+        <td>{{ siniestros.poliza_id_poliza }}</td>
+        <td>{{ siniestros.tipo_accidente_id_tipo_acc }}</td>
+        {% if siniestros.grua_patente_grua == null %}
+            <td>SIN GRÚA</td>
+        {% else %}
+            <td>{{ siniestros.grua_patente_grua }}</td>
+        {% endif %}
+        <td>{{ siniestros.taller_id_taller }}</td>
+        {% if siniestros.poliza_id_poliza.tipo_plan_id_tip_plan.garantia %}
+            {% if siniestros.garantia %}
+                <td>
+                    <span class="badge badge-pill badge-success">ACTIVA</span>
+                </td>
+            {% else %}
+                <td>
+                    <span class="badge badge-pill badge-danger">INACTIVA</span>
+                </td>
+            {% endif %}
+        {% else %}
+            <td>
+                <span class="badge badge-pill badge-warning">NO APLICA</span>
+            </td>
+        {% endif %}
+        <td>
+            <span class="badge badge-pill badge-warning">{{ siniestros.est_siniestro_id_est_siniestro }}</span>
+        </td>
+        <td>
+            <div class="dropdown">
+                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <button type="button" class="show_form_reparado dropdown-item"
+                            data-url="{% url 'cambiar_estado_reparado' siniestros.id %}">Reparado
+                    </button>
+                </div>
             </div>
-        </div>
-    </td>
-</tr>
+        </td>
+    </tr>
 {% empty %}
-<tr>
-    <td colspan="9" class="text-center">No hay siniestros</td>
-</tr>
+    <tr>
+        <td colspan="9" class="text-center">No hay siniestros</td>
+    </tr>
 {% endfor %}

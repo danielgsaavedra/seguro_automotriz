@@ -1,0 +1,72 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Módulo Servicios Grúas{% endblock title %}
+{% block content %}
+    <div class="d-flex justify-content-start mb-4">
+        <div class="text-center">
+            <a class="text-decoration-none" href="{% url 'servicio_grua' %}">
+                <i class="fas fa-arrow-circle-left"></i> Volver
+            </a>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Grúas</h6>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center" id="table_grua" width="100%"
+                       cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th scope="col">Patente Grúa</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Año</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Servicio Grúas</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for grua in gruas %}
+                        <tr>
+                            <th scope="row">{{ grua.patente_grua }}</th>
+                            <td>{{ grua.marca }}</td>
+                            <td>{{ grua.modelo }}</td>
+                            <td>{{ grua.anio }}</td>
+                            <td>{{ grua.tipo }}</td>
+                            {% if grua.estado == '1' %}
+                                <td>
+                                    <span class="badge badge-pill badge-success">DISPONIBLE</span>
+                                </td>
+                            {% else %}
+                                <td>
+                                    <span class="badge badge-pill badge-danger">NO DISPONIBLE</span>
+                                </td>
+                            {% endif %}
+                            <td>{{ grua.servicio_grua_id_servicio.nombre }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center">No hay Servicios de Grúas</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal_servicio_grua" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

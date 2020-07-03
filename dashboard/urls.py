@@ -62,4 +62,6 @@ urlpatterns = [
     path('servicio_grua/<str:id>/update/', views.ServicioGruaUpdate, name='servicio_grua_update'),
     path('servicio_grua/<str:id>/delete/', views.ServicioGruaDelete, name='servicio_grua_delete'),
     path('servicio_grua/<str:id>/reactive/', views.ServicioGruaReactive, name='servicio_grua_reactive'),
+    path('servicio_grua/gruas/', views.GruaView, name='gruas'),
+    path('polizas/tipos_plan/', views.TipoPlanView, name='tipos_plan_polizas'),
 ]

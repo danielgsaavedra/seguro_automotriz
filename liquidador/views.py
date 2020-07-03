@@ -121,9 +121,11 @@ def ReportesView(request):
     actas_rechazo = FormularioActa.objects.filter(tipo_acta_id_tipo_acta=rechazo)
     informes_dano = InformeDano.objects.all()
     presupuestos = Presupuesto.objects.all()
+    polizas = Poliza.objects.all().exclude(estado=0).order_by('id')
+
 
     context = {'presupuestos': presupuestos, 'actas_recepcion': actas_recepcion, 'actas_retiro': actas_retiro,
-               'actas_rechazo': actas_rechazo, 'informes_dano': informes_dano}
+               'actas_rechazo': actas_rechazo, 'informes_dano': informes_dano, 'polizas': polizas}
     return render(request, 'liquidador/reportes/reportes.html', context)
 
 
@@ -233,4 +235,32 @@ def TipoPlanReactive(request, id):
     return JsonResponse(data)
 
 # todo Falta desarrollar aprobar y rechazar presupuesto
-# todo Se debe crear consulta SQL para pdf polizas
+
+def PolizaViewPdf(request, pk):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT P.ID,P.VIGENTE,P.FECHA_INICIO,P.FECHA_FIN,U.RUT_USUARIO,U.PRIMER_NOMBRE,U.SEGUNDO_NOMBRE,U.PRIMER_APELLIDO,U.SEGUNDO_APELLIDO,P.ASEGURADO_RUT_ASEGURADO,A.PRIMER_NOMBRE,A.SEGUNDO_NOMBRE,A.PRIMER_APELLIDO,A.SEGUNDO_APELIIDO,A.CORREO,A.TELEFONO,A.DIRECCION,C.NOMBRE,T.NOMBRE,T.DESCRIPCION,T.VALOR,T.DEDUCIBLE,T.COBERTURA_MAX,V.PATENTE_VEHICULO,X.TIPO,M.NOMBRE,V.MODELO,V.ANIO,V.NRO_MOTOR FROM DASHBOARD_POLIZA P JOIN DASHBOARD_USUARIO U ON U.ID=P.USUARIO_RUT_USUARIO JOIN DASHBOARD_ASEGURADO A ON  P.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO JOIN DASHBOARD_COMUNA C ON C.ID=A.COMUNA_ID_COMUNA JOIN DASHBOARD_TIPOPLAN T ON P.TIPO_PLAN_ID_TIP_PLAN=T.ID JOIN DASHBOARD_VEHICULO V ON V.PATENTE_VEHICULO=P.VEHICULO_PATENTE_VEHICULO JOIN DASHBOARD_TIPOVEHICULO X ON X.ID=V.TIPO_VEHICULO_ID_TIPO_AUTO JOIN DASHBOARD_MARCA M ON M.ID=V.MARCA_ID_MARCA WHERE (P.ID="+pk + ")")
+        dato = cursor.fetchall()
+        dato = list(dato)
+        print(dato)
+    return render(request, 'liquidador/reportes/pdf/poliza_pdf.html', {'dato': dato})
+
+
+def PolizaPdf(request, pk):
+    options = {
+        'page-size': 'Letter',
+        'margin-top': '0.5in',
+        'margin-right': '0.7in',
+        'margin-bottom': '0.5in',
+        'margin-left': '0.7in',
+        'encoding': "UTF-8",
+    }
+
+    path_wkthmltopdf = b'C:\wkhtmltopdf\\bin\wkhtmltopdf.exe'
+    config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
+    pdf = pdfkit.from_url('http://127.0.0.1:8000/liquidador/PolizaViewPdf/' +
+                          str(pk), False, options=options, configuration=config)
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="Poliza.pdf" '
+    return response
+
+

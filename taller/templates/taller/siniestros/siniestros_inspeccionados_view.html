@@ -4,7 +4,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Siniestros Inspeccionados</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Siniestros Inspeccionados - (esperando aprobación o rechazo de presupuesto)</h6>
     </div>
 
     <div class="card-body">
@@ -21,7 +21,6 @@
                         <th scope="col">Patente Grúa</th>
                         <th scope="col">Taller Asignado</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,19 +40,6 @@
                         <td>
                             <span
                                 class="badge badge-pill badge-primary">{{siniestros.est_siniestro_id_est_siniestro}}</span>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <button type="button" class="show_form_reparacion dropdown-item"
-                                        data-url="{% url 'cambiar_estado_reparacion' siniestros.id %}">En
-                                        Reparación</button>
-                                </div>
-                            </div>
                         </td>
                     </tr>
                     {% empty %}

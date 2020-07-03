@@ -200,6 +200,8 @@ class Presupuesto(models.Model):
         'InformeDano', models.DO_NOTHING, db_column='informe_dano_id_info_dano', verbose_name='ID Inf. Daño', null=True)
     taller_id_taller = models.ForeignKey(
         'Taller', models.DO_NOTHING, db_column='taller_id_taller', verbose_name='Taller', null=True)
+    siniestro_id = models.ForeignKey(
+        'Siniestro', models.DO_NOTHING, db_column='siniestro_id', verbose_name='ID Siniestro', null=True)
 
     # class Meta:
     #     managed = False
@@ -510,6 +512,7 @@ class TipoPlan(models.Model):
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     estado = models.BooleanField(default=True)
+    garantia = models.BooleanField(default=False)
 
     # class Meta:
     #     managed = False

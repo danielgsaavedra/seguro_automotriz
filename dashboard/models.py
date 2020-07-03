@@ -512,7 +512,7 @@ class TipoPlan(models.Model):
     usuario_rut_usuario = models.ForeignKey(
         'Usuario', models.DO_NOTHING, db_column='usuario_rut_usuario', verbose_name='Rut Usuario', null=True)
     estado = models.BooleanField(default=True)
-    garantia = models.BooleanField(default=False)
+    garantia = models.BooleanField()
 
     # class Meta:
     #     managed = False

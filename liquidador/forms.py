@@ -1,5 +1,5 @@
 from django import forms
-from dashboard.models import TipoPlan,Presupuesto
+from dashboard.models import TipoPlan, Presupuesto
 
 
 class TipoPlanForm(forms.ModelForm):
@@ -12,6 +12,7 @@ class TipoPlanForm(forms.ModelForm):
             'deducible',
             'cobertura_max',
             'descripcion',
+            'garantia',
         ]
         widgets = {
             'id': forms.HiddenInput(attrs={'class': 'required form-control'}),
@@ -30,6 +31,7 @@ class TipoPlanForm(forms.ModelForm):
             'descripcion': forms.Textarea(
                 attrs={'class': 'required form-control', 'placeholder': 'Ingresa descripción de tipo de plan',
                        'id': 'descripcion'}),
+            'garantia': forms.CheckboxInput(attrs={'class': 'form-control'}),
 
         }
 
@@ -40,6 +42,7 @@ class DeshabilitarTipoPlanForm(forms.ModelForm):
         widgets = {
             'estado': forms.HiddenInput(attrs={'class': 'required form-control', 'id': 'estado_tipo'}),
         }
+
 
 class AproRechPresupuestoForm(forms.ModelForm):
     class Meta:

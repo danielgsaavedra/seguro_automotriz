@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+</head>
+
+<body class="container">
+    <div class="mx-5 mt-3">
+        <table class="table">
+            <tr class="row">
+                <td class="col-6">
+                    <h5>
+                        <img src="{% static 'dashboard/img/seguro-icon.png' %}" alt=""
+                             style="width: 50px; height: 50px;"><strong>POLIZA N° {{ dato.0.0 }}</strong>
+
+                    </h5>
+                </td>
+                <td class="col-6 d-flex justify-content-end">
+                    <script>
+                        var meses = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+                        var diasSemana = new Array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
+                        var f = new Date();
+                        document.write(diasSemana[f.getDay()] + ", " + f.getDate() + " de " + meses[f.getMonth()] + " del " + f.getFullYear());
+                    </script>
+
+                </td>
+            </tr>
+        </table>
+        <hr>
+
+        <h5><strong>DATOS POLIZA</strong></h5>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                {% if dato.0.1 == '1' %}
+                    <h6><strong>Estado: </strong>VIGENTE</h6>
+                {% else %}
+                    <h6><strong>Estado: </strong>NO VIGENTE</h6>
+                {% endif %}
+                <h6><strong>Fecha Inicio: </strong>{{ dato.0.2 | date:'d/m/Y' }}</h6>
+                <h6><strong>Fecha Término: </strong>{{ dato.0.3 | date:'d/m/Y' }}</h6>
+                <h6><strong>Rut agente: </strong>{{ dato.0.4 }}</h6>
+                <h6><strong>Nombre agente: </strong>{{ dato.0.5 }} {{ dato.0.6 }} {{ dato.0.7 }} {{ dato.0.8 }}</h6>
+            </div>
+        </div>
+        <hr>
+
+        <h5><strong>DATOS ASEGURADO</strong></h5>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h6><strong>Rut: </strong>{{ dato.0.9 }}</h6>
+                <h6><strong>Nombre: </strong>{{ dato.0.10 }} {{ dato.0.11 }} {{ dato.0.12 }} {{ dato.0.13 }}</h6>
+                <h6><strong>Correo: </strong>{{ dato.0.14 }}</h6>
+                <h6><strong>Telefono: +569 </strong>{{ dato.0.15 }}</h6>
+                <h6><strong>Dirección: </strong>{{ dato.0.16 }}-{{ dato.0.17 }}</h6>
+            </div>
+        </div>
+        <hr>
+
+        <h5><strong>TIPO PLAN</strong></h5>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h6><strong>Nombre: </strong>{{ dato.0.18 }}</h6>
+                <h6><strong>Valor: </strong>${{ dato.0.20 }}</h6>
+                <h6><strong>Deducible: </strong>{{ dato.0.21 }} UF</h6>
+                <h6><strong>Cobertura máxima: </strong>${{ dato.0.22 }}</h6>
+                <h6><strong>Descripción: </strong>{{ dato.0.19 }}</h6>
+            </div>
+        </div>
+        <hr>
+
+        <h5><strong>DATOS VEHÍCULO</strong></h5>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h6><strong>Patente: </strong>{{ dato.0.23 }}</h6>
+                <h6><strong>N° Motor: </strong>{{ dato.0.28 }}</h6>
+                <h6><strong>Tipo: </strong>{{ dato.0.24 }}</h6>
+                <h6><strong>Marca: </strong>{{ dato.0.25 }}</h6>
+                <h6><strong>Modelo: </strong>{{ dato.0.26 }}</h6>
+                <h6><strong>Año: </strong>{{ dato.0.27 }}</h6>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <footer class="sticky-footer mt-5">
+        <div class="text-center">
+            <span><strong>Documento generado por Seguros Virgolini</strong></span>
+        </div>
+    </footer>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+

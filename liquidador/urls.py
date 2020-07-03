@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.conf.urls import include, url
 
 urlpatterns = [
     path('siniestros/', views.SiniestroView, name='siniestros_liquidador'),
@@ -17,5 +18,9 @@ urlpatterns = [
     path('tipos_plan/<str:id>/update/', views.TipoPlanUpdate, name='tipos_plan_update'),
     path('tipos_plan/<str:id>/delete/', views.TipoPlanDelete, name='tipos_plan_delete'),
     path('tipos_plan/<str:id>/reactive/', views.TipoPlanReactive, name='tipos_plan_reactive'),
+    url(r'^PolizaViewPdf/(?P<pk>[0-9]+)/$',
+        views.PolizaViewPdf, name='PolizaViewPdf'),
+    url(r'^PolizaPdf/(?P<pk>[0-9]+)/$',
+        views.PolizaPdf, name='PolizaPdf'),
 
 ]

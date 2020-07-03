@@ -1,6 +1,95 @@
 {% extends "dashboard/base.html" %}
 {% block title %}Módulo Reportes{% endblock title %}
 {% block content %}
+
+    <div class="card shadow mb-3">
+        <div class="card-body">
+            <div class="text-center">
+                <h3>Polizas</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mx-5">
+        <div class="card shadow mb-4 col-12">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover text-center" id="table_poliza_reporte" width="100%"
+                           cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th scope="col">N° Póliza</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Fecha Inicio</th>
+                            <th scope="col">Fecha Término</th>
+                            <th scope="col">RUT Asegurado</th>
+                            <th scope="col">Patente Vehículo</th>
+                            {% if  request.user.is_staff %}
+                                <th scope="col">Opciones</th>
+                            {% endif %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for polizas in polizas %}
+                            <tr>
+                                <th scope="row">{{ polizas.id }}</th>
+                                {% if polizas.vigente == '1' %}
+                                    <td>
+                                        <span class="badge badge-pill badge-success">VIGENTE</span>
+                                    </td>
+                                {% else %}
+                                    <td>
+                                        <span class="badge badge-pill badge-danger">NO VIGENTE</span>
+                                    </td>
+                                {% endif %}
+                                <td>{{ polizas.fecha_inicio | date:'d-m-Y' }}</td>
+                                <td>{{ polizas.fecha_fin | date:'d-m-Y' }}</td>
+                                <td>{{ polizas.asegurado_rut_asegurado.rut_asegurado }}</td>
+                                <td>{{ polizas.vehiculo_patente_vehiculo }}</td>
+                                {% if request.user.is_staff %}
+                                    <td>
+                                        <div class="dropdown">
+                                            <a class="text-dark btn btn-light btn-sm" href="#" id="navbarDropdown"
+                                               role="button"
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                 aria-labelledby="navbarDropdown">
+                                                <a href="{% url 'PolizaViewPdf' pk=polizas.id %}"
+                                                   target="_blank">
+                                                    <button class="dropdown-item">
+                                                        Visualizar Polizas
+                                                    </button>
+                                                </a>
+                                                <a href="{% url 'PolizaPdf' pk=polizas.id %}"
+                                                   target="_blank">
+                                                    <button class="dropdown-item">
+                                                        Exportar PDF
+                                                    </button>
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                {% endif %}
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="10" class="text-center">No hay pólizas</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <div class="card shadow mb-3">
         <div class="card-body">
             <div class="text-center">
@@ -49,10 +138,10 @@
                                                     Visualizar Acta
                                                 </button>
                                             </a>
-                                            <a href="{% url 'actaRecepcionPdf' pk=actas.siniestro_id %}"
+                                            <a href="{% url 'actaRecepcionViewPdf' pk=actas.siniestro_id %}"
                                                target="_blank">
                                                 <button class="dropdown-item">
-                                                    Exportar PDF
+                                                    Visualizar Acta
                                                 </button>
                                             </a>
                                         </div>
@@ -349,9 +438,5 @@
             </div>
         </div>
     </div>
-
-
-
-
 
 {% endblock %}

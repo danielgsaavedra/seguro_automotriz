@@ -387,15 +387,19 @@ def SaveAllSiniestro(request, form, template_name):
 
 
 # Read
-@login_required(login_url='login')
 def SiniestroView(request):
     with connection.cursor() as cursor:
         cursor.callproc('SP_ESTADO_GRUAS')
     estado = get_object_or_404(EstadoSiniestro, id=7)
+    estado1 = get_object_or_404(EstadoSiniestro, id=8)
+    estado3 = get_object_or_404(EstadoSiniestro, id=5)
     with connection.cursor() as cursor:
         cursor.callproc('SP_VALIDAR_POLIZA')
     siniestros = Siniestro.objects.all().exclude(
-        est_siniestro_id_est_siniestro=estado).order_by('id')
+        Q(est_siniestro_id_est_siniestro=estado) |
+        Q(est_siniestro_id_est_siniestro=estado1)|
+        Q(est_siniestro_id_est_siniestro=estado3)
+    ).order_by('id')
     context = {'siniestros': siniestros}
     return render(request, 'dashboard/siniestros/siniestro.html', context)
 
@@ -407,9 +411,18 @@ def SiniestroDisabledView(request):
     context = {'siniestrosDisable': siniestrosDisable}
     return render(request, 'dashboard/siniestros/siniestro_disabled.html', context)
 
+def SiniestroRechazadosView(request):
+    siniestrosRechazo = Siniestro.objects.filter(
+        est_siniestro_id_est_siniestro=5).order_by('id')
+    context = {'siniestrosRechazo': siniestrosRechazo}
+    return render(request, 'dashboard/siniestros/siniestro_rechazo.html', context)
 
 # # Create
-
+def SiniestroPendientesView(request):
+    siniestrosPendiente = Siniestro.objects.filter(
+        est_siniestro_id_est_siniestro=8).order_by('id')
+    context = {'siniestrosPendiente': siniestrosPendiente}
+    return render(request, 'dashboard/siniestros/siniestro_pendiente.html', context)
 
 @login_required(login_url='login')
 def CreateSiniestro(request):

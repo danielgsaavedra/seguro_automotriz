@@ -517,6 +517,17 @@ def SiniestrosRechazadoView(request):
     context = {'siniestros': siniestros}
     return render(request, 'taller/siniestros/siniestros_rechazado_view.html', context)
 
+@login_required(login_url='login')
+def SiniestrosPendienteView(request):
+    estado = get_object_or_404(EstadoSiniestro, id=8)
+    taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
+    siniestros = Siniestro.objects.filter(
+        Q(est_siniestro_id_est_siniestro=estado) &
+        Q(taller_id_taller=taller)
+    ).order_by('id')
+    context = {'siniestros': siniestros}
+    return render(request, 'taller/siniestros/siniestros_pendiente_view.html', context)
+
 
 def informeDanoViewPdf(request, pk):
     with connection.cursor() as cursor:

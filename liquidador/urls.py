@@ -5,6 +5,8 @@ from django.conf.urls import include, url
 urlpatterns = [
     path('siniestros/', views.SiniestroView, name='siniestros_liquidador'),
     path('siniestros/disabled/', views.SiniestroDisabledView, name='siniestros_disabled_liquidador'),
+    path('siniestros/rechazados/', views.SiniestroRechazadosView, name='siniestros_rechazados_liquidador'),
+    path('siniestros/pendientes/', views.SiniestroPendientesView, name='siniestros_pendientes_liquidador'),
     path('presupuestos/', views.PresupuestoView, name='presupuestos_liquidador'),
     path('presupuestos/aprobados/', views.PresupuestoAprobadoView, name='presupuestos_aprobados'),
     path('presupuestos/rechazados/', views.PresupuestoRechazadoView, name='presupuestos_rechazados'),

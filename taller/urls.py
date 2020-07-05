@@ -31,6 +31,8 @@ urlpatterns = [
          views.CambiarEstadoReparado, name='cambiar_estado_reparado'),
     path('siniestros/rechazados/', views.SiniestrosRechazadoView,
          name='siniestros_rechazados'),
+    path('siniestros/pendientes/',
+         views.SiniestrosPendienteView, name='siniestros_pendiente'),
     url(r'^actaRecepcionViewPdf/(?P<pk>[0-9]+)/$',
         views.actaRecepcionViewPdf, name='actaRecepcionViewPdf'),
     url(r'^actaRecepcionPdf/(?P<pk>[0-9]+)/$',

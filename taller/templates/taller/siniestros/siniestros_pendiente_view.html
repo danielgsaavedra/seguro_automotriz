@@ -1,0 +1,78 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Siniestros Pendientes{% endblock title %}
+{% block content %}
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Siniestros Pendientes</h6>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center" id="table_siniestros_inspecc" width="100%"
+                       cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th scope="col">N° Siniestro</th>
+                        <th scope="col">Fecha Siniestro</th>
+                        <th scope="col">Rut Asegurado</th>
+                        <th scope="col">N° Póliza</th>
+                        <th scope="col">Tipo Accidente</th>
+                        <th scope="col">Patente Grúa</th>
+                        <th scope="col">Taller Asignado</th>
+                        <th scope="col">Garantía</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for siniestros in siniestros %}
+                        <tr>
+                            <th scope="row">{{ siniestros.id }}</th>
+                            <td>{{ siniestros.fecha_hr | date:'d-m-Y' }}</td>
+                            <td>{{ siniestros.asegurado_rut_asegurado }}</td>
+                            <td>{{ siniestros.poliza_id_poliza }}</td>
+                            <td>{{ siniestros.tipo_accidente_id_tipo_acc }}</td>
+                            {% if siniestros.grua_patente_grua == null %}
+                                <td>SIN GRÚA</td>
+                            {% else %}
+                                <td>{{ siniestros.grua_patente_grua }}</td>
+                            {% endif %}
+                            <td>{{ siniestros.taller_id_taller }}</td>
+                            {% if siniestros.poliza_id_poliza.tipo_plan_id_tip_plan.garantia %}
+                                {% if siniestros.garantia %}
+                                    <td>
+                                        <span class="badge badge-pill badge-success">ACTIVA</span>
+                                    </td>
+                                {% else %}
+                                    <td>
+                                        <span class="badge badge-pill badge-danger">INACTIVA</span>
+                                    </td>
+                                {% endif %}
+                            {% else %}
+                                <td>
+                                    <span class="badge badge-pill badge-warning">NO APLICA</span>
+                                </td>
+                            {% endif %}
+                            <td>
+                            <span
+                                    class="badge badge-pill badge-danger">{{ siniestros.est_siniestro_id_est_siniestro }}</span>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="9" class="text-center">No hay siniestros</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal fade" id="modal_siniestros_inspecc" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -235,6 +235,8 @@ def SiniestrosRetiroView(request):
     estado = get_object_or_404(EstadoSiniestro, id=6)
     taller = get_object_or_404(Taller, id=request.user.taller_id_taller.id)
     with connection.cursor() as cursor:
+        cursor.callproc('SP_ACTIVAR_ESTADO_PENDIENTE')
+    with connection.cursor() as cursor:
         cursor.callproc('SP_CAMBIAR_GARANTIA')
     siniestros = Siniestro.objects.filter(
         Q(est_siniestro_id_est_siniestro=estado) &
@@ -516,6 +518,7 @@ def SiniestrosRechazadoView(request):
     ).order_by('id')
     context = {'siniestros': siniestros}
     return render(request, 'taller/siniestros/siniestros_rechazado_view.html', context)
+
 
 @login_required(login_url='login')
 def SiniestrosPendienteView(request):

@@ -368,12 +368,17 @@ def ReactivatePoliza(request, id):
 def SaveAllSiniestro(request, form, template_name):
     data = dict()
     estado = get_object_or_404(EstadoSiniestro, id=7)
+    estado1 = get_object_or_404(EstadoSiniestro, id=8)
+    estado3 = get_object_or_404(EstadoSiniestro, id=5)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
             siniestros = Siniestro.objects.all().exclude(
-                est_siniestro_id_est_siniestro=estado).order_by('id')
+                Q(est_siniestro_id_est_siniestro=estado) |
+                Q(est_siniestro_id_est_siniestro=estado1) |
+                Q(est_siniestro_id_est_siniestro=estado3)
+            ).order_by('id')
             context = {'siniestros': siniestros}
             data['siniestros'] = render_to_string(
                 'dashboard/siniestros/siniestro_2.html', context)

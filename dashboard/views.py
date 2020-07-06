@@ -402,7 +402,7 @@ def SiniestroView(request):
         cursor.callproc('SP_VALIDAR_POLIZA')
     siniestros = Siniestro.objects.all().exclude(
         Q(est_siniestro_id_est_siniestro=estado) |
-        Q(est_siniestro_id_est_siniestro=estado1)|
+        Q(est_siniestro_id_est_siniestro=estado1) |
         Q(est_siniestro_id_est_siniestro=estado3)
     ).order_by('id')
     context = {'siniestros': siniestros}
@@ -416,11 +416,13 @@ def SiniestroDisabledView(request):
     context = {'siniestrosDisable': siniestrosDisable}
     return render(request, 'dashboard/siniestros/siniestro_disabled.html', context)
 
+
 def SiniestroRechazadosView(request):
     siniestrosRechazo = Siniestro.objects.filter(
         est_siniestro_id_est_siniestro=5).order_by('id')
     context = {'siniestrosRechazo': siniestrosRechazo}
     return render(request, 'dashboard/siniestros/siniestro_rechazo.html', context)
+
 
 # # Create
 def SiniestroPendientesView(request):
@@ -428,6 +430,7 @@ def SiniestroPendientesView(request):
         est_siniestro_id_est_siniestro=8).order_by('id')
     context = {'siniestrosPendiente': siniestrosPendiente}
     return render(request, 'dashboard/siniestros/siniestro_pendiente.html', context)
+
 
 @login_required(login_url='login')
 def CreateSiniestro(request):
@@ -447,6 +450,16 @@ def CreateSiniestro(request):
         siniestro = form.save(commit=False)
         siniestro.usuario_rut_usuario = request.user
         siniestro.est_siniestro_id_est_siniestro = estado
+
+        correo = EmailMessage(
+            'SEGUROS VIRGOLINI: SINIESTRO REGISTRADO',
+            'Estimado/a {} {}.\n\nSe registro siniestro con su póliza N° {} a las {}hrs.\n\nLa reparación de su vehículo estará a cargo de taller: {} .\n\nPara consultar el estado en el que se encuentra su siniestro ingrese a este link(http://127.0.0.1:8000/aseguradora/asegurado-consulta/).'.format(
+                asegurado.primer_nombre, asegurado.primer_apellido, poliza.id, x.strftime("%X"), taller.nombre),
+            'no-contestar@hotmail.com',
+            [asegurado.correo],
+            reply_to=['contacto.segurosvirgolini@gmail.com']
+        )
+        correo.send()
 
     else:
         form = SiniestroForm()

@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from dashboard.models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSiniestro, Usuario, \
     EstadoPresupuesto, Presupuesto, TipoActa, FormularioActa, InformeDano, TipoPlan
-from .forms import TipoPlanForm, DeshabilitarTipoPlanForm,AproRechPresupuestoForm
+from .forms import TipoPlanForm, DeshabilitarTipoPlanForm, AproRechPresupuestoForm
 from django.db.models import Q
 from django.db.models import Count
 from django.db import connection
@@ -32,7 +32,16 @@ def SiniestroView(request):
         Q(est_siniestro_id_est_siniestro=estado1) |
         Q(est_siniestro_id_est_siniestro=estado3)
     ).order_by('id')
-    context = {'siniestros': siniestros}
+    siniestrosDisable = Siniestro.objects.aggregate(
+        dcount=Count('id', filter=Q(est_siniestro_id_est_siniestro=7)))
+    siniestrosPendientes = Siniestro.objects.aggregate(
+        dcount=Count('id', filter=Q(est_siniestro_id_est_siniestro=8)))
+    siniestrosRechazados = Siniestro.objects.aggregate(
+        dcount=Count('id', filter=Q(est_siniestro_id_est_siniestro=5)))
+    context = {'siniestros': siniestros,
+               'siniestrosDisable': siniestrosDisable,
+               'siniestrosPendientes': siniestrosPendientes,
+               'siniestrosRechazados': siniestrosRechazados}
     return render(request, 'liquidador/siniestros/siniestro.html', context)
 
 
@@ -42,11 +51,13 @@ def SiniestroDisabledView(request):
     context = {'siniestrosDisable': siniestrosDisable}
     return render(request, 'liquidador/siniestros/siniestro_disabled.html', context)
 
+
 def SiniestroRechazadosView(request):
     siniestrosRechazo = Siniestro.objects.filter(
         est_siniestro_id_est_siniestro=5).order_by('id')
     context = {'siniestrosRechazo': siniestrosRechazo}
     return render(request, 'liquidador/siniestros/siniestro_rechazo.html', context)
+
 
 def SiniestroPendientesView(request):
     siniestrosPendiente = Siniestro.objects.filter(
@@ -58,15 +69,20 @@ def SiniestroPendientesView(request):
 @login_required(login_url='login')
 def PresupuestoView(request):
     estado = get_object_or_404(EstadoPresupuesto, id=3)
-    presupuestos = Presupuesto.objects.filter(estado_id_est_presupuesto=estado).order_by('id')
-    context = {'presupuestos': presupuestos}
+    presupuestos = Presupuesto.objects.filter(
+        estado_id_est_presupuesto=estado).order_by('id')
+    presupuestosRechazados = Presupuesto.objects.aggregate(
+        dcount=Count('id', filter=Q(estado_id_est_presupuesto=0)))
+    context = {'presupuestos': presupuestos,
+               'presupuestosRechazados': presupuestosRechazados}
     return render(request, 'liquidador/presupuestos/presupuestos_view.html', context)
 
 
 @login_required(login_url='login')
 def PresupuestoAprobadoView(request):
     estado = get_object_or_404(EstadoPresupuesto, id=1)
-    presupuestos = Presupuesto.objects.filter(estado_id_est_presupuesto=estado).order_by('id')
+    presupuestos = Presupuesto.objects.filter(
+        estado_id_est_presupuesto=estado).order_by('id')
     context = {'presupuestos': presupuestos}
     return render(request, 'liquidador/presupuestos/presupuestos_aprobados.html', context)
 
@@ -74,15 +90,18 @@ def PresupuestoAprobadoView(request):
 @login_required(login_url='login')
 def PresupuestoRechazadoView(request):
     estado = get_object_or_404(EstadoPresupuesto, id=2)
-    presupuestos = Presupuesto.objects.filter(estado_id_est_presupuesto=estado).order_by('id')
+    presupuestos = Presupuesto.objects.filter(
+        estado_id_est_presupuesto=estado).order_by('id')
     context = {'presupuestos': presupuestos}
     return render(request, 'liquidador/presupuestos/presupuestos_rechazados.html', context)
 
+
 @login_required(login_url='login')
-def PresupuestoAproRechView(request,id):
+def PresupuestoAproRechView(request, id):
     presupuesto = get_object_or_404(Presupuesto, id=id)
     context = {'presupuesto': presupuesto}
     return render(request, 'liquidador/presupuestos/presupuestos_apro_recha_view.html', context)
+
 
 @staff_member_required(login_url='login')
 def AprobarPresupuesto(request, id):
@@ -106,6 +125,7 @@ def AprobarPresupuesto(request, id):
             'liquidador/presupuestos/aprobar_presupuesto.html', context, request=request)
     return JsonResponse(data)
 
+
 @staff_member_required(login_url='login')
 def RechazarPresupuesto(request, id):
     data = dict()
@@ -128,19 +148,21 @@ def RechazarPresupuesto(request, id):
             'liquidador/presupuestos/rechazar_presupuesto.html', context, request=request)
     return JsonResponse(data)
 
+
 @login_required(login_url='login')
 def ReportesView(request):
     recepcion = get_object_or_404(TipoActa, id=1)
     retiro = get_object_or_404(TipoActa, id=3)
     rechazo = get_object_or_404(TipoActa, id=2)
 
-    actas_recepcion = FormularioActa.objects.filter(tipo_acta_id_tipo_acta=recepcion)
+    actas_recepcion = FormularioActa.objects.filter(
+        tipo_acta_id_tipo_acta=recepcion)
     actas_retiro = FormularioActa.objects.filter(tipo_acta_id_tipo_acta=retiro)
-    actas_rechazo = FormularioActa.objects.filter(tipo_acta_id_tipo_acta=rechazo)
+    actas_rechazo = FormularioActa.objects.filter(
+        tipo_acta_id_tipo_acta=rechazo)
     informes_dano = InformeDano.objects.all()
     presupuestos = Presupuesto.objects.all()
     polizas = Poliza.objects.all().exclude(estado=0).order_by('id')
-
 
     context = {'presupuestos': presupuestos, 'actas_recepcion': actas_recepcion, 'actas_retiro': actas_retiro,
                'actas_rechazo': actas_rechazo, 'informes_dano': informes_dano, 'polizas': polizas}
@@ -150,7 +172,10 @@ def ReportesView(request):
 @login_required(login_url='login')
 def TipoPlanView(request):
     tipos_plan = TipoPlan.objects.all().exclude(estado=False).order_by('id')
-    context = {'tipos_plan': tipos_plan}
+    tipoPlanDisable = TipoPlan.objects.aggregate(
+        dcount=Count('id', filter=Q(estado=0)))
+    context = {'tipos_plan': tipos_plan,
+               'tipoPlanDisable': tipoPlanDisable}
     return render(request, 'liquidador/tipoPlan/tipos_plan.html', context)
 
 
@@ -228,6 +253,7 @@ def TipoPlanDelete(request, id):
             'liquidador/tipoPlan/tipo_plan_delete.html', context, request=request)
     return JsonResponse(data)
 
+
 @staff_member_required(login_url='login')
 def TipoPlanReactive(request, id):
     data = dict()
@@ -253,6 +279,7 @@ def TipoPlanReactive(request, id):
     return JsonResponse(data)
 
 # todo Falta desarrollar aprobar y rechazar presupuesto
+
 
 def PolizaViewPdf(request, pk):
     with connection.cursor() as cursor:
@@ -280,5 +307,3 @@ def PolizaPdf(request, pk):
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="Poliza.pdf" '
     return response
-
-

@@ -153,6 +153,8 @@ def RechazarPresupuesto(request, id):
             pre.usuario_rut_usuario = request.user
             pre.save()
             data['form_is_valid'] = True
+            with connection.cursor() as cursor:
+                cursor.callproc('SP_CAMBIAR_GARANTIA')
             correo = EmailMessage(
                 'SEGUROS VIRGOLINI: PRESUPUESTO RECHAZADO',
                 'ESTIMADO/A {} {}.\n\nEL PRESUPUESTO N°{} ASOCIADO A SU SINIESTRO N°{} A SIDO RECHAZADO.\n\nSALUDOS CORDIALES.'.format(

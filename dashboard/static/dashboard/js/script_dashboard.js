@@ -37,6 +37,7 @@ $(document).ready(function () {
                     $('#modal_poliza').modal('hide');
                     console.log('Success!');
                     toastr.success('Operación Exitosa');
+                    setTimeout(actualizar, 300);
                 } else {
                     $('#modal_poliza .modal-content').html(data.html_form)
                 }
@@ -124,6 +125,7 @@ $(document).ready(function () {
                     $('#modal_siniestro').modal('hide');
                     console.log('Success!');
                     toastr.success('Operación Exitosa');
+                    setTimeout(actualizar, 300);
                 } else {
                     $('#modal_siniestro .modal-content').html(data.html_form)
                 }
@@ -167,6 +169,7 @@ $(document).ready(function () {
                     $('#modal_vehiculo').modal('hide');
                     console.log('Vehículo registrado correctamente!');
                     toastr.success('Operación Exitosa');
+                    setTimeout(actualizar, 300);
                 } else {
                     $('#modal_vehiculo .modal-content').html(data.html_form)
                 }
@@ -210,6 +213,7 @@ $(document).ready(function () {
                     $('#modal_taller').modal('hide');
                     console.log('Taller registrado correctamente!');
                     toastr.success('Operación Exitosa');
+                    setTimeout(actualizar, 300);
                 } else {
                     $('#modal_taller .modal-content').html(data.html_form)
                 }
@@ -381,6 +385,7 @@ $(document).ready(function () {
                     $('#modal_usuario').modal('hide');
                     console.log('Asegurado registrado correctamente!');
                     toastr.success('Operación Exitosa');
+                    setTimeout(actualizar, 300);
                 } else {
                     $('#modal_usuario .modal-content').html(data.html_form)
                 }
@@ -465,6 +470,7 @@ $(document).ready(function () {
                     $('#modal_servicio_grua').modal('hide');
                     console.log('Asegurado registrado correctamente!');
                     toastr.success('Operación Exitosa');
+                    setTimeout(actualizar, 300);
                 } else {
                     $('#modal_servicio_grua .modal-content').html(data.html_form)
                 }

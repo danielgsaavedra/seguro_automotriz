@@ -36,7 +36,7 @@ $(document).ready(function () {
                     $('#modal_tipo_plan').modal('hide');
                     console.log('Success!');
                     toastr.success('Operación Exitosa');
-
+                    setTimeout(actualizar, 300);
                 } else {
                     $('#modal_tipo_plan .modal-content').html(data.html_form)
                 }

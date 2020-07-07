@@ -578,7 +578,7 @@ def TallerView(request):
         cursor.callproc('SP_ESTADO_TALLER')
     talleres = Taller.objects.all().exclude(estado_delete=0).order_by('id')
     talleresDisable = Taller.objects.aggregate(dcount=Count(
-        'id', filter=Q(estado=0)))
+        'id', filter=Q(estado_delete=0)))
     context = {'talleres': talleres,
                'talleresDisable': talleresDisable}
     return render(request, 'dashboard/talleres/taller.html', context)
@@ -851,9 +851,9 @@ def ServicioGruaDelete(request, id):
             servicio.estado = False
             servicio.save()
             data['form_is_valid'] = True
-            servicios_gruas_delete = ServicioGrua.objects.all().exclude(
+            servicios_gruas = ServicioGrua.objects.all().exclude(
                 estado=False).order_by('id')
-            context = {'servicios_gruas_delete': servicios_gruas_delete}
+            context = {'servicios_gruas': servicios_gruas}
             data['servicios_gruas'] = render_to_string(
                 'dashboard/servicioGrua/servicio_grua_2.html', context)
     else:

@@ -8,6 +8,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy, reverse
 from dashboard.models import Usuario
 from .forms import UsuarioRegisterForm, UsuarioFormUpdate, DeshabilitarUsuarioForm
+from django.db.models import Q, Count
 
 # CRUD USUARIOS
 
@@ -35,7 +36,10 @@ def SaveAllUsuario(request, form, template_name):
 @staff_member_required(login_url='login')
 def UsuariosView(request):
     usuarios = Usuario.objects.filter(is_active=True).order_by('rol')
-    context = {'usuarios': usuarios}
+    usuariosDisable = Usuario.objects.aggregate(dcount=Count(
+        'id', filter=Q(is_active=0)))
+    context = {'usuarios': usuarios,
+                'usuariosDisable': usuariosDisable}
     return render(request, 'registration/usuarios/usuario.html', context)
 
 # CREATE

@@ -6,16 +6,19 @@
             <a class="text-decoration-none text-light mr-3" href="{% url 'siniestro_disabled' %}">
                 <button class="btn btn-sm btn-dark shadow-sm">
                     <i class="fas fa-file-invoice fa-sm text-white-50"></i> Siniestros Finalizados
+                <span class="badge badge-light">{{siniestrosDisable.dcount}}</span>
                 </button>
             </a>
             <a class="text-decoration-none text-light mr-3" href="{% url 'siniestro_pendientes_aseguradora' %}">
-                <button class="btn btn-sm btn-info shadow-sm">
+                <button class="btn btn-sm btn-secondary shadow-sm">
                     <i class="fas fa-file-invoice  fa-sm text-white-50"></i> Siniestros Pendientes
+                <span class="badge badge-light">{{siniestrosPendientes.dcount}}</span>
                 </button>
             </a>
             <a class="text-decoration-none text-light" href="{% url 'siniestro_rechazados_aseguradora' %}">
                 <button class="btn btn-sm btn-danger shadow-sm">
                     <i class="fas fa-file-invoice  fa-sm text-white-50"></i> Siniestros Rechazados
+                <span class="badge badge-light">{{siniestrosRechazados.dcount}}</span>
                 </button>
             </a>
         </div>

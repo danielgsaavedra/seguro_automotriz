@@ -76,7 +76,10 @@ def SaveAllAsegurado(request, form, template_name):
 @login_required(login_url='login')
 def AseguradosView(request):
     asegurados = Asegurado.objects.all().exclude(estado=0).order_by('rut_asegurado')
-    context = {'asegurados': asegurados}
+    aseguradosDisable = Asegurado.objects.aggregate(
+        dcount=Count('rut_asegurado', filter=Q(estado=0)))
+    context = {'asegurados': asegurados,
+               'aseguradosDisable': aseguradosDisable}
     return render(request, 'dashboard/asegurados/asegurado.html', context)
 
 
@@ -274,7 +277,9 @@ def PolizasView(request):
         cursor.callproc('SP_VALIDAR_POLIZA')
     polizas = Poliza.objects.all().exclude(
         estado=0).order_by('id')
-    context = {'polizas': polizas}
+    polizasDisable = Poliza.objects.aggregate(
+        dcount=Count('id', filter=Q(estado=0)))
+    context = {'polizas': polizas, 'polizasDisable': polizasDisable}
     return render(request, 'dashboard/polizas/poliza.html', context)
 
 
@@ -417,7 +422,16 @@ def SiniestroView(request):
         Q(est_siniestro_id_est_siniestro=estado1) |
         Q(est_siniestro_id_est_siniestro=estado3)
     ).order_by('id')
-    context = {'siniestros': siniestros}
+    siniestrosDisable = Siniestro.objects.aggregate(
+        dcount=Count('id', filter=Q(est_siniestro_id_est_siniestro=7)))
+    siniestrosPendientes = Siniestro.objects.aggregate(
+        dcount=Count('id', filter=Q(est_siniestro_id_est_siniestro=8)))
+    siniestrosRechazados = Siniestro.objects.aggregate(
+        dcount=Count('id', filter=Q(est_siniestro_id_est_siniestro=5)))
+    context = {'siniestros': siniestros,
+               'siniestrosDisable': siniestrosDisable,
+               'siniestrosPendientes': siniestrosPendientes,
+               'siniestrosRechazados': siniestrosRechazados}
     return render(request, 'dashboard/siniestros/siniestro.html', context)
 
 
@@ -563,7 +577,10 @@ def TallerView(request):
     with connection.cursor() as cursor:
         cursor.callproc('SP_ESTADO_TALLER')
     talleres = Taller.objects.all().exclude(estado_delete=0).order_by('id')
-    context = {'talleres': talleres}
+    talleresDisable = Taller.objects.aggregate(dcount=Count(
+        'id', filter=Q(estado=0)))
+    context = {'talleres': talleres,
+               'talleresDisable': talleresDisable}
     return render(request, 'dashboard/talleres/taller.html', context)
 
 
@@ -765,7 +782,10 @@ def siniestroDetallePdf(request, pk):
 @login_required(login_url='login')
 def ServicioGruaView(request):
     servicios_gruas = ServicioGrua.objects.all().exclude(estado=False).order_by('id')
-    context = {'servicios_gruas': servicios_gruas}
+    servGruasDisable = ServicioGrua.objects.aggregate(dcount=Count(
+        'id', filter=Q(estado=0)))
+    context = {'servicios_gruas': servicios_gruas,
+               'servGruasDisable': servGruasDisable}
     return render(request, 'dashboard/servicioGrua/servicio_grua.html', context)
 
 

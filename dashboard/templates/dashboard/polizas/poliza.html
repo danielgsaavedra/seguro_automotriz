@@ -6,6 +6,7 @@
         <a class="text-decoration-none text-light mr-3" href="{% url 'poliza_disabled' %}">
             <button type="button" class="btn btn-sm btn-danger shadow-sm">
                 <i class="fas fa-file-contract fa-sm text-white-50"></i> Pólizas Inactivas
+                <span class="badge badge-light">{{polizasDisable.dcount}}</span>
             </button>
         </a>
         <a class="text-decoration-none text-light" href="{% url 'tipos_plan_polizas' %}">

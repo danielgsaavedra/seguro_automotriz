@@ -39,7 +39,7 @@ class DashboardView(TemplateView):
         context["qs4"] = Siniestro.objects.aggregate(
             dcount=Count('id', filter=~Q(est_siniestro_id_est_siniestro=7)))
         context["qs5"] = Grua.objects.aggregate(
-            dcount=Count('patente_grua', filter=Q(estado=1)))
+            dcount=Count('patente_grua', filter=Q(estado=1) & Q(estado_delete=1)))
         context["qs6"] = Poliza.objects.aggregate(
             dcount=Count('id', filter=Q(vigente=1)))
         context["qs7"] = Taller.objects.aggregate(
@@ -480,7 +480,7 @@ def CreateSiniestro(request):
         correo = EmailMessage(
             'SEGUROS VIRGOLINI: SINIESTRO REGISTRADO',
             'ESTIMADO/A {} {}.\n\nSE REGISTRO SINIESTRO CON SU PÓLIZA N° {} A LAS {}HRS.\n\nLA REPARACIÓN DE SU VEHÍCULO ESTARÁ A CARGO DE TALLER: {} ,UBICADO EN {},{},{}.\n\nPARA CONSULTAR EL ESTADO EN EL QUE SE ENCUENTRA SU SINIESTRO INGRESE A ESTE LINK (http://127.0.0.1:8000/aseguradora/asegurado-consulta/).\n\nSALUDOS CORDIALES'.format(
-                asegurado.primer_nombre, asegurado.primer_apellido, poliza.id, x.strftime("%X"), taller.nombre,taller.direccion,taller.comuna_id_comuna.nombre,taller.comuna_id_comuna.region_nro_region.nombre),
+                asegurado.primer_nombre, asegurado.primer_apellido, poliza.id, x.strftime("%X"), taller.nombre, taller.direccion, taller.comuna_id_comuna.nombre, taller.comuna_id_comuna.region_nro_region.nombre),
             'no-contestar@hotmail.com',
             [asegurado.correo],
             reply_to=['contacto.segurosvirgolini@gmail.com']

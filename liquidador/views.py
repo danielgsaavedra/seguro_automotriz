@@ -72,7 +72,7 @@ def PresupuestoView(request):
     presupuestos = Presupuesto.objects.filter(
         estado_id_est_presupuesto=estado).order_by('id')
     presupuestosRechazados = Presupuesto.objects.aggregate(
-        dcount=Count('id', filter=Q(estado_id_est_presupuesto=0)))
+        dcount=Count('id', filter=Q(estado_id_est_presupuesto=2)))
     presupuestosAprobados = Presupuesto.objects.aggregate(
         dcount=Count('id', filter=Q(estado_id_est_presupuesto=1)))
     context = {'presupuestos': presupuestos,

@@ -79,6 +79,16 @@ def CreateActaRecepcion(request, id):
             acta.taller_id_taller = taller_id
             acta.save()
             data['form_is_valid'] = True
+            correo = EmailMessage(
+                'SEGUROS VIRGOLINI: VEHÍCULO RECEPCIONADO',
+                'ESTIMADO/A {} {}.\n\nSU VEHÍCULO PATENTE "{}" GESTIONADO EN EL SINIESTROS N°{} A SIDO RECEPCIONADO CON ÉXITO EN TALLER {}.\n\nSALUDOS CORDIALES.'.format(
+                    siniestro_id.asegurado_rut_asegurado.primer_nombre,siniestro_id.asegurado_rut_asegurado.primer_apellido,
+                    siniestro_id.poliza_id_poliza.vehiculo_patente_vehiculo.patente_vehiculo, siniestro_id.id,siniestro_id.taller_id_taller.nombre),
+                'no-contestar@hotmail.com',
+                [siniestro_id.asegurado_rut_asegurado.correo],
+                reply_to=['contacto.segurosvirgolini@gmail.com']
+            )
+            correo.send()
         else:
             data['form_is_valid'] = False
     else:
@@ -484,12 +494,15 @@ def CambiarEstadoReparado(request, id):
             data['form_is_valid'] = True
             correo = EmailMessage(
                 'SEGUROS VIRGOLINI: VEHÍCULO REPARADO',
-                'Estimado/a {} {}.\n\nSu vehículo gestionado en el siniestro N°{} se encuentra disponible para retiro.\n\nFavor comunicarse con taller {} al teléfeno +56{} para coordinar retiro.\n\nSaludos cordiales.'.format(
-                    siniestro.asegurado_rut_asegurado.primer_nombre, siniestro.asegurado_rut_asegurado.primer_apellido,
-                    siniestro.id, siniestro.taller_id_taller.nombre, siniestro.taller_id_taller.telefono),
+                'ESTIMADO/A {} {}.\n\nSU VEHÍCULO PATENTE "{}" GESTIONADO EN EL SINIESTROS N°{} SE ENCUENTRA DISPONIBLE PARA RETIRO.\n\nFAVOR COMUNICARSE CON TALLER {},UBICADO EN {},{},{}. AL TELEFONO +56{} PARA COORDINAR RETIRO .\n\nSALUDOS CORDIALES.'.format(
+                    siniestro.asegurado_rut_asegurado.primer_nombre, siniestro.asegurado_rut_asegurado.primer_apellido,siniestro.poliza_id_poliza.vehiculo_patente_vehiculo.patente_vehiculo,
+                    siniestro.id, siniestro.taller_id_taller.nombre, siniestro.taller_id_taller.direccion,
+                    siniestro.taller_id_taller.comuna_id_comuna.nombre,
+                    siniestro.taller_id_taller.comuna_id_comuna.region_nro_region.nombre,
+                    siniestro.taller_id_taller.telefono),
                 'no-contestar@hotmail.com',
                 [siniestro.asegurado_rut_asegurado.correo],
-                reply_to=['lobos.joaquin@hotmail.com']
+                reply_to=['contacto.segurosvirgolini@gmail.com']
             )
             correo.send()
             siniestros = Siniestro.objects.filter(

@@ -119,6 +119,17 @@ def AprobarPresupuesto(request, id):
             pre.usuario_rut_usuario = request.user
             pre.save()
             data['form_is_valid'] = True
+            correo = EmailMessage(
+                'SEGUROS VIRGOLINI: PRESUPUESTO APROBADO',
+                'ESTIMADO/A {} {}.\n\nEL PRESUPUESTO N°{} ASOCIADO A SU SINIESTRO N°{} A SIDO APROBADO CON ÉXITO.\n\nSALUDOS CORDIALES.'.format(
+                    presupuesto.siniestro_id.asegurado_rut_asegurado.primer_nombre,
+                    presupuesto.siniestro_id.asegurado_rut_asegurado.primer_apellido,
+                    presupuesto.id, presupuesto.siniestro_id.id),
+                'no-contestar@hotmail.com',
+                [presupuesto.siniestro_id.asegurado_rut_asegurado.correo],
+                reply_to=['contacto.segurosvirgolini@gmail.com']
+            )
+            correo.send()
 
     else:
         form = AproRechPresupuestoForm(instance=presupuesto)
@@ -142,6 +153,17 @@ def RechazarPresupuesto(request, id):
             pre.usuario_rut_usuario = request.user
             pre.save()
             data['form_is_valid'] = True
+            correo = EmailMessage(
+                'SEGUROS VIRGOLINI: PRESUPUESTO RECHAZADO',
+                'ESTIMADO/A {} {}.\n\nEL PRESUPUESTO N°{} ASOCIADO A SU SINIESTRO N°{} A SIDO RECHAZADO.\n\nSALUDOS CORDIALES.'.format(
+                    presupuesto.siniestro_id.asegurado_rut_asegurado.primer_nombre,
+                    presupuesto.siniestro_id.asegurado_rut_asegurado.primer_apellido,
+                    presupuesto.id, presupuesto.siniestro_id.id),
+                'no-contestar@hotmail.com',
+                [presupuesto.siniestro_id.asegurado_rut_asegurado.correo],
+                reply_to=['contacto.segurosvirgolini@gmail.com']
+            )
+            correo.send()
 
     else:
         form = AproRechPresupuestoForm(instance=presupuesto)
@@ -281,12 +303,14 @@ def TipoPlanReactive(request, id):
             'liquidador/tipoPlan/tipo_plan_reactive.html', context, request=request)
     return JsonResponse(data)
 
+
 # todo Falta desarrollar aprobar y rechazar presupuesto
 
 
 def PolizaViewPdf(request, pk):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT P.ID,P.VIGENTE,P.FECHA_INICIO,P.FECHA_FIN,U.RUT_USUARIO,U.PRIMER_NOMBRE,U.SEGUNDO_NOMBRE,U.PRIMER_APELLIDO,U.SEGUNDO_APELLIDO,P.ASEGURADO_RUT_ASEGURADO,A.PRIMER_NOMBRE,A.SEGUNDO_NOMBRE,A.PRIMER_APELLIDO,A.SEGUNDO_APELIIDO,A.CORREO,A.TELEFONO,A.DIRECCION,C.NOMBRE,T.NOMBRE,T.DESCRIPCION,T.VALOR,T.DEDUCIBLE,T.COBERTURA_MAX,V.PATENTE_VEHICULO,X.TIPO,M.NOMBRE,V.MODELO,V.ANIO,V.NRO_MOTOR FROM DASHBOARD_POLIZA P JOIN DASHBOARD_USUARIO U ON U.ID=P.USUARIO_RUT_USUARIO JOIN DASHBOARD_ASEGURADO A ON  P.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO JOIN DASHBOARD_COMUNA C ON C.ID=A.COMUNA_ID_COMUNA JOIN DASHBOARD_TIPOPLAN T ON P.TIPO_PLAN_ID_TIP_PLAN=T.ID JOIN DASHBOARD_VEHICULO V ON V.PATENTE_VEHICULO=P.VEHICULO_PATENTE_VEHICULO JOIN DASHBOARD_TIPOVEHICULO X ON X.ID=V.TIPO_VEHICULO_ID_TIPO_AUTO JOIN DASHBOARD_MARCA M ON M.ID=V.MARCA_ID_MARCA WHERE (P.ID="+pk + ")")
+        cursor.execute(
+            "SELECT P.ID,P.VIGENTE,P.FECHA_INICIO,P.FECHA_FIN,U.RUT_USUARIO,U.PRIMER_NOMBRE,U.SEGUNDO_NOMBRE,U.PRIMER_APELLIDO,U.SEGUNDO_APELLIDO,P.ASEGURADO_RUT_ASEGURADO,A.PRIMER_NOMBRE,A.SEGUNDO_NOMBRE,A.PRIMER_APELLIDO,A.SEGUNDO_APELIIDO,A.CORREO,A.TELEFONO,A.DIRECCION,C.NOMBRE,T.NOMBRE,T.DESCRIPCION,T.VALOR,T.DEDUCIBLE,T.COBERTURA_MAX,V.PATENTE_VEHICULO,X.TIPO,M.NOMBRE,V.MODELO,V.ANIO,V.NRO_MOTOR FROM DASHBOARD_POLIZA P JOIN DASHBOARD_USUARIO U ON U.ID=P.USUARIO_RUT_USUARIO JOIN DASHBOARD_ASEGURADO A ON  P.ASEGURADO_RUT_ASEGURADO=A.RUT_ASEGURADO JOIN DASHBOARD_COMUNA C ON C.ID=A.COMUNA_ID_COMUNA JOIN DASHBOARD_TIPOPLAN T ON P.TIPO_PLAN_ID_TIP_PLAN=T.ID JOIN DASHBOARD_VEHICULO V ON V.PATENTE_VEHICULO=P.VEHICULO_PATENTE_VEHICULO JOIN DASHBOARD_TIPOVEHICULO X ON X.ID=V.TIPO_VEHICULO_ID_TIPO_AUTO JOIN DASHBOARD_MARCA M ON M.ID=V.MARCA_ID_MARCA WHERE (P.ID=" + pk + ")")
         dato = cursor.fetchall()
         dato = list(dato)
         print(dato)

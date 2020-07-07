@@ -479,8 +479,8 @@ def CreateSiniestro(request):
 
         correo = EmailMessage(
             'SEGUROS VIRGOLINI: SINIESTRO REGISTRADO',
-            'Estimado/a {} {}.\n\nSe registro siniestro con su póliza N° {} a las {}hrs.\n\nLa reparación de su vehículo estará a cargo de taller: {} .\n\nPara consultar el estado en el que se encuentra su siniestro ingrese a este link(http://127.0.0.1:8000/aseguradora/asegurado-consulta/).'.format(
-                asegurado.primer_nombre, asegurado.primer_apellido, poliza.id, x.strftime("%X"), taller.nombre),
+            'ESTIMADO/A {} {}.\n\nSE REGISTRO SINIESTRO CON SU PÓLIZA N° {} A LAS {}HRS.\n\nLA REPARACIÓN DE SU VEHÍCULO ESTARÁ A CARGO DE TALLER: {} ,UBICADO EN {},{},{}.\n\nPARA CONSULTAR EL ESTADO EN EL QUE SE ENCUENTRA SU SINIESTRO INGRESE A ESTE LINK (http://127.0.0.1:8000/aseguradora/asegurado-consulta/).\n\nSALUDOS CORDIALES'.format(
+                asegurado.primer_nombre, asegurado.primer_apellido, poliza.id, x.strftime("%X"), taller.nombre,taller.direccion,taller.comuna_id_comuna.nombre,taller.comuna_id_comuna.region_nro_region.nombre),
             'no-contestar@hotmail.com',
             [asegurado.correo],
             reply_to=['contacto.segurosvirgolini@gmail.com']

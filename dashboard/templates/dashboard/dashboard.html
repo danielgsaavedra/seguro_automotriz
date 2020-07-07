@@ -1,13 +1,75 @@
-{% extends "dashboard/base.html" %} 
+{% extends "dashboard/base.html" %}
 {% block title %}Dashboard{% endblock title %}
 {% block content %}
+<div class="row">
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">siniestros activos</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{qs4.dcount}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-car-crash fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">pólizas vigentes</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{qs6.dcount}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-file-contract fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">grúas disponibles</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{qs5.dcount}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-truck-moving fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">talleres disponibles</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{qs7.dcount}}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-tools fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-7 col-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">
-                    Tipos de accidentes
+                    Tipos de Accidentes
                 </h6>
             </div>
             <div class="card-body">
@@ -18,7 +80,7 @@
     <div class="col-md-5 col-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Estado siniestros</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Estado de Siniestros</h6>
             </div>
             <div class="card-body">
                 <canvas id="PieChart" width="400" height="400"></canvas>
@@ -27,7 +89,28 @@
     </div>
 </div>
 
-<div class="row"></div>
+<div class="row">
+    <div class="col-md-6 col-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Garantía de Siniestros</h6>
+            </div>
+            <div class="card-body">
+                <canvas id="Chart1" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Tipos de Actas</h6>
+            </div>
+            <div class="card-body">
+                <canvas id="Chart2" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %} {% block script %}
 <script type="text/javascript">
@@ -41,85 +124,85 @@
                         {% if item.tipo_accidente_id_tipo_acc == 1 %}
                             "DAÑOS AL VEHÍCULO"
                         {% endif %}
-                        {% if item.tipo_accidente_id_tipo_acc == 2 %}
-                            "ROBO, HURTO O USO NO AUTORIZADO"
-                        {% endif %}
-                        {% if item.tipo_accidente_id_tipo_acc == 3 %}
-                            "RESPONSABILIDAD CIVIL"
-                        {% endif %}
-                        {% if item.tipo_accidente_id_tipo_acc == 4 %}
-                            "ROBO DE ACCESORIOS"
-                        {% endif %}
-                        {% if item.tipo_accidente_id_tipo_acc == 5 %}
-                            "ACTOS MALICIOSOS"
-                        {% endif %}
-                        {% if item.tipo_accidente_id_tipo_acc == 6 %}
-                            "RIESGOS DE LA NATURALEZA"
-                        {% endif %}
-                        {% if item.tipo_accidente_id_tipo_acc == 7 %}
-                            "HUELGA Y TERRORISMO"
-                        {% endif %}
-                        {% if item.tipo_accidente_id_tipo_acc == 8 %}
-                            "CAUSADOS POR LA PROPIA CARGA"
-                        {% endif %}
-                        {% if item.tipo_accidente_id_tipo_acc == 9 %}
-                            "CAUSADOS A TERCEROS"
-                        {% endif %}
-                        {% if item.tipo_accidente_id_tipo_acc == 10 %}
-                            "DEFENSA PENAL Y CONSTITUCIÓN DE FIANZAS"
-                        {% endif %}
+        {% if item.tipo_accidente_id_tipo_acc == 2 %}
+    "ROBO, HURTO O USO NO AUTORIZADO"
+    {% endif %}
+    {% if item.tipo_accidente_id_tipo_acc == 3 %}
+    "RESPONSABILIDAD CIVIL"
+    {% endif %}
+    {% if item.tipo_accidente_id_tipo_acc == 4 %}
+    "ROBO DE ACCESORIOS"
+    {% endif %}
+    {% if item.tipo_accidente_id_tipo_acc == 5 %}
+    "ACTOS MALICIOSOS"
+    {% endif %}
+    {% if item.tipo_accidente_id_tipo_acc == 6 %}
+    "RIESGOS DE LA NATURALEZA"
+    {% endif %}
+    {% if item.tipo_accidente_id_tipo_acc == 7 %}
+    "HUELGA Y TERRORISMO"
+    {% endif %}
+    {% if item.tipo_accidente_id_tipo_acc == 8 %}
+    "CAUSADOS POR LA PROPIA CARGA"
+    {% endif %}
+    {% if item.tipo_accidente_id_tipo_acc == 9 %}
+    "CAUSADOS A TERCEROS"
+    {% endif %}
+    {% if item.tipo_accidente_id_tipo_acc == 10 %}
+    "DEFENSA PENAL Y CONSTITUCIÓN DE FIANZAS"
+    {% endif %}
                     , {% endfor %}
                 ],
-                datasets: [{
-                    label: "Total",
-                    data: [{% for item in qs1 %}'{{item.dcount}}', {% endfor %}],
-                    barPercentage: 0.5,
-                    barThickness: 6,
-                    maxBarThickness: 8,
+    datasets: [{
+        label: "Total",
+        data: [{% for item in qs1 %}'{{item.dcount}}', {% endfor %}],
+        barPercentage: 0.5,
+            barThickness: 6,
+                maxBarThickness: 8,
                     minBarLength: 2,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.5)',
-                        'rgba(54, 162, 235, 0.5)',
-                        'rgba(255, 206, 86, 0.5)',
-                        'rgba(75, 192, 192, 0.5)',
-                        'rgba(153, 102, 255, 0.5)',
-                        'rgba(255, 159, 64, 0.5)',
-                        'rgba(255, 99, 132, 0.5)',
-                        'rgba(54, 162, 235, 0.5)',
-                        'rgba(255, 206, 86, 0.5)',
-                        'rgba(75, 192, 192, 0.5)',
-                        'rgba(153, 102, 255, 0.5)',
-                        'rgba(255,159,64,0.5)'
-                    ],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)',
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255,159,64,0.5)'
+                        ],
                 }],
             },
-            options: {
-                layout: {
-                    padding: {
-                        left: 35,
-                        right: 35,
+    options: {
+        layout: {
+            padding: {
+                left: 35,
+                    right: 35,
                         top: 10,
-                        bottom: 15,
+                            bottom: 15,
                     }
-                },
-                responsive: true,
-                maintainAspectRatio: false,
+        },
+        responsive: true,
+            maintainAspectRatio: false,
                 legend: {
-                    display: false
-                },
-                title: {
-                    display: true,
-                    text: 'Tipos de accidentes más frecuentes'
-                },
-                scales: {
-                    xAxes: [{
-                        stacked: true,
-                    }],
-                    yAxes: [{
-                        stacked: true,
-                    }]
-                }
-            }
+            display: false
+        },
+        title: {
+            display: true,
+                text: 'Tipos de accidentes más frecuentes'
+        },
+        scales: {
+            xAxes: [{
+                stacked: true,
+            }],
+                yAxes: [{
+                    stacked: true,
+                }]
+        }
+    }
         });
     });
 </script>
@@ -135,67 +218,172 @@
                         {% if item.est_siniestro_id_est_siniestro == 1 %}
                             "EN CURSO"
                         {% endif %}
-                        {% if item.est_siniestro_id_est_siniestro == 2 %}
-                            "RECEPCIONADO"
+        {% if item.est_siniestro_id_est_siniestro == 2 %}
+    "RECEPCIONADO"
+    {% endif %}
+    {% if item.est_siniestro_id_est_siniestro == 3 %}
+    "INSPECCIONADO"
+    {% endif %}
+    {% if item.est_siniestro_id_est_siniestro == 4 %}
+    "EN REPARACIÓN"
+    {% endif %}
+    {% if item.est_siniestro_id_est_siniestro == 5 %}
+    "RECHAZADO"
+    {% endif %}
+    {% if item.est_siniestro_id_est_siniestro == 6 %}
+    "REPARADO"
+    {% endif %}
+    {% if item.est_siniestro_id_est_siniestro == 7 %}
+    "FINALIZADO"
+    {% endif %}
+    {% if item.est_siniestro_id_est_siniestro == 8 %}
+    "PENDIENTE"
+    {% endif %}
+                    , {% endfor %}
+                ],
+    datasets: [{
+        data: [{% for item in qs2 %}'{{item.dcount}}', {% endfor %}],
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(54, 162, 235, 0.5)',
+            'rgba(255, 206, 86, 0.5)',
+            'rgba(75, 192, 192, 0.5)',
+            'rgba(153, 102, 255, 0.5)',
+            'rgba(255, 159, 64, 0.5)',
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(54, 162, 235, 0.5)',
+            'rgba(255, 206, 86, 0.5)',
+            'rgba(75, 192, 192, 0.5)',
+            'rgba(153, 102, 255, 0.5)',
+            'rgba(255, 159, 64, 0.5)'
+        ],
+                }],
+            },
+    options: {
+        layout: {
+            padding: {
+                left: 30,
+                    right: 30,
+                        top: 10,
+                            bottom: 10,
+                    }
+        },
+        responsive: true,
+            maintainAspectRatio: false,
+                legend: {
+            display: true,
+                position: 'bottom',
+                },
+        title: {
+            display: true,
+                text: 'Estado actual de los siniestros'
+        },
+    },
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var ctx = document.getElementById("Chart1").getContext('2d');
+        var PieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: [
+                    {% for item in qs3 %}
+                        {% if item.garantia == 0 %}
+                            "GARANTIA INACTIVA"
                         {% endif %}
-                        {% if item.est_siniestro_id_est_siniestro == 3 %}
-                            "INSPECCIONADO"
-                        {% endif %}
-                        {% if item.est_siniestro_id_est_siniestro == 4 %}
-                            "EN REPARACIÓN"
-                        {% endif %}
-                        {% if item.est_siniestro_id_est_siniestro == 5 %}
-                            "RECHAZADO"
-                        {% endif %}
-                        {% if item.est_siniestro_id_est_siniestro == 6 %}
-                            "REPARADO"
-                        {% endif %}
-                        {% if item.est_siniestro_id_est_siniestro == 7 %}
-                            "FINALIZADO"
-                        {% endif %}
-                        {% if item.est_siniestro_id_est_siniestro == 8 %}
-                            "PENDIENTE"
+                        {% if item.garantia == 1 %}
+                        "GARANTIA ACTIVA"
                         {% endif %}
                     , {% endfor %}
                 ],
-                datasets: [{
-                    data: [{% for item in qs2 %}'{{item.dcount}}', {% endfor %}],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.5)',
-                        'rgba(54, 162, 235, 0.5)',
-                        'rgba(255, 206, 86, 0.5)',
-                        'rgba(75, 192, 192, 0.5)',
-                        'rgba(153, 102, 255, 0.5)',
-                        'rgba(255, 159, 64, 0.5)',
-                        'rgba(255, 99, 132, 0.5)',
-                        'rgba(54, 162, 235, 0.5)',
-                        'rgba(255, 206, 86, 0.5)',
-                        'rgba(75, 192, 192, 0.5)',
-                        'rgba(153, 102, 255, 0.5)',
-                        'rgba(255, 159, 64, 0.5)'
-                    ],
+    datasets: [{
+        data: [{% for item in qs3 %}'{{item.dcount}}', {% endfor %}],
+        backgroundColor: [
+            'rgba(75, 192, 192, 0.5)',
+            'rgba(255, 99, 132, 0.5)'
+        ],
                 }],
             },
-            options: {
-                layout: {
-                    padding: {
-                        left: 30,
-                        right: 30,
+    options: {
+        layout: {
+            padding: {
+                left: 30,
+                    right: 30,
                         top: 10,
-                        bottom: 10,
+                            bottom: 10,
                     }
-                },
-                responsive: true,
-                maintainAspectRatio: false,
+        },
+        responsive: true,
+            maintainAspectRatio: false,
                 legend: {
-                    display: true,
-                    position: 'bottom',
+            display: true,
+                position: 'bottom',
                 },
-                title: {
-                    display: true,
-                    text: 'Estado actual de los siniestros'
-                },
+        title: {
+            display: true,
+                text: 'Estado de las garantías'
+        },
+    },
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var ctx = document.getElementById("Chart2").getContext('2d');
+        var PieChart = new Chart(ctx, {
+            type: 'polarArea',
+            data: {
+                labels: [
+                    {% for item in qs8 %}
+                        {% if item.tipo_acta_id_tipo_acta == 1 %}
+                        "ACTA RECEPCIÓN"
+                        {% endif %}
+                        {% if item.tipo_acta_id_tipo_acta == 2 %}
+                        "ACTA RECHAZO"
+                        {% endif %}
+                        {% if item.tipo_acta_id_tipo_acta == 3 %}
+                        "ACTA RETIRO"
+                        {% endif %}
+                    , {% endfor %}
+                ],
+    datasets: [{
+        data: [{% for item in qs8 %}'{{item.dcount}}', {% endfor %}],
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(54, 162, 235, 0.5)',
+            'rgba(255, 206, 86, 0.5)',
+            'rgba(75, 192, 192, 0.5)',
+            'rgba(153, 102, 255, 0.5)',
+            'rgba(255, 159, 64, 0.5)',
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(54, 162, 235, 0.5)',
+            'rgba(255, 206, 86, 0.5)',
+            'rgba(75, 192, 192, 0.5)',
+            'rgba(153, 102, 255, 0.5)',
+            'rgba(255, 159, 64, 0.5)'
+        ],
+                }],
             },
+    options: {
+        layout: {
+            padding: {
+                left: 30,
+                    right: 30,
+                        top: 10,
+                            bottom: 10,
+                    }
+        },
+        responsive: true,
+            maintainAspectRatio: false,
+                legend: {
+            display: true,
+                position: 'bottom',
+                },
+    },
         });
     });
 </script>

@@ -14,8 +14,7 @@ from .models import Taller, Asegurado, Vehiculo, Poliza, Siniestro, EstadoSinies
 from .forms import PolizaForm, PolizaFormUpdate, AseguradoForm, DeshabilitarAseguradoForm, VehiculoForm, SiniestroForm, \
     SiniestroFormUpdate, DeshabilitarPolizaForm, DeshabilitarSiniestroForm, TallerForm, DeshabilitarTallerForm, \
     AseguradoFormUpdate, VehiculoFormUpdate, SiniestroFotosUpdate, ServicioGruaForm, DeshabilitarServicioForm
-from django.db.models import Q
-from django.db.models import Count
+from django.db.models import Q, Count
 from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
 import pdfkit
@@ -35,6 +34,18 @@ class DashboardView(TemplateView):
             dcount=Count('tipo_accidente_id_tipo_acc'))
         context["qs2"] = Siniestro.objects.values('est_siniestro_id_est_siniestro').annotate(
             dcount=Count('est_siniestro_id_est_siniestro'))
+        context["qs3"] = Siniestro.objects.values('garantia').annotate(
+            dcount=Count('garantia'))
+        context["qs4"] = Siniestro.objects.aggregate(
+            dcount=Count('id', filter=~Q(est_siniestro_id_est_siniestro=7)))
+        context["qs5"] = Grua.objects.aggregate(
+            dcount=Count('patente_grua', filter=Q(estado=1)))
+        context["qs6"] = Poliza.objects.aggregate(
+            dcount=Count('id', filter=Q(vigente=1)))
+        context["qs7"] = Taller.objects.aggregate(
+            dcount=Count('id', filter=Q(estado=1)))
+        context["qs8"] = FormularioActa.objects.values('tipo_acta_id_tipo_acta').annotate(
+            dcount=Count('tipo_acta_id_tipo_acta'))
         return context
 
 
@@ -144,7 +155,8 @@ def ReactivateAsegurado(request, id):
             aseguradoActivate.estado = "1"
             aseguradoActivate.save()
             data['form_is_valid'] = True
-            aseguradosDisable = Asegurado.objects.filter(estado=0).order_by('fecha_nacimiento')
+            aseguradosDisable = Asegurado.objects.filter(
+                estado=0).order_by('fecha_nacimiento')
             context = {'aseguradosDisable': aseguradosDisable}
             data['aseguradosDisable'] = render_to_string(
                 'dashboard/asegurados/asegurado_disabled_2.html', context)
@@ -819,7 +831,8 @@ def ServicioGruaDelete(request, id):
             servicio.estado = False
             servicio.save()
             data['form_is_valid'] = True
-            servicios_gruas_delete = ServicioGrua.objects.all().exclude(estado=False).order_by('id')
+            servicios_gruas_delete = ServicioGrua.objects.all().exclude(
+                estado=False).order_by('id')
             context = {'servicios_gruas_delete': servicios_gruas_delete}
             data['servicios_gruas'] = render_to_string(
                 'dashboard/servicioGrua/servicio_grua_2.html', context)
@@ -844,7 +857,8 @@ def ServicioGruaReactive(request, id):
             servicio.estado = True
             servicio.save()
             data['form_is_valid'] = True
-            servicios_gruas_disabled = ServicioGrua.objects.all().exclude(estado=True).order_by('id')
+            servicios_gruas_disabled = ServicioGrua.objects.all().exclude(
+                estado=True).order_by('id')
             context = {'servicios_gruas_disabled': servicios_gruas_disabled}
             data['servicios_gruas'] = render_to_string(
                 'dashboard/servicioGrua/servicio_grua_disabled_2.html', context)

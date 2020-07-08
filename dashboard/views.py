@@ -772,7 +772,7 @@ def siniestroDetallePdf(request, pk):
 
     path_wkthmltopdf = b'C:\wkhtmltopdf\\bin\wkhtmltopdf.exe'
     config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
-    pdf = pdfkit.from_url('http://127.0.0.1:8000/consultaSiniestroDetalleView/' +
+    pdf = pdfkit.from_url('http://127.0.0.1:8000/aseguradora/consultaSiniestroDetalleView/' +
                           str(pk), False, options=options, configuration=config)
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="DetalleSiniestro.pdf" '
